@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm --version)",
+      "Read(//usr/local/bin/**)",
+      "Read(//Users/agatbe/**)",
+      "Bash(ls -d ~/.nvm ~/.fnm ~/.volta ~/Library/pnpm 2>/dev/null; echo \"===\"; ls /opt/homebrew/bin/ 2>/dev/null | grep -iE \"node|npm|pnpm|yarn|bun|fnm|volta\"; echo \"==brew==\"; which brew 2>/dev/null)",
+      "Bash(qlmanage -t -s 1024 -o /tmp \"Logo NiFi \\(Blue\\).pdf\")",
+      "Read(//private/tmp/**)",
+      "Bash(sips -g pixelWidth -g pixelHeight \"/tmp/Logo NiFi \\(Blue\\).pdf.png\")",
+      "Bash(cp '/tmp/Logo NiFi \\(Blue\\).pdf.png' '/Users/agatbe/Claude Project/Claude Vibecode \\(NiFi\\)/public/logo-nifi.png')",
+      "Bash(cp '/Users/agatbe/Downloads/Logo NiFi \\(Blue\\).pdf' '/Users/agatbe/Claude Project/Claude Vibecode \\(NiFi\\)/public/logo-nifi.pdf')",
+      "Bash(sips -Z 256 '/tmp/Logo NiFi \\(Blue\\).pdf.png' --out '/Users/agatbe/Claude Project/Claude Vibecode \\(NiFi\\)/app/icon.png')"
+    ]
+  }
+}
