@@ -42,10 +42,9 @@ export default function Hero() {
         </h1>
 
         <p className="mt-7 max-w-2xl text-lg leading-relaxed text-slate-300 sm:text-xl">
-          A lot of finance content assumes you already get it. We&apos;d like to
-          change that. Through research, education, and a community that&apos;s
-          happy to answer your questions, we hope to make money and markets a
-          little easier to follow, whatever your background.
+          We make finance &amp; investment easy to understand. Through research,
+          education, and a supportive community, we help you learn, no matter
+          your experience level.
         </p>
 
         <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row">

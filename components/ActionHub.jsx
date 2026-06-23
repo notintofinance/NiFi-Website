@@ -1,10 +1,11 @@
 import Image from "next/image";
-import { Users, Compass, Mail, ArrowRight, ArrowUpRight } from "lucide-react";
+import { Users, Mail, ArrowRight, ArrowUpRight } from "lucide-react";
 import SectionHeading from "./SectionHeading";
 import { siteConfig } from "@/data/site-config";
 
 // Secondary action row (Arthara, Newsletter).
-function SecondaryAction({ icon: Icon, label, description, href }) {
+// Pass either a Lucide `icon` or a `logo` image src for the chip.
+function SecondaryAction({ icon: Icon, logo, label, description, href }) {
   return (
     <a
       href={href}
@@ -12,9 +13,21 @@ function SecondaryAction({ icon: Icon, label, description, href }) {
       rel="noopener noreferrer"
       className="group flex flex-1 items-center gap-4 rounded-2xl border border-navy-600/60 bg-navy-700/40 p-6 transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/60 hover:bg-navy-700/70"
     >
-      <div className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent/15 text-accent-bright transition-colors group-hover:bg-accent group-hover:text-white">
-        <Icon size={22} strokeWidth={2} />
-      </div>
+      {logo ? (
+        <div className="inline-flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white">
+          <Image
+            src={logo}
+            alt={`${label} logo`}
+            width={44}
+            height={44}
+            className="h-7 w-7 object-contain"
+          />
+        </div>
+      ) : (
+        <div className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent/15 text-accent-bright transition-colors group-hover:bg-accent group-hover:text-white">
+          <Icon size={22} strokeWidth={2} />
+        </div>
+      )}
       <div className="min-w-0 flex-1">
         <h3 className="font-semibold text-white">{label}</h3>
         <p className="mt-0.5 text-sm leading-relaxed text-slate-400">
@@ -84,7 +97,7 @@ export default function ActionHub() {
           {/* Secondary stack */}
           <div className="flex flex-col gap-5 lg:col-span-2">
             <SecondaryAction
-              icon={Compass}
+              logo="/arthara-logo.jpg"
               label="Access Arthara"
               description="Explore Arthara, our platform for going deeper into research and the markets."
               href={siteConfig.links.arthara}
