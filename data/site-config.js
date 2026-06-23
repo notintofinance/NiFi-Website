@@ -14,11 +14,11 @@ export const siteConfig = {
     newsletter: "https://notintofinance.beehiiv.com",
   },
 
-  // In-page navigation anchors.
+  // Navigation. Hash links resolve on the home page from any route.
   nav: [
-    { label: "About", href: "#about" },
-    { label: "Services", href: "#services" },
-    { label: "Get Started", href: "#action-hub" },
-    { label: "Research", href: "#research" },
+    { label: "About", href: "/#about" },
+    { label: "What We Do", href: "/#services" },
+    { label: "Get Started", href: "/#action-hub" },
+    { label: "Research", href: "/research" },
   ],
 };

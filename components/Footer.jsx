@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Logo from "./Logo";
 import { siteConfig } from "@/data/site-config";
 
@@ -7,7 +8,7 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-6 py-12">
         <div className="flex flex-col items-start justify-between gap-8 sm:flex-row sm:items-center">
           <div className="max-w-sm">
-            <Logo size={36} />
+            <Logo size={36} href="/" />
             <p className="mt-4 text-sm leading-relaxed text-slate-400">
               Research, education, and community for people who aren&apos;t into
               finance yet. We&apos;d love for you to learn it with us.
@@ -16,13 +17,13 @@ export default function Footer() {
 
           <nav className="flex flex-wrap items-center gap-x-6 gap-y-2">
             {siteConfig.nav.map((item) => (
-              <a
+              <Link
                 key={item.href}
                 href={item.href}
                 className="text-sm text-slate-400 transition-colors hover:text-white"
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
           </nav>
         </div>

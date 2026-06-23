@@ -3,7 +3,7 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Services from "@/components/Services";
 import ActionHub from "@/components/ActionHub";
-import ResearchLibrary from "@/components/ResearchLibrary";
+import FeaturedResearch from "@/components/FeaturedResearch";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -15,7 +15,7 @@ export default function Home() {
         <About />
         <Services />
         <ActionHub />
-        <ResearchLibrary />
+        <FeaturedResearch />
       </main>
       <Footer />
     </>
