@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Logo from "./Logo";
+import SocialLinks from "./SocialLinks";
 import { siteConfig } from "@/data/site-config";
 
 export default function Footer() {
@@ -13,6 +14,9 @@ export default function Footer() {
               Research, education, and community for people who aren&apos;t into
               finance yet. We&apos;d love for you to learn it with us.
             </p>
+            <div className="mt-5">
+              <SocialLinks />
+            </div>
           </div>
 
           <nav className="flex flex-wrap items-center gap-x-6 gap-y-2">

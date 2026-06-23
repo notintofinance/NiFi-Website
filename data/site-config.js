@@ -14,6 +14,17 @@ export const siteConfig = {
     newsletter: "https://notintofinance.beehiiv.com",
   },
 
+  // Social profiles (shown in the footer). Leave a value empty to hide its
+  // icon. Fill in Instagram / LinkedIn / TikTok when you have the URLs.
+  socials: {
+    x: "https://x.com/notintofinance",
+    discord: "https://discord.gg/PzXJKTKPd4",
+    beehiiv: "https://notintofinance.beehiiv.com",
+    instagram: "https://instagram.com/notintofinance",
+    linkedin: "https://www.linkedin.com/company/notintofinance",
+    tiktok: "",
+  },
+
   // Contact form (Web3Forms). Get a free access key at https://web3forms.com
   // by entering contact@notintofinance.com — submissions are emailed there.
   // Paste the key here, then commit + push. While empty, the form is disabled
