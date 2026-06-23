@@ -1,16 +1,21 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Users, Mail, ArrowRight, ArrowUpRight } from "lucide-react";
 import SectionHeading from "./SectionHeading";
 import { siteConfig } from "@/data/site-config";
 
 // Secondary action row (Arthara, Newsletter).
 // Pass either a Lucide `icon` or a `logo` image src for the chip.
-function SecondaryAction({ icon: Icon, logo, label, description, href }) {
+// `internal` uses client-side routing (same tab); otherwise opens a new tab.
+function SecondaryAction({ icon: Icon, logo, label, description, href, internal }) {
+  const Tag = internal ? Link : "a";
+  const linkProps = internal
+    ? { href }
+    : { href, target: "_blank", rel: "noopener noreferrer" };
+
   return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
+    <Tag
+      {...linkProps}
       className="group flex flex-1 items-center gap-4 rounded-2xl border border-navy-600/60 bg-navy-700/40 p-6 transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/60 hover:bg-navy-700/70"
     >
       {logo ? (
@@ -38,7 +43,7 @@ function SecondaryAction({ icon: Icon, logo, label, description, href }) {
         size={20}
         className="shrink-0 text-slate-500 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent-bright"
       />
-    </a>
+    </Tag>
   );
 }
 
