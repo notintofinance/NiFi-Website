@@ -15,7 +15,7 @@ export const siteConfig = {
   },
 
   // Contact form (Web3Forms). Get a free access key at https://web3forms.com
-  // by entering notintofinance.id@gmail.com — submissions are emailed there.
+  // by entering contact@notintofinance.com — submissions are emailed there.
   // Paste the key here, then commit + push. While empty, the form is disabled
   // with a note. (This key is meant to live in client code; it is not secret.)
   contactFormKey: "e29c53e7-d872-4806-b9bb-dd72c722d5d5",

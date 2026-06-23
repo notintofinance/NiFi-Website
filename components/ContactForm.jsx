@@ -52,7 +52,7 @@ export default function ContactForm() {
 
   if (status === "success") {
     return (
-      <div className="flex flex-col items-center gap-4 rounded-3xl border border-accent/30 bg-navy-700/40 p-10 text-center">
+      <div className="flex h-full flex-col items-center justify-center gap-4 rounded-3xl border border-accent/30 bg-navy-700/40 p-10 text-center">
         <CheckCircle2 size={48} className="text-accent-mint" />
         <h3 className="text-xl font-bold text-white">Thanks for reaching out!</h3>
         <p className="max-w-md text-slate-400">
@@ -73,7 +73,7 @@ export default function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="rounded-3xl border border-navy-600/60 bg-navy-700/40 p-6 sm:p-8"
+      className="flex h-full flex-col rounded-3xl border border-navy-600/60 bg-navy-700/40 p-6 sm:p-8"
     >
       {/* Honeypot for spam bots */}
       <input
@@ -138,16 +138,15 @@ export default function ContactForm() {
         </div>
       </div>
 
-      <div className="mt-5">
+      <div className="mt-5 flex flex-1 flex-col">
         <label className="mb-1.5 block text-sm font-medium text-slate-300">
           Description <span className="text-accent-bright">*</span>
         </label>
         <textarea
           name="message"
           required
-          rows={5}
           placeholder="Tell us a bit more…"
-          className={`${inputClass} resize-y`}
+          className={`${inputClass} min-h-[140px] flex-1 resize-y`}
         />
       </div>
 

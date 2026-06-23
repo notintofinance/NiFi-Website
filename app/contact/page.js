@@ -44,10 +44,10 @@ export default function ContactPage() {
                 </div>
                 <h3 className="font-semibold text-white">Email us</h3>
                 <a
-                  href="mailto:notintofinance.id@gmail.com"
+                  href="mailto:contact@notintofinance.com"
                   className="mt-1 block break-all text-sm text-accent-bright hover:text-white"
                 >
-                  notintofinance.id@gmail.com
+                  contact@notintofinance.com
                 </a>
               </div>
 
