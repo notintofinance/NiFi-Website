@@ -1,4 +1,10 @@
-import { MessagesSquare, Unlock, HeartHandshake } from "lucide-react";
+import {
+  MessagesSquare,
+  Unlock,
+  HeartHandshake,
+  Users,
+  GraduationCap,
+} from "lucide-react";
 import SectionHeading from "./SectionHeading";
 
 const principles = [
@@ -17,6 +23,15 @@ const principles = [
     title: "Learning together",
     text: "We learn as a community, and asking questions out loud is the whole point.",
   },
+];
+
+// Who's in the room with you.
+const memberTypes = [
+  "Investment professionals",
+  "Retail traders",
+  "Institutional investors",
+  "Students",
+  "Curious beginners",
 ];
 
 export default function About() {
@@ -41,17 +56,60 @@ export default function About() {
               because we felt that way too, and thought it could be different.
             </p>
             <p>
-              We&apos;re a small research, education, and community space that
-              tries to take the complicated stuff and explain it the way a normal
-              person would. The name says it best. It&apos;s for the people who{" "}
+              We&apos;re a research, education, and community space that tries to
+              take the complicated stuff and explain it the way a normal person
+              would. The name says it best. It&apos;s for the people who{" "}
               <span className="text-accent-bright">aren&apos;t</span> into finance
               yet, and just want a place to understand it.
             </p>
           </div>
         </div>
 
+        {/* Community stats */}
+        <div className="mt-16 overflow-hidden rounded-3xl border border-navy-600/60 bg-navy-700/40">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3">
+            <div className="flex items-center gap-4 border-navy-600/60 p-8 sm:border-r">
+              <div className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-accent/15 text-accent-bright">
+                <Users size={24} strokeWidth={2} />
+              </div>
+              <div>
+                <p className="text-3xl font-bold text-white">4,600+</p>
+                <p className="text-sm text-slate-400">Community members</p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-4 border-navy-600/60 p-8 lg:border-r">
+              <div className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-accent/15 text-accent-bright">
+                <GraduationCap size={24} strokeWidth={2} />
+              </div>
+              <div>
+                <p className="text-3xl font-bold text-white">5+</p>
+                <p className="text-sm text-slate-400">
+                  Free classes, held monthly
+                </p>
+              </div>
+            </div>
+
+            <div className="border-t border-navy-600/60 p-8 sm:col-span-2 lg:col-span-1 lg:border-t-0">
+              <p className="mb-3 text-sm font-medium text-slate-300">
+                A real mix of people:
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {memberTypes.map((m) => (
+                  <span
+                    key={m}
+                    className="rounded-full border border-navy-600 bg-navy-800/60 px-3 py-1 text-xs text-slate-300"
+                  >
+                    {m}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Principles */}
-        <div className="mt-16 grid gap-6 border-t border-navy-700/50 pt-12 sm:grid-cols-3">
+        <div className="mt-12 grid gap-6 sm:grid-cols-3">
           {principles.map(({ icon: Icon, title, text }) => (
             <div key={title} className="flex flex-col gap-3">
               <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-accent/15 text-accent-bright">
