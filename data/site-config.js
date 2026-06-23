@@ -18,7 +18,7 @@ export const siteConfig = {
   // by entering notintofinance.id@gmail.com — submissions are emailed there.
   // Paste the key here, then commit + push. While empty, the form is disabled
   // with a note. (This key is meant to live in client code; it is not secret.)
-  contactFormKey: "",
+  contactFormKey: "e29c53e7-d872-4806-b9bb-dd72c722d5d5",
 
   // Navigation. Hash links resolve on the home page from any route.
   nav: [
