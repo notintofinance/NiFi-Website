@@ -5,7 +5,7 @@ import ArticleGrid from "@/components/ArticleGrid";
 export const metadata = {
   title: "Articles | Not Into Finance (NiFi)",
   description:
-    "Long-form articles from Not Into Finance — markets, macro, and companies explained in plain language, published on X.",
+    "Short, plain-language articles from Not Into Finance on markets, macro, and the companies we're watching.",
 };
 
 export default function ArticlePage() {
@@ -28,7 +28,6 @@ export default function ArticlePage() {
           </div>
         </section>
 
-        {/* Grid */}
         <ArticleGrid />
       </main>
       <Footer />

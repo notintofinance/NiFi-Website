@@ -34,7 +34,6 @@ export const siteConfig = {
   // Navigation. Hash links resolve on the home page from any route.
   nav: [
     { label: "About", href: "/#about" },
-    { label: "What We Do", href: "/#services" },
     { label: "Research", href: "/research" },
     { label: "Articles", href: "/article" },
     { label: "Contact", href: "/contact" },

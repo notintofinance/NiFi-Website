@@ -22,9 +22,8 @@ export default function ResearchPage() {
               Research you can actually read
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-slate-400">
-              Clear, independent write-ups on the companies and sectors we've
-              been digging into. Free to read, no jargon required. Pick a topic
-              below or browse them all.
+              Clear, independent write-ups on the companies and sectors we&apos;ve
+              been digging into. Free to read, no jargon required.
             </p>
           </div>
         </section>

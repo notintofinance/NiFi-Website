@@ -4,7 +4,7 @@ import StatsBand from "@/components/StatsBand";
 import About from "@/components/About";
 import Services from "@/components/Services";
 import ActionHub from "@/components/ActionHub";
-import CommunityProgram from "@/components/CommunityProgram";
+import Activities from "@/components/Activities";
 import FeaturedResearch from "@/components/FeaturedResearch";
 import FeaturedArticles from "@/components/FeaturedArticles";
 import Footer from "@/components/Footer";
@@ -27,7 +27,7 @@ export default function Home() {
           <ActionHub />
         </Reveal>
         <Reveal>
-          <CommunityProgram />
+          <Activities />
         </Reveal>
         <Reveal>
           <FeaturedResearch />
