@@ -14,8 +14,18 @@ function formatDate(iso) {
 }
 
 // Research card — click opens a quick preview; the modal links to the PDF.
-export default function ResearchCard({ title, category, date, summary, file, cover }) {
+export default function ResearchCard({
+  title,
+  category,
+  date,
+  summary,
+  brief,
+  authors,
+  file,
+  cover,
+}) {
   const [open, setOpen] = useState(false);
+  const byline = authors && authors.length ? authors.join(", ") : null;
 
   return (
     <>
@@ -68,6 +78,11 @@ export default function ResearchCard({ title, category, date, summary, file, cov
           <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-slate-400">
             {summary}
           </p>
+          {byline && (
+            <p className="mt-3 line-clamp-1 text-xs text-slate-500">
+              By {byline}
+            </p>
+          )}
         </div>
       </a>
 
@@ -78,7 +93,8 @@ export default function ResearchCard({ title, category, date, summary, file, cov
         badge={category}
         date={date}
         title={title}
-        summary={summary}
+        summary={brief || summary}
+        byline={byline}
         href={file}
         ctaLabel="Read the full research"
       />

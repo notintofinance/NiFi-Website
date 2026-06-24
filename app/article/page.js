@@ -1,7 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import ArticleCard from "@/components/ArticleCard";
-import { getArticlesByDate } from "@/data/article-data";
+import ArticleGrid from "@/components/ArticleGrid";
 
 export const metadata = {
   title: "Articles | Not Into Finance (NiFi)",
@@ -10,8 +9,6 @@ export const metadata = {
 };
 
 export default function ArticlePage() {
-  const articles = getArticlesByDate();
-
   return (
     <>
       <Navbar />
@@ -32,13 +29,7 @@ export default function ArticlePage() {
         </section>
 
         {/* Grid */}
-        <section className="mx-auto max-w-7xl px-6 py-16">
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {articles.map((article) => (
-              <ArticleCard key={article.id} {...article} />
-            ))}
-          </div>
-        </section>
+        <ArticleGrid />
       </main>
       <Footer />
     </>

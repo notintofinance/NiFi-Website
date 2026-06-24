@@ -2,9 +2,33 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import Logo from "./Logo";
 import { siteConfig } from "@/data/site-config";
+
+// Accent CTA showing the Arthara logo (on a white chip so the dark mark reads).
+function ArtharaButton({ className = "" }) {
+  return (
+    <a
+      href={siteConfig.links.arthara}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-accent-bright ${className}`}
+    >
+      <span className="inline-flex h-5 w-5 items-center justify-center overflow-hidden rounded bg-white">
+        <Image
+          src="/arthara-logo.jpg"
+          alt=""
+          width={20}
+          height={20}
+          className="h-3.5 w-3.5 object-contain"
+        />
+      </span>
+      Access Arthara
+    </a>
+  );
+}
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -26,14 +50,7 @@ export default function Navbar() {
               {item.label}
             </Link>
           ))}
-          <a
-            href={siteConfig.links.arthara}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-white shadow-glow transition-colors hover:bg-accent-bright"
-          >
-            Access Arthara
-          </a>
+          <ArtharaButton className="shadow-glow" />
         </div>
 
         {/* Mobile toggle */}
@@ -61,14 +78,7 @@ export default function Navbar() {
                 {item.label}
               </Link>
             ))}
-            <a
-              href={siteConfig.links.arthara}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-2 rounded-lg bg-accent px-4 py-2 text-center text-sm font-semibold text-white"
-            >
-              Access Arthara
-            </a>
+            <ArtharaButton className="mt-2 w-full" />
           </div>
         </div>
       )}

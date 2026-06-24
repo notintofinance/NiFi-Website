@@ -52,6 +52,7 @@ export default function ActionHub() {
     <section id="action-hub" className="border-y border-navy-700/50 bg-navy-800/40">
       <div className="mx-auto max-w-7xl px-6 py-24">
         <SectionHeading
+          number="03"
           eyebrow="Get Started"
           title="A few ways to get involved"
           subtitle="However you'd like to start, you're welcome here."

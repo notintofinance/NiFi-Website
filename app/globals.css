@@ -12,6 +12,14 @@
     font-feature-settings: "cv11", "ss01";
   }
 
+  /* Display font for all headings — gives an editorial, credible feel */
+  h1,
+  h2,
+  h3 {
+    @apply font-display;
+    letter-spacing: -0.01em;
+  }
+
   /* Branded text selection */
   ::selection {
     @apply bg-accent/30 text-white;

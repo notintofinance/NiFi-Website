@@ -13,6 +13,7 @@ export default function FeaturedResearch() {
       <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
         <SectionHeading
           align="left"
+          number="04"
           eyebrow="Research"
           title="A look at our latest research"
           subtitle="Free reports you can actually read, on the companies and sectors we've been looking into."

@@ -42,6 +42,7 @@ export default function About() {
           <div className="lg:col-span-5">
             <SectionHeading
               align="left"
+              number="01"
               eyebrow="Who We Are"
               title="We'd like to make finance make sense."
             />

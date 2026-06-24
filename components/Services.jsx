@@ -8,6 +8,7 @@ export default function Services() {
   return (
     <section id="services" className="mx-auto max-w-7xl px-6 py-24">
       <SectionHeading
+        number="02"
         eyebrow="What We Do"
         title="Three ways we hope to help"
         subtitle="Research, education, and community. Three sides of the same goal: helping more people feel at home with finance."

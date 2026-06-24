@@ -21,6 +21,7 @@ export default function PreviewModal({
   date,
   title,
   summary,
+  byline,
   href,
   ctaLabel,
 }) {
@@ -92,6 +93,10 @@ export default function PreviewModal({
           <h3 className="mt-3 text-xl font-bold leading-snug text-white">
             {title}
           </h3>
+
+          {byline && (
+            <p className="mt-2 text-xs text-slate-500">By {byline}</p>
+          )}
 
           {summary && (
             <p className="mt-3 text-sm leading-relaxed text-slate-400">

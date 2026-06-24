@@ -14,6 +14,7 @@ export default function FeaturedArticles() {
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <SectionHeading
             align="left"
+            number="05"
             eyebrow="Articles"
             title="Fresh from our desk"
             subtitle="Short, plain-language takes on markets, macro, and the companies we're watching."
