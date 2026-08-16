@@ -16,7 +16,11 @@
 //    summary — short brief shown in the preview
 //    url     — link to the X post (opens in a new tab)
 //    cover   — preview image path inside /public
+//    tags    — array of tag objects from data/tags-data.js — reuse the
+//              same tag across content types to cross-link them on /tag/[slug]
 // =============================================================
+
+import { TAGS } from "./tags-data";
 
 export const articles = [
   {
@@ -27,6 +31,7 @@ export const articles = [
       "A closer look at Mastersystem Infotama (MSTI) and what makes the IT infrastructure player worth watching.",
     url: "https://x.com/notintofinance/status/2044628386904219809",
     cover: "/article/covers/article-1.jpg",
+    tags: [TAGS.msti],
   },
   {
     id: "krisis-hormuz-rantai-pasok-logam",
@@ -37,6 +42,7 @@ export const articles = [
       "How tensions around the Strait of Hormuz could reshuffle the global metals supply chain, and where Indonesia stands to gain.",
     url: "https://x.com/notintofinance/status/2046172814148039144",
     cover: "/article/covers/article-2.jpg",
+    tags: [TAGS.metals, TAGS.macro],
   },
   {
     id: "deal-eurasia-sawit-tekstil",
@@ -46,6 +52,7 @@ export const articles = [
       "What a new Eurasia trade deal could mean for Indonesia's palm oil and textile exports.",
     url: "https://x.com/notintofinance/status/2047303846490505573",
     cover: "/article/covers/article-3.jpg",
+    tags: [TAGS.palmOil, TAGS.textile],
   },
   {
     id: "supply-shock-450-kiloton-inco",
@@ -55,6 +62,7 @@ export const articles = [
       "A 450-kiloton nickel supply shock, and why the disruption could turn into an opportunity for INCO.",
     url: "https://x.com/notintofinance/status/2049306002080854343",
     cover: "/article/covers/article-4.jpg",
+    tags: [TAGS.mining, TAGS.inco],
   },
   {
     id: "paradoks-hilirisasi-aluminium",
@@ -65,6 +73,7 @@ export const articles = [
       "How Indonesia's export restrictions are quietly filling a gap in the global aluminium supply.",
     url: "https://x.com/notintofinance/status/2050064502365053213",
     cover: "/article/covers/article-5.jpg",
+    tags: [TAGS.metals, TAGS.macro],
   },
   {
     id: "pemerintah-incar-pajak-tambang",
@@ -75,6 +84,7 @@ export const articles = [
       "The push for higher mining taxes: good for state revenue, but will foreign investors stick around?",
     url: "https://x.com/notintofinance/status/2051914442829398238",
     cover: "/article/covers/article-6.jpg",
+    tags: [TAGS.mining, TAGS.macro],
   },
   {
     id: "sentralisasi-ekspor-prabowo",
@@ -85,6 +95,7 @@ export const articles = [
       "Prabowo's plan to centralise exports: a fiscal masterstroke, or a logistical headache?",
     url: "https://x.com/notintofinance/status/2058055729337286975",
     cover: "/article/covers/article-7.jpg",
+    tags: [TAGS.macro],
   },
   {
     id: "bank-sentral-borong-emas",
@@ -95,6 +106,7 @@ export const articles = [
       "Central banks kept buying gold in April, so why did the price slip in June 2026?",
     url: "https://x.com/notintofinance/status/2063136939319132545",
     cover: "/article/covers/article-8.jpg",
+    tags: [TAGS.gold, TAGS.macro],
   },
   {
     id: "prediksi-piala-dunia-2026",
@@ -105,6 +117,7 @@ export const articles = [
       "Predicting the 2026 World Cup winner: a quantitative model versus the betting market.",
     url: "https://x.com/notintofinance/status/2063599859945627884",
     cover: "/article/covers/article-9.jpg",
+    tags: [],
   },
   {
     id: "trump-let-the-oil-flow",
@@ -114,6 +127,7 @@ export const articles = [
       "Trump wants cheaper oil, the Fed is wary. What the tug-of-war could mean for markets.",
     url: "https://x.com/notintofinance/status/2066920412207075694",
     cover: "/article/covers/article-10.jpg",
+    tags: [TAGS.energy, TAGS.macro],
   },
 ];
 

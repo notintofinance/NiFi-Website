@@ -16,7 +16,11 @@
 //    file     — path to the PDF inside /public  (must start with "/research/")
 //    cover    — path to the cover-slide image shown as the card preview
 //               (a JPG of the PDF's first page in /public/research/covers/)
+//    tags     — array of tag objects from data/tags-data.js — reuse the
+//               same tag across content types to cross-link them on /tag/[slug]
 // =============================================================
+
+import { TAGS } from "./tags-data";
 
 export const researchReports = [
   {
@@ -31,6 +35,7 @@ export const researchReports = [
     authors: ["Pandu Maulana Anwari", "Ahmad W. Aryana"],
     file: "/research/indonesiawit-palm-oil.pdf",
     cover: "/research/covers/indonesiawit-palm-oil.jpg",
+    tags: [TAGS.palmOil, TAGS.commodities],
   },
   {
     id: "new-alternative-energy",
@@ -44,6 +49,7 @@ export const researchReports = [
     authors: ["Taufan Fadhillah", "Daffa Abiyyan"],
     file: "/research/new-alternative-energy.pdf",
     cover: "/research/covers/new-alternative-energy.jpg",
+    tags: [TAGS.energy],
   },
   {
     id: "lpck-lippo-cikarang",
@@ -57,6 +63,7 @@ export const researchReports = [
     authors: ["Taufan Fadhillah", "Agatbe Thymoty"],
     file: "/research/lpck-lippo-cikarang.pdf",
     cover: "/research/covers/lpck-lippo-cikarang.jpg",
+    tags: [TAGS.property, TAGS.lpck],
   },
   {
     id: "amman-aku-kamu-amman",
@@ -70,6 +77,7 @@ export const researchReports = [
     authors: ["Alief Randhinka Putra", "Agatbe Thymoty", "Ahmad W. Aryana"],
     file: "/research/amman-aku-kamu-amman.pdf",
     cover: "/research/covers/amman-aku-kamu-amman.jpg",
+    tags: [TAGS.mining, TAGS.ammn],
   },
   {
     id: "pbrx-garment-giant",
@@ -83,6 +91,7 @@ export const researchReports = [
     authors: ["Taufan Fadhillah", "Agatbe Thymoty", "Ahmad W. Aryana"],
     file: "/research/pbrx-garment-giant.pdf",
     cover: "/research/covers/pbrx-garment-giant.jpg",
+    tags: [TAGS.textile, TAGS.pbrx],
   },
 ];
 

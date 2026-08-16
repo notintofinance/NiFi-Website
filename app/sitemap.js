@@ -1,6 +1,14 @@
 export default function sitemap() {
   const base = "https://notintofinance.com";
-  const routes = ["", "/research", "/article", "/contact"];
+  const routes = [
+    "",
+    "/hub",
+    "/research",
+    "/article",
+    "/newsletter",
+    "/carousel",
+    "/contact",
+  ];
 
   return routes.map((path) => ({
     url: `${base}${path}`,

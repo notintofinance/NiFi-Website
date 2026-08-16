@@ -5,8 +5,7 @@ import About from "@/components/About";
 import Services from "@/components/Services";
 import ActionHub from "@/components/ActionHub";
 import Activities from "@/components/Activities";
-import FeaturedResearch from "@/components/FeaturedResearch";
-import FeaturedArticles from "@/components/FeaturedArticles";
+import FeaturedHub from "@/components/FeaturedHub";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
 
@@ -30,10 +29,7 @@ export default function Home() {
           <Activities />
         </Reveal>
         <Reveal>
-          <FeaturedResearch />
-        </Reveal>
-        <Reveal>
-          <FeaturedArticles />
+          <FeaturedHub />
         </Reveal>
       </main>
       <Footer />
