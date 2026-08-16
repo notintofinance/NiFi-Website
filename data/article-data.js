@@ -106,7 +106,7 @@ export const articles = [
       "Central banks kept buying gold in April, so why did the price slip in June 2026?",
     url: "https://x.com/notintofinance/status/2063136939319132545",
     cover: "/article/covers/article-8.jpg",
-    tags: [TAGS.gold, TAGS.macro],
+    tags: [TAGS.gold, TAGS.macro, TAGS.markets],
   },
   {
     id: "prediksi-piala-dunia-2026",
@@ -127,7 +127,7 @@ export const articles = [
       "Trump wants cheaper oil, the Fed is wary. What the tug-of-war could mean for markets.",
     url: "https://x.com/notintofinance/status/2066920412207075694",
     cover: "/article/covers/article-10.jpg",
-    tags: [TAGS.energy, TAGS.macro],
+    tags: [TAGS.energy, TAGS.macro, TAGS.markets],
   },
 ];
 

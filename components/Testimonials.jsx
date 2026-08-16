@@ -2,8 +2,8 @@ import { Quote } from "lucide-react";
 import SectionHeading from "./SectionHeading";
 import { testimonials } from "@/data/testimonials-data";
 
-// Not currently rendered — add <Testimonials /> to app/page.js when you
-// have real member quotes to show.
+// Rendered on /community — stays hidden until data/testimonials-data.js
+// has real quotes in it.
 export default function Testimonials() {
   if (!testimonials || testimonials.length === 0) return null;
 

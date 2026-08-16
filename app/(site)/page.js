@@ -2,9 +2,8 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import StatsBand from "@/components/StatsBand";
 import About from "@/components/About";
-import Services from "@/components/Services";
+import Pillars from "@/components/Pillars";
 import ActionHub from "@/components/ActionHub";
-import Activities from "@/components/Activities";
 import FeaturedHub from "@/components/FeaturedHub";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
@@ -20,13 +19,10 @@ export default function Home() {
           <About />
         </Reveal>
         <Reveal>
-          <Services />
+          <Pillars />
         </Reveal>
         <Reveal>
           <ActionHub />
-        </Reveal>
-        <Reveal>
-          <Activities />
         </Reveal>
         <Reveal>
           <FeaturedHub />

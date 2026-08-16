@@ -35,8 +35,8 @@ export const siteConfig = {
   nav: [
     { label: "About", href: "/#about" },
     { label: "Hub", href: "/hub" },
-    { label: "Research", href: "/research" },
-    { label: "Articles", href: "/article" },
+    { label: "Learn", href: "/learn" },
+    { label: "Community", href: "/community" },
     { label: "Contact", href: "/contact" },
   ],
 };

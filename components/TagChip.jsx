@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 
 // Small pill linking to the unified /tag/[slug] page. Stops propagation so it

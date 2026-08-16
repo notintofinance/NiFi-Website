@@ -23,6 +23,10 @@ export const TAGS = {
   textile: { name: "Textile", slug: "textile", type: "sector" },
   gold: { name: "Gold", slug: "gold", type: "sector" },
   macro: { name: "Macro", slug: "macro", type: "theme" },
+  valuation: { name: "Valuation", slug: "valuation", type: "theme" },
+  risk: { name: "Risk", slug: "risk", type: "theme" },
+  markets: { name: "Markets", slug: "markets", type: "theme" },
+  investing101: { name: "Investing 101", slug: "investing-101", type: "theme" },
 
   lpck: { name: "LPCK", slug: "lpck", type: "ticker" },
   ammn: { name: "AMMN", slug: "ammn", type: "ticker" },

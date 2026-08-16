@@ -63,7 +63,7 @@ export const researchReports = [
     authors: ["Taufan Fadhillah", "Agatbe Thymoty"],
     file: "/research/lpck-lippo-cikarang.pdf",
     cover: "/research/covers/lpck-lippo-cikarang.jpg",
-    tags: [TAGS.property, TAGS.lpck],
+    tags: [TAGS.property, TAGS.lpck, TAGS.valuation],
   },
   {
     id: "amman-aku-kamu-amman",
@@ -77,7 +77,7 @@ export const researchReports = [
     authors: ["Alief Randhinka Putra", "Agatbe Thymoty", "Ahmad W. Aryana"],
     file: "/research/amman-aku-kamu-amman.pdf",
     cover: "/research/covers/amman-aku-kamu-amman.jpg",
-    tags: [TAGS.mining, TAGS.ammn],
+    tags: [TAGS.mining, TAGS.ammn, TAGS.valuation],
   },
   {
     id: "pbrx-garment-giant",
@@ -91,7 +91,7 @@ export const researchReports = [
     authors: ["Taufan Fadhillah", "Agatbe Thymoty", "Ahmad W. Aryana"],
     file: "/research/pbrx-garment-giant.pdf",
     cover: "/research/covers/pbrx-garment-giant.jpg",
-    tags: [TAGS.textile, TAGS.pbrx],
+    tags: [TAGS.textile, TAGS.pbrx, TAGS.valuation],
   },
 ];
 
