@@ -1,4 +1,4 @@
-"""End-to-end pass: ingest → events → FinBERT → Claude typing → Claude interpretation → comparison.
+"""End-to-end pass: ingest → events → FinBERT → Claude typing → Claude interpretation → comparison → snapshot.
 
 Each stage is independent and reports `skipped` with a reason instead of failing
 the whole pipeline.
@@ -6,6 +6,7 @@ the whole pipeline.
 from __future__ import annotations
 
 import logging
+from datetime import datetime, timezone
 from dataclasses import asdict
 
 from sqlalchemy.orm import Session, sessionmaker
@@ -13,6 +14,8 @@ from sqlalchemy.orm import Session, sessionmaker
 from mie.core.config import FIXTURE_DIR, Settings
 from mie.ingestion.registry import load_connectors
 from mie.ingestion.runner import run_all
+from mie.intelligence.history import take_snapshot
+from mie.intelligence.labels import LabelBook
 from mie.intelligence.service import StageReport, run_claude, run_claude_typing, run_comparisons, run_finbert
 from mie.models.claude import ClaudeClassifier, EventTyper
 from mie.models.finbert import FinbertClassifier, SentenceClassifier
@@ -34,6 +37,13 @@ def process(session: Session, settings: Settings) -> StageReport:
     return StageReport("events", ran=True, counts={
         "documents": stats.documents, "new_events": stats.new_events,
         "attached_to_existing": stats.attached_to_existing, "history_only": stats.history_only})
+
+
+def snapshot(session: Session, as_of: datetime | None = None) -> StageReport:
+    """Record the point-in-time values as shown now (append-only audit trail)."""
+    as_of = as_of or datetime.now(timezone.utc)
+    rows = take_snapshot(session, LabelBook.from_session(session), as_of)
+    return StageReport("snapshot", ran=True, counts={"rows": rows})
 
 
 def run_pipeline(factory: sessionmaker[Session], settings: Settings, fixtures: bool = False,
@@ -58,6 +68,8 @@ def run_pipeline(factory: sessionmaker[Session], settings: Settings, fixtures: b
         reports.append(run_claude(session, settings, claude))
         session.commit()
         reports.append(run_comparisons(session))
+        session.commit()
+        reports.append(snapshot(session))
         session.commit()
     for r in reports:
         log.info("stage %s", asdict(r))

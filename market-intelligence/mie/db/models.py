@@ -323,3 +323,23 @@ class MarketData(Base):
     field: Mapped[str] = mapped_column(String(40))
     value: Mapped[float] = mapped_column(Float)
     source: Mapped[str] = mapped_column(String(120))
+
+
+class SentimentSnapshot(Base):
+    """What the dashboard showed at as_of (point-in-time). Append-only; the audit
+    trail for any number that was ever displayed or exported."""
+    __tablename__ = "sentiment_snapshots"
+    id: Mapped[int] = mapped_column(primary_key=True)
+    as_of: Mapped[datetime] = mapped_column(UTCDateTime)
+    created_at: Mapped[datetime] = mapped_column(UTCDateTime, default=utcnow)
+    scope: Mapped[str] = mapped_column(String(20))
+    label_source: Mapped[str] = mapped_column(String(40))
+    window: Mapped[str] = mapped_column(String(8))
+    methodology_version: Mapped[str] = mapped_column(String(40))
+    positive: Mapped[int] = mapped_column(Integer)
+    neutral: Mapped[int] = mapped_column(Integer)
+    negative: Mapped[int] = mapped_column(Integer)
+    mixed: Mapped[int] = mapped_column(Integer)
+    uncertain: Mapped[int] = mapped_column(Integer)
+    total_classified: Mapped[int] = mapped_column(Integer)
+    breadth: Mapped[float | None] = mapped_column(Float)

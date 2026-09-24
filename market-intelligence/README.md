@@ -10,7 +10,7 @@ SOURCE → DOCUMENT → EVENT → DEDUP → FinBERT ┐
 ```
 
 - **Docs:** [Architecture](docs/ARCHITECTURE.md) · [Source assessment](docs/SOURCES.md) · [Backlog P0/P1/P2](docs/BACKLOG.md)
-- **Status:** Phases 1 and 2 complete. It has only
+- **Status:** Phases 1–3 complete. It has only
   been exercised on **synthetic fixtures**, because the build environment had
   no internet access to the sources (see ARCHITECTURE §1).
 
@@ -22,7 +22,7 @@ python3.11 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt          # add requirements-ml.txt for local FinBERT
 cp .env.example .env                     # then edit; never commit .env
 
-pytest -q                                # 75 tests, no network needed
+pytest -q                                # 89 tests, no network needed
 python -m mie.cli demo                   # SYNTHETIC fixtures → data/mie.db
 python -m mie.cli serve                  # http://127.0.0.1:8000
 ```
@@ -52,6 +52,10 @@ ever reach the API. Get approval before turning this on.
 When a stage can't run (no FinBERT weights, no API key), it reports `skipped`
 with the reason instead of failing the pipeline.
 
+Each run ends by recording a point-in-time snapshot of every breadth value
+(`python -m mie.cli snapshot` does this on demand). The History page compares
+what was knowable on each day with today's restated view.
+
 There are no database migrations yet (Alembic is on the P1 backlog). After
 pulling a schema change, delete `data/mie.db` and re-run.
 
@@ -65,7 +69,7 @@ mie/
   processing/     cleaner, entity dictionary, event rules, macro facts, dedup, extractor
   models/         briefing (source-blind, price-blind input), finbert.py, claude.py
   intelligence/   comparison, aggregation (breadth/windows), narrative, service
-  api/            FastAPI JSON + server-rendered dashboard (overview, feed, detail, models, sources)
+  api/            FastAPI JSON + server-rendered dashboard (overview, feed, detail, history, models, sources)
   preview.py      pre-flight view of what Claude would receive
 config/           sources.yaml, entities.yaml, event_rules.yaml, assets.yaml
 tests/            pytest suite + tests/fixtures (SYNTHETIC)

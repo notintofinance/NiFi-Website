@@ -27,6 +27,10 @@
 - ✅ Phase 2: per-asset implication breadth (latest prediction only; absence ≠ neutral)
 - ✅ Phase 2: `/models` diagnostics (agreement by event type with n, usage, review queue)
 - ✅ Phase 2: API error policy (stop on auth/rate limit), cacheable fixed system prefix, published-precision facts
+- ✅ Phase 3: six separate label sources (factual/management/media × model), none combined
+- ✅ Phase 3: point-in-time vs restated history with differences flagged
+- ✅ Phase 3: drivers per window, momentum (24H/7D, 7D/30D) and parameter-free reversal flags, country scopes
+- ✅ Phase 3: append-only sentiment snapshots per pipeline run
 - ☐ Run `scripts/check_sources.py` from a networked machine and tick the Verified column in SOURCES.md
 - ☐ Download FinBERT weights (`pip install -r requirements-ml.txt`) and run the pipeline once live
 - ☐ Obtain an `ANTHROPIC_API_KEY` for the team and have someone approve the first Claude run
@@ -44,7 +48,7 @@
 - ☐ Sentence-transformer similarity backend behind the same interface; compare against the lexical baseline on labelled pairs
 - ☐ Alembic migrations
 - ☐ PostgreSQL docker-compose profile
-- ☐ Nightly snapshots for Sentiment History charts
+- ☐ Schedule the pipeline (cron) so snapshots accumulate daily
 
 ## P2 — breadth and polish
 

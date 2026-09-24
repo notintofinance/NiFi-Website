@@ -18,6 +18,7 @@ def main(argv: list[str] | None = None) -> None:
     run = sub.add_parser("run", help="one pipeline pass against live sources")
     run.add_argument("--fixtures", action="store_true", help="use SYNTHETIC fixtures instead of the network")
     sub.add_parser("demo", help="init-db + pipeline on synthetic fixtures")
+    sub.add_parser("snapshot", help="record current point-in-time breadth (append-only)")
     prev = sub.add_parser("claude-preview", help="show exactly what Claude would receive (no API call)")
     prev.add_argument("--event-id", type=int, action="append", help="limit to these events (repeatable)")
     prev.add_argument("--show-system", action="store_true", help="also print the system prompt and schema")
@@ -36,6 +37,12 @@ def main(argv: list[str] | None = None) -> None:
         fixtures = args.cmd == "demo" or args.fixtures
         reports = run_pipeline(make_session_factory(engine), settings, fixtures=fixtures)
         print(json.dumps([asdict(r) for r in reports], indent=2))
+    if args.cmd == "snapshot":
+        from mie.pipeline import snapshot
+        with make_session_factory(engine)() as session:
+            report = snapshot(session)
+            session.commit()
+        print(json.dumps(asdict(report)))
     if args.cmd == "claude-preview":
         _print_preview(engine, settings, args.event_id, args.show_system)
     if args.cmd == "serve":

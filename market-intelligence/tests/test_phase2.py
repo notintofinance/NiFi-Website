@@ -78,6 +78,7 @@ def test_error_policy():
     assert api_error_policy(_status_error(anthropic.BadRequestError, 400)) == ("continue", "bad_request")
     assert api_error_policy(_status_error(anthropic.InternalServerError, 500)) == ("continue", "api_status_500")
     assert api_error_policy(ValueError("x")) == ("continue", "api_error")
+    assert api_error_policy(TypeError("no credentials")) == ("stop", "client_misconfigured")
 
 
 def test_rate_limit_stops_the_stage(loaded, settings):

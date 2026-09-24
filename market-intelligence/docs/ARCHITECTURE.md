@@ -1,6 +1,6 @@
 # Market Intelligence & Sentiment Engine — Architecture (V1)
 
-Status: Phase 0 complete; Phase 1 and Phase 2 implemented. Last revised 2026-09-24.
+Status: Phase 0 complete; Phases 1–3 implemented. Last revised 2026-09-24.
 
 This is an internal research prototype. It does not use and must not receive
 confidential bank data, customer data, portfolio data or paid data feeds.
@@ -152,7 +152,9 @@ model_comparisons  id, event_id, layer, finbert_prediction_ref, claude_predictio
                    finbert_label, claude_label, status, review_required, compared_at
 ingestion_runs     id, source_id, started_at, finished_at, status, fetched, parsed,
                    inserted, duplicates, errors, error_type, error_message, attempts
-market_data        (reserved for Phase 3 validation — never read by a classifier)
+sentiment_snapshots id, as_of, scope, label_source, window, methodology_version, counts,
+                   breadth                                        (append-only: what was shown)
+market_data        (reserved for post-hoc validation — never read by a classifier)
 ```
 
 **Append-only predictions.** Prediction rows are never updated. A new model
@@ -307,3 +309,54 @@ FinBERT runs before Claude only for convenience; neither reads the other's outpu
 individual media articles, since there are no licensed media sources yet, and
 Claude fact extraction from company releases, since there is no company source
 yet. Both reuse `StructuredClaudeCall` when those sources arrive.
+
+---
+
+## 13. Phase 3: aggregation
+
+**Label sources.** Each is a separate layer or model. None is combined with another.
+
+| id | Meaning |
+|---|---|
+| `claude_factual` | Claude's factual-layer sentiment |
+| `finbert_factual` | FinBERT factual-layer label, derived from sentences |
+| `agreed_factual` | The factual label, only where Claude and FinBERT give the same directional or neutral label |
+| `claude_management` | Claude's management tone (MIXED_POSITIVE/NEGATIVE → MIXED) |
+| `finbert_management` | FinBERT management-layer label |
+| `media_narrative` | Strict plurality of per-article FinBERT labels; ties and no-media give no label |
+
+**Rule applied everywhere:** a layer with no statements gets no label, in
+comparisons, aggregation and the feed alike. A model's opinion on text it
+wasn't shown is not counted.
+
+**Point-in-time vs restated** (`mie/intelligence/history.py`).
+- *Point-in-time at t*: an event counts only if a supporting document was
+  retrieved by t, and only predictions made by t are used, with the latest
+  FinBERT model version available at t. This is the **only** series valid for
+  backtests or signal evaluation.
+- *Restated*: today's labels applied to past windows. The History page shows
+  the two series side by side and flags every day where they differ.
+
+**Drivers.** These are the unique events behind a value, grouped by label and
+ordered by time. They are deliberately not ranked by importance, since that
+would require weights.
+
+**Momentum and reversal.** 24H vs 7D and 7D vs 30D are shown side by side. A
+reversal is flagged when both are defined and strictly opposite in sign. Zero
+is not a reversal, there is no magnitude threshold, and n is always shown.
+Magnitude-based alerts belong to the alert framework, where thresholds must be
+documented and calibrated.
+
+**Scopes.** `GLOBAL` plus each country present in the data.
+
+**Snapshots.** Every pipeline run (or `python -m mie.cli snapshot`) appends the
+point-in-time values for every scope × label source × window, tagged with
+`METHODOLOGY_VERSION`. A snapshot that differs from a later recomputation
+means data arrived or was revised afterwards, and that difference is itself
+auditable.
+
+**Not included, deliberately.** There is no exponential time decay (the spec
+requires empirical validation first). There are no confidence intervals on
+breadth: any interval needs a chosen confidence level, and with small n the
+sample size shown next to each value is the honest signal. Both can be added
+once the gold set exists.

@@ -6,7 +6,7 @@ from mie.api.main import create_app
 from mie.db.models import ModelComparison
 from mie.db.session import make_session_factory
 from mie.intelligence.service import run_comparisons
-from mie.models.claude import ClaudeClassifier
+from mie.models.claude import ClaudeClassifier, EventTyper
 from mie.pipeline import run_pipeline
 from tests.conftest import FakeAnthropic, claude_json
 
@@ -15,7 +15,8 @@ def test_end_to_end_with_blind_models(engine, settings, fake_finbert):
     factory = make_session_factory(engine)
     s = replace(settings, claude_enabled=True)
     reports = run_pipeline(factory, s, fixtures=True, finbert=fake_finbert,
-                           claude=ClaudeClassifier("claude-opus-5", client=FakeAnthropic()))
+                           claude=ClaudeClassifier("claude-opus-5", client=FakeAnthropic()),
+                           typer=EventTyper("m", client=FakeAnthropic({"event_type": "OTHER", "rationale": "x"})))
     by = {r.stage: r for r in reports}
     assert by["finbert"].ran and by["claude"].ran and by["comparison"].ran
     with factory() as session:
@@ -32,8 +33,9 @@ def test_end_to_end_with_blind_models(engine, settings, fake_finbert):
     events = client.get("/api/events").json()
     assert len(events) == 6 and all(e["is_fixture"] for e in events)
     breadth = client.get("/api/breadth", params={"as_of": "2026-09-24T23:59:00+00:00"}).json()
-    assert set(breadth["by_label_source"]) == {"claude", "finbert", "agreed"}
-    assert breadth["by_label_source"]["claude"]["30D"]["total_classified"] >= 1
+    assert set(breadth["by_label_source"]) == {"claude_factual", "finbert_factual", "agreed_factual",
+                                               "claude_management", "finbert_management", "media_narrative"}
+    assert breadth["by_label_source"]["claude_factual"]["windows"]["30D"]["total_classified"] >= 1
     fomc = next(e for e in events if e["title"].endswith("FOMC statement"))
     detail = client.get(f"/api/events/{fomc['id']}").json()
     assert detail["document_count"] == 2 and detail["impacts"][0]["asset"] == "US_RATES"
@@ -49,7 +51,8 @@ def test_opposite_polarity_flags_review(engine, settings, fake_finbert):
     factory = make_session_factory(engine)
     s = replace(settings, claude_enabled=True)
     run_pipeline(factory, s, fixtures=True, finbert=fake_finbert,
-                 claude=ClaudeClassifier("m", client=FakeAnthropic(claude_json(factual_sentiment="NEGATIVE"))))
+                 claude=ClaudeClassifier("m", client=FakeAnthropic(claude_json(factual_sentiment="NEGATIVE"))),
+                 typer=EventTyper("m", client=FakeAnthropic({"event_type": "OTHER", "rationale": "x"})))
     with factory() as session:
         flagged = session.query(ModelComparison).filter(ModelComparison.review_required.is_(True)).all()
         assert flagged and all(c.status == "DISAGREE" for c in flagged)

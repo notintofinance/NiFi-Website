@@ -7,7 +7,7 @@ from datetime import datetime, timezone
 from sqlalchemy import func, select
 from sqlalchemy.orm import Session
 
-from mie.core.enums import InformationLayer, Sentiment
+from mie.core.enums import InformationLayer
 from collections import defaultdict
 
 from mie.db.models import (
@@ -18,9 +18,19 @@ from mie.db.models import (
     FinbertPrediction,
     IngestionRun,
     ModelVersion,
+    SentimentSnapshot,
     Source,
 )
-from mie.intelligence.aggregation import AssetImplicationObs, LabelledEvent, asset_breadth, windowed_breadth
+from mie.intelligence.aggregation import WINDOWS, AssetImplicationObs, asset_breadth
+from mie.intelligence.history import (
+    METHODOLOGY_VERSION,
+    MOMENTUM_PAIRS,
+    breadth_at,
+    drivers,
+    reversals_all,
+    series,
+)
+from mie.intelligence.labels import GLOBAL, LABEL_SOURCES, LabelBook
 from mie.intelligence.service import (
     event_divergence,
     finbert_layer_labels,
@@ -31,7 +41,6 @@ from mie.intelligence.service import (
 )
 from mie.models.claude import load_asset_universe
 
-LABEL_SOURCES = ("claude", "finbert", "agreed")
 
 
 @dataclass
@@ -66,7 +75,9 @@ def event_row(session: Session, e: Event) -> dict:
         "entities": sorted(ee.entity.name for ee in e.entities),
         "tickers": sorted({t for ee in e.entities for t in ee.entity.tickers}),
         "asset_classes": e.asset_classes,
-        "claude_label": claude.factual_sentiment if claude else None,
+        # Same rule as comparisons and aggregation: no factual text, no factual label.
+        "claude_label": claude.factual_sentiment if claude and any(
+            st.layer == InformationLayer.FACTUAL.value for st in e.statements) else None,
         "finbert_label": fb[InformationLayer.FACTUAL.value].value if fb[InformationLayer.FACTUAL.value] else None,
         "agreement": comp.status if comp else "NOT_CLASSIFIED",
         "review_required": _needs_review(session, e.id),  # either compared layer
@@ -167,26 +178,62 @@ def event_detail(session: Session, event_id: int) -> dict | None:
     }
 
 
-def breadth_table(session: Session, as_of: datetime | None = None, country: str | None = None,
-                  asset_class: str | None = None) -> dict:
-    """Breadth per window, reported separately for each label source. Never averaged."""
+def breadth_table(session: Session, as_of: datetime | None = None, scope: str = GLOBAL,
+                  mode: str = "POINT_IN_TIME", book: LabelBook | None = None) -> dict:
+    """Breadth per window for every label source, reported separately. Never averaged."""
     as_of = as_of or datetime.now(timezone.utc)
-    f = EventFilters(country=country, asset_class=asset_class)
-    rows = list_events(session, f, limit=100_000)
+    book = book or LabelBook.from_session(session)
     out = {}
-    for src in LABEL_SOURCES:
-        labelled = []
-        for r in rows:
-            if src == "claude":
-                label = r["claude_label"]
-            elif src == "finbert":
-                label = r["finbert_label"]
-            else:
-                label = r["claude_label"] if r["agreement"] == "AGREE" else None
-            labelled.append(LabelledEvent(r["id"], datetime.fromisoformat(r["event_time"]),
-                                          Sentiment(label) if label else None))
-        out[src] = {w: b.as_dict() for w, b in windowed_breadth(labelled, as_of).items()}
-    return {"as_of": as_of.isoformat(), "country": country, "asset_class": asset_class, "by_label_source": out}
+    for src, desc in LABEL_SOURCES.items():
+        out[src] = {"description": desc, "windows": {
+            w: breadth_at(book, src, as_of, d, scope, mode)[0].as_dict() for w, d in WINDOWS.items()}}
+    return {"as_of": as_of.isoformat(), "scope": scope, "scopes": book.scopes(), "mode": mode,
+            "methodology_version": METHODOLOGY_VERSION, "by_label_source": out}
+
+
+def _contrib(c) -> dict:
+    return {"event_id": c.event_id, "title": c.title, "event_type": c.event_type,
+            "event_time": c.event_time.isoformat(), "label": c.label.value}
+
+
+def drivers_view(session: Session, source: str = "claude_factual", window: str = "7D", scope: str = GLOBAL,
+                 as_of: datetime | None = None, book: LabelBook | None = None) -> dict:
+    as_of = as_of or datetime.now(timezone.utc)
+    book = book or LabelBook.from_session(session)
+    b, contributors = breadth_at(book, source, as_of, WINDOWS[window], scope)
+    return {"as_of": as_of.isoformat(), "label_source": source, "window": window, "scope": scope,
+            "breadth": b.as_dict(),
+            "drivers": {k: [_contrib(c) for c in v] for k, v in drivers(contributors).items()}}
+
+
+def momentum_view(session: Session, as_of: datetime | None = None, book: LabelBook | None = None) -> dict:
+    as_of = as_of or datetime.now(timezone.utc)
+    book = book or LabelBook.from_session(session)
+    return {"as_of": as_of.isoformat(), "pairs": [list(p) for p in MOMENTUM_PAIRS],
+            "reversals": reversals_all(book, as_of)}
+
+
+def history_view(session: Session, source: str = "claude_factual", window: str = "7D", scope: str = GLOBAL,
+                 days: int = 30, end: datetime | None = None) -> dict:
+    """Daily point-in-time series next to the restated series. `differs` marks days
+    where today's labels would change what was knowable then."""
+    end = end or datetime.now(timezone.utc)
+    book = LabelBook.from_session(session)
+    pit = series(book, source, WINDOWS[window], end, days, scope, "POINT_IN_TIME")
+    restated = series(book, source, WINDOWS[window], end, days, scope, "RESTATED")
+    rows = []
+    for (t, p), (_, r) in zip(pit, restated):
+        rows.append({"t": t.isoformat(), "point_in_time": p.as_dict(), "restated": r.as_dict(),
+                     "differs": (p.breadth_scaled, p.total_classified) != (r.breadth_scaled, r.total_classified)})
+    snaps = session.scalars(select(SentimentSnapshot).where(
+        SentimentSnapshot.label_source == source, SentimentSnapshot.window == window,
+        SentimentSnapshot.scope == scope).order_by(SentimentSnapshot.as_of.desc()).limit(days)).all()
+    return {"label_source": source, "description": LABEL_SOURCES[source], "window": window, "scope": scope,
+            "scopes": book.scopes(), "days": days, "methodology_version": METHODOLOGY_VERSION, "rows": rows,
+            "snapshots": [{"as_of": sn.as_of.isoformat(), "breadth": sn.breadth,
+                           "breadth_scaled": None if sn.breadth is None else round(sn.breadth * 100),
+                           "total_classified": sn.total_classified, "methodology_version": sn.methodology_version}
+                          for sn in snaps]}
 
 
 def source_health(session: Session) -> list[dict]:

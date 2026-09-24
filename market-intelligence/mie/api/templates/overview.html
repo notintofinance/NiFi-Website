@@ -4,19 +4,19 @@
 {% block content %}
 <h1>Market overview</h1>
 <p class="sub">Sentiment Breadth = (Positive − Negative) ÷ classified unique events, on a −100…+100 scale.
-Each model is shown separately and never averaged. As of {{ breadth.as_of[:16].replace('T',' ') }} UTC.</p>
+Each model and each information layer is shown separately and never averaged. Point-in-time as of
+{{ breadth.as_of[:16].replace('T',' ') }} UTC · method {{ breadth.methodology_version }}.</p>
 
 <form class="filters" method="get">
-  <label>Country <input name="country" value="{{ country }}" placeholder="e.g. US" size="6"></label>
-  <label>Asset class <input name="asset_class" value="{{ asset_class }}" placeholder="e.g. US_RATES" size="12"></label>
-  <button type="submit">Apply</button>
+  <label>Scope <select name="scope">{% for sc in breadth.scopes %}<option {% if sc == scope %}selected{% endif %}>{{ sc }}</option>{% endfor %}</select></label>
+  <button type="submit">Apply</button> <a class="small" href="/history">Sentiment history →</a>
 </form>
 
-{% set names = {'claude': 'Claude (factual layer)', 'finbert': 'FinBERT (factual layer)', 'agreed': 'Agreed events only'} %}
-{% for src, windows in breadth.by_label_source.items() %}
-<h2>{{ names[src] }}</h2>
+{% for src in ['claude_factual', 'finbert_factual', 'agreed_factual'] %}
+{% set entry = breadth.by_label_source[src] %}
+<h2>{{ entry.description }}</h2>
 <div class="grid">
-{% for w, b in windows.items() %}
+{% for w, b in entry.windows.items() %}
   <div class="card tile">
     <div class="label">{{ w }}</div>
     <div class="value">{% if b.breadth_scaled is not none %}{{ ('%+d' % b.breadth_scaled) if b.breadth_scaled else '0' }}{% else %}<span class="muted">n/a</span>{% endif %}</div>
@@ -27,6 +27,42 @@ Each model is shown separately and never averaged. As of {{ breadth.as_of[:16].r
 {% endfor %}
 </div>
 {% endfor %}
+
+<h2>Other layers</h2>
+<div class="tablewrap"><table>
+<thead><tr><th>Layer / model</th>{% for w in ['24H','3D','7D','30D'] %}<th class="num">{{ w }}</th>{% endfor %}</tr></thead>
+<tbody>
+{% for src in ['claude_management', 'finbert_management', 'media_narrative'] %}
+{% set entry = breadth.by_label_source[src] %}
+<tr><td><a href="/history?label_source={{ src }}&scope={{ scope }}">{{ entry.description }}</a></td>
+{% for w in ['24H','3D','7D','30D'] %}{% set b = entry.windows[w] %}
+<td class="num">{% if b.breadth_scaled is not none %}{{ ('%+d' % b.breadth_scaled) if b.breadth_scaled else '0' }}<span class="muted small"> n={{ b.total_classified }}</span>{% else %}<span class="muted">n/a</span>{% endif %}</td>
+{% endfor %}</tr>
+{% endfor %}
+</tbody></table></div>
+
+<h2>Momentum and reversals</h2>
+<p class="small muted">A reversal means the shorter window's breadth has the strictly opposite sign to the longer one's
+({% for p in momentum.pairs %}{{ p[0] }} vs {{ p[1] }}{% if not loop.last %}, {% endif %}{% endfor %}). There is no threshold, so check n.</p>
+{% if momentum.reversals %}
+<div class="tablewrap"><table><thead><tr><th>Scope</th><th>Label source</th><th>Short</th><th class="num">Breadth (n)</th><th>Long</th><th class="num">Breadth (n)</th></tr></thead><tbody>
+{% for r in momentum.reversals %}<tr><td>{{ r.scope }}</td><td class="small">{{ r.label_source }}</td>
+<td>{{ r.short }}</td><td class="num">{{ '%+d' % r.short_breadth }} <span class="muted small">({{ r.short_n }})</span></td>
+<td>{{ r.long }}</td><td class="num">{{ '%+d' % r.long_breadth }} <span class="muted small">({{ r.long_n }})</span></td></tr>{% endfor %}
+</tbody></table></div>
+{% else %}<p class="muted">No reversals.</p>{% endif %}
+
+<h2>Drivers: {{ drivers.window }}, Claude factual layer, {{ drivers.scope }}</h2>
+<p class="small muted">The unique events behind the {{ drivers.window }} value, grouped by label, newest first. They are not ranked by importance, because that would need weights.</p>
+{% if drivers.drivers %}
+<div class="layers">
+{% for label in ['POSITIVE', 'NEGATIVE', 'MIXED', 'NEUTRAL'] %}{% if drivers.drivers.get(label) %}
+<div class="card"><strong class="small">{{ label.title() }} ({{ drivers.drivers[label]|length }})</strong><ul>
+{% for c in drivers.drivers[label] %}<li><a href="/events/{{ c.event_id }}">{{ c.title }}</a> <span class="muted small">{{ c.event_type }} · {{ c.event_time[:10] }}</span></li>{% endfor %}
+</ul></div>
+{% endif %}{% endfor %}
+</div>
+{% else %}<p class="muted">No classified events in this window.</p>{% endif %}
 
 <h2>Asset implications (Claude)</h2>
 <p class="small muted">Breadth per asset over unique events where Claude stated a direction for that asset. An event that doesn't

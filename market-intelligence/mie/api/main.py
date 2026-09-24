@@ -3,6 +3,7 @@ from __future__ import annotations
 
 from datetime import datetime, timezone
 from pathlib import Path
+from typing import Literal
 
 from fastapi import FastAPI, HTTPException, Query, Request
 from fastapi.responses import HTMLResponse
@@ -25,6 +26,13 @@ def _date(value: str | None, end: bool = False) -> datetime | None:
     if end and len(value) == 10:  # date-only upper bound is inclusive of the whole day
         d = d.replace(hour=23, minute=59, second=59)
     return d
+
+
+def _check(label_source: str, window: str) -> None:
+    if label_source not in views.LABEL_SOURCES:
+        raise HTTPException(422, f"label_source must be one of {sorted(views.LABEL_SOURCES)}")
+    if window not in views.WINDOWS:
+        raise HTTPException(422, f"window must be one of {list(views.WINDOWS)}")
 
 
 def create_app(engine: Engine) -> FastAPI:
@@ -56,9 +64,29 @@ def create_app(engine: Engine) -> FastAPI:
         return d
 
     @app.get("/api/breadth")
-    def api_breadth(country: str | None = None, asset_class: str | None = None, as_of: str | None = None):
+    def api_breadth(scope: str = views.GLOBAL, as_of: str | None = None,
+                    mode: Literal["POINT_IN_TIME", "RESTATED"] = "POINT_IN_TIME"):
         with factory() as s:
-            return views.breadth_table(s, _date(as_of), country, asset_class)
+            return views.breadth_table(s, _date(as_of), scope, mode)
+
+    @app.get("/api/history")
+    def api_history(label_source: str = "claude_factual", window: str = "7D", scope: str = views.GLOBAL,
+                    days: int = Query(30, ge=1, le=365), end: str | None = None):
+        _check(label_source, window)
+        with factory() as s:
+            return views.history_view(s, label_source, window, scope, days, _date(end))
+
+    @app.get("/api/drivers")
+    def api_drivers(label_source: str = "claude_factual", window: str = "7D", scope: str = views.GLOBAL,
+                    as_of: str | None = None):
+        _check(label_source, window)
+        with factory() as s:
+            return views.drivers_view(s, label_source, window, scope, _date(as_of))
+
+    @app.get("/api/momentum")
+    def api_momentum(as_of: str | None = None):
+        with factory() as s:
+            return views.momentum_view(s, _date(as_of))
 
     @app.get("/api/assets")
     def api_assets(as_of: str | None = None):
@@ -80,15 +108,28 @@ def create_app(engine: Engine) -> FastAPI:
         return TEMPLATES.TemplateResponse(request, name, {"fixture_data": views.any_fixture_data(s), **ctx})
 
     @app.get("/", response_class=HTMLResponse)
-    def overview(request: Request, country: str | None = None, asset_class: str | None = None):
+    def overview(request: Request, scope: str = views.GLOBAL):
         with factory() as s:
-            breadth = views.breadth_table(s, None, country or None, asset_class or None)
-            recent = views.list_events(s, views.EventFilters(), limit=10)
-            review = [e for e in views.list_events(s, views.EventFilters(), limit=1000) if e["review_required"]]
-            return render(request, "overview.html", s, breadth=breadth, recent=recent, review=review,
+            book = views.LabelBook.from_session(s)
+            if scope not in book.scopes():
+                scope = views.GLOBAL
+            return render(request, "overview.html", s, breadth=views.breadth_table(s, None, scope, book=book),
+                          momentum=views.momentum_view(s, book=book),
+                          drivers=views.drivers_view(s, "claude_factual", "7D", scope, book=book),
                           assets=views.asset_table(s),
-                          country=country or "", asset_class=asset_class or "",
-                          sources=views.source_health(s))
+                          recent=views.list_events(s, views.EventFilters(), limit=10),
+                          review=[e for e in views.list_events(s, views.EventFilters(), limit=1000)
+                                  if e["review_required"]],
+                          sources=views.source_health(s), scope=scope)
+
+    @app.get("/history", response_class=HTMLResponse)
+    def history_page(request: Request, label_source: str = "claude_factual", window: str = "7D",
+                     scope: str = views.GLOBAL, days: int = Query(30, ge=1, le=365)):
+        _check(label_source, window)
+        with factory() as s:
+            return render(request, "history.html", s, h=views.history_view(s, label_source, window, scope, days),
+                          drivers=views.drivers_view(s, label_source, window, scope),
+                          label_sources=views.LABEL_SOURCES, windows=list(views.WINDOWS))
 
     @app.get("/events", response_class=HTMLResponse)
     def events_page(request: Request, country: str = "", asset_class: str = "", ticker: str = "",

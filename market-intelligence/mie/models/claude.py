@@ -123,6 +123,9 @@ def api_error_policy(exc: Exception) -> tuple[Literal["stop", "continue"], str]:
     """How a stage reacts to an API exception. Stop on problems that will hit every
     following request (auth, permissions, rate limit), continue past per-request ones.
     The SDK has already retried connection errors, 408/409/429 and 5xx twice."""
+    if isinstance(exc, (TypeError, ClaudeUnavailable)):
+        # e.g. no credentials could be resolved: every following request would fail too.
+        return "stop", "client_misconfigured"
     try:
         import anthropic
     except ImportError:
