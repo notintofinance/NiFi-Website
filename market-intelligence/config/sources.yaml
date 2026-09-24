@@ -1,0 +1,27 @@
+# Source registry. Descriptive metadata only — there are NO credibility weights here.
+# allow_external_llm: may this source's text be sent to an external AI provider (Claude)?
+#   Only public/official content, or content whose licence permits it, may be true.
+sources:
+  - key: fed_press_releases
+    connector: fed_rss
+    name: Federal Reserve Board — Press Releases
+    source_type: CENTRAL_BANK
+    country: US
+    base_url: https://www.federalreserve.gov/feeds/press_all.xml
+    access_method: RSS
+    licence_note: U.S. federal government work (public domain). V1 ingests RSS title/description only.
+    allow_external_llm: true
+    enabled: true
+
+  - key: bls_cpi
+    connector: bls_cpi
+    name: U.S. Bureau of Labor Statistics — CPI-U (NSA)
+    source_type: STATISTICAL_AUTHORITY
+    country: US
+    base_url: https://api.bls.gov/publicAPI/v2/timeseries/data/
+    access_method: REST_API
+    licence_note: Public domain. v2 requires free registration key (BLS_API_KEY); v1 used otherwise.
+    allow_external_llm: true
+    enabled: true
+    options:
+      series: [CUUR0000SA0, CUUR0000SA0L1E]

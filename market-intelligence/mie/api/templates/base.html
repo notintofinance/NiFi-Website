@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}Market Intelligence{% endblock %} · MIE</title>
+<style>
+:root {
+  --bg: #f6f6f4; --surface: #fcfcfb; --border: #e2e1dc; --text: #0b0b0b; --text-2: #52514e; --muted: #7a7973;
+  --accent: #1f3a5f;
+  --pos: #2a78d6; --neg: #d03b3b; --neu: #c9c8c2; --mix: #8f8e88;
+  --warn-bg: #fff4d6; --warn-border: #eda100; --critical: #d03b3b;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121211; --surface: #1a1a19; --border: #33332f; --text: #ffffff; --text-2: #c3c2b7; --muted: #95948c;
+    --accent: #9db8dc; --pos: #3987e5; --neg: #e66767; --neu: #4a4a46; --mix: #77766f;
+    --warn-bg: #3a2f10; --warn-border: #c98500;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #121211; --surface: #1a1a19; --border: #33332f; --text: #ffffff; --text-2: #c3c2b7; --muted: #95948c;
+  --accent: #9db8dc; --pos: #3987e5; --neg: #e66767; --neu: #4a4a46; --mix: #77766f;
+  --warn-bg: #3a2f10; --warn-border: #c98500;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text);
+  font: 14px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif; }
+a { color: var(--accent); text-decoration: none; } a:hover { text-decoration: underline; }
+header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 12px 24px;
+  display: flex; gap: 24px; align-items: baseline; flex-wrap: wrap; }
+header .brand { font-weight: 650; letter-spacing: .01em; }
+header nav a { margin-right: 16px; color: var(--text-2); }
+main { padding: 20px 24px 48px; max-width: 1280px; margin: 0 auto; }
+h1 { font-size: 20px; margin: 0 0 4px; font-weight: 600; } h2 { font-size: 15px; margin: 28px 0 10px; font-weight: 600; }
+.sub { color: var(--text-2); margin: 0 0 16px; }
+.banner { background: var(--warn-bg); border: 1px solid var(--warn-border); padding: 10px 14px; border-radius: 6px;
+  margin-bottom: 16px; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; }
+.grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+table { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--border);
+  border-radius: 8px; overflow: hidden; }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-size: 12px; font-weight: 600; color: var(--text-2); background: var(--bg); }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+.tablewrap { overflow-x: auto; }
+.muted { color: var(--muted); } .small { font-size: 12px; }
+.badge { display: inline-block; font-size: 11px; font-weight: 600; padding: 1px 7px; border-radius: 10px;
+  border: 1px solid var(--border); color: var(--text); background: var(--bg); white-space: nowrap; }
+.badge::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 5px;
+  vertical-align: 0; background: var(--neu); }
+.badge.POSITIVE::before { background: var(--pos); } .badge.NEGATIVE::before { background: var(--neg); }
+.badge.MIXED::before { background: repeating-linear-gradient(45deg, var(--mix) 0 2px, transparent 2px 4px); }
+.badge.none::before { display: none; }
+.flag { color: var(--critical); font-weight: 600; font-size: 12px; }
+.flag::before { content: "▲ "; }
+.tile .label { color: var(--text-2); font-size: 12px; }
+.tile .value { font-size: 28px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.tile .n { color: var(--muted); font-size: 12px; }
+.dist { display: flex; gap: 2px; height: 10px; margin-top: 8px; }
+.dist span { display: block; height: 100%; }
+.dist span:first-child { border-radius: 4px 0 0 4px; } .dist span:last-child { border-radius: 0 4px 4px 0; }
+.dist .pos { background: var(--pos); } .dist .neg { background: var(--neg); } .dist .neu { background: var(--neu); }
+.dist .mix { background: repeating-linear-gradient(45deg, var(--mix) 0 2px, var(--neu) 2px 4px); }
+form.filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; align-items: end; }
+form.filters label { display: flex; flex-direction: column; font-size: 11px; color: var(--text-2); gap: 3px; }
+select, input { font: inherit; padding: 5px 7px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--surface); color: var(--text); }
+button { font: inherit; padding: 6px 12px; border-radius: 6px; border: 1px solid var(--accent); background: var(--accent);
+  color: var(--surface); cursor: pointer; }
+.layers { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+.layers ul { margin: 6px 0 0; padding-left: 18px; } .layers li { margin-bottom: 6px; }
+pre { white-space: pre-wrap; font-size: 12px; background: var(--bg); padding: 10px; border-radius: 6px; }
+@media (max-width: 640px) { main, header { padding-left: 16px; padding-right: 16px; } }
+</style>
+</head>
+<body>
+<header>
+  <span class="brand">Market Intelligence &amp; Sentiment Engine</span>
+  <nav><a href="/">Overview</a><a href="/events">Event feed</a><a href="/sources">Sources</a></nav>
+  <span class="muted small">Internal prototype · not investment advice</span>
+</header>
+<main>
+{% if fixture_data %}
+<div class="banner" role="alert"><strong>SYNTHETIC DATA PRESENT.</strong> Some events come from test fixtures, not live
+sources. Fixture sources are marked "[SYNTHETIC FIXTURE]". Do not use them for research.</div>
+{% endif %}
+{% block content %}{% endblock %}
+</main>
+</body>
+</html>

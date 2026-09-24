@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  SYNTHETIC TEST FIXTURE. NOT REAL FEDERAL RESERVE CONTENT.
+  Mirrors the structure of https://www.federalreserve.gov/feeds/press_all.xml
+  (RSS 2.0: title, link, guid, description, category, pubDate). Text is invented
+  for pipeline testing; links point to example.invalid on purpose.
+-->
+<rss version="2.0">
+  <channel>
+    <title>SYNTHETIC FIXTURE - FRB: Press Releases</title>
+    <link>https://example.invalid/fed</link>
+    <description>Synthetic test data. Not published by the Federal Reserve.</description>
+    <item>
+      <title>[SYNTHETIC] Federal Reserve issues FOMC statement</title>
+      <link>https://example.invalid/fed/monetary-a.htm</link>
+      <guid isPermaLink="true">https://example.invalid/fed/monetary-a.htm</guid>
+      <description>&lt;p&gt;The Federal Open Market Committee decided to lower the target range for the federal funds rate by 1/4 percentage point. Inflation has moved closer to the Committee's 2 percent objective. The Committee judges that downside risks to employment have increased.&lt;/p&gt;</description>
+      <category>Monetary Policy</category>
+      <pubDate>Wed, 16 Sep 2026 18:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>[SYNTHETIC] Federal Reserve issues FOMC statement and implementation note</title>
+      <link>https://example.invalid/fed/monetary-a-impl.htm</link>
+      <guid isPermaLink="true">https://example.invalid/fed/monetary-a-impl.htm</guid>
+      <description>The Federal Reserve issued an implementation note following the FOMC statement lowering the target range for the federal funds rate.</description>
+      <category>Monetary Policy</category>
+      <pubDate>Wed, 16 Sep 2026 18:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>[SYNTHETIC] Federal Reserve Board announces termination of enforcement action with Example Bank</title>
+      <link>https://example.invalid/fed/enforcement-b.htm</link>
+      <guid isPermaLink="true">https://example.invalid/fed/enforcement-b.htm</guid>
+      <description>The Federal Reserve Board announced the termination of an enforcement action with Example Bank.</description>
+      <category>Enforcement Actions</category>
+      <pubDate>Thu, 17 Sep 2026 14:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>[SYNTHETIC] Federal Reserve Board releases results of supervisory stress test</title>
+      <link>https://example.invalid/fed/bcreg-c.htm</link>
+      <guid isPermaLink="true">https://example.invalid/fed/bcreg-c.htm</guid>
+      <description>Large banks remain well capitalized under the severely adverse scenario. Projected losses were higher than last year due to weaker credit card performance.</description>
+      <category>Banking and Consumer Regulatory Policy</category>
+      <pubDate>Mon, 21 Sep 2026 20:30:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>[SYNTHETIC] Minutes of the Federal Open Market Committee</title>
+      <link>https://example.invalid/fed/monetary-d.htm</link>
+      <guid isPermaLink="true">https://example.invalid/fed/monetary-d.htm</guid>
+      <description>Participants noted that labor market conditions had softened. Several participants saw upside risks to inflation from tariffs.</description>
+      <category>Monetary Policy</category>
+      <pubDate>Wed, 08 Jul 2026 18:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>[SYNTHETIC] Agencies issue statement on community bank resources (no pubDate)</title>
+      <link>https://example.invalid/fed/other-e.htm</link>
+      <guid isPermaLink="true">https://example.invalid/fed/other-e.htm</guid>
+      <description>Item deliberately lacks a pubDate to exercise missing-timestamp handling.</description>
+      <category>Other Announcements</category>
+    </item>
+  </channel>
+</rss>

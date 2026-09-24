@@ -1,0 +1,44 @@
+# Deterministic entity dictionary. Aliases match on word boundaries, case-insensitively;
+# `case_sensitive_aliases` protect short/ambiguous tokens ("Fed" vs "fed up").
+entities:
+  - key: FED
+    name: Federal Reserve
+    entity_type: CENTRAL_BANK
+    country: US
+    aliases: [Federal Reserve, Federal Open Market Committee, Federal Reserve Board]
+    case_sensitive_aliases: [Fed, FOMC]
+    asset_classes: [US_RATES, USD]
+  - key: BLS
+    name: U.S. Bureau of Labor Statistics
+    entity_type: STATISTICAL_AUTHORITY
+    country: US
+    aliases: [Bureau of Labor Statistics]
+    case_sensitive_aliases: [BLS]
+    asset_classes: []
+  - key: US_CPI
+    name: U.S. Consumer Price Index
+    entity_type: INDICATOR
+    country: US
+    aliases: [consumer price index, CPI-U]
+    case_sensitive_aliases: [CPI]
+    asset_classes: [US_RATES, USD, US_EQUITY]
+  - key: US_BANKS
+    name: U.S. banking sector
+    entity_type: SECTOR
+    country: US
+    aliases: [large banks, bank holding companies, stress test]
+    asset_classes: [US_EQUITY]
+  - key: BI
+    name: Bank Indonesia
+    entity_type: CENTRAL_BANK
+    country: ID
+    aliases: [Bank Indonesia, BI-Rate, BI Rate]
+    asset_classes: [ID_GOVT_BONDS, IDR]
+  - key: BBCA
+    name: PT Bank Central Asia Tbk
+    entity_type: COMPANY
+    country: ID
+    aliases: [Bank Central Asia]
+    case_sensitive_aliases: [BBCA, BCA]
+    tickers: [BBCA]
+    asset_classes: [ID_EQUITY]

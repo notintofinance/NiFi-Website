@@ -1,0 +1,14 @@
+# Controlled asset universe for Claude's cross-asset implications. Claude may only
+# reference these keys; anything else is rejected at validation.
+assets:
+  US_RATES: U.S. Treasuries
+  USD: U.S. dollar
+  US_EQUITY: U.S. equities (broad)
+  US_GROWTH_EQUITY: U.S. growth equities
+  US_BANKS_EQUITY: U.S. bank equities
+  EM_BONDS: Emerging-market bonds
+  ID_GOVT_BONDS: Indonesia government bonds
+  IDR: Indonesian rupiah
+  ID_EQUITY: Indonesia equities
+  GOLD: Gold
+  OIL: Crude oil

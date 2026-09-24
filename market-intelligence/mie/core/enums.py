@@ -1,0 +1,112 @@
+"""Controlled vocabularies. Labels are categories, never numeric weights."""
+from enum import Enum
+
+
+class SourceType(str, Enum):
+    REGULATORY = "REGULATORY"
+    EXCHANGE = "EXCHANGE"
+    CENTRAL_BANK = "CENTRAL_BANK"
+    STATISTICAL_AUTHORITY = "STATISTICAL_AUTHORITY"
+    COMPANY = "COMPANY"
+    GOVERNMENT = "GOVERNMENT"
+    MULTILATERAL = "MULTILATERAL"
+    LICENSED_NEWS = "LICENSED_NEWS"
+    PUBLIC_MEDIA = "PUBLIC_MEDIA"
+    VIDEO = "VIDEO"
+
+
+class DocumentType(str, Enum):
+    PRESS_RELEASE = "PRESS_RELEASE"
+    DATA_RELEASE = "DATA_RELEASE"
+    FILING = "FILING"
+    NEWS_ARTICLE = "NEWS_ARTICLE"
+    TRANSCRIPT = "TRANSCRIPT"
+    INTERVIEW = "INTERVIEW"
+    VIDEO_METADATA = "VIDEO_METADATA"
+    OTHER = "OTHER"
+
+
+class EventType(str, Enum):
+    EARNINGS = "EARNINGS"
+    GUIDANCE = "GUIDANCE"
+    DIVIDEND = "DIVIDEND"
+    BUYBACK = "BUYBACK"
+    M_AND_A = "M&A"
+    CAPITAL_RAISE = "CAPITAL_RAISE"
+    MANAGEMENT_CHANGE = "MANAGEMENT_CHANGE"
+    CAPEX = "CAPEX"
+    CORPORATE_ACTION = "CORPORATE_ACTION"
+    CREDIT_RATING = "CREDIT_RATING"
+    REGULATION = "REGULATION"
+    MONETARY_POLICY = "MONETARY_POLICY"
+    INFLATION = "INFLATION"
+    GDP = "GDP"
+    EMPLOYMENT = "EMPLOYMENT"
+    FISCAL_POLICY = "FISCAL_POLICY"
+    BOND_AUCTION = "BOND_AUCTION"
+    FX = "FX"
+    COMMODITY = "COMMODITY"
+    INVENTORY = "INVENTORY"
+    SUPPLY_DISRUPTION = "SUPPLY_DISRUPTION"
+    GEOPOLITICS = "GEOPOLITICS"
+    INDUSTRY_DATA = "INDUSTRY_DATA"
+    OTHER = "OTHER"
+
+
+class InformationLayer(str, Enum):
+    """The three layers are separate dimensions and are never merged into one score."""
+    FACTUAL = "FACTUAL"
+    MANAGEMENT = "MANAGEMENT"
+    MEDIA = "MEDIA"
+
+
+class Sentiment(str, Enum):
+    POSITIVE = "POSITIVE"
+    NEUTRAL = "NEUTRAL"
+    NEGATIVE = "NEGATIVE"
+    MIXED = "MIXED"
+    UNCERTAIN = "UNCERTAIN"
+    INSUFFICIENT_CONTEXT = "INSUFFICIENT_CONTEXT"
+
+
+class FinbertLabel(str, Enum):
+    POSITIVE = "POSITIVE"
+    NEUTRAL = "NEUTRAL"
+    NEGATIVE = "NEGATIVE"
+
+
+class ImpactHorizon(str, Enum):
+    IMMEDIATE = "IMMEDIATE"
+    SHORT_TERM = "SHORT_TERM"
+    MEDIUM_TERM = "MEDIUM_TERM"
+    LONG_TERM = "LONG_TERM"
+    UNCLEAR = "UNCLEAR"
+
+
+class ManagementTone(str, Enum):
+    POSITIVE = "POSITIVE"
+    MIXED_POSITIVE = "MIXED_POSITIVE"
+    NEUTRAL = "NEUTRAL"
+    MIXED_NEGATIVE = "MIXED_NEGATIVE"
+    NEGATIVE = "NEGATIVE"
+    NOT_APPLICABLE = "NOT_APPLICABLE"
+
+
+class AgreementStatus(str, Enum):
+    AGREE = "AGREE"
+    DISAGREE = "DISAGREE"
+    CLAUDE_ONLY = "CLAUDE_ONLY"
+    FINBERT_ONLY = "FINBERT_ONLY"
+    UNCERTAIN = "UNCERTAIN"
+    NOT_CLASSIFIED = "NOT_CLASSIFIED"
+
+
+class TimestampQuality(str, Enum):
+    SOURCE = "SOURCE"                            # published_at provided by the source
+    MISSING_PUBLISHED_AT = "MISSING_PUBLISHED_AT"  # only retrieved_at is known
+
+
+class RunStatus(str, Enum):
+    SUCCESS = "SUCCESS"
+    PARTIAL = "PARTIAL"
+    FAILED = "FAILED"
