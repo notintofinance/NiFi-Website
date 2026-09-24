@@ -19,7 +19,9 @@ def make_engine(url: str | None = None) -> Engine:
         Path(url.removeprefix("sqlite:///")).parent.mkdir(parents=True, exist_ok=True)
     kwargs: dict = {}
     if url.startswith("sqlite"):
-        kwargs["connect_args"] = {"check_same_thread": False}  # FastAPI serves from a threadpool
+        # FastAPI serves from a threadpool; wait up to 30s for a lock instead of failing
+        # when the scheduled pipeline is writing while the dashboard reads.
+        kwargs["connect_args"] = {"check_same_thread": False, "timeout": 30}
         if ":memory:" in url:
             kwargs["poolclass"] = StaticPool  # one shared connection, else each has its own empty DB
     engine = create_engine(url, future=True, **kwargs)
@@ -27,6 +29,9 @@ def make_engine(url: str | None = None) -> Engine:
         @event.listens_for(engine, "connect")
         def _fk_on(dbapi_conn, _):  # enforce foreign keys on SQLite
             dbapi_conn.execute("PRAGMA foreign_keys=ON")
+            if ":memory:" not in url:
+                # WAL: readers (dashboard) and one writer (pipeline) no longer block each other.
+                dbapi_conn.execute("PRAGMA journal_mode=WAL")
     return engine
 
 

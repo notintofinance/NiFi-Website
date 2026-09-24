@@ -87,6 +87,26 @@ what was knowable on each day with today's restated view.
 There are no database migrations yet (Alembic is on the P1 backlog). After
 pulling a schema change, delete `data/mie.db` and re-run.
 
+## Run automatically (macOS)
+
+Install two background jobs once. You won't need to activate the environment
+or open Terminal again:
+
+```bash
+./scripts/macos/install_launchd.sh        # pipeline every 2 hours (pass a number for another interval)
+```
+
+- **Dashboard:** always on at http://127.0.0.1:8000. It starts at login and
+  restarts if it stops. It is reachable from this Mac only.
+- **Pipeline:** `mie run` every N hours and once at login. A run missed while
+  the Mac slept happens on wake. Unchanged events are never re-sent to Claude.
+- **Logs:** `data/logs/pipeline.log` and `data/logs/dashboard.log`.
+- **Run the pipeline now:** `launchctl kickstart gui/$(id -u)/com.notintofinance.mie.pipeline`
+- **Remove the jobs:** `./scripts/macos/uninstall_launchd.sh` (keeps your data)
+
+Manual commands without activating the environment: `./scripts/mie run`,
+`./scripts/mie claude-preview`, `./scripts/mie serve`.
+
 ## Layout
 
 ```

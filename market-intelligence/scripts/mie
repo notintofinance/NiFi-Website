@@ -1,0 +1,13 @@
+#!/bin/bash
+# Run any mie command without activating the virtual environment, e.g.
+#   ./scripts/mie run      ./scripts/mie serve      ./scripts/mie claude-preview
+set -euo pipefail
+DIR="$(cd "$(dirname "$0")/.." && pwd)"
+PY="$DIR/.venv/bin/python"
+if [ ! -x "$PY" ]; then
+  echo "No virtual environment at $DIR/.venv. Create it once with:" >&2
+  echo "  cd \"$DIR\" && python3.12 -m venv .venv && .venv/bin/pip install -r requirements.txt -r requirements-ml.txt" >&2
+  exit 1
+fi
+cd "$DIR"
+exec "$PY" -m mie.cli "$@"
