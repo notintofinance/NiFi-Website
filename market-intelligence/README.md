@@ -16,9 +16,14 @@ SOURCE → DOCUMENT → EVENT → DEDUP → FinBERT ┐
 
 ## Quick start
 
+Requires **Python 3.11 or newer**. On macOS, the built-in `python3` is usually 3.9 and is too old:
+`pip` then fails with *"No matching distribution found for anthropic>=1.0"*. Install Python 3.12
+from python.org (or `brew install python@3.12`) and use `python3.12` below.
+
 ```bash
 cd market-intelligence
-python3.11 -m venv .venv && source .venv/bin/activate
+python3.12 -m venv .venv && source .venv/bin/activate
+python --version                         # must show 3.11 or newer
 pip install -r requirements.txt          # add requirements-ml.txt for local FinBERT
 cp .env.example .env                     # then edit; never commit .env
 
