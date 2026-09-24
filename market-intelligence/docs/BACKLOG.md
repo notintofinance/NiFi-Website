@@ -31,6 +31,9 @@
 - ✅ Phase 3: point-in-time vs restated history with differences flagged
 - ✅ Phase 3: drivers per window, momentum (24H/7D, 7D/30D) and parameter-free reversal flags, country scopes
 - ✅ Phase 3: append-only sentiment snapshots per pipeline run
+- ✅ Phase 4: market dashboard (scope strip, asset heatmap with week-on-week, reversals, divergences, positive/negative events)
+- ✅ Phase 4: history charts (point-in-time vs restated line, separate composition chart, hover, table view)
+- ✅ Phase 4: feed flags column and formula-safe CSV export
 - ☐ Run `scripts/check_sources.py` from a networked machine and tick the Verified column in SOURCES.md
 - ☐ Download FinBERT weights (`pip install -r requirements-ml.txt`) and run the pipeline once live
 - ☐ Obtain an `ANTHROPIC_API_KEY` for the team and have someone approve the first Claude run
@@ -58,6 +61,5 @@
 - ☐ Media metadata connectors (licence-checked); narrative dispersion in the dashboard
 - ☐ Claude per-article media labels (independent of FinBERT) and Claude fact extraction from company releases
 - ☐ Alert framework (reversal, deterioration, divergence, disagreement, feed failure), with documented, configurable thresholds
-- ☐ Asset-class heatmap and Sentiment History pages
 - ☐ Market-data table for **post-hoc validation only** (event study), never read by classifiers
 - ☐ Auth/SSO in front of the dashboard; audit-log export

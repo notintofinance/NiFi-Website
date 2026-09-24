@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 from sqlalchemy import func, select
 from sqlalchemy.orm import Session
@@ -21,14 +21,16 @@ from mie.db.models import (
     SentimentSnapshot,
     Source,
 )
-from mie.intelligence.aggregation import WINDOWS, AssetImplicationObs, asset_breadth
+from mie.intelligence.aggregation import WINDOWS, BreadthResult
 from mie.intelligence.history import (
     METHODOLOGY_VERSION,
     MOMENTUM_PAIRS,
+    asset_breadth_at,
     breadth_at,
     drivers,
     reversals_all,
     series,
+    week_on_week,
 )
 from mie.intelligence.labels import GLOBAL, LABEL_SOURCES, LabelBook
 from mie.intelligence.service import (
@@ -36,7 +38,6 @@ from mie.intelligence.service import (
     finbert_layer_labels,
     latest_claude,
     latest_comparison,
-    latest_implications,
     media_narrative,
 )
 from mie.models.claude import load_asset_universe
@@ -85,6 +86,7 @@ def event_row(session: Session, e: Event) -> dict:
         "source_count": len(sources),
         "source_types": sorted({s.source_type for s in sources}),
         "is_fixture": all(s.is_fixture for s in sources) if sources else False,
+        "divergence_flags": event_divergence(session, e),
     }
 
 
@@ -254,14 +256,84 @@ def source_health(session: Session) -> list[dict]:
     return out
 
 
-def asset_table(session: Session, as_of: datetime | None = None) -> dict:
-    """Per-asset breadth from Claude's implications. One entry per asset, no total."""
+def heat_bin(breadth_scaled: int | None) -> str:
+    """Display quantisation for the heatmap: sign plus magnitude third. This only
+    colours the cell (the exact value is printed in it) and never feeds a calculation."""
+    if breadth_scaled is None:
+        return "na"
+    if breadth_scaled == 0:
+        return "z"
+    level = 1 if abs(breadth_scaled) <= 33 else 2 if abs(breadth_scaled) <= 66 else 3
+    return ("p" if breadth_scaled > 0 else "n") + str(level)
+
+
+def _cell(b: BreadthResult) -> dict:
+    return {**b.as_dict(), "bin": heat_bin(b.breadth_scaled)}
+
+
+def asset_table(session: Session, as_of: datetime | None = None, book: LabelBook | None = None) -> dict:
+    """Per-asset point-in-time breadth from Claude's implications, with the 7D value's
+    change versus one week earlier. One row per asset; no cross-asset total."""
     as_of = as_of or datetime.now(timezone.utc)
+    book = book or LabelBook.from_session(session)
     names = load_asset_universe()
-    obs = [AssetImplicationObs(e.id, e.event_time, i.asset, i.direction) for e, i in latest_implications(session)]
-    return {"as_of": as_of.isoformat(), "assets": [
-        {"asset": a, "name": names.get(a, a), "windows": {w: b.as_dict() for w, b in ws.items()}}
-        for a, ws in asset_breadth(obs, as_of).items()]}
+    rows = []
+    for asset in book.assets():
+        windows = {w: _cell(asset_breadth_at(book, asset, as_of, d)) for w, d in WINDOWS.items()}
+        prev = asset_breadth_at(book, asset, as_of - timedelta(days=7), WINDOWS["7D"])
+        cur7 = asset_breadth_at(book, asset, as_of, WINDOWS["7D"])
+        rows.append({"asset": asset, "name": names.get(asset, asset), "windows": windows,
+                     "wow_7d": week_on_week(cur7, prev)})
+    return {"as_of": as_of.isoformat(), "assets": rows}
+
+
+def headline_strip(session: Session, source: str = "claude_factual", as_of: datetime | None = None,
+                   book: LabelBook | None = None) -> list[dict]:
+    """One card per scope: 24H / 7D / 30D for one label source, plus 7D week-on-week."""
+    as_of = as_of or datetime.now(timezone.utc)
+    book = book or LabelBook.from_session(session)
+    cards = []
+    for scope in book.scopes():
+        vals = {w: _cell(breadth_at(book, source, as_of, WINDOWS[w], scope)[0]) for w in ("24H", "7D", "30D")}
+        prev = breadth_at(book, source, as_of - timedelta(days=7), WINDOWS["7D"], scope)[0]
+        cur7 = breadth_at(book, source, as_of, WINDOWS["7D"], scope)[0]
+        cards.append({"scope": scope, "label_source": source, "windows": vals, "wow_7d": week_on_week(cur7, prev)})
+    return cards
+
+
+def divergences(session: Session, days: int = 30, as_of: datetime | None = None) -> list[dict]:
+    as_of = as_of or datetime.now(timezone.utc)
+    out = []
+    for e in session.scalars(select(Event).where(Event.event_time > as_of - timedelta(days=days))
+                             .order_by(Event.event_time.desc())).all():
+        flags = event_divergence(session, e)
+        if flags:
+            out.append({**event_row(session, e), "flags": flags})
+    return out
+
+
+CSV_COLUMNS = ["id", "event_time", "event_time_quality", "event_type", "title", "country", "entities", "tickers",
+               "asset_classes", "claude_label", "finbert_label", "agreement", "review_required",
+               "divergence_flags", "document_count", "source_count", "source_types", "is_fixture", "detail_url"]
+
+
+def _csv_safe(value) -> str:
+    """Neutralise spreadsheet formula injection: text from external sources must
+    never execute when an analyst opens the export."""
+    text = "; ".join(map(str, value)) if isinstance(value, list) else ("" if value is None else str(value))
+    return "'" + text if text[:1] in ("=", "+", "-", "@", "\t", "\r") else text
+
+
+def events_csv(rows: list[dict], base_url: str = "") -> str:
+    import csv
+    import io
+    buf = io.StringIO()
+    w = csv.writer(buf)
+    w.writerow(CSV_COLUMNS)
+    for r in rows:
+        r = {**r, "detail_url": f"{base_url}/events/{r['id']}"}
+        w.writerow([_csv_safe(r.get(c)) for c in CSV_COLUMNS])
+    return buf.getvalue()
 
 
 def _needs_review(session: Session, event_id: int) -> bool:

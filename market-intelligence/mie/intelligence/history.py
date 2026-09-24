@@ -60,6 +60,25 @@ def breadth_at(book: LabelBook, source: str, t: datetime, window: timedelta, sco
     return breadth_from_labels(labels), sorted(contributors, key=lambda c: (c.event_time, c.event_id), reverse=True)
 
 
+def asset_breadth_at(book: LabelBook, asset: str, t: datetime, window: timedelta, scope: str = "GLOBAL",
+                     mode: Mode = "POINT_IN_TIME") -> BreadthResult:
+    """Breadth for one asset over events whose interpretation (visible at t) states a
+    direction for it. Events silent on the asset are not counted."""
+    at = t if mode == "POINT_IN_TIME" else None
+    return breadth_from_labels(book.asset_direction(e, asset, at)
+                               for e in _window_events(book, t, window, scope, mode))
+
+
+def week_on_week(current: BreadthResult, previous: BreadthResult) -> dict:
+    """Change of a window's breadth versus the same window one week earlier (both
+    point-in-time). Direction is the sign of the change; no threshold."""
+    if current.breadth_scaled is None or previous.breadth_scaled is None:
+        return {"delta": None, "direction": None, "previous": previous.breadth_scaled}
+    d = current.breadth_scaled - previous.breadth_scaled
+    return {"delta": d, "direction": "UP" if d > 0 else "DOWN" if d < 0 else "FLAT",
+            "previous": previous.breadth_scaled}
+
+
 def drivers(contributors: list[Contributor]) -> dict[str, list[Contributor]]:
     """Events behind a breadth value, grouped by label, newest first. There is no
     importance ranking: ordering by anything but time would need invented weights."""

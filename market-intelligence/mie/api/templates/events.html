@@ -20,6 +20,7 @@
   <label>To <input type="date" name="date_to" value="{{ q.date_to }}"></label>
   <button type="submit">Filter</button> <a href="/events" class="small">Reset</a>
 </form>
-<p class="small muted">{{ events|length }} events</p>
+<p class="small muted">{{ events|length }} events · <a href="/events.csv?{{ q|urlencode }}">Export CSV</a>
+(same filters; includes provenance columns and a link to each event)</p>
 {{ event_table(events) }}
 {% endblock %}

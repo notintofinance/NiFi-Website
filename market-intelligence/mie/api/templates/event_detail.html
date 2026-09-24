@@ -73,5 +73,5 @@
 {% for h in e.event_type_history %}<tr><td>{{ h['from'] }}</td><td>{{ h.to }}</td><td class="small">{{ h.by }}</td><td class="small">{{ h.at[:16].replace('T',' ') }}</td></tr>{% endfor %}
 </tbody></table></div>
 {% endif %}
-<p class="small muted">Extraction: {{ e.extraction_method }} · Dedup: {{ e.dedup_method }}</p>
+<p class="small muted"><a href="/api/events/{{ e.id }}">Raw JSON</a> · Extraction: {{ e.extraction_method }} · Dedup: {{ e.dedup_method }}</p>
 {% endblock %}

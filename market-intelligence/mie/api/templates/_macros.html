@@ -17,7 +17,7 @@
 {% macro event_table(events) -%}
 <div class="tablewrap"><table>
 <thead><tr><th>Time (UTC)</th><th>Event</th><th>Type</th><th>Entities</th><th>Claude</th><th>FinBERT</th>
-<th>Agreement</th><th class="num">Sources</th><th>Status</th></tr></thead>
+<th>Agreement</th><th class="num">Sources</th><th>Flags</th></tr></thead>
 <tbody>
 {% for e in events %}
 <tr>
@@ -29,10 +29,22 @@
   <td>{{ badge(e.finbert_label) }}</td>
   <td class="small">{{ e.agreement }}</td>
   <td class="num" title="{{ e.document_count }} documents">{{ e.source_count }}</td>
-  <td>{% if e.review_required %}<span class="flag">Review</span>{% else %}<span class="muted small">—</span>{% endif %}</td>
+  <td>{% if e.review_required %}<span class="flag">Review</span> {% endif %}{% for f in e.divergence_flags %}<span class="flag" title="{{ f }}">Divergence</span> {% endfor %}{% if not e.review_required and not e.divergence_flags %}<span class="muted small">—</span>{% endif %}</td>
 </tr>
 {% else %}
 <tr><td colspan="9" class="muted">No events match.</td></tr>
 {% endfor %}
 </tbody></table></div>
+{%- endmacro %}
+
+
+{% macro bval(v) -%}
+{% if v is none %}n/a{% elif v == 0 %}0{% else %}{{ '%+d' % v }}{% endif %}
+{%- endmacro %}
+
+{% macro wow(w) -%}
+{% if w.direction == 'UP' %}<span class="wow" title="7D breadth {{ w.previous }} a week earlier">▲ {{ '%+d' % w.delta }} vs 1 wk</span>
+{%- elif w.direction == 'DOWN' %}<span class="wow" title="7D breadth {{ w.previous }} a week earlier">▼ {{ '%+d' % w.delta }} vs 1 wk</span>
+{%- elif w.direction == 'FLAT' %}<span class="wow">= vs 1 wk</span>
+{%- else %}<span class="wow muted" title="Needs a 7D value now and a week earlier">no 1-wk comparison</span>{% endif %}
 {%- endmacro %}

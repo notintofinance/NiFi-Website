@@ -9,19 +9,19 @@
   --bg: #f6f6f4; --surface: #fcfcfb; --border: #e2e1dc; --text: #0b0b0b; --text-2: #52514e; --muted: #7a7973;
   --accent: #1f3a5f;
   --pos: #2a78d6; --neg: #d03b3b; --neu: #c9c8c2; --mix: #8f8e88;
-  --warn-bg: #fff4d6; --warn-border: #eda100; --critical: #d03b3b;
+  --warn-bg: #fff4d6; --warn-border: #eda100; --critical: #d03b3b; --gridline: #e1e0d9; --axis: #c3c2b7; --pos-series: #2a78d6;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #121211; --surface: #1a1a19; --border: #33332f; --text: #ffffff; --text-2: #c3c2b7; --muted: #95948c;
     --accent: #9db8dc; --pos: #3987e5; --neg: #e66767; --neu: #4a4a46; --mix: #77766f;
-    --warn-bg: #3a2f10; --warn-border: #c98500;
+    --warn-bg: #3a2f10; --warn-border: #c98500; --gridline: #2c2c2a; --axis: #383835; --pos-series: #3987e5;
   }
 }
 :root[data-theme="dark"] {
   --bg: #121211; --surface: #1a1a19; --border: #33332f; --text: #ffffff; --text-2: #c3c2b7; --muted: #95948c;
   --accent: #9db8dc; --pos: #3987e5; --neg: #e66767; --neu: #4a4a46; --mix: #77766f;
-  --warn-bg: #3a2f10; --warn-border: #c98500;
+  --warn-bg: #3a2f10; --warn-border: #c98500; --gridline: #2c2c2a; --axis: #383835; --pos-series: #3987e5;
 }
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--bg); color: var(--text);
@@ -71,10 +71,67 @@ button { font: inherit; padding: 6px 12px; border-radius: 6px; border: 1px solid
 .layers { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
 .layers ul { margin: 6px 0 0; padding-left: 18px; } .layers li { margin-bottom: 6px; }
 pre { white-space: pre-wrap; font-size: 12px; background: var(--bg); padding: 10px; border-radius: 6px; }
+
+/* ---- charts (inline SVG) ---- */
+.chart { width: 100%; height: auto; display: block; font-size: 11px; }
+.chart .grid { stroke: var(--gridline); stroke-width: 1; }
+.chart .base { stroke: var(--axis); stroke-width: 1; }
+.chart .ax { fill: var(--muted); font-size: 11px; }
+.chart path.s-pit { fill: none; stroke: var(--pos-series); stroke-width: 2; stroke-linejoin: round; }
+.chart path.s-restated { fill: none; stroke: var(--muted); stroke-width: 2; stroke-dasharray: 5 4; }
+.chart circle.s-pit { fill: var(--pos-series); stroke: var(--surface); stroke-width: 2; }
+.chart circle.s-restated { fill: var(--muted); stroke: var(--surface); stroke-width: 2; }
+.chart .lbl { font-size: 12px; fill: var(--text-2); }
+.chart .c-pos { fill: var(--pos); } .chart .c-neg { fill: var(--neg); } .chart .c-neu { fill: var(--neu); }
+.chart .c-mix { fill: url(#hatch); }
+.chart .seg { stroke: var(--surface); stroke-width: 1; }
+.chart .hit { fill: transparent; cursor: crosshair; }
+.chart .xhair { stroke: var(--axis); stroke-width: 1; visibility: hidden; pointer-events: none; }
+.legend { display: flex; gap: 16px; font-size: 12px; color: var(--text-2); margin: 4px 0 6px; flex-wrap: wrap; }
+.legend i { display: inline-block; width: 14px; height: 0; border-top: 2px solid; vertical-align: middle; margin-right: 6px; }
+.legend i.pit { border-color: var(--pos-series); } .legend i.restated { border-color: var(--muted); border-top-style: dashed; }
+.legend b { display: inline-block; width: 10px; height: 10px; border-radius: 2px; vertical-align: -1px; margin-right: 5px; }
+#tip { position: fixed; z-index: 10; pointer-events: none; display: none; max-width: 340px; background: var(--surface);
+  color: var(--text); border: 1px solid var(--border); border-radius: 6px; padding: 6px 9px; font-size: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.12); }
+/* ---- heatmap (diverging: blue positive, red negative, gray zero; value always printed) ---- */
+table.heat td.h { text-align: center; font-variant-numeric: tabular-nums; font-weight: 600; border: 2px solid var(--surface); }
+.h-na { background: repeating-linear-gradient(45deg, transparent 0 4px, var(--border) 4px 5px); color: var(--muted); font-weight: 400 !important; }
+.h-z { background: #f0efec; color: #0b0b0b; }
+.h-p1 { background: #86b6ef; color: #0b0b0b; } .h-p2 { background: #3987e5; color: #0b0b0b; } .h-p3 { background: #1c5cab; color: #ffffff; }
+.h-n1 { background: #ea9a93; color: #0b0b0b; } .h-n2 { background: #d75853; color: #0b0b0b; } .h-n3 { background: #9e3432; color: #ffffff; }
+.h .n { display: block; font-size: 10px; font-weight: 400; opacity: .8; }
+.wow { font-size: 12px; white-space: nowrap; color: var(--text-2); }
+.strip { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.strip .row { display: flex; justify-content: space-between; gap: 8px; margin-top: 8px; }
+.strip .w { text-align: center; flex: 1; border-radius: 6px; padding: 6px 4px; font-variant-numeric: tabular-nums; font-weight: 600; font-size: 18px; }
+.strip .w small { display: block; font-size: 10px; font-weight: 400; opacity: .85; }
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .h-z { background: #383835; color: #ffffff; }
+  :root:not([data-theme="light"]) .h-p1 { background: #184f95; color: #ffffff; }
+  :root:not([data-theme="light"]) .h-p2 { background: #2a78d6; color: #0b0b0b; }
+  :root:not([data-theme="light"]) .h-p3 { background: #6da7ec; color: #0b0b0b; }
+  :root:not([data-theme="light"]) .h-n1 { background: #892b2a; color: #ffffff; }
+  :root:not([data-theme="light"]) .h-n2 { background: #c74845; color: #ffffff; }
+  :root:not([data-theme="light"]) .h-n3 { background: #e4857e; color: #0b0b0b; }
+}
+:root[data-theme="dark"] .h-z { background: #383835; color: #ffffff; }
+:root[data-theme="dark"] .h-p1 { background: #184f95; color: #ffffff; }
+:root[data-theme="dark"] .h-p2 { background: #2a78d6; color: #0b0b0b; }
+:root[data-theme="dark"] .h-p3 { background: #6da7ec; color: #0b0b0b; }
+:root[data-theme="dark"] .h-n1 { background: #892b2a; color: #ffffff; }
+:root[data-theme="dark"] .h-n2 { background: #c74845; color: #ffffff; }
+:root[data-theme="dark"] .h-n3 { background: #e4857e; color: #0b0b0b; }
 @media (max-width: 640px) { main, header { padding-left: 16px; padding-right: 16px; } }
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <pattern id="hatch" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+    <rect width="4" height="4" style="fill:var(--neu)"></rect><rect width="2" height="4" style="fill:var(--mix)"></rect>
+  </pattern></defs></svg>
+<div id="tip" role="tooltip"></div>
 <header>
   <span class="brand">Market Intelligence &amp; Sentiment Engine</span>
   <nav><a href="/">Overview</a><a href="/events">Event feed</a><a href="/history">History</a><a href="/models">Models</a><a href="/sources">Sources</a></nav>
@@ -87,5 +144,24 @@ sources. Fixture sources are marked "[SYNTHETIC FIXTURE]". Do not use them for r
 {% endif %}
 {% block content %}{% endblock %}
 </main>
+<script>
+// Hover layer for server-rendered charts: tooltip + crosshair. Charts stay readable without it.
+(function () {
+  var tip = document.getElementById("tip");
+  document.querySelectorAll("svg.chart").forEach(function (svg) {
+    var xh = svg.querySelector(".xhair");
+    svg.querySelectorAll(".hit").forEach(function (h) {
+      h.addEventListener("mousemove", function (ev) {
+        tip.textContent = h.getAttribute("data-tip");
+        tip.style.display = "block";
+        var x = Math.min(ev.clientX + 14, window.innerWidth - tip.offsetWidth - 8);
+        tip.style.left = x + "px"; tip.style.top = (ev.clientY + 14) + "px";
+        if (xh) { xh.setAttribute("x1", h.dataset.x); xh.setAttribute("x2", h.dataset.x); xh.style.visibility = "visible"; }
+      });
+      h.addEventListener("mouseleave", function () { tip.style.display = "none"; if (xh) xh.style.visibility = "hidden"; });
+    });
+  });
+})();
+</script>
 </body>
 </html>

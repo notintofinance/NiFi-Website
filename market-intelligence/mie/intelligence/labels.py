@@ -18,7 +18,7 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from mie.core.enums import InformationLayer, Sentiment
-from mie.db.models import ClaudePrediction, Event, EventStatement, FinbertPrediction
+from mie.db.models import ClaudePrediction, Event, EventImpact, EventStatement, FinbertPrediction
 from mie.intelligence.comparison import NON_DIRECTIONAL, tone_to_sentiment
 from mie.intelligence.narrative import narrative_distribution
 from mie.models.finbert import derive_event_label
@@ -41,6 +41,7 @@ class ClaudeObs:
     prediction_id: int
     factual: Sentiment | None
     management: Sentiment | None
+    impacts: tuple[tuple[str, str], ...] = ()   # (asset, direction) stated in this prediction
 
 
 @dataclass(frozen=True)
@@ -86,12 +87,15 @@ class LabelBook:
     @classmethod
     def from_session(cls, session: Session) -> "LabelBook":
         stmt_doc = {s.id: (s.document_id, s.layer) for s in session.scalars(select(EventStatement)).all()}
+        impacts: dict[int, list[tuple[str, str]]] = {}
+        for i in session.scalars(select(EventImpact).order_by(EventImpact.id)).all():
+            impacts.setdefault(i.claude_prediction_id, []).append((i.asset, i.direction))
         claude: dict[int, list[ClaudeObs]] = {}
         for p in session.scalars(select(ClaudePrediction).where(ClaudePrediction.status == "OK")
                                  .order_by(ClaudePrediction.predicted_at, ClaudePrediction.id)).all():
             claude.setdefault(p.event_id, []).append(ClaudeObs(
                 p.predicted_at, p.id, Sentiment(p.factual_sentiment) if p.factual_sentiment else None,
-                tone_to_sentiment(p.management_tone)))
+                tone_to_sentiment(p.management_tone), tuple(impacts.get(p.id, ()))))
         finbert: dict[int, list[FinbertObs]] = {}
         for p in session.scalars(select(FinbertPrediction)).all():
             finbert.setdefault(p.event_id, []).append(FinbertObs(
@@ -145,6 +149,18 @@ class LabelBook:
         doc_labels = [lbl for lbl in (derive_event_label(v) for v in per_doc.values())
                       if lbl in (Sentiment.POSITIVE, Sentiment.NEUTRAL, Sentiment.NEGATIVE)]
         return narrative_distribution(doc_labels).plurality if doc_labels else None
+
+    def asset_direction(self, e: EventRecord, asset: str, at: datetime | None = None) -> Sentiment | None:
+        """Direction for `asset` stated by the latest interpretation visible at `at`.
+        None when that interpretation does not mention the asset: absence is not neutral."""
+        visible = [c for c in e.claude if _visible(at, c.predicted_at)]
+        if not visible:
+            return None
+        return next((Sentiment(d) for a, d in visible[-1].impacts if a == asset), None)
+
+    def assets(self) -> list[str]:
+        """Assets named by each event's latest interpretation (superseded ones don't add rows)."""
+        return sorted({a for e in self.events if e.claude for a, _ in e.claude[-1].impacts})
 
     # ------------------------------------------------------------------ scopes
     def scopes(self) -> list[str]:

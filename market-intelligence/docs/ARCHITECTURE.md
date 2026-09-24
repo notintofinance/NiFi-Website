@@ -1,6 +1,6 @@
 # Market Intelligence & Sentiment Engine — Architecture (V1)
 
-Status: Phase 0 complete; Phases 1–3 implemented. Last revised 2026-09-24.
+Status: Phase 0 complete; Phases 1–4 implemented. Last revised 2026-09-24.
 
 This is an internal research prototype. It does not use and must not receive
 confidential bank data, customer data, portfolio data or paid data feeds.
@@ -360,3 +360,38 @@ requires empirical validation first). There are no confidence intervals on
 breadth: any interval needs a chosen confidence level, and with small n the
 sample size shown next to each value is the honest signal. Both can be added
 once the gold set exists.
+
+---
+
+## 14. Phase 4: dashboard
+
+| Page | Contents |
+|---|---|
+| **Market dashboard** `/` | Headline strip per scope (Claude factual 24H/7D/30D, 7D week-on-week); **asset heatmap** (assets × windows, point-in-time, 7D vs one week earlier); sentiment reversals; narrative divergences; positive and negative events (7D, newest first); review queue; per-source breadth detail; source status |
+| **Event feed** `/events` | Filters (country, asset class, ticker, event type, source type, Claude sentiment, agreement, dates); flags column (review, divergence); **CSV export** with the same filters (`/events.csv`) |
+| **Event detail** `/events/{id}` | Facts / management / media layers with provenance, both models, comparisons, implications, type history, supporting documents, raw JSON link |
+| **Sentiment history** `/history` | Breadth line chart (point-in-time solid, restated dashed gray), daily composition bars in a **separate** chart (no dual axis), table view, drivers, recorded snapshots |
+
+**Charts** are server-rendered SVG (`mie/api/charts.py`) with a small script for
+the hover crosshair and tooltip. No chart library or CDN is loaded, which suits a
+locked-down internal network. Missing days break the line: nothing is
+interpolated or zero-filled. The table view stays on the page as the accessible
+equivalent.
+
+**Heatmap colours.** The scale diverges: blue for positive, red for negative,
+and gray at zero. Blue comes from the palette ramp (steps 250/400/550). Red is
+derived at matched OKLCH lightness. Each same-magnitude blue/red pair passes the
+colour-blind and normal-vision separation checks in light and dark mode. The
+lightest ramp step (150) was rejected because it failed normal-vision
+separation. Cells are shaded by magnitude in thirds, which is display
+quantisation only. The exact value and n are always printed in the cell, so
+colour never carries meaning alone.
+
+**Week-on-week** compares a window's point-in-time value with the same window
+one week earlier and reports the sign of the change. There is no threshold.
+Where either value is undefined, it says "no 1-wk comparison" instead of
+guessing.
+
+**CSV export safety.** Cells beginning with `= + - @` (or a tab or CR) are
+prefixed with `'` so text from external sources can't run as a spreadsheet
+formula. The filename is marked `SYNTHETIC` whenever fixture data is present.

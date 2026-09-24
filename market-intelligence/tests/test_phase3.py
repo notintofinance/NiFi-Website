@@ -164,7 +164,7 @@ def test_phase3_api_and_pages(engine, settings, fake_finbert):
         r = client.get(path)
         assert r.status_code == 200, path
     assert "Point-in-time" in client.get("/history").text
-    assert "Momentum and reversals" in client.get("/").text
+    assert "Sentiment reversals" in client.get("/").text
 
 
 def test_layer_without_text_gets_no_label_anywhere(loaded, settings):

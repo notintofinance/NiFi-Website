@@ -1,91 +1,95 @@
 {% extends "base.html" %}
-{% from "_macros.html" import distbar, event_table %}
-{% block title %}Overview{% endblock %}
+{% from "_macros.html" import distbar, event_table, bval, wow %}
+{% block title %}Market dashboard{% endblock %}
 {% block content %}
-<h1>Market overview</h1>
-<p class="sub">Sentiment Breadth = (Positive − Negative) ÷ classified unique events, on a −100…+100 scale.
-Each model and each information layer is shown separately and never averaged. Point-in-time as of
-{{ breadth.as_of[:16].replace('T',' ') }} UTC · method {{ breadth.methodology_version }}.</p>
+<h1>Market dashboard</h1>
+<p class="sub">Sentiment Breadth = (Positive − Negative) ÷ classified unique events, −100…+100. Point-in-time as of
+{{ breadth.as_of[:16].replace('T',' ') }} UTC · method {{ breadth.methodology_version }}. Models and layers are never averaged.</p>
 
-<form class="filters" method="get">
-  <label>Scope <select name="scope">{% for sc in breadth.scopes %}<option {% if sc == scope %}selected{% endif %}>{{ sc }}</option>{% endfor %}</select></label>
-  <button type="submit">Apply</button> <a class="small" href="/history">Sentiment history →</a>
-</form>
-
-{% for src in ['claude_factual', 'finbert_factual', 'agreed_factual'] %}
-{% set entry = breadth.by_label_source[src] %}
-<h2>{{ entry.description }}</h2>
-<div class="grid">
-{% for w, b in entry.windows.items() %}
-  <div class="card tile">
-    <div class="label">{{ w }}</div>
-    <div class="value">{% if b.breadth_scaled is not none %}{{ ('%+d' % b.breadth_scaled) if b.breadth_scaled else '0' }}{% else %}<span class="muted">n/a</span>{% endif %}</div>
-    <div class="n">n = {{ b.total_classified }} classified{% if b.uncertain %} · {{ b.uncertain }} uncertain{% endif %}</div>
-    {{ distbar(b) }}
-    {% if b.total_classified %}<div class="n">P {{ b.positive }} · N {{ b.neutral }} · Neg {{ b.negative }} · Mix {{ b.mixed }}</div>{% endif %}
+<h2>Breadth by scope · Claude, factual layer</h2>
+<div class="strip">
+{% for c in strip %}
+<div class="card">
+  <div style="display:flex;justify-content:space-between;align-items:baseline">
+    <a href="/?scope={{ c.scope }}"><strong>{{ 'Global' if c.scope == 'GLOBAL' else c.scope }}</strong></a>
+    {{ wow(c.wow_7d) }}
   </div>
-{% endfor %}
+  <div class="row">
+  {% for w, b in c.windows.items() %}
+    <div class="w h-{{ b.bin }}" title="{{ w }}: P {{ b.positive }} · N {{ b.neutral }} · Mix {{ b.mixed }} · Neg {{ b.negative }}">{{ bval(b.breadth_scaled) }}<small>{{ w }} · n={{ b.total_classified }}</small></div>
+  {% endfor %}
+  </div>
 </div>
 {% endfor %}
-
-<h2>Other layers</h2>
-<div class="tablewrap"><table>
-<thead><tr><th>Layer / model</th>{% for w in ['24H','3D','7D','30D'] %}<th class="num">{{ w }}</th>{% endfor %}</tr></thead>
-<tbody>
-{% for src in ['claude_management', 'finbert_management', 'media_narrative'] %}
-{% set entry = breadth.by_label_source[src] %}
-<tr><td><a href="/history?label_source={{ src }}&scope={{ scope }}">{{ entry.description }}</a></td>
-{% for w in ['24H','3D','7D','30D'] %}{% set b = entry.windows[w] %}
-<td class="num">{% if b.breadth_scaled is not none %}{{ ('%+d' % b.breadth_scaled) if b.breadth_scaled else '0' }}<span class="muted small"> n={{ b.total_classified }}</span>{% else %}<span class="muted">n/a</span>{% endif %}</td>
-{% endfor %}</tr>
-{% endfor %}
-</tbody></table></div>
-
-<h2>Momentum and reversals</h2>
-<p class="small muted">A reversal means the shorter window's breadth has the strictly opposite sign to the longer one's
-({% for p in momentum.pairs %}{{ p[0] }} vs {{ p[1] }}{% if not loop.last %}, {% endif %}{% endfor %}). There is no threshold, so check n.</p>
-{% if momentum.reversals %}
-<div class="tablewrap"><table><thead><tr><th>Scope</th><th>Label source</th><th>Short</th><th class="num">Breadth (n)</th><th>Long</th><th class="num">Breadth (n)</th></tr></thead><tbody>
-{% for r in momentum.reversals %}<tr><td>{{ r.scope }}</td><td class="small">{{ r.label_source }}</td>
-<td>{{ r.short }}</td><td class="num">{{ '%+d' % r.short_breadth }} <span class="muted small">({{ r.short_n }})</span></td>
-<td>{{ r.long }}</td><td class="num">{{ '%+d' % r.long_breadth }} <span class="muted small">({{ r.long_n }})</span></td></tr>{% endfor %}
-</tbody></table></div>
-{% else %}<p class="muted">No reversals.</p>{% endif %}
-
-<h2>Drivers: {{ drivers.window }}, Claude factual layer, {{ drivers.scope }}</h2>
-<p class="small muted">The unique events behind the {{ drivers.window }} value, grouped by label, newest first. They are not ranked by importance, because that would need weights.</p>
-{% if drivers.drivers %}
-<div class="layers">
-{% for label in ['POSITIVE', 'NEGATIVE', 'MIXED', 'NEUTRAL'] %}{% if drivers.drivers.get(label) %}
-<div class="card"><strong class="small">{{ label.title() }} ({{ drivers.drivers[label]|length }})</strong><ul>
-{% for c in drivers.drivers[label] %}<li><a href="/events/{{ c.event_id }}">{{ c.title }}</a> <span class="muted small">{{ c.event_type }} · {{ c.event_time[:10] }}</span></li>{% endfor %}
-</ul></div>
-{% endif %}{% endfor %}
 </div>
-{% else %}<p class="muted">No classified events in this window.</p>{% endif %}
 
-<h2>Asset implications (Claude)</h2>
-<p class="small muted">Breadth per asset over unique events where Claude stated a direction for that asset. An event that doesn't
-mention an asset is left out of that asset's count rather than counted as neutral. There is no cross-asset total.</p>
+<h2>Asset heatmap · Claude implications</h2>
+<p class="small muted">Breadth per asset over events whose latest interpretation states a direction for it. Silence is not counted as neutral.
+Blue = positive, red = negative, gray = zero, hatched = no data. Shade shows magnitude in thirds; the exact value and n are printed in each cell.
+"vs 1 wk" compares 7D with the 7D value a week earlier (point-in-time).</p>
 {% if assets.assets %}
-<div class="tablewrap"><table>
-<thead><tr><th>Asset</th>{% for w in ['24H','3D','7D','30D'] %}<th class="num">{{ w }}</th>{% endfor %}<th>30D distribution</th></tr></thead>
+<div class="tablewrap"><table class="heat">
+<thead><tr><th>Asset</th>{% for w in ['24H','3D','7D','30D'] %}<th style="text-align:center">{{ w }}</th>{% endfor %}<th>7D vs 1 wk</th></tr></thead>
 <tbody>
 {% for a in assets.assets %}
-<tr><td>{{ a.name }} <span class="muted small">{{ a.asset }}</span></td>
+<tr><td>{{ a.name }}<br><span class="muted small">{{ a.asset }}</span></td>
 {% for w in ['24H','3D','7D','30D'] %}{% set b = a.windows[w] %}
-<td class="num">{% if b.breadth_scaled is not none %}{{ ('%+d' % b.breadth_scaled) if b.breadth_scaled else '0' }}<span class="muted small"> n={{ b.total_classified }}</span>{% else %}<span class="muted">n/a</span>{% endif %}</td>
+<td class="h h-{{ b.bin }}" title="{{ a.name }} {{ w }}: P {{ b.positive }} · N {{ b.neutral }} · Mix {{ b.mixed }} · Neg {{ b.negative }}{% if b.uncertain %} · {{ b.uncertain }} uncertain{% endif %}">{% if b.breadth_scaled is not none %}{{ bval(b.breadth_scaled) }}<span class="n">n={{ b.total_classified }}</span>{% else %}n/a{% endif %}</td>
 {% endfor %}
-<td style="min-width:140px">{{ distbar(a.windows['30D']) }}</td></tr>
+<td>{{ wow(a.wow_7d) }}</td></tr>
 {% endfor %}
 </tbody></table></div>
 {% else %}<p class="muted">No Claude implications yet. Claude is off or has not run.</p>{% endif %}
 
+<div class="layers" style="margin-top:8px">
+<div>
+<h2>Sentiment reversals</h2>
+<p class="small muted">Shorter window strictly opposite in sign to the longer ({% for p in momentum.pairs %}{{ p[0] }} vs {{ p[1] }}{% if not loop.last %}, {% endif %}{% endfor %}). No threshold, so check n.</p>
+{% if momentum.reversals %}<ul>
+{% for r in momentum.reversals %}<li><strong>{{ r.scope }}</strong> <span class="small muted">{{ r.label_source }}</span>:
+{{ r.short }} {{ bval(r.short_breadth) }} <span class="muted small">(n={{ r.short_n }})</span> vs {{ r.long }} {{ bval(r.long_breadth) }} <span class="muted small">(n={{ r.long_n }})</span></li>{% endfor %}
+</ul>{% else %}<p class="muted">None.</p>{% endif %}
+</div>
+<div>
+<h2>Narrative divergences (30D)</h2>
+<p class="small muted">Facts, management tone and media narrative point in opposite directions.</p>
+{% if divergences %}<ul>
+{% for d in divergences %}<li><a href="/events/{{ d.id }}">{{ d.title }}</a><br>{% for f in d.flags %}<span class="flag">{{ f.replace('_',' ').title() }}</span> {% endfor %}</li>{% endfor %}
+</ul>{% else %}<p class="muted">None. Media narrative needs approved media sources, which aren't connected yet.</p>{% endif %}
+</div>
+</div>
+
+<h2>Positive and negative events · 7D · {{ drivers.scope }}</h2>
+<p class="small muted">Newest first. Not ranked by importance, because that would need weights.</p>
+<div class="layers">
+{% for label in ['POSITIVE', 'NEGATIVE'] %}
+<div class="card"><strong class="small">{{ label.title() }} ({{ drivers.drivers.get(label, [])|length }})</strong>
+{% if drivers.drivers.get(label) %}<ul>
+{% for c in drivers.drivers[label] %}<li><a href="/events/{{ c.event_id }}">{{ c.title }}</a> <span class="muted small">{{ c.event_type }} · {{ c.event_time[:10] }}</span></li>{% endfor %}
+</ul>{% else %}<p class="muted small">None in the last 7 days.</p>{% endif %}
+</div>
+{% endfor %}
+</div>
+
 <h2>Model disagreements needing review</h2>
 {% if review %}{{ event_table(review) }}{% else %}<p class="muted">None: no opposite-polarity disagreements between Claude and FinBERT.</p>{% endif %}
 
-<h2>Latest events</h2>
-{{ event_table(recent) }}
+<h2>Breadth detail · {{ breadth.scope }}</h2>
+<form class="filters" method="get">
+  <label>Scope <select name="scope">{% for sc in breadth.scopes %}<option {% if sc == scope %}selected{% endif %}>{{ sc }}</option>{% endfor %}</select></label>
+  <button type="submit">Apply</button> <a class="small" href="/history?scope={{ scope }}">Sentiment history →</a>
+</form>
+<div class="tablewrap"><table>
+<thead><tr><th>Label source</th>{% for w in ['24H','3D','7D','30D'] %}<th class="num">{{ w }}</th>{% endfor %}<th>30D distribution</th></tr></thead>
+<tbody>
+{% for src, entry in breadth.by_label_source.items() %}
+<tr><td><a href="/history?label_source={{ src }}&scope={{ scope }}">{{ entry.description }}</a></td>
+{% for w in ['24H','3D','7D','30D'] %}{% set b = entry.windows[w] %}
+<td class="num">{% if b.breadth_scaled is not none %}{{ bval(b.breadth_scaled) }}<span class="muted small"> n={{ b.total_classified }}</span>{% else %}<span class="muted">n/a</span>{% endif %}</td>
+{% endfor %}
+<td style="min-width:140px">{{ distbar(entry.windows['30D']) }}</td></tr>
+{% endfor %}
+</tbody></table></div>
 
 <h2>Source status</h2>
 <div class="tablewrap"><table>

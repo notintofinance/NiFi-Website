@@ -173,7 +173,7 @@ def test_diagnostics_and_pages(engine, settings, fake_finbert):
     client = TestClient(create_app(engine))
     for path in ("/models", "/api/models", "/api/assets", "/"):
         assert client.get(path).status_code == 200, path
-    assert "Asset implications" in client.get("/").text
+    assert "Asset heatmap" in client.get("/").text
     assert "Agreement by event type" in client.get("/models").text
 
 

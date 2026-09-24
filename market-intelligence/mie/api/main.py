@@ -6,11 +6,12 @@ from pathlib import Path
 from typing import Literal
 
 from fastapi import FastAPI, HTTPException, Query, Request
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, Response
+from markupsafe import Markup
 from fastapi.templating import Jinja2Templates
 from sqlalchemy.engine import Engine
 
-from mie.api import views
+from mie.api import charts, views
 from mie.core.enums import AgreementStatus, EventType, Sentiment, SourceType
 from mie.db.session import make_session_factory
 
@@ -113,11 +114,13 @@ def create_app(engine: Engine) -> FastAPI:
             book = views.LabelBook.from_session(s)
             if scope not in book.scopes():
                 scope = views.GLOBAL
-            return render(request, "overview.html", s, breadth=views.breadth_table(s, None, scope, book=book),
+            return render(request, "overview.html", s,
+                          strip=views.headline_strip(s, "claude_factual", book=book),
+                          assets=views.asset_table(s, book=book),
+                          breadth=views.breadth_table(s, None, scope, book=book),
                           momentum=views.momentum_view(s, book=book),
                           drivers=views.drivers_view(s, "claude_factual", "7D", scope, book=book),
-                          assets=views.asset_table(s),
-                          recent=views.list_events(s, views.EventFilters(), limit=10),
+                          divergences=views.divergences(s),
                           review=[e for e in views.list_events(s, views.EventFilters(), limit=1000)
                                   if e["review_required"]],
                           sources=views.source_health(s), scope=scope)
@@ -127,7 +130,10 @@ def create_app(engine: Engine) -> FastAPI:
                      scope: str = views.GLOBAL, days: int = Query(30, ge=1, le=365)):
         _check(label_source, window)
         with factory() as s:
-            return render(request, "history.html", s, h=views.history_view(s, label_source, window, scope, days),
+            h = views.history_view(s, label_source, window, scope, days)
+            return render(request, "history.html", s, h=h,
+                          line_chart=Markup(charts.breadth_line_chart(h["rows"])),
+                          composition_chart=Markup(charts.composition_chart(h["rows"])),
                           drivers=views.drivers_view(s, label_source, window, scope),
                           label_sources=views.LABEL_SOURCES, windows=list(views.WINDOWS))
 
@@ -143,6 +149,18 @@ def create_app(engine: Engine) -> FastAPI:
                                  date_from=date_from, date_to=date_to),
                           event_types=[e.value for e in EventType], source_types=[t.value for t in SourceType],
                           sentiments=[x.value for x in Sentiment], agreements=[a.value for a in AgreementStatus])
+
+    @app.get("/events.csv")
+    def events_csv(request: Request, country: str = "", asset_class: str = "", ticker: str = "",
+                   event_type: str = "", source_type: str = "", sentiment: str = "", agreement: str = "",
+                   date_from: str = "", date_to: str = ""):
+        f = filters(country, asset_class, ticker, event_type, source_type, sentiment, agreement, date_from, date_to)
+        with factory() as s:
+            body = views.events_csv(views.list_events(s, f, limit=100_000), str(request.base_url).rstrip("/"))
+            synthetic = views.any_fixture_data(s)
+        name = "mie-events-SYNTHETIC.csv" if synthetic else "mie-events.csv"
+        return Response(body, media_type="text/csv",
+                        headers={"Content-Disposition": f'attachment; filename="{name}"'})
 
     @app.get("/events/{event_id}", response_class=HTMLResponse)
     def event_page(request: Request, event_id: int):

@@ -19,6 +19,19 @@ This is the only series valid for backtests. <strong>Restated</strong> applies t
 Rows marked <span class="flag">Restated differs</span> are days where later information changed the picture.
 </div>
 
+<div class="card" style="margin-bottom:12px">
+  <strong class="small">Breadth, {{ h.window }} window</strong>
+  <div class="legend"><span><i class="pit"></i>Point-in-time</span><span><i class="restated"></i>Restated (hindsight)</span></div>
+  {{ line_chart }}
+</div>
+<div class="card" style="margin-bottom:14px">
+  <strong class="small">Classified events in the window, point-in-time</strong>
+  <div class="legend"><span><b style="background:var(--pos)"></b>Positive</span><span><b style="background:var(--neu)"></b>Neutral</span>
+  <span><b style="background:repeating-linear-gradient(45deg,var(--mix) 0 2px,var(--neu) 2px 4px)"></b>Mixed</span><span><b style="background:var(--neg)"></b>Negative</span></div>
+  {{ composition_chart }}
+</div>
+
+<details open><summary class="small">Table view</summary>
 <div class="tablewrap"><table>
 <thead><tr><th>Day (UTC)</th><th class="num">Point-in-time</th><th class="num">n</th><th>Distribution</th>
 <th class="num">Restated</th><th class="num">n</th><th></th></tr></thead>
@@ -33,6 +46,7 @@ Rows marked <span class="flag">Restated differs</span> are days where later info
 <td>{% if r.differs %}<span class="flag">Restated differs</span>{% endif %}</td></tr>
 {% endfor %}
 </tbody></table></div>
+</details>
 
 <h2>Drivers of the latest value</h2>
 {% if drivers.drivers %}
