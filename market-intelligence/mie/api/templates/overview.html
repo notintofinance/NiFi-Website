@@ -6,19 +6,22 @@
 <p class="sub">Sentiment Breadth = (Positive − Negative) ÷ classified unique events, −100…+100. Point-in-time as of
 {{ breadth.as_of[:16].replace('T',' ') }} UTC · method {{ breadth.methodology_version }}. Models and layers are never averaged.</p>
 
-<h2>Breadth by scope · Claude, factual layer</h2>
+<h2>Breadth by scope · factual layer</h2>
+{% if not claude_has_run %}<p class="small muted">Claude has not run yet (it is off until approved), so its row is empty. FinBERT is shown alongside, never merged.</p>{% endif %}
 <div class="strip">
 {% for c in strip %}
 <div class="card">
-  <div style="display:flex;justify-content:space-between;align-items:baseline">
-    <a href="/?scope={{ c.scope }}"><strong>{{ 'Global' if c.scope == 'GLOBAL' else c.scope }}</strong></a>
-    {{ wow(c.wow_7d) }}
+  <a href="/?scope={{ c.scope }}"><strong>{{ 'Global' if c.scope == 'GLOBAL' else c.scope }}</strong></a>
+  {% for r in c.rows %}
+  <div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:10px">
+    <span class="small muted">{{ r.description }}</span>{{ wow(r.wow_7d) }}
   </div>
-  <div class="row">
-  {% for w, b in c.windows.items() %}
+  <div class="row" style="margin-top:4px">
+  {% for w, b in r.windows.items() %}
     <div class="w h-{{ b.bin }}" title="{{ w }}: P {{ b.positive }} · N {{ b.neutral }} · Mix {{ b.mixed }} · Neg {{ b.negative }}">{{ bval(b.breadth_scaled) }}<small>{{ w }} · n={{ b.total_classified }}</small></div>
   {% endfor %}
   </div>
+  {% endfor %}
 </div>
 {% endfor %}
 </div>
@@ -60,7 +63,9 @@ Blue = positive, red = negative, gray = zero, hatched = no data. Shade shows mag
 </div>
 
 <h2>Positive and negative events · 7D · {{ drivers.scope }}</h2>
-<p class="small muted">Newest first. Not ranked by importance, because that would need weights.</p>
+<p class="small muted">Labels from <strong>{{ drivers.description }}</strong>{% if not claude_has_run and drivers.label_source == 'finbert_factual' %} (Claude has not run){% endif %}.
+Newest first. Not ranked by importance, because that would need weights.
+Show: <a href="/?scope={{ scope }}&drivers_source=claude_factual">Claude</a> · <a href="/?scope={{ scope }}&drivers_source=finbert_factual">FinBERT</a></p>
 <div class="layers">
 {% for label in ['POSITIVE', 'NEGATIVE'] %}
 <div class="card"><strong class="small">{{ label.title() }} ({{ drivers.drivers.get(label, [])|length }})</strong>

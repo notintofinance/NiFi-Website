@@ -1,54 +1,84 @@
 # Source Assessment
 
-**Verification status (2026-09-24).** The build sandbox's egress policy denied
-every host below, so **none of these endpoints was live-tested from here**. The
-formats and terms come from the providers' published documentation as I know
-it. Run `python scripts/check_sources.py` on a machine with normal internet
-access to confirm reachability before relying on a connector. Update the
-"Verified" column when you do.
+A source is **enabled** only after `python scripts/check_sources.py` has been run
+against it from a machine with normal internet access. The build sandbox has no
+access to these hosts, so verification happens on an analyst's machine.
 
-## Selected for the Phase 1 prototype
+## Status
 
-| # | Source | Type | Endpoint | Access | Terms | Why first | Verified |
-|---|---|---|---|---|---|---|---|
-| 1 | **Federal Reserve Board press releases** | CENTRAL_BANK (text) | RSS `https://www.federalreserve.gov/feeds/press_all.xml` (listed on federalreserve.gov/feeds/feeds.htm) | Public RSS, no key | U.S. federal government work, public domain. Full text may be ingested. | Primary source, high market relevance (FOMC), each item has title, link, date and category | ☐ |
-| 2 | **BLS Public Data API — CPI-U** | STATISTICAL_AUTHORITY (structured) | `POST https://api.bls.gov/publicAPI/v2/timeseries/data/` series `CUUR0000SA0` (headline, NSA), `CUUR0000SA0L1E` (core, NSA) | v2 needs a free registration key (`BLS_API_KEY`). v1 works without a key at lower limits (25 queries/day). | Public domain | Structured, stable, well documented. Proves the "Python computes, Claude interprets" path. | ☐ |
+| Source | Key | Type | Endpoint | Access | Status |
+|---|---|---|---|---|---|
+| Federal Reserve Board press releases | `fed_press_releases` | CENTRAL_BANK | RSS `https://www.federalreserve.gov/feeds/press_all.xml` | Public, no key | ✅ **Verified live 2026-09-24**: 20 items, all with pubDate, 0 parse errors. Enabled. |
+| BLS CPI-U (NSA) | `bls_cpi` | STATISTICAL_AUTHORITY | `POST https://api.bls.gov/publicAPI/v{1,2}/timeseries/data/` | v1 no key; v2 free key `BLS_API_KEY` | ✅ **Verified live 2026-09-24**: 62 observations, 0 parse errors. Enabled. |
+| SEC EDGAR filings (watchlist) | `sec_edgar` | REGULATORY | `https://data.sec.gov/submissions/CIK##########.json` | No key. User-Agent with contact e-mail required; ≤10 req/s | ☐ Implemented, **disabled** until `HTTP_USER_AGENT` contains an e-mail and the check passes |
+| ECB press releases | `ecb_press` | CENTRAL_BANK | RSS `https://www.ecb.europa.eu/rss/press.html` | Public | ☐ Implemented (generic RSS), **disabled**: endpoint and reuse terms unverified |
+| YouTube official channels | `youtube_official` | VIDEO | `https://www.youtube.com/feeds/videos.xml?channel_id=…` | Public feed, no key | ☐ Implemented, **disabled**: whitelist empty until channel IDs are approved |
 
-**Point-in-time caveats for BLS**
+To verify and enable a disabled source:
 
-- The API returns the *current* value for each period, not the value as first
-  published. **Not-seasonally-adjusted CPI-U is not revised** after release, so
-  V1 uses NSA series and derives YoY from NSA index levels. Seasonally adjusted
-  series are revised every February and are excluded until a vintage source
-  (e.g. ALFRED) is added.
-- The API has no release timestamp. `published_at` is left **null**
-  (`timestamp_quality = MISSING_PUBLISHED_AT`) and the knowledge time is
-  `retrieved_at`. Adding the BLS release calendar is a P1 item.
-- There is no free consensus forecast, so V1 computes **change versus prior
-  period only** and never claims "below expectations".
+```bash
+python scripts/check_sources.py --include-disabled --source sec_edgar
+# if OK: set `enabled: true` for it in config/sources.yaml, then python -m mie.cli run
+```
 
-## Phase 5 candidates (documented, not implemented)
+## Caveats per source
 
-| Source | Type | Access (per public docs) | Concerns |
+**BLS.** The API returns current values, not first-release vintages.
+Not-seasonally-adjusted CPI-U is not revised, so V1 uses NSA series only. There
+is no release timestamp, so knowledge time is the retrieval time, and all 62
+observations show as "missing timestamps" by design. A release calendar
+(P1) will give true release times. There is no free consensus forecast, so the
+engine never claims "above/below expectations".
+
+**Fed.** The engine maps the feed's own categories to event types, and
+`check_sources.py` lists every category seen. "Orders on Banking Applications" was
+added after the first live run showed an approval landing in OTHER. For new
+category names, add a line to `config/event_rules.yaml`.
+
+**SEC EDGAR.**
+- *Metadata only:* form type, 8-K item codes, company, acceptance time and link.
+  The 8-K item codes are the filer's own statement of the filing's subject, which
+  gives a deterministic event type (Item 2.02 → EARNINGS, 5.02 →
+  MANAGEMENT_CHANGE, 2.01/5.01 → M&A, and so on).
+- *Acceptance time:* `acceptanceDateTime` ends in "Z" but appears to be US
+  Eastern time, so it is read as America/New_York. This is conservative: if it
+  were really UTC, filings would be placed 4–5 hours late, never early.
+  `check_sources.py` prints one raw and one interpreted value next to the filing
+  index URL. Compare that with the index page's "Accepted" time and record the
+  result here.
+- *Watchlist:* AAPL, MSFT, NVDA, JPM and XOM for the prototype. Edit
+  `options.watchlist` and add matching entries to `config/entities.yaml`.
+
+**ECB.** The ECB website's reuse terms (attribution) need confirming before
+enabling. The event type comes from keyword rules until its category names are
+known.
+
+**YouTube.**
+- *Scope:* official institution and company channels only, and approved media.
+  No search and no influencers.
+- *Metadata only:* title, description, upload time and link. Transcripts are
+  **not** fetched, because caption download needs the channel owner's
+  authorisation or a licensed provider.
+- *Claude:* `allow_external_llm` is false until the whitelist is approved.
+
+## Indonesian sources: plan and blockers
+
+| Source | What exists | Blocker | Next step |
 |---|---|---|---|
-| SEC EDGAR (8-K, 10-Q, submissions JSON) | REGULATORY | `data.sec.gov` JSON, no key. Requires a descriptive `User-Agent` with contact email. Fair-access limit of 10 req/s. | Good P1 candidate for company events |
-| FRED / ALFRED | STATISTICAL (aggregator) | Free API key | ALFRED gives real vintages, which fixes the revision problem |
-| BPS (Statistics Indonesia) WebAPI | STATISTICAL_AUTHORITY | `webapi.bps.go.id`, free key after registration | Indonesian-language metadata; the response format needs verification |
-| Bank Indonesia | CENTRAL_BANK | No documented public API found. Press releases are HTML. | HTML scraping is fragile; check robots.txt and terms first |
-| IDX announcements | EXCHANGE | The website JSON endpoints are undocumented and bot-protected | **Do not scrape.** Prefer an IDX data licence. |
-| OJK, Kemenkeu/DJPPR, ESDM | REGULATORY / GOVERNMENT | Website publications, some PDFs | PDF parsing; Indonesian language |
-| ECB, Eurostat, BoJ, RBA, BIS, IMF, World Bank, OECD | CENTRAL_BANK / MULTILATERAL | Mostly RSS and SDMX APIs, free | Each needs its own verification |
-| EIA | GOVERNMENT | Free API key | Weekly petroleum status is a good commodity event |
-| CFTC COT | REGULATORY | Public files and Socrata API | Weekly structured data |
-| YouTube (whitelisted channels only) | VIDEO | YouTube Data API v3 provides **metadata** (title, description, publish time). Caption download through the API is limited to videos you own or have permission for. | Transcripts only through permitted mechanisms. Never crawl influencers. |
-| Reuters/LSEG, Bloomberg, FT, WSJ, Nikkei | LICENSED_NEWS | Licensed feeds only | **Metadata/headline only unless a licence is in place.** The connector interface is the integration point. |
-| CNBC Indonesia, Bisnis, Kontan, Katadata, Antara, IDX Channel | PUBLIC_MEDIA | Some RSS feeds exist, but they need confirmation per outlet | Default to headline + link + timestamp. Full-text copyright is unclear. |
+| **BPS** (Statistics Indonesia) | WebAPI `webapi.bps.go.id` with free registration key; dynamic tables (CPI, GDP, trade) | Needs a key, and the exact response format must be confirmed from a real response, not guessed | Register a key and store it as `BPS_API_KEY` (never in chat). Send one real JSON response for the CPI table; the connector is written against that sample. Numbers are processed in Python, so FinBERT is not needed. |
+| **Bank Indonesia** | Press releases (Indonesian and English) on bi.go.id; BI-Rate decisions | No documented public API or RSS confirmed | Check robots.txt and the terms of use. If HTML retrieval of press-release headlines is permitted, build a headline+link connector; otherwise use a licensed feed |
+| **IDX** | Company announcements and disclosures on idx.co.id | Website endpoints are undocumented and bot-protected; **do not scrape** | IDX data subscription (licensed). The connector interface is ready for it |
+| **OJK, Kemenkeu/DJPPR, ESDM** | Publications and SBN auction results (DJPPR) as HTML/PDF | No APIs; PDF parsing; terms to check | DJPPR auction results are the highest-value item (BOND_AUCTION); assess terms first |
+| **Official YouTube** (BI, Kemenkeu) | Public channel feeds | Channel IDs must be confirmed from the official websites | Add them to the `youtube_official` whitelist |
 
-## Rules applied to every media connector
+Indonesian-language text goes to Claude (subject to `allow_external_llm`) but
+**not** to FinBERT, which is English-only. An Indonesian financial NLP model can
+be evaluated behind the same classifier interface (P2).
 
-1. Check for an official API, RSS feed or licensed feed first.
-2. Record the terms and licence in `config/sources.yaml` → `licence_note`.
-3. If full-text use is not clearly permitted, ingest headline, link and
-   timestamp only.
-4. `allow_external_llm` stays `false` until someone has confirmed that
-   sending the text to an external AI provider is permitted.
+## Media (for the narrative layer)
+
+No media source is connected, so the narrative layer and its divergence flags
+stay empty. For every outlet, check for an official API, RSS or licensed feed,
+record the terms in `licence_note`, and ingest headline, link and time only
+unless full text is clearly licensed. Keep `allow_external_llm: false` until
+sending that text to an external AI provider is confirmed as permitted.

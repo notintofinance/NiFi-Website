@@ -1,6 +1,6 @@
 # Market Intelligence & Sentiment Engine — Architecture (V1)
 
-Status: Phase 0 complete; Phases 1–4 implemented. Last revised 2026-09-24.
+Status: Phases 0–4 complete; Phase 5 (source expansion) under way. Fed and BLS verified live 2026-09-24. Last revised 2026-09-24.
 
 This is an internal research prototype. It does not use and must not receive
 confidential bank data, customer data, portfolio data or paid data feeds.
@@ -395,3 +395,30 @@ guessing.
 **CSV export safety.** Cells beginning with `= + - @` (or a tab or CR) are
 prefixed with `'` so text from external sources can't run as a spreadsheet
 formula. The filename is marked `SYNTHETIC` whenever fixture data is present.
+
+---
+
+## 15. Phase 5: source expansion
+
+Sources are added only with a documented format and a verification path. Nothing
+is enabled until `scripts/check_sources.py` passes on a networked machine
+(docs/SOURCES.md has the status table).
+
+| Connector | Module | Event typing | Notes |
+|---|---|---|---|
+| Generic RSS/Atom | `ingestion/rss.py` | Publisher categories → keywords → Claude typing | The Fed connector is now a thin subclass. ECB is configured on it (disabled until verified) |
+| SEC EDGAR submissions | `ingestion/sec_edgar.py` | **8-K item codes and form type**, i.e. the filer's own classification. First mapped item in filing order wins | Metadata only. Acceptance time read as US Eastern (conservative for point-in-time). Contact User-Agent enforced |
+| YouTube channel feeds | `ingestion/youtube.py` | Keywords → Claude typing | Whitelist enforced at fetch **and** parse. No transcripts. Not sent to Claude by default |
+
+**Changes from the first live run (2026-09-24):**
+- The dashboard's headline strip shows Claude and FinBERT rows side by side.
+  The positive/negative panel names its label source and uses FinBERT while
+  Claude has never run.
+- Event detail shows each document's source categories, and
+  `check_sources.py` lists category names with their mapping, so mapping gaps
+  are visible. "Orders on Banking Applications" is now mapped.
+
+**Observed model limit, kept visible rather than hidden.** FinBERT labels
+"termination of enforcement action" NEGATIVE because of the word
+"enforcement", although it is good news for the bank. This is the kind of
+disagreement the Claude comparison exists to surface.

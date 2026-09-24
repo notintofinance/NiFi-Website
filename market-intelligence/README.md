@@ -10,9 +10,9 @@ SOURCE → DOCUMENT → EVENT → DEDUP → FinBERT ┐
 ```
 
 - **Docs:** [Architecture](docs/ARCHITECTURE.md) · [Source assessment](docs/SOURCES.md) · [Backlog P0/P1/P2](docs/BACKLOG.md)
-- **Status:** Phases 1–4 complete. It has only
-  been exercised on **synthetic fixtures**, because the build environment had
-  no internet access to the sources (see ARCHITECTURE §1).
+- **Status:** Phases 1–4 complete; Phase 5 (sources) under way. Fed and BLS verified live on
+  2026-09-24 with real FinBERT. SEC EDGAR, ECB and YouTube connectors are built but disabled
+  until verified (see docs/SOURCES.md).
 
 ## Quick start
 
@@ -27,7 +27,7 @@ python --version                         # must show 3.11 or newer
 pip install -r requirements.txt          # add requirements-ml.txt for local FinBERT
 cp .env.example .env                     # then edit; never commit .env
 
-pytest -q                                # 98 tests, no network needed
+pytest -q                                # 110 tests, no network needed
 python -m mie.cli demo                   # SYNTHETIC fixtures → data/mie.db
 python -m mie.cli serve                  # http://127.0.0.1:8000
 ```
@@ -38,7 +38,8 @@ in the database. Delete `data/mie.db` before running against live sources.
 ## Running live
 
 ```bash
-python scripts/check_sources.py          # confirm the Fed RSS + BLS API are reachable
+python scripts/check_sources.py          # confirm enabled sources are reachable
+python scripts/check_sources.py --include-disabled   # also check sources awaiting verification
 pip install -r requirements-ml.txt       # FinBERT (downloads ProsusAI/finbert once)
 python -m mie.cli run                    # ingest → events → FinBERT → (Claude) → comparison
 ```
@@ -70,7 +71,7 @@ pulling a schema change, delete `data/mie.db` and re-run.
 mie/
   core/           enums (controlled vocabularies), typed schemas, settings
   db/             SQLAlchemy models (append-only predictions), session, helpers
-  ingestion/      connector interface, retry runner, fed_rss.py, bls.py, registry
+  ingestion/      connector interface, retry runner, rss.py (Fed, ECB), bls.py, sec_edgar.py, youtube.py
   processing/     cleaner, entity dictionary, event rules, macro facts, dedup, extractor
   models/         briefing (source-blind, price-blind input), finbert.py, claude.py
   intelligence/   comparison, aggregation (breadth/windows), narrative, service

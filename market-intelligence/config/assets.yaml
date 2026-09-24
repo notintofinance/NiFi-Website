@@ -10,5 +10,7 @@ assets:
   ID_GOVT_BONDS: Indonesia government bonds
   IDR: Indonesian rupiah
   ID_EQUITY: Indonesia equities
+  EA_RATES: Euro-area government bonds
+  EUR: Euro
   GOLD: Gold
   OIL: Crude oil

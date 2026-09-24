@@ -109,17 +109,20 @@ def create_app(engine: Engine) -> FastAPI:
         return TEMPLATES.TemplateResponse(request, name, {"fixture_data": views.any_fixture_data(s), **ctx})
 
     @app.get("/", response_class=HTMLResponse)
-    def overview(request: Request, scope: str = views.GLOBAL):
+    def overview(request: Request, scope: str = views.GLOBAL, drivers_source: str | None = None):
         with factory() as s:
             book = views.LabelBook.from_session(s)
             if scope not in book.scopes():
                 scope = views.GLOBAL
-            return render(request, "overview.html", s,
-                          strip=views.headline_strip(s, "claude_factual", book=book),
+            if drivers_source not in views.LABEL_SOURCES:
+                drivers_source = views.default_driver_source(book)
+            claude_has_run = any(e.claude for e in book.events)
+            return render(request, "overview.html", s, claude_has_run=claude_has_run,
+                          strip=views.headline_strip(s, book=book),
                           assets=views.asset_table(s, book=book),
                           breadth=views.breadth_table(s, None, scope, book=book),
                           momentum=views.momentum_view(s, book=book),
-                          drivers=views.drivers_view(s, "claude_factual", "7D", scope, book=book),
+                          drivers=views.drivers_view(s, drivers_source, "7D", scope, book=book),
                           divergences=views.divergences(s),
                           review=[e for e in views.list_events(s, views.EventFilters(), limit=1000)
                                   if e["review_required"]],

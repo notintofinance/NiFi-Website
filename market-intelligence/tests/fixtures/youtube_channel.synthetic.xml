@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SYNTHETIC TEST FIXTURE. Fictional channel. Mirrors the structure of
+     https://www.youtube.com/feeds/videos.xml?channel_id=... (Atom + yt: + media: namespaces). -->
+<feed xmlns:yt="http://www.youtube.com/xml/schemas/2015" xmlns:media="http://search.yahoo.com/mrss/" xmlns="http://www.w3.org/2005/Atom">
+ <title>Example Central Bank</title>
+ <entry>
+  <id>yt:video:SYNTHVID001</id>
+  <yt:videoId>SYNTHVID001</yt:videoId>
+  <yt:channelId>UCsyntheticChannel0000001</yt:channelId>
+  <title>[SYNTHETIC] Governor press conference on monetary policy</title>
+  <link rel="alternate" href="https://example.invalid/watch?v=SYNTHVID001"/>
+  <author><name>Example Central Bank</name></author>
+  <published>2026-09-17T07:00:00+00:00</published>
+  <media:group>
+   <media:title>[SYNTHETIC] Governor press conference on monetary policy</media:title>
+   <media:description>The Governor explains the decision to hold the policy rate. The Board expects inflation to remain within the target range.</media:description>
+  </media:group>
+ </entry>
+ <entry>
+  <id>yt:video:SYNTHVID002</id>
+  <yt:videoId>SYNTHVID002</yt:videoId>
+  <yt:channelId>UCnotWhitelisted00000000</yt:channelId>
+  <title>[SYNTHETIC] Video from a channel that is not on the whitelist</title>
+  <link rel="alternate" href="https://example.invalid/watch?v=SYNTHVID002"/>
+  <author><name>Someone Else</name></author>
+  <published>2026-09-17T08:00:00+00:00</published>
+ </entry>
+</feed>

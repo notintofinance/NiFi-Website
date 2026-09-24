@@ -56,7 +56,8 @@
 <div class="tablewrap"><table><thead><tr><th>Doc</th><th>Source</th><th>Headline</th><th>Published</th><th>Retrieved</th><th>Attached by</th><th class="num">Similarity</th></tr></thead><tbody>
 {% for d in e.documents %}<tr id="doc-{{ d.document_id }}"><td class="small">{{ d.document_id }}</td>
 <td class="small">{{ d.source }}<br><span class="muted">{{ d.source_type }}</span></td>
-<td>{% if d.url %}<a href="{{ d.url }}" rel="noopener noreferrer" target="_blank">{{ d.headline }}</a>{% else %}{{ d.headline }}{% endif %}</td>
+<td>{% if d.url %}<a href="{{ d.url }}" rel="noopener noreferrer" target="_blank">{{ d.headline }}</a>{% else %}{{ d.headline }}{% endif %}
+{% if d.categories %}<br><span class="muted small">Source categories: {{ d.categories|join(' · ') }}</span>{% endif %}</td>
 <td class="small">{{ (d.published_at or 'missing')[:16].replace('T',' ') }}</td><td class="small">{{ d.retrieved_at[:16].replace('T',' ') }}</td>
 <td class="small">{{ d.attached_by }}</td><td class="num small">{{ '%.3f'|format(d.similarity) if d.similarity is not none else '—' }}</td></tr>{% endfor %}
 </tbody></table></div>

@@ -42,3 +42,46 @@ entities:
     case_sensitive_aliases: [BBCA, BCA]
     tickers: [BBCA]
     asset_classes: [ID_EQUITY]
+  - key: ECB
+    name: European Central Bank
+    entity_type: CENTRAL_BANK
+    country: EA
+    aliases: [European Central Bank, Governing Council]
+    case_sensitive_aliases: [ECB]
+    asset_classes: [EA_RATES, EUR]
+  # SEC watchlist (config/sources.yaml -> sec_edgar). Aliases match EDGAR's registered names.
+  - key: AAPL
+    name: Apple Inc.
+    entity_type: COMPANY
+    country: US
+    aliases: [Apple Inc.]
+    tickers: [AAPL]
+    asset_classes: [US_EQUITY]
+  - key: MSFT
+    name: Microsoft Corporation
+    entity_type: COMPANY
+    country: US
+    aliases: [Microsoft]
+    tickers: [MSFT]
+    asset_classes: [US_EQUITY]
+  - key: NVDA
+    name: NVIDIA Corporation
+    entity_type: COMPANY
+    country: US
+    aliases: [NVIDIA]
+    tickers: [NVDA]
+    asset_classes: [US_EQUITY]
+  - key: JPM
+    name: JPMorgan Chase & Co.
+    entity_type: COMPANY
+    country: US
+    aliases: [JPMorgan Chase]
+    tickers: [JPM]
+    asset_classes: [US_EQUITY, US_BANKS_EQUITY]
+  - key: XOM
+    name: Exxon Mobil Corporation
+    entity_type: COMPANY
+    country: US
+    aliases: [Exxon Mobil]
+    tickers: [XOM]
+    asset_classes: [US_EQUITY]

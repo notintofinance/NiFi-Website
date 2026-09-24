@@ -34,8 +34,10 @@
 - ✅ Phase 4: market dashboard (scope strip, asset heatmap with week-on-week, reversals, divergences, positive/negative events)
 - ✅ Phase 4: history charts (point-in-time vs restated line, separate composition chart, hover, table view)
 - ✅ Phase 4: feed flags column and formula-safe CSV export
-- ☐ Run `scripts/check_sources.py` from a networked machine and tick the Verified column in SOURCES.md
-- ☐ Download FinBERT weights (`pip install -r requirements-ml.txt`) and run the pipeline once live
+- ✅ Fed + BLS verified live and pipeline run with real FinBERT (2026-09-24, analyst Mac)
+- ✅ Phase 5: generic RSS connector; SEC EDGAR (8-K items), ECB, YouTube whitelist connectors (disabled until verified)
+- ✅ Phase 5: dashboard shows Claude and FinBERT side by side; source categories visible; Fed banking-applications mapping
+- ☐ Verify and enable SEC EDGAR (needs HTTP_USER_AGENT with e-mail), ECB (terms), YouTube (approved channel IDs)
 - ☐ Obtain an `ANTHROPIC_API_KEY` for the team and have someone approve the first Claude run
 
 ## P1 — make it trustworthy
@@ -45,7 +47,6 @@
 - ☐ Dedup pair labelling + `calibrate_threshold` run; publish the chosen threshold and its F1
 - ☐ Coverage anomaly monitor (documents/day vs trailing distribution; last success; parse failures)
 - ☐ BLS release calendar → true `published_at`; ALFRED vintages for revised series
-- ☐ SEC EDGAR connector (8-K items → event types, deterministic mapping)
 - ☐ Message Batches API for non-urgent backfills (50% cost), gated like the live stage
 - ☐ Analyst review actions on the review queue (needs auth) feeding the gold set
 - ☐ Sentence-transformer similarity backend behind the same interface; compare against the lexical baseline on labelled pairs
@@ -55,7 +56,7 @@
 
 ## P2 — breadth and polish
 
-- ☐ Indonesian sources (BPS, BI, OJK, DJPPR), then evaluate an Indonesian financial NLP model vs Claude
+- ☐ Indonesian sources: BPS (needs key + real sample response), BI (terms check), DJPPR auctions, IDX (licence); then evaluate an Indonesian NLP model vs Claude
 - ☐ Company IR + whitelisted YouTube metadata; transcript segmentation where permitted
 - ☐ Management Language Tracker (quarter-over-quarter phrase comparison, labels only)
 - ☐ Media metadata connectors (licence-checked); narrative dispersion in the dashboard

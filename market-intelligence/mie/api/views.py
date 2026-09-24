@@ -176,6 +176,7 @@ def event_detail(session: Session, event_id: int) -> dict | None:
             "published_at": ed.document.published_at.isoformat() if ed.document.published_at else None,
             "retrieved_at": ed.document.retrieved_at.isoformat(),
             "attached_by": ed.attached_by, "similarity": ed.similarity,
+            "categories": ed.document.raw_metadata.get("categories", []),
         } for ed in e.documents],
     }
 
@@ -203,8 +204,8 @@ def drivers_view(session: Session, source: str = "claude_factual", window: str =
     as_of = as_of or datetime.now(timezone.utc)
     book = book or LabelBook.from_session(session)
     b, contributors = breadth_at(book, source, as_of, WINDOWS[window], scope)
-    return {"as_of": as_of.isoformat(), "label_source": source, "window": window, "scope": scope,
-            "breadth": b.as_dict(),
+    return {"as_of": as_of.isoformat(), "label_source": source, "description": LABEL_SOURCES[source],
+            "window": window, "scope": scope, "breadth": b.as_dict(),
             "drivers": {k: [_contrib(c) for c in v] for k, v in drivers(contributors).items()}}
 
 
@@ -287,18 +288,32 @@ def asset_table(session: Session, as_of: datetime | None = None, book: LabelBook
     return {"as_of": as_of.isoformat(), "assets": rows}
 
 
-def headline_strip(session: Session, source: str = "claude_factual", as_of: datetime | None = None,
+STRIP_SOURCES = ("claude_factual", "finbert_factual")
+
+
+def headline_strip(session: Session, sources: tuple[str, ...] = STRIP_SOURCES, as_of: datetime | None = None,
                    book: LabelBook | None = None) -> list[dict]:
-    """One card per scope: 24H / 7D / 30D for one label source, plus 7D week-on-week."""
+    """One card per scope, one row per label source (24H / 7D / 30D + 7D week-on-week).
+    Models sit side by side; they are never combined."""
     as_of = as_of or datetime.now(timezone.utc)
     book = book or LabelBook.from_session(session)
     cards = []
     for scope in book.scopes():
-        vals = {w: _cell(breadth_at(book, source, as_of, WINDOWS[w], scope)[0]) for w in ("24H", "7D", "30D")}
-        prev = breadth_at(book, source, as_of - timedelta(days=7), WINDOWS["7D"], scope)[0]
-        cur7 = breadth_at(book, source, as_of, WINDOWS["7D"], scope)[0]
-        cards.append({"scope": scope, "label_source": source, "windows": vals, "wow_7d": week_on_week(cur7, prev)})
+        rows = []
+        for src in sources:
+            vals = {w: _cell(breadth_at(book, src, as_of, WINDOWS[w], scope)[0]) for w in ("24H", "7D", "30D")}
+            prev = breadth_at(book, src, as_of - timedelta(days=7), WINDOWS["7D"], scope)[0]
+            cur7 = breadth_at(book, src, as_of, WINDOWS["7D"], scope)[0]
+            rows.append({"label_source": src, "description": LABEL_SOURCES[src], "windows": vals,
+                         "wow_7d": week_on_week(cur7, prev)})
+        cards.append({"scope": scope, "rows": rows})
     return cards
+
+
+def default_driver_source(book: LabelBook) -> str:
+    """Claude's labels when Claude has run at all; otherwise FinBERT's. The page
+    always names the source shown, so this is a visible choice, not a silent swap."""
+    return "claude_factual" if any(e.claude for e in book.events) else "finbert_factual"
 
 
 def divergences(session: Session, days: int = 30, as_of: datetime | None = None) -> list[dict]:

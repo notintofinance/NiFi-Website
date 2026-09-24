@@ -11,6 +11,20 @@ source_categories:
     Monetary Policy: MONETARY_POLICY
     Enforcement Actions: REGULATION
     Banking and Consumer Regulatory Policy: REGULATION
+    Orders on Banking Applications: REGULATION
+  # SEC: the filer's own form type and 8-K item codes. First mapped item wins, in filing order;
+  # unmapped items (e.g. 7.01, 8.01, 9.01) fall through to keywords, then Claude typing.
+  sec_edgar:
+    Form 10-Q: EARNINGS
+    Form 10-K: EARNINGS
+    8-K Item 2.02: EARNINGS
+    8-K Item 2.01: M&A
+    8-K Item 5.01: M&A
+    8-K Item 5.02: MANAGEMENT_CHANGE
+    8-K Item 2.03: CAPITAL_RAISE
+    8-K Item 3.02: CAPITAL_RAISE
+    8-K Item 3.03: CORPORATE_ACTION
+    8-K Item 5.03: CORPORATE_ACTION
 
 keyword_rules:
   - {event_type: MONETARY_POLICY, any: [federal funds rate, policy rate, BI-Rate, FOMC, monetary policy, rate cut, rate hike]}
