@@ -422,3 +422,30 @@ is enabled until `scripts/check_sources.py` passes on a networked machine
 "termination of enforcement action" NEGATIVE because of the word
 "enforcement", although it is good news for the bank. This is the kind of
 disagreement the Claude comparison exists to surface.
+
+---
+
+## 16. Cost: running at zero marginal cost
+
+| Component | Cost |
+|---|---|
+| Sources (Fed, BLS, SEC EDGAR, ECB, YouTube feeds) | Free public endpoints |
+| FinBERT | Local, open weights |
+| Database, API, dashboard | SQLite + FastAPI on the analyst's machine |
+| Scheduling | cron / launchd on the same machine |
+| Claude | **Claude Pro/Max subscription via Claude Code** (`CLAUDE_BACKEND=claude_code`, the default); no API key |
+
+`mie/models/claude_code.py` calls `claude -p --output-format json --json-schema …`
+(documented headless mode). It uses the same system prompt, schema, local
+validation, append-only storage and blindness rules as the API path. The
+recorded model version is `claude-code:<alias>`, and `served_model` stores the
+exact model id the CLI reports, so API and subscription runs remain
+distinguishable in the audit trail.
+
+**Limits of this route:**
+- It is bound to one person's subscription and usage limits.
+- Consumer terms apply.
+- It needs the Claude Code CLI on the machine that runs the pipeline.
+
+These are acceptable for a prototype on public data. A production or bank
+deployment moves to `CLAUDE_BACKEND=api` or an enterprise agreement.

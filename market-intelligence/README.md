@@ -27,7 +27,7 @@ python --version                         # must show 3.11 or newer
 pip install -r requirements.txt          # add requirements-ml.txt for local FinBERT
 cp .env.example .env                     # then edit; never commit .env
 
-pytest -q                                # 110 tests, no network needed
+pytest -q                                # 121 tests, no network needed
 python -m mie.cli demo                   # SYNTHETIC fixtures → data/mie.db
 python -m mie.cli serve                  # http://127.0.0.1:8000
 ```
@@ -44,13 +44,35 @@ pip install -r requirements-ml.txt       # FinBERT (downloads ProsusAI/finbert o
 python -m mie.cli run                    # ingest → events → FinBERT → (Claude) → comparison
 ```
 
-Claude stays off until `CLAUDE_ENABLED=true` and `ANTHROPIC_API_KEY` are both
-set. Before enabling it, review exactly what would be sent. This makes no API call:
+### Claude at no extra cost (Claude Pro/Max subscription)
+
+The default Claude backend is your **Claude subscription through Claude Code**,
+so no API key and no per-token bill. Every other component is free: public
+sources, local FinBERT, SQLite and a local dashboard.
 
 ```bash
-python -m mie.cli claude-preview                 # every event: SEND or why not, plus the exact payload
-python -m mie.cli claude-preview --show-system   # also the fixed system prompt and output schema
+npm install -g @anthropic-ai/claude-code   # or see https://code.claude.com for other installers
+claude                                    # once: log in with your Claude Pro/Max account, then /exit
 ```
+
+Then set `CLAUDE_ENABLED=true` in `.env`, review what would be sent, and run:
+
+```bash
+python -m mie.cli claude-preview                 # every event: SEND or why not, plus the exact payload (no call)
+python -m mie.cli run
+```
+
+- Calls count towards your plan's usage limits. If you hit the limit, the stage
+  stops cleanly, and the next run continues where it stopped, because unchanged
+  events are never re-sent.
+- Each call runs `claude -p` in an empty temporary folder with action tools
+  denied and structured JSON output. `ANTHROPIC_API_KEY` is removed from its
+  environment, so it can never silently bill an API key.
+- **Terms:** subscription use falls under consumer terms and privacy settings.
+  That's fine for a personal prototype on public data. A bank deployment should
+  switch to `CLAUDE_BACKEND=api` (commercial terms) or an enterprise agreement.
+
+To use the API instead, set `CLAUDE_BACKEND=api` and `ANTHROPIC_API_KEY`.
 
 Only sources with `allow_external_llm: true` in `config/sources.yaml` can
 ever reach the API. Get approval before turning this on.

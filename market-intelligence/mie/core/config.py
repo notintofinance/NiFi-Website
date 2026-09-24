@@ -58,6 +58,10 @@ class Settings:
 
     # --- Claude (off by default; requires credentials and explicit opt-in)
     claude_enabled: bool = field(default_factory=lambda: _bool("CLAUDE_ENABLED", False))
+    # "claude_code": local `claude -p` on your Claude subscription (no API key, no per-token bill).
+    # "api": Anthropic API with ANTHROPIC_API_KEY (per-token billing; commercial terms).
+    claude_backend: str = field(default_factory=lambda: os.environ.get("CLAUDE_BACKEND", "claude_code"))
+    claude_code_model: str = field(default_factory=lambda: os.environ.get("CLAUDE_CODE_MODEL", "sonnet"))
     claude_model: str = field(default_factory=lambda: os.environ.get("CLAUDE_MODEL", "claude-opus-5"))
     claude_effort: str | None = field(default_factory=lambda: os.environ.get("CLAUDE_EFFORT") or None)
     claude_event_types: list[str] = field(
@@ -105,3 +109,10 @@ def load_env_file(path: Path | None = None) -> list[str]:
 
 def get_settings() -> Settings:
     return Settings()
+
+
+def claude_kwargs(settings: Settings) -> dict:
+    """Constructor arguments for the Claude classifiers from settings."""
+    if settings.claude_backend == "claude_code":
+        return {"model": settings.claude_code_model, "effort": settings.claude_effort, "backend": "claude_code"}
+    return {"model": settings.claude_model, "effort": settings.claude_effort, "backend": "api"}

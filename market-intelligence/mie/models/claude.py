@@ -69,11 +69,26 @@ class StructuredClaudeCall:
     """One request -> schema-constrained JSON -> pydantic validation. Never retries
     on content: a refusal or invalid output is returned as data to be stored."""
 
-    def __init__(self, model: str, effort: str | None = None, client: Any = None, max_tokens: int = 16000):
+    def __init__(self, model: str, effort: str | None = None, client: Any = None, max_tokens: int = 16000,
+                 backend: str = "api", claude_code: Any = None):
+        """backend "api": Anthropic API (API key, per-token billing).
+        backend "claude_code": local `claude -p` on the user's Claude subscription."""
+        if backend not in ("api", "claude_code"):
+            raise ValueError(f"unknown Claude backend {backend!r}")
+        self.backend = backend
         self.model = model
         self.effort = effort
         self.max_tokens = max_tokens
         self._client = client
+        self._claude_code = claude_code
+        if backend == "claude_code" and claude_code is None:
+            from mie.models.claude_code import ClaudeCodeRunner
+            self._claude_code = ClaudeCodeRunner(model=model, effort=effort)
+
+    @property
+    def model_label(self) -> str:
+        """Recorded as the model version: which model, through which channel."""
+        return self.model if self.backend == "api" else f"claude-code:{self.model}"
 
     @property
     def client(self) -> Any:
@@ -98,6 +113,8 @@ class StructuredClaudeCall:
         )
 
     def run(self, system: str, user: str, schema: dict, model_cls: type[BaseModel]) -> ClaudeResult:
+        if self.backend == "claude_code":
+            return self._run_claude_code(system, user, schema, model_cls)
         response = self.client.messages.create(**self.request_params(system, user, schema))
         usage = getattr(response, "usage", None)
         common = dict(served_model=getattr(response, "model", None),
@@ -119,10 +136,31 @@ class StructuredClaudeCall:
         return ClaudeResult("OK", parsed, raw, **common)
 
 
+    def _run_claude_code(self, system: str, user: str, schema: dict, model_cls: type[BaseModel]) -> ClaudeResult:
+        out = self._claude_code.call(system, user, schema)  # raises on CLI/auth/limit failures
+        common = dict(served_model=out["served_model"], input_tokens=out["input_tokens"],
+                      output_tokens=out["output_tokens"], cache_read_input_tokens=out["cache_read_input_tokens"])
+        raw = out["structured_output"]
+        if raw is None:
+            return ClaudeResult("INVALID", None, {}, **common, error_message="no structured_output returned")
+        try:
+            parsed = model_cls.model_validate(raw)  # validated again locally, whatever the CLI enforced
+        except ValidationError as exc:
+            return ClaudeResult("INVALID", None, raw if isinstance(raw, dict) else {"value": raw}, **common,
+                                error_message=str(exc)[:2000])
+        return ClaudeResult("OK", parsed, raw, **common)
+
+
 def api_error_policy(exc: Exception) -> tuple[Literal["stop", "continue"], str]:
     """How a stage reacts to an API exception. Stop on problems that will hit every
     following request (auth, permissions, rate limit), continue past per-request ones.
     The SDK has already retried connection errors, 408/409/429 and 5xx twice."""
+    from mie.models.claude_code import ClaudeCodeRunError, ClaudeCodeUnavailable
+    if isinstance(exc, ClaudeCodeUnavailable):
+        return "stop", "claude_code_unavailable"
+    if isinstance(exc, ClaudeCodeRunError):
+        # not logged in, subscription usage limit reached, timeout: retry on the next run
+        return "stop", "claude_code_failed"
     if isinstance(exc, (TypeError, ClaudeUnavailable)):
         # e.g. no credentials could be resolved: every following request would fail too.
         return "stop", "client_misconfigured"
@@ -230,15 +268,15 @@ class ClaudeClassifier:
     prompt_version = PROMPT_VERSION
 
     def __init__(self, model: str, effort: str | None = None, client: Any = None,
-                 assets: dict[str, str] | None = None):
-        self.call = StructuredClaudeCall(model, effort, client)
+                 assets: dict[str, str] | None = None, backend: str = "api", claude_code: Any = None):
+        self.call = StructuredClaudeCall(model, effort, client, backend=backend, claude_code=claude_code)
         self.assets = assets or load_asset_universe()
         self.schema = output_schema(sorted(self.assets))
         self.system_prompt = interpretation_system_prompt(self.assets)
 
     @property
     def model(self) -> str:
-        return self.call.model
+        return self.call.model_label
 
     @property
     def effort(self) -> str | None:
@@ -292,13 +330,15 @@ TYPING_SCHEMA = {
 class EventTyper:
     prompt_version = TYPING_PROMPT_VERSION
 
-    def __init__(self, model: str, effort: str | None = None, client: Any = None):
-        self.call = StructuredClaudeCall(model, effort, client, max_tokens=4000)
+    def __init__(self, model: str, effort: str | None = None, client: Any = None, backend: str = "api",
+                 claude_code: Any = None):
+        self.call = StructuredClaudeCall(model, effort, client, max_tokens=4000, backend=backend,
+                                         claude_code=claude_code)
         self.system_prompt = typing_system_prompt()
 
     @property
     def model(self) -> str:
-        return self.call.model
+        return self.call.model_label
 
     @staticmethod
     def payload(brief: EventBrief) -> dict:

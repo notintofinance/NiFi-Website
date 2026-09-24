@@ -10,7 +10,7 @@ from datetime import datetime, timezone
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
-from mie.core.config import Settings
+from mie.core.config import Settings, claude_kwargs
 from mie.db.models import ModelVersion
 from mie.intelligence.service import eligible_briefs
 from mie.models.claude import ClaudeClassifier
@@ -18,7 +18,7 @@ from mie.models.claude import ClaudeClassifier
 
 def claude_preview(session: Session, settings: Settings, event_ids: list[int] | None = None,
                    clf: ClaudeClassifier | None = None, as_of: datetime | None = None) -> dict:
-    clf = clf or ClaudeClassifier(settings.claude_model, settings.claude_effort, client=object())
+    clf = clf or ClaudeClassifier(**claude_kwargs(settings), client=object())  # never called
     as_of = as_of or datetime.now(timezone.utc)
     mv = session.scalar(select(ModelVersion).where(ModelVersion.name == clf.model,
                                                    ModelVersion.version == clf.model))  # read-only lookup
@@ -38,6 +38,7 @@ def claude_preview(session: Session, settings: Settings, event_ids: list[int] | 
     return {
         "claude_enabled": settings.claude_enabled,
         "model": clf.model,
+        "backend": clf.call.backend,
         "prompt_version": clf.prompt_version,
         "as_of": as_of.isoformat(),
         "system_prompt": clf.system_prompt,

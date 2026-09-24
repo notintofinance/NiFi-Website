@@ -58,7 +58,7 @@ def _print_preview(engine, settings, event_ids, show_system: bool) -> None:
 
     with make_session_factory(engine)() as session:
         p = claude_preview(session, settings, event_ids)
-    print(f"Model {p['model']} · prompt {p['prompt_version']} · as of {p['as_of']} · "
+    print(f"Model {p['model']} (backend {p['backend']}) · prompt {p['prompt_version']} · as of {p['as_of']} · "
           f"CLAUDE_ENABLED={p['claude_enabled']}")
     print(f"System prompt: {p['system_prompt_chars']} characters (identical for every event)")
     if show_system:

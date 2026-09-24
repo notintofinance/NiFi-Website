@@ -15,7 +15,7 @@ from datetime import datetime, timezone
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
-from mie.core.config import Settings
+from mie.core.config import Settings, claude_kwargs
 from mie.core.enums import EventType, InformationLayer, Sentiment
 from mie.db.models import (
     ClaudeEventTyping,
@@ -102,7 +102,7 @@ def run_claude_typing(session: Session, settings: Settings, typer: EventTyper | 
         return skip
     if not settings.claude_type_other_events:
         return StageReport(stage, ran=False, skipped_reason="CLAUDE_TYPE_OTHER_EVENTS is false")
-    typer = typer or EventTyper(settings.claude_model, settings.claude_effort)
+    typer = typer or EventTyper(**claude_kwargs(settings))
     as_of = as_of or datetime.now(timezone.utc)
     mv = get_or_create_model_version(session, typer.model, typer.model, "CLAUDE",
                                      {"effort": typer.call.effort})
@@ -159,7 +159,7 @@ def run_claude(session: Session, settings: Settings, clf: ClaudeClassifier | Non
                event_ids: list[int] | None = None, as_of: datetime | None = None) -> StageReport:
     if (skip := _claude_gate(settings, "claude")) is not None:
         return skip
-    clf = clf or ClaudeClassifier(settings.claude_model, settings.claude_effort)
+    clf = clf or ClaudeClassifier(**claude_kwargs(settings))
     as_of = as_of or datetime.now(timezone.utc)
     mv = get_or_create_model_version(session, clf.model, clf.model, "CLAUDE",
                                      {"effort": clf.effort, "prompt_version": clf.prompt_version})
