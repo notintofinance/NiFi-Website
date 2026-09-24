@@ -67,5 +67,11 @@
 {% for c in e.claude_history %}<tr><td>{{ c.id }}</td><td>{{ c.status }}</td><td class="small">{{ c.model }}</td><td class="small">{{ c.prompt_version }}</td><td class="small">{{ c.predicted_at[:16] }}</td><td>{{ badge(c.factual_sentiment) }}</td></tr>{% endfor %}
 </tbody></table></div>
 {% endif %}
+{% if e.event_type_history %}
+<h2>Event type history</h2>
+<div class="tablewrap"><table><thead><tr><th>From</th><th>To</th><th>By</th><th>When (UTC)</th></tr></thead><tbody>
+{% for h in e.event_type_history %}<tr><td>{{ h['from'] }}</td><td>{{ h.to }}</td><td class="small">{{ h.by }}</td><td class="small">{{ h.at[:16].replace('T',' ') }}</td></tr>{% endfor %}
+</tbody></table></div>
+{% endif %}
 <p class="small muted">Extraction: {{ e.extraction_method }} · Dedup: {{ e.dedup_method }}</p>
 {% endblock %}

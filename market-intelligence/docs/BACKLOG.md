@@ -22,6 +22,11 @@
 - ✅ Narrative distribution + normalised-entropy dispersion; divergence flags
 - ✅ FastAPI: event feed (filters), event detail, breadth summary, source health; JSON API
 - ✅ Tests: parsing, timestamps, dedup, entities, FinBERT label derivation, schemas, breadth, disagreement, missing data, API failure
+- ✅ Phase 2: Claude event typing for rule-`OTHER` events, with type history
+- ✅ Phase 2: pre-flight `claude-preview` (no API call) sharing eligibility logic with the live run
+- ✅ Phase 2: per-asset implication breadth (latest prediction only; absence ≠ neutral)
+- ✅ Phase 2: `/models` diagnostics (agreement by event type with n, usage, review queue)
+- ✅ Phase 2: API error policy (stop on auth/rate limit), cacheable fixed system prefix, published-precision facts
 - ☐ Run `scripts/check_sources.py` from a networked machine and tick the Verified column in SOURCES.md
 - ☐ Download FinBERT weights (`pip install -r requirements-ml.txt`) and run the pipeline once live
 - ☐ Obtain an `ANTHROPIC_API_KEY` for the team and have someone approve the first Claude run
@@ -34,7 +39,8 @@
 - ☐ Coverage anomaly monitor (documents/day vs trailing distribution; last success; parse failures)
 - ☐ BLS release calendar → true `published_at`; ALFRED vintages for revised series
 - ☐ SEC EDGAR connector (8-K items → event types, deterministic mapping)
-- ☐ Claude-assisted event extraction for text where the rules return `OTHER` (optional, gated)
+- ☐ Message Batches API for non-urgent backfills (50% cost), gated like the live stage
+- ☐ Analyst review actions on the review queue (needs auth) feeding the gold set
 - ☐ Sentence-transformer similarity backend behind the same interface; compare against the lexical baseline on labelled pairs
 - ☐ Alembic migrations
 - ☐ PostgreSQL docker-compose profile
@@ -46,6 +52,7 @@
 - ☐ Company IR + whitelisted YouTube metadata; transcript segmentation where permitted
 - ☐ Management Language Tracker (quarter-over-quarter phrase comparison, labels only)
 - ☐ Media metadata connectors (licence-checked); narrative dispersion in the dashboard
+- ☐ Claude per-article media labels (independent of FinBERT) and Claude fact extraction from company releases
 - ☐ Alert framework (reversal, deterioration, divergence, disagreement, feed failure), with documented, configurable thresholds
 - ☐ Asset-class heatmap and Sentiment History pages
 - ☐ Market-data table for **post-hoc validation only** (event study), never read by classifiers

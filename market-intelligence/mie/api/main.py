@@ -60,6 +60,16 @@ def create_app(engine: Engine) -> FastAPI:
         with factory() as s:
             return views.breadth_table(s, _date(as_of), country, asset_class)
 
+    @app.get("/api/assets")
+    def api_assets(as_of: str | None = None):
+        with factory() as s:
+            return views.asset_table(s, _date(as_of))
+
+    @app.get("/api/models")
+    def api_models():
+        with factory() as s:
+            return views.model_diagnostics(s)
+
     @app.get("/api/sources")
     def api_sources():
         with factory() as s:
@@ -76,6 +86,7 @@ def create_app(engine: Engine) -> FastAPI:
             recent = views.list_events(s, views.EventFilters(), limit=10)
             review = [e for e in views.list_events(s, views.EventFilters(), limit=1000) if e["review_required"]]
             return render(request, "overview.html", s, breadth=breadth, recent=recent, review=review,
+                          assets=views.asset_table(s),
                           country=country or "", asset_class=asset_class or "",
                           sources=views.source_health(s))
 
@@ -99,6 +110,11 @@ def create_app(engine: Engine) -> FastAPI:
             if d is None:
                 raise HTTPException(404, "event not found")
             return render(request, "event_detail.html", s, e=d)
+
+    @app.get("/models", response_class=HTMLResponse)
+    def models_page(request: Request):
+        with factory() as s:
+            return render(request, "models.html", s, d=views.model_diagnostics(s))
 
     @app.get("/sources", response_class=HTMLResponse)
     def sources_page(request: Request):

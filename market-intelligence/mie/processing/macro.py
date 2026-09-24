@@ -39,7 +39,17 @@ class IndexFacts:
             "yoy_pct": self.yoy_pct, "prior_period": self.prior_period,
             "prior_yoy_pct": self.prior_yoy_pct, "yoy_change_pp": self.yoy_change_pp,
             "method": "NSA index; YoY = level_t / level_(t-12) - 1",
+            "published": self.published(),
         }
+
+    def published(self) -> dict:
+        """The same facts at the precision BLS publishes (index 3 dp, percentages 1 dp).
+        This is what classifiers see; the full-precision values stay in the DB for audit."""
+        r1 = lambda x: None if x is None else round(x, 1)  # noqa: E731
+        return {"series_id": self.series_id, "period": self.period, "index_level": round(self.level, 3),
+                "yoy_pct": r1(self.yoy_pct), "prior_period": self.prior_period,
+                "prior_yoy_pct": r1(self.prior_yoy_pct),
+                "yoy_change_pp": None if self.yoy_change_pp is None else r1(r1(self.yoy_pct) - r1(self.prior_yoy_pct))}
 
 
 def index_facts(series_id: str, period: str, levels: dict[str, float]) -> IndexFacts:
@@ -55,11 +65,13 @@ def index_facts(series_id: str, period: str, levels: dict[str, float]) -> IndexF
 
 
 def describe_index_facts(f: IndexFacts, series_name: str) -> str:
-    """Neutral factual sentence. Rounded to 1 decimal, the precision BLS publishes."""
-    if f.yoy_pct is None:
-        return f"{series_name}: index level {f.level:.3f} in {f.period}; year-ago comparator unavailable."
-    text = f"{series_name}: {f.yoy_pct:.1f}% year over year in {f.period}"
-    if f.prior_yoy_pct is not None:
-        text += (f", versus {f.prior_yoy_pct:.1f}% in {f.prior_period} "
-                 f"(change {f.yoy_change_pp:+.1f} percentage points)")
+    """Neutral factual sentence at published precision, so the stated change always
+    equals the difference of the stated rates."""
+    p = f.published()
+    if p["yoy_pct"] is None:
+        return f"{series_name}: index level {p['index_level']:.3f} in {f.period}; year-ago comparator unavailable."
+    text = f"{series_name}: {p['yoy_pct']:.1f}% year over year in {f.period}"
+    if p["prior_yoy_pct"] is not None:
+        text += (f", versus {p['prior_yoy_pct']:.1f}% in {f.prior_period} "
+                 f"(change {p['yoy_change_pp']:+.1f} percentage points)")
     return text + "."

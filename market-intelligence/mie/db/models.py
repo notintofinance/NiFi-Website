@@ -162,7 +162,9 @@ class Event(Base):
     event_time_quality: Mapped[str] = mapped_column(String(40))
     country: Mapped[str | None] = mapped_column(String(8))
     asset_classes: Mapped[list] = mapped_column(JSON, default=list)
-    extraction_method: Mapped[str] = mapped_column(String(60))
+    extraction_method: Mapped[str] = mapped_column(String(120))
+    # Every change of event_type after creation: [{from, to, by, prediction_id, at}]
+    event_type_history: Mapped[list] = mapped_column(JSON, default=list)
     dedup_method: Mapped[str] = mapped_column(String(60))
     created_at: Mapped[datetime] = mapped_column(UTCDateTime, default=utcnow)
     updated_at: Mapped[datetime] = mapped_column(UTCDateTime, default=utcnow)
@@ -257,6 +259,29 @@ class ClaudePrediction(Base):
     output: Mapped[dict] = mapped_column(JSON, default=dict)
     input_hash: Mapped[str] = mapped_column(String(64))
     as_of: Mapped[datetime] = mapped_column(UTCDateTime)  # point-in-time cut-off of the brief
+    input_tokens: Mapped[int | None] = mapped_column(Integer)
+    output_tokens: Mapped[int | None] = mapped_column(Integer)
+    cache_read_input_tokens: Mapped[int | None] = mapped_column(Integer)
+    error_message: Mapped[str | None] = mapped_column(Text)
+    predicted_at: Mapped[datetime] = mapped_column(UTCDateTime, default=utcnow)
+
+
+class ClaudeEventTyping(Base):
+    """Claude's proposed event type for events the rules left as OTHER (append-only)."""
+    __tablename__ = "claude_event_typings"
+    __table_args__ = (UniqueConstraint("event_id", "model_version_id", "prompt_version", "input_hash"),)
+    id: Mapped[int] = mapped_column(primary_key=True)
+    event_id: Mapped[int] = mapped_column(ForeignKey("events.id"))
+    model_version_id: Mapped[int] = mapped_column(ForeignKey("model_versions.id"))
+    prompt_version: Mapped[str] = mapped_column(String(40))
+    served_model: Mapped[str | None] = mapped_column(String(120))
+    status: Mapped[str] = mapped_column(String(20))
+    previous_event_type: Mapped[str] = mapped_column(String(40))
+    proposed_event_type: Mapped[str | None] = mapped_column(String(40))
+    rationale: Mapped[str | None] = mapped_column(Text)
+    applied: Mapped[bool] = mapped_column(Boolean, default=False)
+    input_hash: Mapped[str] = mapped_column(String(64))
+    as_of: Mapped[datetime] = mapped_column(UTCDateTime)
     input_tokens: Mapped[int | None] = mapped_column(Integer)
     output_tokens: Mapped[int | None] = mapped_column(Integer)
     error_message: Mapped[str | None] = mapped_column(Text)

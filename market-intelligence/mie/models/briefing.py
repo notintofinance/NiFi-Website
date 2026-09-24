@@ -83,7 +83,8 @@ def build_event_brief(session: Session, event: Event, as_of: datetime, max_per_l
             not_permitted += 1
             continue
         if st.value is not None:
-            facts.append({k: v for k, v in st.value.items() if k != "method"} | {"description": st.text})
+            # Published precision only; full-precision values stay in the DB.
+            facts.append(dict(st.value.get("published", {})) | {"description": st.text})
             continue
         bucket = layers[st.layer]
         if len(bucket) >= max_per_layer:

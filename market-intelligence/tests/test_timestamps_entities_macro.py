@@ -53,3 +53,13 @@ def test_index_facts():
 def test_index_facts_missing_comparator_is_none():
     f = index_facts("S", "2026-08", {"2026-08": 102.5})
     assert f.yoy_pct is None and f.yoy_change_pp is None
+
+
+def test_published_precision_is_internally_consistent():
+    from mie.processing.macro import describe_index_facts
+    # 2.46% vs 2.74%: unrounded change -0.28 would print -0.3, contradicting 2.5 vs 2.7.
+    levels = {"2025-07": 100.0, "2025-08": 100.0, "2026-07": 102.74, "2026-08": 102.46}
+    f = index_facts("S", "2026-08", levels)
+    p = f.published()
+    assert (p["yoy_pct"], p["prior_yoy_pct"], p["yoy_change_pp"]) == (2.5, 2.7, -0.2)
+    assert "2.5% year over year" in describe_index_facts(f, "X") and "-0.2 percentage points" in describe_index_facts(f, "X")

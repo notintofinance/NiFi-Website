@@ -1,6 +1,6 @@
 # Market Intelligence & Sentiment Engine — Architecture (V1)
 
-Status: Phase 0 complete, Phase 1 implemented. Last revised 2026-09-24.
+Status: Phase 0 complete; Phase 1 and Phase 2 implemented. Last revised 2026-09-24.
 
 This is an internal research prototype. It does not use and must not receive
 confidential bank data, customer data, portfolio data or paid data feeds.
@@ -127,8 +127,9 @@ documents          id, source_id→sources, external_id, url, document_type, lan
 entities           id, key (unique), name, entity_type, country, tickers(JSON), asset_classes(JSON)
 document_entities  document_id, entity_id, matched_alias, method
 events             id, event_key (unique, for structured events), event_type, title,
-                   event_time, country, asset_classes(JSON), created_at, updated_at,
-                   dedup_method, extraction_method, extraction_version
+                   event_time, event_time_quality, country, asset_classes(JSON), created_at,
+                   updated_at, dedup_method, extraction_method,
+                   event_type_history(JSON: every post-creation type change and who made it)
 event_documents    event_id, document_id, similarity, attached_by, attached_at   UNIQUE(document_id)
 event_entities     event_id, entity_id
 event_statements   id, event_id, document_id, layer (FACTUAL|MANAGEMENT|MEDIA),
@@ -140,9 +141,12 @@ model_versions     id, name, version, kind (FINBERT|CLAUDE|…), config(JSON), c
 finbert_predictions id, event_id, statement_id, layer, model_version_id, label,
                    probabilities(JSON), input_hash, predicted_at   (append-only)
 claude_predictions id, event_id, model_version_id, prompt_version, served_model,
-                   status (OK|REFUSED|ERROR|INVALID), factual_sentiment, management_tone,
-                   impact_horizon, output(JSON), input_hash, input_tokens, output_tokens,
-                   predicted_at                                   (append-only)
+                   status (OK|REFUSED|INVALID), factual_sentiment, management_tone,
+                   impact_horizon, output(JSON), input_hash, as_of, input_tokens, output_tokens,
+                   cache_read_input_tokens, error_message, predicted_at   (append-only)
+claude_event_typings id, event_id, model_version_id, prompt_version, served_model, status,
+                   previous_event_type, proposed_event_type, rationale, applied, input_hash,
+                   as_of, tokens, predicted_at                    (append-only)
 event_impacts      id, claude_prediction_id, event_id, asset, direction, horizon, rationale
 model_comparisons  id, event_id, layer, finbert_prediction_ref, claude_prediction_id,
                    finbert_label, claude_label, status, review_required, compared_at
@@ -279,3 +283,27 @@ BLS CPI API (structured)      ┴► documents ► events (+dedup) ► FinBERT �
 `python -m mie.cli demo` runs this chain on fixtures. The FinBERT and Claude
 stages each report `skipped` with a reason when their runtime or credentials
 are absent. See README for running against live sources.
+
+---
+
+## 12. Phase 2: Claude intelligence
+
+| Capability | Implementation | Control |
+|---|---|---|
+| Event interpretation | `ClaudeClassifier`: factual sentiment, management tone, horizon, factors, per-asset implications | Constrained JSON schema; the asset list is fixed in `config/assets.yaml`; numeric labels fail validation |
+| Event typing where rules fail | `EventTyper` runs only on events the rules left as `OTHER`. The payload excludes the rules' label so it can't anchor the model. | A change is written to `events.event_type_history` with the prediction id. `OTHER` is an allowed and encouraged answer. |
+| Blind comparison | Unchanged. It now skips a layer with no statements, so a tone Claude gives for missing management text is never compared. | `run_comparisons` |
+| Asset-level view | `asset_breadth()`: breadth per asset over events whose **latest** OK interpretation states a direction for it | Absence is not counted as neutral; no cross-asset total |
+| Pre-flight review | `python -m mie.cli claude-preview` prints the exact request per event and why others are skipped. It makes **no API call**; token counting is excluded because it would also send the content. | Shares `eligible_briefs()` with the live run, so preview and run cannot drift |
+| API failures | `api_error_policy`: auth/permission errors and rate limits **stop** the stage; bad requests, connection errors and 5xx skip the event. The SDK already retries transient errors twice. | Errors are logged, not stored as predictions, so the next run retries them |
+| Prompt structure | Instructions, label definitions and asset list are in a byte-identical system prompt; the user turn is only the event JSON | `cache_control` on the prefix; `cache_read_input_tokens` is recorded to verify it engages (it needs the prefix above the model's minimum cacheable length) |
+| Precision | Briefs carry computed facts at the **published** precision (BLS: index 3 dp, rates 1 dp). The stated change equals the difference of the stated rates. | Full precision stays in `event_statements.value` for audit |
+| Diagnostics | `/models`: status counts, token totals, cache reads, agreement by event type with n, review queue, re-typed events | Agreement rate is labelled as model consistency, **not accuracy** |
+
+Pipeline order: ingest → events → FinBERT → Claude typing → Claude interpretation → comparison.
+FinBERT runs before Claude only for convenience; neither reads the other's output.
+
+**Not yet done in Phase 2 (needs data we don't have):** Claude classification of
+individual media articles, since there are no licensed media sources yet, and
+Claude fact extraction from company releases, since there is no company source
+yet. Both reuse `StructuredClaudeCall` when those sources arrive.

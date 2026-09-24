@@ -10,7 +10,7 @@ SOURCE → DOCUMENT → EVENT → DEDUP → FinBERT ┐
 ```
 
 - **Docs:** [Architecture](docs/ARCHITECTURE.md) · [Source assessment](docs/SOURCES.md) · [Backlog P0/P1/P2](docs/BACKLOG.md)
-- **Status:** Phase 1 complete, plus the Phase 2 Claude wiring. It has only
+- **Status:** Phases 1 and 2 complete. It has only
   been exercised on **synthetic fixtures**, because the build environment had
   no internet access to the sources (see ARCHITECTURE §1).
 
@@ -22,7 +22,7 @@ python3.11 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt          # add requirements-ml.txt for local FinBERT
 cp .env.example .env                     # then edit; never commit .env
 
-pytest -q                                # 61 tests, no network needed
+pytest -q                                # 75 tests, no network needed
 python -m mie.cli demo                   # SYNTHETIC fixtures → data/mie.db
 python -m mie.cli serve                  # http://127.0.0.1:8000
 ```
@@ -39,11 +39,21 @@ python -m mie.cli run                    # ingest → events → FinBERT → (Cl
 ```
 
 Claude stays off until `CLAUDE_ENABLED=true` and `ANTHROPIC_API_KEY` are both
-set. Only sources with `allow_external_llm: true` in `config/sources.yaml` can
+set. Before enabling it, review exactly what would be sent. This makes no API call:
+
+```bash
+python -m mie.cli claude-preview                 # every event: SEND or why not, plus the exact payload
+python -m mie.cli claude-preview --show-system   # also the fixed system prompt and output schema
+```
+
+Only sources with `allow_external_llm: true` in `config/sources.yaml` can
 ever reach the API. Get approval before turning this on.
 
 When a stage can't run (no FinBERT weights, no API key), it reports `skipped`
 with the reason instead of failing the pipeline.
+
+There are no database migrations yet (Alembic is on the P1 backlog). After
+pulling a schema change, delete `data/mie.db` and re-run.
 
 ## Layout
 
@@ -55,7 +65,8 @@ mie/
   processing/     cleaner, entity dictionary, event rules, macro facts, dedup, extractor
   models/         briefing (source-blind, price-blind input), finbert.py, claude.py
   intelligence/   comparison, aggregation (breadth/windows), narrative, service
-  api/            FastAPI JSON + server-rendered dashboard
+  api/            FastAPI JSON + server-rendered dashboard (overview, feed, detail, models, sources)
+  preview.py      pre-flight view of what Claude would receive
 config/           sources.yaml, entities.yaml, event_rules.yaml, assets.yaml
 tests/            pytest suite + tests/fixtures (SYNTHETIC)
 ```

@@ -67,6 +67,8 @@ class Settings:
             "CREDIT_RATING,M&A,COMMODITY,FX,BOND_AUCTION,SUPPLY_DISRUPTION,GEOPOLITICS",
         )
     )
+    # Send events the keyword rules left as OTHER to Claude for a constrained type label.
+    claude_type_other_events: bool = field(default_factory=lambda: _bool("CLAUDE_TYPE_OTHER_EVENTS", True))
     # Cost control, not a model parameter.
     brief_max_statements_per_layer: int = field(
         default_factory=lambda: int(os.environ.get("BRIEF_MAX_STATEMENTS_PER_LAYER", "8"))

@@ -8,15 +8,28 @@ from sqlalchemy import func, select
 from sqlalchemy.orm import Session
 
 from mie.core.enums import InformationLayer, Sentiment
-from mie.db.models import ClaudePrediction, Event, EventImpact, FinbertPrediction, IngestionRun, Source
-from mie.intelligence.aggregation import LabelledEvent, windowed_breadth
+from collections import defaultdict
+
+from mie.db.models import (
+    ClaudeEventTyping,
+    ClaudePrediction,
+    Event,
+    EventImpact,
+    FinbertPrediction,
+    IngestionRun,
+    ModelVersion,
+    Source,
+)
+from mie.intelligence.aggregation import AssetImplicationObs, LabelledEvent, asset_breadth, windowed_breadth
 from mie.intelligence.service import (
     event_divergence,
     finbert_layer_labels,
     latest_claude,
     latest_comparison,
+    latest_implications,
     media_narrative,
 )
+from mie.models.claude import load_asset_universe
 
 LABEL_SOURCES = ("claude", "finbert", "agreed")
 
@@ -56,7 +69,7 @@ def event_row(session: Session, e: Event) -> dict:
         "claude_label": claude.factual_sentiment if claude else None,
         "finbert_label": fb[InformationLayer.FACTUAL.value].value if fb[InformationLayer.FACTUAL.value] else None,
         "agreement": comp.status if comp else "NOT_CLASSIFIED",
-        "review_required": bool(comp and comp.review_required),
+        "review_required": _needs_review(session, e.id),  # either compared layer
         "document_count": len(e.documents),
         "source_count": len(sources),
         "source_types": sorted({s.source_type for s in sources}),
@@ -120,6 +133,7 @@ def event_detail(session: Session, event_id: int) -> dict | None:
     return {
         **row,
         "extraction_method": e.extraction_method,
+        "event_type_history": e.event_type_history,
         "dedup_method": e.dedup_method,
         "layers": layers,
         "finbert_layer_labels": {k: (v.value if v else None) for k, v in finbert_layer_labels(session, e.id).items()},
@@ -191,3 +205,69 @@ def source_health(session: Session) -> list[dict]:
                       "error_type": r.error_type, "error_message": r.error_message} for r in runs],
         })
     return out
+
+
+def asset_table(session: Session, as_of: datetime | None = None) -> dict:
+    """Per-asset breadth from Claude's implications. One entry per asset, no total."""
+    as_of = as_of or datetime.now(timezone.utc)
+    names = load_asset_universe()
+    obs = [AssetImplicationObs(e.id, e.event_time, i.asset, i.direction) for e, i in latest_implications(session)]
+    return {"as_of": as_of.isoformat(), "assets": [
+        {"asset": a, "name": names.get(a, a), "windows": {w: b.as_dict() for w, b in ws.items()}}
+        for a, ws in asset_breadth(obs, as_of).items()]}
+
+
+def _needs_review(session: Session, event_id: int) -> bool:
+    return any((c := latest_comparison(session, event_id, layer)) is not None and c.review_required
+               for layer in (InformationLayer.FACTUAL, InformationLayer.MANAGEMENT))
+
+
+def _rate(agree: int, disagree: int) -> float | None:
+    return agree / (agree + disagree) if agree + disagree else None
+
+
+def model_diagnostics(session: Session) -> dict:
+    mvs = {m.id: m for m in session.scalars(select(ModelVersion)).all()}
+
+    def usage(rows) -> list[dict]:
+        groups: dict[tuple, dict] = {}
+        for r in rows:
+            k = (mvs[r.model_version_id].name, r.prompt_version, r.served_model)
+            g = groups.setdefault(k, {"model": k[0], "prompt_version": k[1], "served_model": k[2],
+                                      "status": defaultdict(int), "input_tokens": 0, "output_tokens": 0,
+                                      "cache_read_input_tokens": 0})
+            g["status"][r.status] += 1
+            g["input_tokens"] += r.input_tokens or 0
+            g["output_tokens"] += r.output_tokens or 0
+            g["cache_read_input_tokens"] += getattr(r, "cache_read_input_tokens", None) or 0
+        return [{**g, "status": dict(g["status"])} for g in groups.values()]
+
+    finbert = defaultdict(lambda: defaultdict(int))
+    for p in session.scalars(select(FinbertPrediction)).all():
+        finbert[mvs[p.model_version_id].version][p.label] += 1
+
+    agreement: dict[str, dict[str, dict[str, int]]] = {"FACTUAL": defaultdict(lambda: defaultdict(int)),
+                                                       "MANAGEMENT": defaultdict(lambda: defaultdict(int))}
+    events = session.scalars(select(Event).order_by(Event.event_time.desc())).all()
+    for e in events:
+        for layer in (InformationLayer.FACTUAL, InformationLayer.MANAGEMENT):
+            c = latest_comparison(session, e.id, layer)
+            if c is not None:
+                agreement[layer.value][e.event_type][c.status] += 1
+                agreement[layer.value]["ALL"][c.status] += 1
+    agreement_rows = {
+        layer: [{"event_type": t, "counts": dict(c), "n_both_directional": c["AGREE"] + c["DISAGREE"],
+                 "agreement_rate": _rate(c["AGREE"], c["DISAGREE"])}
+                for t, c in sorted(by_type.items(), key=lambda kv: (kv[0] != "ALL", kv[0]))]
+        for layer, by_type in agreement.items()
+    }
+    retyped = [{"event_id": e.id, "title": e.title, "history": e.event_type_history}
+               for e in events if e.event_type_history]
+    return {
+        "claude_interpretation": usage(session.scalars(select(ClaudePrediction)).all()),
+        "claude_typing": usage(session.scalars(select(ClaudeEventTyping)).all()),
+        "finbert": [{"version": v, "labels": dict(c), "n": sum(c.values())} for v, c in finbert.items()],
+        "agreement": agreement_rows,
+        "retyped_events": retyped,
+        "review_queue": [event_row(session, e) for e in events if _needs_review(session, e.id)],
+    }

@@ -94,3 +94,25 @@ def windowed_breadth(events: Iterable[LabelledEvent], as_of: datetime,
         lo = as_of - w
         out[name] = breadth_from_labels(e.label for e in evs if lo < e.event_time <= as_of)
     return out
+
+
+@dataclass(frozen=True)
+class AssetImplicationObs:
+    event_id: int
+    event_time: datetime
+    asset: str
+    direction: str  # POSITIVE | NEGATIVE | MIXED | NEUTRAL | UNCERTAIN
+
+
+def asset_breadth(observations: Iterable[AssetImplicationObs], as_of: datetime,
+                  windows: Mapping[str, timedelta] = WINDOWS) -> dict[str, dict[str, BreadthResult]]:
+    """Breadth per asset over unique events that state an implication for that asset.
+
+    An event that does not mention an asset is NOT counted as neutral for it:
+    absence of a stated link is not evidence of no effect. Each asset is reported
+    separately; there is deliberately no cross-asset total.
+    """
+    by_asset: dict[str, dict[int, LabelledEvent]] = {}
+    for o in observations:
+        by_asset.setdefault(o.asset, {})[o.event_id] = LabelledEvent(o.event_id, o.event_time, Sentiment(o.direction))
+    return {asset: windowed_breadth(evs.values(), as_of, windows) for asset, evs in sorted(by_asset.items())}

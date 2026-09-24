@@ -1,4 +1,4 @@
-"""End-to-end pass: ingest → events → FinBERT → Claude → comparison.
+"""End-to-end pass: ingest → events → FinBERT → Claude typing → Claude interpretation → comparison.
 
 Each stage is independent and reports `skipped` with a reason instead of failing
 the whole pipeline.
@@ -13,8 +13,8 @@ from sqlalchemy.orm import Session, sessionmaker
 from mie.core.config import FIXTURE_DIR, Settings
 from mie.ingestion.registry import load_connectors
 from mie.ingestion.runner import run_all
-from mie.intelligence.service import StageReport, run_claude, run_comparisons, run_finbert
-from mie.models.claude import ClaudeClassifier
+from mie.intelligence.service import StageReport, run_claude, run_claude_typing, run_comparisons, run_finbert
+from mie.models.claude import ClaudeClassifier, EventTyper
 from mie.models.finbert import FinbertClassifier, SentenceClassifier
 from mie.processing.event_extractor import EventExtractor
 
@@ -38,7 +38,8 @@ def process(session: Session, settings: Settings) -> StageReport:
 
 def run_pipeline(factory: sessionmaker[Session], settings: Settings, fixtures: bool = False,
                  finbert: SentenceClassifier | None = None,
-                 claude: ClaudeClassifier | None = None) -> list[StageReport]:
+                 claude: ClaudeClassifier | None = None,
+                 typer: EventTyper | None = None) -> list[StageReport]:
     reports: list[StageReport] = []
     with factory() as session:
         reports.append(ingest(session, settings, fixtures))
@@ -50,6 +51,9 @@ def run_pipeline(factory: sessionmaker[Session], settings: Settings, fixtures: b
             reports.append(run_finbert(session, clf))
         else:
             reports.append(StageReport("finbert", ran=False, skipped_reason="FINBERT_ENABLED is false"))
+        session.commit()
+        # Typing first: an event re-typed from OTHER can be interpreted in the same pass.
+        reports.append(run_claude_typing(session, settings, typer))
         session.commit()
         reports.append(run_claude(session, settings, claude))
         session.commit()

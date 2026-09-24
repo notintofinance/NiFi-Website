@@ -119,7 +119,7 @@ def test_claude_ok_stores_versioned_prediction_and_impacts(loaded, settings):
     assert "temperature" not in req  # sampling params are rejected on current models
     # Unchanged input is not re-sent.
     again = run_claude(loaded, _enabled(settings), ClaudeClassifier("claude-opus-5", client=fake))
-    assert again.counts == {"unchanged": 3} and len(fake.requests) == 3
+    assert again.counts == {"unchanged": 3, "out_of_scope_type": 3} and len(fake.requests) == 3
 
 
 def test_claude_never_sees_finbert(loaded, settings, fake_finbert):

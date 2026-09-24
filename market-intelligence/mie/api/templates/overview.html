@@ -28,6 +28,23 @@ Each model is shown separately and never averaged. As of {{ breadth.as_of[:16].r
 </div>
 {% endfor %}
 
+<h2>Asset implications (Claude)</h2>
+<p class="small muted">Breadth per asset over unique events where Claude stated a direction for that asset. An event that doesn't
+mention an asset is left out of that asset's count rather than counted as neutral. There is no cross-asset total.</p>
+{% if assets.assets %}
+<div class="tablewrap"><table>
+<thead><tr><th>Asset</th>{% for w in ['24H','3D','7D','30D'] %}<th class="num">{{ w }}</th>{% endfor %}<th>30D distribution</th></tr></thead>
+<tbody>
+{% for a in assets.assets %}
+<tr><td>{{ a.name }} <span class="muted small">{{ a.asset }}</span></td>
+{% for w in ['24H','3D','7D','30D'] %}{% set b = a.windows[w] %}
+<td class="num">{% if b.breadth_scaled is not none %}{{ ('%+d' % b.breadth_scaled) if b.breadth_scaled else '0' }}<span class="muted small"> n={{ b.total_classified }}</span>{% else %}<span class="muted">n/a</span>{% endif %}</td>
+{% endfor %}
+<td style="min-width:140px">{{ distbar(a.windows['30D']) }}</td></tr>
+{% endfor %}
+</tbody></table></div>
+{% else %}<p class="muted">No Claude implications yet. Claude is off or has not run.</p>{% endif %}
+
 <h2>Model disagreements needing review</h2>
 {% if review %}{{ event_table(review) }}{% else %}<p class="muted">None: no opposite-polarity disagreements between Claude and FinBERT.</p>{% endif %}
 
