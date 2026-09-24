@@ -1,6 +1,0 @@
-# Local FinBERT. CPU wheels are sufficient for event-level volumes.
-# On first run the weights are downloaded from huggingface.co (must be reachable),
-# then cached locally; pin FINBERT_REVISION to a commit hash for reproducibility.
--r requirements.txt
-transformers>=4.44
-torch>=2.3
