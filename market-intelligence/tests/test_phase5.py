@@ -67,6 +67,10 @@ def test_sec_requires_contact_user_agent(settings):
                                     transport=httpx.MockTransport(lambda r: httpx.Response(200))), max_attempts=1)
     with pytest.raises(ValueError, match="contact e-mail"):
         c.fetch(http)
+    placeholder = HttpFetcher(httpx.Client(headers={"User-Agent": "X (contact: you@example.com)"},
+                                           transport=httpx.MockTransport(lambda r: httpx.Response(200))), max_attempts=1)
+    with pytest.raises(ValueError, match="contact e-mail"):
+        c.fetch(placeholder)
 
 
 def test_sec_watchlist_names_match_entities():

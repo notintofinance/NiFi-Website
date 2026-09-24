@@ -6,7 +6,7 @@ import json
 import logging
 from dataclasses import asdict
 
-from mie.core.config import get_settings
+from mie.core.config import get_settings, load_env_file
 from mie.db.session import init_db, make_engine, make_session_factory
 from mie.pipeline import run_pipeline
 
@@ -28,6 +28,7 @@ def main(argv: list[str] | None = None) -> None:
     args = parser.parse_args(argv)
 
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
+    load_env_file()
     settings = get_settings()
     engine = make_engine(settings.database_url)
 

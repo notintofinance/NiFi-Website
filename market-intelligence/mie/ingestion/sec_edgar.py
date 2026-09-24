@@ -64,8 +64,8 @@ class SecEdgarConnector(SourceConnector):
 
     def fetch(self, http: HttpFetcher) -> list[RawPayload]:
         ua = http.client.headers.get("User-Agent", "")
-        if "@" not in ua:
-            raise ValueError("SEC requires a User-Agent with a contact e-mail: set HTTP_USER_AGENT in .env")
+        if "@" not in ua or "example.com" in ua:
+            raise ValueError("SEC requires a User-Agent with a real contact e-mail: set HTTP_USER_AGENT in .env")
         payloads = []
         for i, company in enumerate(self.options.get("watchlist", [])):
             if i:

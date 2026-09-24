@@ -63,3 +63,23 @@ def test_published_precision_is_internally_consistent():
     p = f.published()
     assert (p["yoy_pct"], p["prior_yoy_pct"], p["yoy_change_pp"]) == (2.5, 2.7, -0.2)
     assert "2.5% year over year" in describe_index_facts(f, "X") and "-0.2 percentage points" in describe_index_facts(f, "X")
+
+
+def test_env_file_loader(tmp_path, monkeypatch):
+    import os
+    from mie.core.config import load_env_file
+    f = tmp_path / ".env"
+    f.write_text('# comment\nexport CLAUDE_ENABLED=true\nANTHROPIC_API_KEY=\nMIE_T_QUOTED="a b # not a comment"\n'
+                 'MIE_T_INLINE=value # comment\nMIE_T_SHELL=from-file\n')
+    for k in ("CLAUDE_ENABLED", "ANTHROPIC_API_KEY", "MIE_T_QUOTED", "MIE_T_INLINE"):
+        monkeypatch.delenv(k, raising=False)
+    monkeypatch.setenv("MIE_T_SHELL", "from-shell")
+    loaded = load_env_file(f)
+    assert os.environ["CLAUDE_ENABLED"] == "true"
+    assert "ANTHROPIC_API_KEY" not in os.environ          # empty template value never set
+    assert os.environ["MIE_T_QUOTED"] == "a b # not a comment"
+    assert os.environ["MIE_T_INLINE"] == "value"
+    assert os.environ["MIE_T_SHELL"] == "from-shell"       # shell wins
+    assert set(loaded) == {"CLAUDE_ENABLED", "MIE_T_QUOTED", "MIE_T_INLINE"}
+    for k in loaded:
+        monkeypatch.delenv(k)

@@ -75,5 +75,33 @@ class Settings:
     )
 
 
+def load_env_file(path: Path | None = None) -> list[str]:
+    """Load KEY=VALUE lines from the project's .env into os.environ.
+
+    Variables already set in the shell win, and empty values are skipped, so
+    `ANTHROPIC_API_KEY=` in a copied template never masks a real key. Called only
+    by the CLI and scripts: tests never read a developer's .env. Returns the keys
+    it set (never the values).
+    """
+    path = path or PROJECT_ROOT / ".env"
+    if not path.is_file():
+        return []
+    loaded = []
+    for raw in path.read_text().splitlines():
+        line = raw.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, value = line.removeprefix("export ").split("=", 1)
+        key, value = key.strip(), value.strip()
+        if value[:1] in ("'", '"') and value[-1:] == value[:1] and len(value) >= 2:
+            value = value[1:-1]
+        elif " #" in value:
+            value = value.split(" #", 1)[0].rstrip()
+        if key and value and key not in os.environ:
+            os.environ[key] = value
+            loaded.append(key)
+    return loaded
+
+
 def get_settings() -> Settings:
     return Settings()

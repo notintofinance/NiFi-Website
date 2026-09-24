@@ -19,7 +19,7 @@ import httpx
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from mie.core.config import get_settings  # noqa: E402
+from mie.core.config import get_settings, load_env_file  # noqa: E402
 from mie.ingestion.base import HttpFetcher  # noqa: E402
 from mie.ingestion.registry import load_connectors  # noqa: E402
 from mie.processing.rules import EventRules, base_source_key  # noqa: E402
@@ -30,6 +30,7 @@ def main() -> int:
     ap.add_argument("--include-disabled", action="store_true")
     ap.add_argument("--source", action="append", help="source key (repeatable)")
     args = ap.parse_args()
+    load_env_file()
     settings = get_settings()
     rules = EventRules.from_yaml()
     failures = 0
