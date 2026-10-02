@@ -4,8 +4,23 @@
     {
       "name": "nifi-dev",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
+      "runtimeArgs": [
+        "run",
+        "dev"
+      ],
       "port": 3000,
+      "autoPort": true
+    },
+    {
+      "name": "jobos-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "--prefix",
+        "/Users/agatbe/Claude Project/jobos",
+        "run",
+        "dev"
+      ],
+      "port": 3001,
       "autoPort": true
     }
   ]
