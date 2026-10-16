@@ -1,0 +1,232 @@
+{
+  "sheetInspect": "{\"kind\":\"sheet\",\"id\":\"ws/wpfqpe\",\"name\":\"Bank\",\"index\":0,\"range\":\"A1:CK224\",\"address\":\"A1:CK224\"}\n{\"kind\":\"sheet\",\"id\":\"ws/fywcpu\",\"name\":\"Bank 1\",\"index\":1,\"range\":\"A1:CK224\",\"address\":\"A1:CK224\"}\n{\"kind\":\"sheet\",\"id\":\"ws/dlsznz\",\"name\":\"Fin\",\"index\":2,\"range\":\"A1:CK154\",\"address\":\"A1:CK154\"}\n{\"kind\":\"sheet\",\"id\":\"ws/cetkql\",\"name\":\"Fintech\",\"index\":3,\"range\":\"A1:CK154\",\"address\":\"A1:CK154\"}",
+  "overview": "{\"kind\":\"workbook\",\"id\":\"wb/7rushp\",\"sheets\":4,\"tables\":4}\n{\"kind\":\"sheet\",\"id\":\"ws/wpfqpe\",\"name\":\"Bank\",\"index\":0,\"range\":\"A1:CK224\",\"address\":\"A1:CK224\",\"tables\":1}\n{\"kind\":\"table\",\"sheet\":\"Bank\",\"address\":\"A1:CK224\",\"rows\":224,\"cols\":89,\"values\":[[\"Start Date\",40179,null,null,null,null,null,null,null,null],[\"End Date\",null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,\"Dates\",46295,46203,46112,46022,45930,45838,45747],[\"601398 CH Equity\",\"#N/A Requesting Data...\",\"BS_TOT_ASSET\",57070593,57070593,55772584,53477773,52813421,52317931,51547045],[null,\"#N/A Requesting Data...\",\"BS_GROSS_LOANS_COMPANY_BASIS\",31992126,31992126,31648252,30506114,30451929,30185659,29683041],[null,\"#N/A Requesting Data...\",\"BS_CUSTOMER_DEPOSITS\",39693910,39693910,39096997,37814371,37768881,37346703,36839971],[null,\"#N/A Requesting Data...\",\"TOTAL_EQUITY\",4355844,4355844,4355759,4272024,4193783,4138876,4060826]],\"valuesTruncated\":true,\"valuesPreviewRows\":8,\"valuesPreviewCols\":10,\"valuesPreviewAddress\":\"A1:J8\"}\n{\"kind\":\"sheet\",\"id\":\"ws/fywcpu\",\"name\":\"Bank 1\",\"index\":1,\"range\":\"A1:CK224\",\"address\":\"A1:CK224\",\"tables\":1}\n{\"kind\":\"table\",\"sheet\":\"Bank 1\",\"address\":\"A1:CK224\",\"rows\":224,\"cols\":89,\"values\":[[\"Start Date\",40179,null,null,null,null,null,null,null,null],[\"End Date\",null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,\"Dates\",46295,46203,46112,46022,45930,45838,45747],[\"601398 CH Equity\",\"#N/A Requesting Data...\",\"BS_TOT_ASSET\",57070593,57070593,55772584,53477773,52813421,52317931,51547045],[null,\"#N/A Requesting Data...\",\"BS_GROSS_LOANS_COMPANY_BASIS\",31992126,31992126,31648252,30506114,30451929,30185659,29683041],[null,\"#N/A Requesting Data...\",\"BS_CUSTOMER_DEPOSITS\",39693910,39693910,39096997,37814371,37768881,37346703,36839971],[null,\"#N/A Requesting Data...\",\"TOTAL_EQUITY\",4355844,4355844,4355759,4272024,4193783,4138876,4060826]],\"valuesTruncated\":true,\"valuesPreviewRows\":8,\"valuesPreviewCols\":10,\"valuesPreviewAddress\":\"A1:J8\"}\n{\"kind\":\"sheet\",\"id\":\"ws/dlsznz\",\"name\":\"Fin\",\"index\":2,\"range\":\"A1:CK154\",\"address\":\"A1:CK154\",\"tables\":1}\n{\"kind\":\"table\",\"sheet\":\"Fin\",\"address\":\"A1:CK154\",\"rows\":154,\"cols\":89,\"values\":[[\"Start Date\",40179,null,null,null,null,null,null,null,null],[\"End Date\",null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,\"Dates\",46295,46203,46112,46022,45930,45838,45747],[\"700 HK Equity\",\"#N/A Requesting Data...\",\"SALES_REV_TURN\",204785,204785,196458,194371,192869,184504,180022],[null,\"#N/A Requesting Data...\",\"PG_REVENUE_VALUE\",98414,98414,96110,89920,95860,91368,92133],[null,\"#N/A Requesting Data...\",\"EBIT\",67276,67276,67375,60338,63554,60104,57566],[null,\"#N/A Requesting Data...\",\"EBITDA\",85334,85334,85479,78441,80840,75889,72420]],\"valuesTruncated\":true,\"valuesPreviewRows\":8,\"valuesPreviewCols\":10,\"valuesPreviewAddress\":\"A1:J8\"}\n{\"kind\":\"sheet\",\"id\":\"ws/cetkql\",\"name\":\"Fintech\",\"index\":3,\"range\":\"A1:CK154\",\"address\":\"A1:CK154\",\"tables\":1}\n{\"kind\":\"table\",\"sheet\":\"Fintech\",\"address\":\"A1:CK154\",\"rows\":154,\"cols\":89,\"values\":[[\"Start Date\",40179,null,null,null,null,null,null,null,null],[\"End Date\",null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,\"Dates\",46295,46203,46112,46022,45930,45838,45747],[\"700 HK Equity\",\"#N/A Requesting Data...\",\"SALES_REV_TURN\",204785,204785,196458,194371,192869,184504,180022],[null,\"#N/A Requesting Data...\",\"PG_REVENUE_VALUE\",98414,98414,96110,89920,95860,91368,92133],[null,\"#N/A Requesting Data...\",\"EBIT\",67276,67276,67375,60338,63554,60104,57566],[null,\"#N/A Requesting Data...\",\"EBITDA\",85334,85334,85479,78441,80840,75889,72420]],\"valuesTruncated\":true,\"valuesPreviewRows\":8,\"valuesPreviewCols\":10,\"valuesPreviewAddress\":\"A1:J8\"}",
+  "summaries": [
+    {
+      "name": "Bank",
+      "sheetId": "1",
+      "usedRangeAddress": "A1:CK224",
+      "rows": 224,
+      "cols": 89,
+      "valueCells": 19161,
+      "formulaCells": 231,
+      "errorCells": 3646,
+      "formulaSamples": [
+        {
+          "row": 4,
+          "col": 4,
+          "formula": "=_xll.BDH($A5,$C5:$C24,$B1,$B2,\"Dir=H\",\"Per=Q\",\"Days=A\",\"Dts=S\",\"Sort=R\")",
+          "value": 46295
+        },
+        {
+          "row": 5,
+          "col": 2,
+          "formula": "=_xll.BFieldInfo($C5)",
+          "value": "#N/A Requesting Data..."
+        },
+        {
+          "row": 6,
+          "col": 2,
+          "formula": "=_xll.BFieldInfo($C6)",
+          "value": "#N/A Requesting Data..."
+        },
+        {
+          "row": 7,
+          "col": 2,
+          "formula": "=_xll.BFieldInfo($C7)",
+          "value": "#N/A Requesting Data..."
+        },
+        {
+          "row": 8,
+          "col": 2,
+          "formula": "=_xll.BFieldInfo($C8)",
+          "value": "#N/A Requesting Data..."
+        },
+        {
+          "row": 9,
+          "col": 2,
+          "formula": "=_xll.BFieldInfo($C9)",
+          "value": "#N/A Requesting Data..."
+        },
+        {
+          "row": 10,
+          "col": 2,
+          "formula": "=_xll.BFieldInfo($C10)",
+          "value": "#N/A Requesting Data..."
+        },
+        {
+          "row": 11,
+          "col": 2,
+          "formula": "=_xll.BFieldInfo($C11)",
+          "value": "#N/A Requesting Data..."
+        },
+        {
+          "row": 12,
+          "col": 2,
+          "formula": "=_xll.BFieldInfo($C12)",
+          "value": "#N/A Requesting Data..."
+        },
+        {
+          "row": 13,
+          "col": 2,
+          "formula": "=_xll.BFieldInfo($C13)",
+          "value": "#N/A Requesting Data..."
+        },
+        {
+          "row": 14,
+          "col": 2,
+          "formula": "=_xll.BFieldInfo($C14)",
+          "value": "#N/A Requesting Data..."
+        },
+        {
+          "row": 15,
+          "col": 2,
+          "formula": "=_xll.BFieldInfo($C15)",
+          "value": "#N/A Requesting Data..."
+        },
+        {
+          "row": 16,
+          "col": 2,
+          "formula": "=_xll.BFieldInfo($C16)",
+          "value": "#N/A Requesting Data..."
+        },
+        {
+          "row": 17,
+          "col": 2,
+          "formula": "=_xll.BFieldInfo($C17)",
+          "value": "#N/A Requesting Data..."
+        },
+        {
+          "row": 18,
+          "col": 2,
+          "formula": "=_xll.BFieldInfo($C18)",
+          "value": "#N/A Requesting Data..."
+        }
+      ]
+    },
+    {
+      "name": "Bank 1",
+      "sheetId": "3",
+      "usedRangeAddress": "A1:CK224",
+      "rows": 224,
+      "cols": 89,
+      "valueCells": 19161,
+      "formulaCells": 0,
+      "errorCells": 3646,
+      "formulaSamples": []
+    },
+    {
+      "name": "Fin",
+      "sheetId": "4",
+      "usedRangeAddress": "A1:CK154",
+      "rows": 154,
+      "cols": 89,
+      "valueCells": 11875,
+      "formulaCells": 0,
+      "errorCells": 5018,
+      "formulaSamples": []
+    },
+    {
+      "name": "Fintech",
+      "sheetId": "2",
+      "usedRangeAddress": "A1:CK154",
+      "rows": 154,
+      "cols": 89,
+      "valueCells": 11875,
+      "formulaCells": 160,
+      "errorCells": 5018,
+      "formulaSamples": [
+        {
+          "row": 4,
+          "col": 4,
+          "formula": "=_xll.BDH($A5,$C5:$C19,$B1,$B2,\"Dir=H\",\"Per=Q\",\"Days=A\",\"Dts=S\",\"Sort=R\")",
+          "value": 46295
+        },
+        {
+          "row": 5,
+          "col": 2,
+          "formula": "=_xll.BFieldInfo($C5)",
+          "value": "#N/A Requesting Data..."
+        },
+        {
+          "row": 6,
+          "col": 2,
+          "formula": "=_xll.BFieldInfo($C6)",
+          "value": "#N/A Requesting Data..."
+        },
+        {
+          "row": 7,
+          "col": 2,
+          "formula": "=_xll.BFieldInfo($C7)",
+          "value": "#N/A Requesting Data..."
+        },
+        {
+          "row": 8,
+          "col": 2,
+          "formula": "=_xll.BFieldInfo($C8)",
+          "value": "#N/A Requesting Data..."
+        },
+        {
+          "row": 9,
+          "col": 2,
+          "formula": "=_xll.BFieldInfo($C9)",
+          "value": "#N/A Requesting Data..."
+        },
+        {
+          "row": 10,
+          "col": 2,
+          "formula": "=_xll.BFieldInfo($C10)",
+          "value": "#N/A Requesting Data..."
+        },
+        {
+          "row": 11,
+          "col": 2,
+          "formula": "=_xll.BFieldInfo($C11)",
+          "value": "#N/A Requesting Data..."
+        },
+        {
+          "row": 12,
+          "col": 2,
+          "formula": "=_xll.BFieldInfo($C12)",
+          "value": "#N/A Requesting Data..."
+        },
+        {
+          "row": 13,
+          "col": 2,
+          "formula": "=_xll.BFieldInfo($C13)",
+          "value": "#N/A Requesting Data..."
+        },
+        {
+          "row": 14,
+          "col": 2,
+          "formula": "=_xll.BFieldInfo($C14)",
+          "value": "#N/A Requesting Data..."
+        },
+        {
+          "row": 15,
+          "col": 2,
+          "formula": "=_xll.BFieldInfo($C15)",
+          "value": "#N/A Requesting Data..."
+        },
+        {
+          "row": 16,
+          "col": 2,
+          "formula": "=_xll.BFieldInfo($C16)",
+          "value": "#N/A Requesting Data..."
+        },
+        {
+          "row": 17,
+          "col": 2,
+          "formula": "=_xll.BFieldInfo($C17)",
+          "value": "#N/A Requesting Data..."
+        },
+        {
+          "row": 18,
+          "col": 2,
+          "formula": "=_xll.BFieldInfo($C18)",
+          "value": "#N/A Requesting Data..."
+        }
+      ]
+    }
+  ]
+}

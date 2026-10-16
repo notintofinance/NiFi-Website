@@ -1,0 +1,118 @@
+{"kind":"deck","id":"pr/usaarm","name":"Deck"}
+{"kind":"layout","layoutId":"e0c15d15-0b0b-419e-b7da-96c6fb6bacf5","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"e813d423-fd84-4d80-962d-57866e1ae7a7","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/p5bc7o","slide":1,"title":"BMRI Quantitative Review","textShapes":5}
+{"kind":"textbox","id":"sh/gry9grax","slide":1,"text":"BMRI Quantitative Review","textPreview":"BMRI Quantitative Review","textChars":24,"textLines":1,"bbox":[84,265,690,70]}
+{"kind":"textbox","id":"sh/fqp8nmtc","slide":1,"text":"Harga, valuasi, dan dividend yield berdasarkan z-score","textPreview":"Harga, valuasi, dan dividend yield berdasarkan z-score","textChars":54,"textLines":1,"bbox":[86,332,700,36]}
+{"kind":"textbox","id":"sh/epgrehs7","slide":1,"text":"Data sampai 12 Oktober 2026","textPreview":"Data sampai 12 Oktober 2026","textChars":27,"textLines":1,"bbox":[86,372,500,28]}
+{"kind":"shape","id":"sh/to7qlwbm","slide":1,"bbox":[865,150,335,420]}
+{"kind":"textbox","id":"sh/sny9cra1","slide":1,"text":"BMRI PRICE","textPreview":"BMRI PRICE","textChars":10,"textLines":1,"bbox":[885,136,132,28]}
+{"kind":"textbox","id":"sh/6lw7ahsv","slide":1,"text":"Rp4,010","textPreview":"Rp4,010","textChars":7,"textLines":1,"bbox":[910,500,230,40]}
+{"kind":"chart","id":"ch/325cje5g","slide":1,"name":"","chartType":"line","bbox":[890,180,285,350]}
+{"kind":"notes","id":"nt/p5bc7o","slide":1,"text":"Source: BMRI-2.xlsx, user-provided. Design reference: Market Update - 29 September 2026.pptx."}
+{"kind":"slide","id":"sl/ow92dj","slide":2,"title":"VALUATION SUMMARY","textShapes":21}
+{"kind":"textbox","id":"sh/3ahsb654","slide":2,"text":"VALUATION SUMMARY","textPreview":"VALUATION SUMMARY","textChars":17,"textLines":1,"bbox":[64,18,1150,22]}
+{"kind":"textbox","id":"sh/obq9kb6p","slide":2,"text":"BMRI Trades Below Its Own History","textPreview":"BMRI Trades Below Its Own History","textChars":33,"textLines":1,"bbox":[64,42,1150,50]}
+{"kind":"textbox","id":"sh/pczadgna","slide":2,"text":"Price, P/E and P/BV sit below their historical norms, while dividend yield is unusually high.","textPreview":"Price, P/E and P/BV sit below their historical norms, while dividend yield is unusually high.","textChars":93,"textLines":1,"bbox":[64,92,1150,40]}
+{"kind":"shape","id":"sh/elore1on","slide":2,"bbox":[64,150,1200,310]}
+{"kind":"textbox","id":"sh/fmhs7658","slide":2,"text":"CURRENT Z-SCORES","textPreview":"CURRENT Z-SCORES","textChars":16,"textLines":1,"bbox":[80,136,170,28]}
+{"kind":"shape","id":"sh/18za9wne","slide":2,"bbox":[64,495,580,165]}
+{"kind":"textbox","id":"sh/6horahor","slide":2,"text":"VALUATION LEVELS","textPreview":"VALUATION LEVELS","textChars":16,"textLines":1,"bbox":[80,481,170,28]}
+{"kind":"textbox","id":"sh/rix83mpw","slide":2,"text":"P/E","textPreview":"P/E","textChars":3,"textLines":1,"bbox":[95,530,90,26]}
+{"kind":"textbox","id":"sh/n2hkjid4","slide":2,"text":"6.50x","textPreview":"6.50x","textChars":5,"textLines":1,"bbox":[190,520,130,40]}
+{"kind":"textbox","id":"sh/218jqdcj","slide":2,"text":"mean 8.10x  |  percentile 6.5%","textPreview":"mean 8.10x  |  percentile 6.5%","textChars":30,"textLines":1,"bbox":[190,557,350,24]}
+{"kind":"textbox","id":"sh/p4z2lsva","slide":2,"text":"P/BV","textPreview":"P/BV","textChars":4,"textLines":1,"bbox":[95,590,90,26]}
+{"kind":"textbox","id":"sh/o3q1snup","slide":2,"text":"1.31x","textPreview":"1.31x","textChars":5,"textLines":1,"bbox":[190,580,130,40]}
+{"kind":"textbox","id":"sh/bqhknid0","slide":2,"text":"mean 1.95x  |  percentile 2.9%","textPreview":"mean 1.95x  |  percentile 2.9%","textChars":30,"textLines":1,"bbox":[190,617,350,24]}
+{"kind":"shape","id":"sh/ap8judcv","slide":2,"bbox":[680,495,584,165]}
+{"kind":"textbox","id":"sh/xsz2psv6","slide":2,"text":"PRICE RISK","textPreview":"PRICE RISK","textChars":10,"textLines":1,"bbox":[696,481,132,28]}
+{"kind":"textbox","id":"sh/crq1wnul","slide":2,"text":"1M return","textPreview":"1M return","textChars":9,"textLines":1,"bbox":[710,525,150,24]}
+{"kind":"textbox","id":"sh/rux0bydw","slide":2,"text":"-8.0%","textPreview":"-8.0%","textChars":5,"textLines":1,"bbox":[710,552,150,38]}
+{"kind":"textbox","id":"sh/q94jitcb","slide":2,"text":"1Y return","textPreview":"1Y return","textChars":9,"textLines":1,"bbox":[875,525,150,24]}
+{"kind":"textbox","id":"sh/upcnq1wz","slide":2,"text":"-9.1%","textPreview":"-9.1%","textChars":5,"textLines":1,"bbox":[875,552,150,38]}
+{"kind":"textbox","id":"sh/vql4j6xk","slide":2,"text":"Drawdown","textPreview":"Drawdown","textChars":8,"textLines":1,"bbox":[1040,525,170,24]}
+{"kind":"textbox","id":"sh/wru5sbe5","slide":2,"text":"-46.2%","textPreview":"-46.2%","textChars":6,"textLines":1,"bbox":[1040,552,170,38]}
+{"kind":"textbox","id":"sh/hsnmlwfq","slide":2,"text":"1Y annualised volatility: 32.8%","textPreview":"1Y annualised volatility: 32.8%","textChars":31,"textLines":1,"bbox":[710,610,480,24]}
+{"kind":"textbox","id":"sh/mlcnmhw3","slide":2,"text":"Source: BMRI-2.xlsx; calculations use available observations from Sep 2021 to Oct 2026.","textPreview":"Source: BMRI-2.xlsx; calculations use available observations from Sep 2021 to Oct 2026.","textChars":87,"textLines":1,"bbox":[64,684,1120,22]}
+{"kind":"textbox","id":"sh/7ml4fmxo","slide":2,"text":"| 2","textPreview":"| 2","textChars":3,"textLines":1,"bbox":[1200,684,40,22]}
+{"kind":"chart","id":"ch/4fmlw7el","slide":2,"name":"","chartType":"bar","bbox":[105,185,1110,235]}
+{"kind":"notes","id":"nt/ow92dj","slide":2,"text":"Source: BMRI-2.xlsx. Z-score = (latest value minus full-history mean) divided by full-history sample standard deviation."}
+{"kind":"slide","id":"sl/xnfu8t","slide":3,"title":"PRICE SIGNAL","textShapes":19}
+{"kind":"textbox","id":"sh/vu1onahw","slide":3,"text":"PRICE SIGNAL","textPreview":"PRICE SIGNAL","textChars":12,"textLines":1,"bbox":[64,18,1150,22]}
+{"kind":"textbox","id":"sh/wfu5gfi1","slide":3,"text":"Price Weakness Has Deepened the Discount","textPreview":"Price Weakness Has Deepened the Discount","textChars":40,"textLines":1,"bbox":[64,42,1150,50]}
+{"kind":"textbox","id":"sh/xg36pkzm","slide":3,"text":"The stock is 1.05 standard deviations below its full-history mean and 1.36 below its one-year mean.","textPreview":"The stock is 1.05 standard deviations below its full-history mean and 1.36 below its one-year mean.","textChars":99,"textLines":1,"bbox":[64,92,1150,40]}
+{"kind":"shape","id":"sh/ihcnip07","slide":3,"bbox":[64,150,1200,280]}
+{"kind":"textbox","id":"sh/jiloruhs","slide":3,"text":"PRICE VS HISTORY","textPreview":"PRICE VS HISTORY","textChars":16,"textLines":1,"bbox":[80,136,166,28]}
+{"kind":"textbox","id":"sh/5k36t4zy","slide":3,"text":"Sep-21","textPreview":"Sep-21","textChars":6,"textLines":1,"bbox":[90,392,190.83,18]}
+{"kind":"textbox","id":"sh/yl8n6503","slide":3,"text":"Sep-22","textPreview":"Sep-22","textChars":6,"textLines":1,"bbox":[280.83,392,190.83,18]}
+{"kind":"textbox","id":"sh/zmh4fqho","slide":3,"text":"Sep-23","textPreview":"Sep-23","textChars":6,"textLines":1,"bbox":[471.67,392,190.83,18]}
+{"kind":"textbox","id":"sh/72t8bmdw","slide":3,"text":"Sep-24","textPreview":"Sep-24","textChars":6,"textLines":1,"bbox":[662.5,392,190.83,18]}
+{"kind":"textbox","id":"sh/61k72hcb","slide":3,"text":"Sep-25","textPreview":"Sep-25","textChars":6,"textLines":1,"bbox":[853.33,392,190.83,18]}
+{"kind":"textbox","id":"sh/t4bqdwv2","slide":3,"text":"Oct-26","textPreview":"Oct-26","textChars":6,"textLines":1,"bbox":[1044.17,392,190.83,18]}
+{"kind":"shape","id":"sh/s32p4ruh","slide":3,"bbox":[64,465,1200,195]}
+{"kind":"textbox","id":"sh/je987md0","slide":3,"text":"PRICE Z-SCORE","textPreview":"PRICE Z-SCORE","textChars":13,"textLines":1,"bbox":[80,451,158,28]}
+{"kind":"textbox","id":"sh/50bq9cvq","slide":3,"text":"Sep-21","textPreview":"Sep-21","textChars":6,"textLines":1,"bbox":[90,622,190.83,18]}
+{"kind":"textbox","id":"sh/kf2p0ru5","slide":3,"text":"Sep-22","textPreview":"Sep-22","textChars":6,"textLines":1,"bbox":[280.83,622,190.83,18]}
+{"kind":"textbox","id":"sh/va9o32do","slide":3,"text":"Sep-23","textPreview":"Sep-23","textChars":6,"textLines":1,"bbox":[471.67,622,190.83,18]}
+{"kind":"textbox","id":"sh/a907uxc3","slide":3,"text":"Sep-24","textPreview":"Sep-24","textChars":6,"textLines":1,"bbox":[662.5,622,190.83,18]}
+{"kind":"textbox","id":"sh/e5gr6xwv","slide":3,"text":"Sep-25","textPreview":"Sep-25","textChars":6,"textLines":1,"bbox":[853.33,622,190.83,18]}
+{"kind":"textbox","id":"sh/z6p8f2xg","slide":3,"text":"Oct-26","textPreview":"Oct-26","textChars":6,"textLines":1,"bbox":[1044.17,622,190.83,18]}
+{"kind":"textbox","id":"sh/07y987e1","slide":3,"text":"Source: BMRI-2.xlsx; weekly chart uses the last available trading observation in each week.","textPreview":"Source: BMRI-2.xlsx; weekly chart uses the last available trading observation in each week.","textChars":91,"textLines":1,"bbox":[64,684,1120,22]}
+{"kind":"textbox","id":"sh/18rqhcfm","slide":3,"text":"| 3","textPreview":"| 3","textChars":3,"textLines":1,"bbox":[1200,684,40,22]}
+{"kind":"chart","id":"ch/8j2dgnm5","slide":3,"name":"","chartType":"line","bbox":[90,180,1145,205]}
+{"kind":"chart","id":"ch/yt4zilcj","slide":3,"name":"","chartType":"line","bbox":[90,490,1145,125]}
+{"kind":"notes","id":"nt/xnfu8t","slide":3,"text":"Source: BMRI-2.xlsx. Price z-score uses the full Sep 2021 to Oct 2026 price distribution."}
+{"kind":"slide","id":"sl/ofz1g3","slide":4,"title":"VALUATION","textShapes":20}
+{"kind":"textbox","id":"sh/ora983id","slide":4,"text":"VALUATION","textPreview":"VALUATION","textChars":9,"textLines":1,"bbox":[64,18,1150,22]}
+{"kind":"textbox","id":"sh/nq1sfyhs","slide":4,"text":"Valuation Multiples Are Near Historical Lows","textPreview":"Valuation Multiples Are Near Historical Lows","textChars":44,"textLines":1,"bbox":[64,42,1150,50]}
+{"kind":"textbox","id":"sh/2psr6t07","slide":4,"text":"Both P/E and P/BV show a material discount to BMRI’s own trading history.","textPreview":"Both P/E and P/BV show a material discount to BMRI’s own trading history.","textChars":73,"textLines":1,"bbox":[64,92,1150,40]}
+{"kind":"shape","id":"sh/1ojadoz2","slide":4,"bbox":[64,150,1200,370]}
+{"kind":"textbox","id":"sh/0na94jih","slide":4,"text":"VALUATION Z-SCORES","textPreview":"VALUATION Z-SCORES","textChars":18,"textLines":1,"bbox":[80,136,190,28]}
+{"kind":"textbox","id":"sh/elsr290b","slide":4,"text":"Nov-21","textPreview":"Nov-21","textChars":6,"textLines":1,"bbox":[90,478,190.83,18]}
+{"kind":"textbox","id":"sh/lknapsz6","slide":4,"text":"Nov-22","textPreview":"Nov-22","textChars":6,"textLines":1,"bbox":[280.83,478,190.83,18]}
+{"kind":"textbox","id":"sh/kje9gnil","slide":4,"text":"Nov-23","textPreview":"Nov-23","textChars":6,"textLines":1,"bbox":[471.67,478,190.83,18]}
+{"kind":"textbox","id":"sh/ilkb29cf","slide":4,"text":"Nov-24","textPreview":"Nov-24","textChars":6,"textLines":1,"bbox":[662.5,478,190.83,18]}
+{"kind":"textbox","id":"sh/jmtcvetk","slide":4,"text":"Nov-25","textPreview":"Nov-25","textChars":6,"textLines":1,"bbox":[853.33,478,190.83,18]}
+{"kind":"textbox","id":"sh/k72t4ju5","slide":4,"text":"Oct-26","textPreview":"Oct-26","textChars":6,"textLines":1,"bbox":[1044.17,478,190.83,18]}
+{"kind":"shape","id":"sh/58buxobq","slide":4,"bbox":[64,555,575,105]}
+{"kind":"textbox","id":"sh/ah0by9c3","slide":4,"text":"P/E","textPreview":"P/E","textChars":3,"textLines":1,"bbox":[80,541,72,28]}
+{"kind":"textbox","id":"sh/vitcreto","slide":4,"text":"6.50x","textPreview":"6.50x","textChars":5,"textLines":1,"bbox":[95,578,130,45]}
+{"kind":"textbox","id":"sh/wj2t0zu9","slide":4,"text":"-1.64σ vs history","textPreview":"-1.64σ vs history","textChars":17,"textLines":1,"bbox":[250,580,210,30]}
+{"kind":"textbox","id":"sh/xkbut4bu","slide":4,"text":"Only 6.5% of observations were this low or lower","textPreview":"Only 6.5% of observations were this low or lower","textChars":48,"textLines":1,"bbox":[250,612,320,24]}
+{"kind":"shape","id":"sh/ud4vatc7","slide":4,"bbox":[689,555,575,105]}
+{"kind":"textbox","id":"sh/fedc3yts","slide":4,"text":"P/BV","textPreview":"P/BV","textChars":4,"textLines":1,"bbox":[705,541,82,28]}
+{"kind":"textbox","id":"sh/bi58vq94","slide":4,"text":"1.31x","textPreview":"1.31x","textChars":5,"textLines":1,"bbox":[720,578,130,45]}
+{"kind":"textbox","id":"sh/qxwrmlsz","slide":4,"text":"-1.70σ vs history","textPreview":"-1.70σ vs history","textChars":17,"textLines":1,"bbox":[875,580,210,30]}
+{"kind":"textbox","id":"sh/dk7qx0ra","slide":4,"text":"Only 2.9% of observations were this low or lower","textPreview":"Only 2.9% of observations were this low or lower","textChars":48,"textLines":1,"bbox":[875,612,330,24]}
+{"kind":"textbox","id":"sh/cjy9ovap","slide":4,"text":"Source: BMRI-2.xlsx; historical z-scores use source-reported multiples, treated as trailing measures.","textPreview":"Source: BMRI-2.xlsx; historical z-scores use source-reported multiples, treated as trailing measures.","textChars":101,"textLines":1,"bbox":[64,684,1120,22]}
+{"kind":"textbox","id":"sh/zmp8za9g","slide":4,"text":"| 4","textPreview":"| 4","textChars":3,"textLines":1,"bbox":[1200,684,40,22]}
+{"kind":"chart","id":"ch/juto7atk","slide":4,"name":"","chartType":"line","bbox":[90,185,1145,285]}
+{"kind":"notes","id":"nt/ofz1g3","slide":4,"text":"Source: BMRI-2.xlsx. Weekly values carry forward the latest available observation when a weekly price date lacks a valuation observation. Historical z-scores are best kept trailing; forward P/E and P/BV should be used as a separate current cross-check when consensus forecasts are available."}
+{"kind":"slide","id":"sl/spvw4u","slide":5,"title":"DIVIDEND AND DECISION","textShapes":22}
+{"kind":"textbox","id":"sh/zydc3i5s","slide":5,"text":"DIVIDEND AND DECISION","textPreview":"DIVIDEND AND DECISION","textChars":21,"textLines":1,"bbox":[64,18,1150,22]}
+{"kind":"textbox","id":"sh/0z6dwnmd","slide":5,"text":"Attractive Valuation, Weak Momentum","textPreview":"Attractive Valuation, Weak Momentum","textChars":35,"textLines":1,"bbox":[64,42,1150,50]}
+{"kind":"textbox","id":"sh/10fu5s3y","slide":5,"text":"The 11.0% estimated yield supports staged accumulation, subject to fundamentals and dividend sustainability.","textPreview":"The 11.0% estimated yield supports staged accumulation, subject to fundamentals and dividend sustainability.","textChars":108,"textLines":1,"bbox":[64,92,1150,40]}
+{"kind":"shape","id":"sh/q94vqd4b","slide":5,"bbox":[64,150,760,395]}
+{"kind":"textbox","id":"sh/rudczi5w","slide":5,"text":"DIVIDEND YIELD","textPreview":"DIVIDEND YIELD","textChars":14,"textLines":1,"bbox":[80,136,154,28]}
+{"kind":"textbox","id":"sh/dwvu1sn2","slide":5,"text":"Oct-22","textPreview":"Oct-22","textChars":6,"textLines":1,"bbox":[90,498,141,18]}
+{"kind":"textbox","id":"sh/a5ov2x4f","slide":5,"text":"Oct-23","textPreview":"Oct-23","textChars":6,"textLines":1,"bbox":[231,498,141,18]}
+{"kind":"textbox","id":"sh/bqxwb2l0","slide":5,"text":"Oct-24","textPreview":"Oct-24","textChars":6,"textLines":1,"bbox":[372,498,141,18]}
+{"kind":"textbox","id":"sh/ba5wbixo","slide":5,"text":"Oct-25","textPreview":"Oct-25","textChars":6,"textLines":1,"bbox":[513,498,141,18]}
+{"kind":"textbox","id":"sh/q9wfidw3","slide":5,"text":"Oct-26","textPreview":"Oct-26","textChars":6,"textLines":1,"bbox":[654,498,141,18]}
+{"kind":"shape","id":"sh/dcnyd8fu","slide":5,"bbox":[860,150,404,395]}
+{"kind":"textbox","id":"sh/cbexkne9","slide":5,"text":"INVESTMENT VIEW","textPreview":"INVESTMENT VIEW","textChars":15,"textLines":1,"bbox":[876,136,170,28]}
+{"kind":"textbox","id":"sh/ze5gfixk","slide":5,"text":"11.0%","textPreview":"11.0%","textChars":5,"textLines":1,"bbox":[900,185,310,60]}
+{"kind":"textbox","id":"sh/ydwfmdwz","slide":5,"text":"current estimated dividend yield","textPreview":"current estimated dividend yield","textChars":32,"textLines":1,"bbox":[900,242,310,26]}
+{"kind":"textbox","id":"sh/lg7yhsfq","slide":5,"text":"7.5%","textPreview":"7.5%","textChars":4,"textLines":1,"bbox":[900,285,140,45]}
+{"kind":"textbox","id":"sh/0fyxone5","slide":5,"text":"historical average","textPreview":"historical average","textChars":18,"textLines":1,"bbox":[900,326,140,24]}
+{"kind":"textbox","id":"sh/nipgj2dw","slide":5,"text":"+3.5pp","textPreview":"+3.5pp","textChars":6,"textLines":1,"bbox":[1055,285,150,45]}
+{"kind":"textbox","id":"sh/mhgfqxwb","slide":5,"text":"yield premium","textPreview":"yield premium","textChars":13,"textLines":1,"bbox":[1055,326,150,24]}
+{"kind":"textbox","id":"sh/i9krylkv","slide":5,"text":"Statistically attractive valuation and carry. Weak price momentum still raises the risk of entering too early.","textPreview":"Statistically attractive valuation and carry. Weak price momentum still raises the risk of entering too early.","textChars":110,"textLines":1,"bbox":[900,370,320,70]}
+{"kind":"textbox","id":"sh/3at87ql0","slide":5,"text":"Investment stance: staged accumulation after checking earnings, ROE, asset quality and dividend sustainability.","textPreview":"Investment stance: staged accumulation after checking earnings, ROE, asset quality and dividend sustainability.","textChars":111,"textLines":1,"bbox":[900,452,320,64]}
+{"kind":"shape","id":"sh/4bm90v2l","slide":5,"bbox":[64,580,1200,80]}
+{"kind":"textbox","id":"sh/5cva9036","slide":5,"text":"DIVIDEND NOTE","textPreview":"DIVIDEND NOTE","textChars":13,"textLines":1,"bbox":[80,566,142,28]}
+{"kind":"textbox","id":"sh/ulkrulkj","slide":5,"text":"Average estimated yield is 7.5%. The dataset implies DPS of about Rp441, but this is an approximation and not cash dividend paid.","textPreview":"Average estimated yield is 7.5%. The dataset implies DPS of about Rp441, but this is an approximation and not cash dividend paid.","textChars":129,"textLines":1,"bbox":[95,600,1110,42]}
+{"kind":"textbox","id":"sh/vmt83ql4","slide":5,"text":"Source: BMRI-2.xlsx; BEst dividend yield is an estimate and is reported as whole percentages in the source.","textPreview":"Source: BMRI-2.xlsx; BEst dividend yield is an estimate and is reported as whole percentages in the source.","textChars":107,"textLines":1,"bbox":[64,684,1120,22]}
+{"kind":"textbox","id":"sh/gn29wb2p","slide":5,"text":"| 5","textPreview":"| 5","textChars":3,"textLines":1,"bbox":[1200,684,40,22]}
+{"kind":"chart","id":"ch/4by5s3ad","slide":5,"name":"","chartType":"line","bbox":[90,185,705,305]}
+{"kind":"notes","id":"nt/spvw4u","slide":5,"text":"Source: BMRI-2.xlsx. Implied DPS equals latest price multiplied by source dividend yield. It is not a substitute for declared cash dividend."}

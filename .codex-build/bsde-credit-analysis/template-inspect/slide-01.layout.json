@@ -1,0 +1,2061 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/y90nupkv",
+    "id": "y90nupkv",
+    "slide": 1,
+    "layoutId": "/ppt/slideLayouts/slideLayout1.xml",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "/ppt/slideMasters/slideMaster1.xml",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "Office",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "fontScheme": {
+      "name": "Office",
+      "majorFont": {
+        "latinTypeface": "Aptos Display"
+      },
+      "minorFont": {
+        "latinTypeface": "Aptos"
+      }
+    },
+    "typefaces": [
+      "-webkit-standard",
+      "Aptos",
+      "Aptos Display"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "/ppt/slideLayouts/slideLayout1.xml",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "/ppt/slideMasters/slideMaster1.xml",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout1.xml/2",
+          "id": "2",
+          "name": "Title 1",
+          "bbox": [
+            160,
+            117.83,
+            960,
+            250.67
+          ],
+          "text": "Click to edit Master title style",
+          "textPreview": "Click to edit Master title style",
+          "resolvedTextStyle": {
+            "anchor": 3,
+            "verticalAlignment": "bottom"
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Click to edit Master title style",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Click to edit Master title style"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "order": 2,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout1.xml/3",
+          "id": "3",
+          "name": "Subtitle 2",
+          "bbox": [
+            160,
+            378.17,
+            960,
+            173.83
+          ],
+          "text": "Click to edit Master subtitle style",
+          "textPreview": "Click to edit Master subtitle style",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Click to edit Master subtitle style",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Click to edit Master subtitle style"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "order": 3,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout1.xml/4",
+          "id": "4",
+          "name": "Date Placeholder 3",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "text": "18/09/26",
+          "textPreview": "18/09/26",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "18/09/26",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "18/09/26"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "order": 4,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout1.xml/5",
+          "id": "5",
+          "name": "Footer Placeholder 4",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "order": 5,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout1.xml/6",
+          "id": "6",
+          "name": "Slide Number Placeholder 5",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "text": "‹#›",
+          "textPreview": "‹#›",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "‹#›",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "‹#›"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scope": "master",
+      "id": "/ppt/slideMasters/slideMaster1.xml",
+      "type": "master",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/2",
+          "id": "2",
+          "name": "Title Placeholder 1",
+          "bbox": [
+            88,
+            38.33,
+            1104,
+            139.17
+          ],
+          "geometry": "rect",
+          "text": "Click to edit Master title style",
+          "textPreview": "Click to edit Master title style",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "vertical": 1,
+            "verticalAlignment": "middle",
+            "autoFit": "shrinkText",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            }
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Click to edit Master title style",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Click to edit Master title style"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "order": 2,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/3",
+          "id": "3",
+          "name": "Text Placeholder 2",
+          "bbox": [
+            88,
+            191.67,
+            1104,
+            456.83
+          ],
+          "geometry": "rect",
+          "text": "Click to edit Master text styles\nSecond level\nThird level\nFourth level\nFifth level",
+          "textPreview": "Click to edit Master text styles | Second level | Third level | Fourth level | Fifth level",
+          "resolvedTextStyle": {
+            "vertical": 1,
+            "autoFit": "shrinkText",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            }
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Click to edit Master text styles",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Click to edit Master text styles"
+                }
+              ]
+            },
+            {
+              "index": 2,
+              "text": "Second level",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Second level"
+                }
+              ]
+            },
+            {
+              "index": 3,
+              "text": "Third level",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Third level"
+                }
+              ]
+            },
+            {
+              "index": 4,
+              "text": "Fourth level",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Fourth level"
+                }
+              ]
+            },
+            {
+              "index": 5,
+              "text": "Fifth level",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Fifth level"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "order": 3,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/4",
+          "id": "4",
+          "name": "Date Placeholder 3",
+          "bbox": [
+            88,
+            667.33,
+            288,
+            38.33
+          ],
+          "geometry": "rect",
+          "text": "18/09/26",
+          "textPreview": "18/09/26",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "vertical": 1,
+            "verticalAlignment": "middle",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            }
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "18/09/26",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "18/09/26"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "order": 4,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/5",
+          "id": "5",
+          "name": "Footer Placeholder 4",
+          "bbox": [
+            424,
+            667.33,
+            432,
+            38.33
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "vertical": 1,
+            "verticalAlignment": "middle",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            }
+          }
+        },
+        {
+          "order": 5,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/6",
+          "id": "6",
+          "name": "Slide Number Placeholder 5",
+          "bbox": [
+            904,
+            667.33,
+            288,
+            38.33
+          ],
+          "geometry": "rect",
+          "text": "‹#›",
+          "textPreview": "‹#›",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "vertical": 1,
+            "verticalAlignment": "middle",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            }
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "‹#›",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "‹#›"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/547294r6",
+      "id": "2",
+      "name": "Rectangle 1",
+      "bbox": [
+        0,
+        0,
+        1280,
+        720
+      ],
+      "geometry": "rect",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 24,
+        "typeface": "Aptos",
+        "color": "lt1",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": ""
+          }
+        ]
+      },
+      "fillColor": {
+        "type": "theme",
+        "value": "tx1",
+        "transform": {
+          "opacity": 0.83
+        }
+      },
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/65g3298r",
+      "id": "5",
+      "name": "TextBox 4",
+      "bbox": [
+        35.81,
+        27.25,
+        1011.69,
+        61.39
+      ],
+      "geometry": "rect",
+      "text": "Hartadinata Abadi (Pefindo: idA+)",
+      "textPreview": "Hartadinata Abadi (Pefindo: idA+)",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "Aptos",
+        "color": "tx1",
+        "alignment": "left",
+        "wrap": "square",
+        "autoFit": "resizeShapeToFitText",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Hartadinata Abadi (Pefindo: idA+)"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Hartadinata Abadi (Pefindo: idA+)",
+          "runs": [
+            {
+              "index": 1,
+              "text": "Hartadinata",
+              "fontSize": 42.67,
+              "color": "bg1",
+              "bold": true
+            },
+            {
+              "index": 2,
+              "text": " Abadi ",
+              "fontSize": 42.67,
+              "color": "bg1",
+              "bold": true
+            },
+            {
+              "index": 3,
+              "text": "(",
+              "fontSize": 21.33,
+              "color": "bg1",
+              "bold": true
+            },
+            {
+              "index": 4,
+              "text": "Pefindo",
+              "fontSize": 21.33,
+              "color": "bg1",
+              "bold": true
+            },
+            {
+              "index": 5,
+              "text": ": ",
+              "fontSize": 21.33,
+              "color": "bg1",
+              "bold": true
+            },
+            {
+              "index": 6,
+              "text": "idA",
+              "fontSize": 21.33,
+              "color": "bg1",
+              "bold": true
+            },
+            {
+              "index": 7,
+              "text": "+)",
+              "fontSize": 21.33,
+              "color": "bg1",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/utg3698n",
+      "id": "9",
+      "name": "TextBox 8",
+      "bbox": [
+        40.35,
+        361.74,
+        1199.3,
+        345.74
+      ],
+      "geometry": "rect",
+      "text": "Profitability:\n2025: Profitabilitas tumbuh kuat, tetapi margin masih relatif tipis. Pendapatan FY25 naik 144% YoY menjadi Rp44,5 triliun dan laba bersih meningkat 121% YoY menjadi Rp978 miliar, ditopang oleh kenaikan volume penjualan emas dan harga jual. Namun, net profit margin turun dari 2,43% pada FY24 menjadi 2,20% pada FY25 dan sekitar 2,07% di 1H26, sehingga pertumbuhan laba masih lebih banyak berasal dari kenaikan skala penjualan dibandingkan perbaikan margin.\n\nSolvency:\n2026: Posisi solvabilitas membaik, tetapi likuiditas masih perlu diperhatikan. Debt-to-Equity turun dari 145,7% pada FY24 menjadi 124,7% pada FY25 dan sekitar 111% di 1H26. Net debt juga sempat turun menjadi Rp2,50 triliun pada FY25, sebelum kembali naik ke sekitar Rp3,21 triliun pada 1H26. Di sisi lain, financial leverage masih berada di kisaran 3,0x–3,3x dan quick ratio turun ke sekitar 0,26x, menunjukkan bahwa kebutuhan pendanaan modal kerja masih cukup tinggi.\nFree Cash Flow:\nFree cash flow berbalik positif menjadi Rp854 miliar pada FY25 dari -Rp609 miliar pada FY24, seiring perbaikan operating cash flow. Namun, FCF kembali negatif sekitar Rp670 miliar pada 1H26, menunjukkan arus kas masih cukup sensitif terhadap kebutuhan modal kerja dan inventory emas.",
+      "textPreview": "Profitability: | 2025: Profitabilitas tumbuh kuat, tetapi margin masih relatif tipis. Pendapatan FY25 naik 144% YoY menjadi Rp44,5 triliu...",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "Aptos",
+        "color": "tx1",
+        "alignment": "left",
+        "wrap": "square",
+        "autoFit": "resizeShapeToFitText",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 21,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Profitability:"
+          },
+          {
+            "index": 2,
+            "text": ""
+          },
+          {
+            "index": 3,
+            "text": "•2025: Profitabilitas tumbuh kuat, tetapi margin masih relatif tipis. Pendapatan FY25 naik 144% YoY menjadi Rp44,5 triliun dan laba bersih"
+          },
+          {
+            "index": 4,
+            "text": "meningkat 121% YoY menjadi Rp978 miliar, ditopang oleh kenaikan volume penjualan emas dan harga jual. Namun, net profit margin"
+          },
+          {
+            "index": 5,
+            "text": "turun dari 2,43% pada FY24 menjadi 2,20% pada FY25 dan sekitar 2,07% di 1H26, sehingga pertumbuhan laba masih lebih banyak"
+          },
+          {
+            "index": 6,
+            "text": "berasal dari kenaikan skala penjualan dibandingkan perbaikan margin."
+          },
+          {
+            "index": 7,
+            "text": ""
+          },
+          {
+            "index": 8,
+            "text": ""
+          },
+          {
+            "index": 9,
+            "text": ""
+          },
+          {
+            "index": 10,
+            "text": "Solvency:"
+          },
+          {
+            "index": 11,
+            "text": ""
+          },
+          {
+            "index": 12,
+            "text": "•2026: Posisi solvabilitas membaik, tetapi likuiditas masih perlu diperhatikan. Debt-to-Equity turun dari 145,7% pada FY24 menjadi"
+          },
+          {
+            "index": 13,
+            "text": "124,7% pada FY25 dan sekitar 111% di 1H26. Net debt juga sempat turun menjadi Rp2,50 triliun pada FY25, sebelum kembali naik ke"
+          },
+          {
+            "index": 14,
+            "text": "sekitar Rp3,21 triliun pada 1H26. Di sisi lain, financial leverage masih berada di kisaran 3,0x–3,3x dan quick ratio turun ke sekitar 0,26x,"
+          },
+          {
+            "index": 15,
+            "text": "menunjukkan bahwa kebutuhan pendanaan modal kerja masih cukup tinggi."
+          },
+          {
+            "index": 16,
+            "text": ""
+          },
+          {
+            "index": 17,
+            "text": "Free Cash Flow:"
+          },
+          {
+            "index": 18,
+            "text": ""
+          },
+          {
+            "index": 19,
+            "text": "•Free cash flow berbalik positif menjadi Rp854 miliar pada FY25 dari -Rp609 miliar pada FY24, seiring perbaikan operating cash flow."
+          },
+          {
+            "index": 20,
+            "text": "Namun, FCF kembali negatif sekitar Rp670 miliar pada 1H26, menunjukkan arus kas masih cukup sensitif terhadap kebutuhan modal"
+          },
+          {
+            "index": 21,
+            "text": "kerja dan inventory emas."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Profitability:",
+          "resolvedTextStyle": {
+            "alignment": "justify"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Profitability:",
+              "fontSize": 21.33,
+              "color": "bg1",
+              "bold": true,
+              "italic": true
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "2025: Profitabilitas tumbuh kuat, tetapi margin masih relatif tipis. Pendapatan FY25 naik 144% YoY menjadi Rp44,5 triliun dan laba bersih meningkat 121% YoY menjadi Rp978 miliar, ditopang oleh kenaikan volume penjualan emas dan harga jual. Namun, net profit margin turun dari 2,43% pada FY24 menjadi 2,20% pada FY25 dan sekitar 2,07% di 1H26, sehingga pertumbuhan laba masih lebih banyak berasal dari kenaikan skala penjualan dibandingkan perbaikan margin.",
+          "resolvedTextStyle": {
+            "alignment": "justify"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "2025: ",
+              "fontSize": 18.67,
+              "color": "bg1"
+            },
+            {
+              "index": 2,
+              "text": "Profitabilitas",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 3,
+              "text": " ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 4,
+              "text": "tumbuh",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 5,
+              "text": " ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 6,
+              "text": "kuat",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 7,
+              "text": ", ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 8,
+              "text": "tetapi",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 9,
+              "text": " margin ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 10,
+              "text": "masih",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 11,
+              "text": " ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 12,
+              "text": "relatif",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 13,
+              "text": " tipis. ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 14,
+              "text": "Pendapatan",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 15,
+              "text": " FY25 naik 144% YoY ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 16,
+              "text": "menjadi",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 17,
+              "text": " Rp44,5 ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 18,
+              "text": "triliun",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 19,
+              "text": " dan ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 20,
+              "text": "laba",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 21,
+              "text": " ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 22,
+              "text": "bersih",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 23,
+              "text": " ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 24,
+              "text": "meningkat",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 25,
+              "text": " 121% YoY ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 26,
+              "text": "menjadi",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 27,
+              "text": " Rp978 ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 28,
+              "text": "miliar",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 29,
+              "text": ", ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 30,
+              "text": "ditopang",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 31,
+              "text": " oleh ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 32,
+              "text": "kenaikan",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 33,
+              "text": " volume ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 34,
+              "text": "penjualan",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 35,
+              "text": " ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 36,
+              "text": "emas",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 37,
+              "text": " dan ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 38,
+              "text": "harga",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 39,
+              "text": " ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 40,
+              "text": "jual",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 41,
+              "text": ". ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 42,
+              "text": "Namun",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 43,
+              "text": ", net profit margin ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 44,
+              "text": "turun",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 45,
+              "text": " ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 46,
+              "text": "dari",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 47,
+              "text": " 2,43% pada FY24 ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 48,
+              "text": "menjadi",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 49,
+              "text": " 2,20% pada FY25 dan ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 50,
+              "text": "sekitar",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 51,
+              "text": " 2,07% di 1H26, ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 52,
+              "text": "sehingga",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 53,
+              "text": " ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 54,
+              "text": "pertumbuhan",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 55,
+              "text": " ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 56,
+              "text": "laba",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 57,
+              "text": " ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 58,
+              "text": "masih",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 59,
+              "text": " ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 60,
+              "text": "lebih",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 61,
+              "text": " ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 62,
+              "text": "banyak",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 63,
+              "text": " ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 64,
+              "text": "berasal",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 65,
+              "text": " ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 66,
+              "text": "dari",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 67,
+              "text": " ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 68,
+              "text": "kenaikan",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 69,
+              "text": " ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 70,
+              "text": "skala",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 71,
+              "text": " ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 72,
+              "text": "penjualan",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 73,
+              "text": " ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 74,
+              "text": "dibandingkan",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 75,
+              "text": " ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 76,
+              "text": "perbaikan",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 77,
+              "text": " margin.",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 4,
+          "text": "Solvency:",
+          "resolvedTextStyle": {
+            "alignment": "justify"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Solvency:",
+              "fontSize": 21.33,
+              "color": "bg1",
+              "bold": true,
+              "italic": true
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 5,
+          "text": "2026: Posisi solvabilitas membaik, tetapi likuiditas masih perlu diperhatikan. Debt-to-Equity turun dari 145,7% pada FY24 menjadi 124,7% pada FY25 dan sekitar 111% di 1H26. Net debt juga sempat turun menjadi Rp2,50 triliun pada FY25, sebelum kembali naik ke sekitar Rp3,21 triliun pada 1H26. Di sisi lain, financial leverage masih berada di kisaran 3,0x–3,3x dan quick ratio turun ke sekitar 0,26x, menunjukkan bahwa kebutuhan pendanaan modal kerja masih cukup tinggi.",
+          "resolvedTextStyle": {
+            "alignment": "justify"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "2026: ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 2,
+              "text": "Posisi",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 3,
+              "text": " ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 4,
+              "text": "solvabilitas",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 5,
+              "text": " ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 6,
+              "text": "membaik",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 7,
+              "text": ", ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 8,
+              "text": "tetapi",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 9,
+              "text": " ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 10,
+              "text": "likuiditas",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 11,
+              "text": " ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 12,
+              "text": "masih",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 13,
+              "text": " ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 14,
+              "text": "perlu",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 15,
+              "text": " ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 16,
+              "text": "diperhatikan",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 17,
+              "text": ". Debt-to-Equity ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 18,
+              "text": "turun",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 19,
+              "text": " ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 20,
+              "text": "dari",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 21,
+              "text": " 145,7% pada FY24 ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 22,
+              "text": "menjadi",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 23,
+              "text": " 124,7% pada FY25 dan ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 24,
+              "text": "sekitar",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 25,
+              "text": " 111% di 1H26. Net debt juga ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 26,
+              "text": "sempat",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 27,
+              "text": " ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 28,
+              "text": "turun",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 29,
+              "text": " ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 30,
+              "text": "menjadi",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 31,
+              "text": " Rp2,50 ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 32,
+              "text": "triliun",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 33,
+              "text": " pada FY25, ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 34,
+              "text": "sebelum",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 35,
+              "text": " ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 36,
+              "text": "kembali",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 37,
+              "text": " naik ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 38,
+              "text": "ke",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 39,
+              "text": " ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 40,
+              "text": "sekitar",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 41,
+              "text": " Rp3,21 ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 42,
+              "text": "triliun",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 43,
+              "text": " pada 1H26. Di ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 44,
+              "text": "sisi",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 45,
+              "text": " lain, financial leverage ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 46,
+              "text": "masih",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 47,
+              "text": " ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 48,
+              "text": "berada",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 49,
+              "text": " di ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 50,
+              "text": "kisaran",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 51,
+              "text": " 3,0x–3,3x dan quick ratio ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 52,
+              "text": "turun",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 53,
+              "text": " ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 54,
+              "text": "ke",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 55,
+              "text": " ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 56,
+              "text": "sekitar",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 57,
+              "text": " 0,26x, ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 58,
+              "text": "menunjukkan",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 59,
+              "text": " ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 60,
+              "text": "bahwa",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 61,
+              "text": " ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 62,
+              "text": "kebutuhan",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 63,
+              "text": " ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 64,
+              "text": "pendanaan",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 65,
+              "text": " modal ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 66,
+              "text": "kerja",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 67,
+              "text": " ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 68,
+              "text": "masih",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 69,
+              "text": " ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 70,
+              "text": "cukup",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 71,
+              "text": " ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 72,
+              "text": "tinggi",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 73,
+              "text": ".",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 6,
+          "text": "Free Cash Flow:",
+          "resolvedTextStyle": {
+            "alignment": "justify"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Free Cash Flow:",
+              "fontSize": 21.33,
+              "color": "bg1",
+              "bold": true,
+              "italic": true
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 7,
+          "text": "Free cash flow berbalik positif menjadi Rp854 miliar pada FY25 dari -Rp609 miliar pada FY24, seiring perbaikan operating cash flow. Namun, FCF kembali negatif sekitar Rp670 miliar pada 1H26, menunjukkan arus kas masih cukup sensitif terhadap kebutuhan modal kerja dan inventory emas.",
+          "resolvedTextStyle": {
+            "alignment": "justify"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Free cash flow ",
+              "fontSize": 18.67,
+              "typeface": "-webkit-standard",
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 2,
+              "text": "berbalik",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 3,
+              "text": " ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 4,
+              "text": "positif",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 5,
+              "text": " ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 6,
+              "text": "menjadi",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 7,
+              "text": " Rp854 ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 8,
+              "text": "miliar",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 9,
+              "text": " pada FY25",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 10,
+              "text": " ",
+              "fontSize": 18.67,
+              "typeface": "-webkit-standard",
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 11,
+              "text": "dari",
+              "fontSize": 18.67,
+              "typeface": "-webkit-standard",
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 12,
+              "text": " ",
+              "fontSize": 18.67,
+              "typeface": "-webkit-standard",
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 13,
+              "text": "-Rp609 ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 14,
+              "text": "miliar",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 15,
+              "text": " pada FY24",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 16,
+              "text": ", ",
+              "fontSize": 18.67,
+              "typeface": "-webkit-standard",
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 17,
+              "text": "seiring",
+              "fontSize": 18.67,
+              "typeface": "-webkit-standard",
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 18,
+              "text": " ",
+              "fontSize": 18.67,
+              "typeface": "-webkit-standard",
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 19,
+              "text": "perbaikan",
+              "fontSize": 18.67,
+              "typeface": "-webkit-standard",
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 20,
+              "text": " operating cash flow. ",
+              "fontSize": 18.67,
+              "typeface": "-webkit-standard",
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 21,
+              "text": "Namun",
+              "fontSize": 18.67,
+              "typeface": "-webkit-standard",
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 22,
+              "text": ", FCF ",
+              "fontSize": 18.67,
+              "typeface": "-webkit-standard",
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 23,
+              "text": "kembali",
+              "fontSize": 18.67,
+              "typeface": "-webkit-standard",
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 24,
+              "text": " ",
+              "fontSize": 18.67,
+              "typeface": "-webkit-standard",
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 25,
+              "text": "negatif",
+              "fontSize": 18.67,
+              "typeface": "-webkit-standard",
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 26,
+              "text": " ",
+              "fontSize": 18.67,
+              "typeface": "-webkit-standard",
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 27,
+              "text": "sekitar",
+              "fontSize": 18.67,
+              "typeface": "-webkit-standard",
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 28,
+              "text": " ",
+              "fontSize": 18.67,
+              "typeface": "-webkit-standard",
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 29,
+              "text": "Rp670 ",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 30,
+              "text": "miliar",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 31,
+              "text": " pada 1H26",
+              "fontSize": 18.67,
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 32,
+              "text": ", ",
+              "fontSize": 18.67,
+              "typeface": "-webkit-standard",
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 33,
+              "text": "menunjukkan",
+              "fontSize": 18.67,
+              "typeface": "-webkit-standard",
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 34,
+              "text": " ",
+              "fontSize": 18.67,
+              "typeface": "-webkit-standard",
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 35,
+              "text": "arus",
+              "fontSize": 18.67,
+              "typeface": "-webkit-standard",
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 36,
+              "text": " kas ",
+              "fontSize": 18.67,
+              "typeface": "-webkit-standard",
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 37,
+              "text": "masih",
+              "fontSize": 18.67,
+              "typeface": "-webkit-standard",
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 38,
+              "text": " ",
+              "fontSize": 18.67,
+              "typeface": "-webkit-standard",
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 39,
+              "text": "cukup",
+              "fontSize": 18.67,
+              "typeface": "-webkit-standard",
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 40,
+              "text": " ",
+              "fontSize": 18.67,
+              "typeface": "-webkit-standard",
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 41,
+              "text": "sensitif",
+              "fontSize": 18.67,
+              "typeface": "-webkit-standard",
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 42,
+              "text": " ",
+              "fontSize": 18.67,
+              "typeface": "-webkit-standard",
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 43,
+              "text": "terhadap",
+              "fontSize": 18.67,
+              "typeface": "-webkit-standard",
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 44,
+              "text": " ",
+              "fontSize": 18.67,
+              "typeface": "-webkit-standard",
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 45,
+              "text": "kebutuhan",
+              "fontSize": 18.67,
+              "typeface": "-webkit-standard",
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 46,
+              "text": " modal ",
+              "fontSize": 18.67,
+              "typeface": "-webkit-standard",
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 47,
+              "text": "kerja",
+              "fontSize": 18.67,
+              "typeface": "-webkit-standard",
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 48,
+              "text": " dan inventory ",
+              "fontSize": 18.67,
+              "typeface": "-webkit-standard",
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 49,
+              "text": "emas",
+              "fontSize": 18.67,
+              "typeface": "-webkit-standard",
+              "color": "#FFFFFF"
+            },
+            {
+              "index": 50,
+              "text": ".",
+              "fontSize": 18.67,
+              "typeface": "-webkit-standard",
+              "color": "#FFFFFF"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "kind": "chart",
+      "scope": "slide",
+      "aid": "ch/ofyt8jq1",
+      "id": "10",
+      "name": "Chart 6",
+      "bbox": [
+        840.55,
+        99.07,
+        399.1,
+        270.09
+      ],
+      "chartType": "bar"
+    },
+    {
+      "order": 5,
+      "kind": "chart",
+      "scope": "slide",
+      "aid": "ch/pg7ahorm",
+      "id": "11",
+      "name": "Chart 7",
+      "bbox": [
+        440.45,
+        99.07,
+        399.1,
+        270.09
+      ],
+      "chartType": "bar"
+    },
+    {
+      "order": 6,
+      "kind": "chart",
+      "scope": "slide",
+      "aid": "ch/2dgr698v",
+      "id": "12",
+      "name": "Chart 10",
+      "bbox": [
+        40.85,
+        99.07,
+        399.1,
+        270.09
+      ],
+      "chartType": "bar"
+    }
+  ],
+  "composeRuns": []
+}

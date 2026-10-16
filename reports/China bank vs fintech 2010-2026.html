@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>China Banks vs Fintech</title>
+<meta name="description" content="Conventional banks vs fintech in China, 2010–2026 H1: market share, growth, client usage and how the two sectors coexist.">
+<style>
+:root{
+  color-scheme:light;
+  --bg:#f6f5f2; --surface:#fcfcfb; --surface-2:#f0efec; --line:#e2e0da;
+  --ink:#0b0b0b; --ink-2:#52514e; --ink-3:#7a7974;
+  --bank:#2a78d6; --fin:#eb6834; --third:#1baf7a; --neutral:#9b9a95;
+  --accent:#184f95; --callout:#eef4fc;
+  --grid:rgba(0,0,0,.07);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#121211; --surface:#1a1a19; --surface-2:#242422; --line:#33332f;
+    --ink:#ffffff; --ink-2:#c3c2b7; --ink-3:#8f8e86;
+    --bank:#3987e5; --fin:#d95926; --third:#199e70; --neutral:#77766f;
+    --accent:#86b6ef; --callout:#1b2533;
+    --grid:rgba(255,255,255,.08);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#121211; --surface:#1a1a19; --surface-2:#242422; --line:#33332f;
+  --ink:#ffffff; --ink-2:#c3c2b7; --ink-3:#8f8e86;
+  --bank:#3987e5; --fin:#d95926; --third:#199e70; --neutral:#77766f;
+  --accent:#86b6ef; --callout:#1b2533;
+  --grid:rgba(255,255,255,.08);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif}
+.wrap{max-width:1080px;margin:0 auto;padding:32px 16px 80px}
+header.hero{padding:8px 0 24px;border-bottom:1px solid var(--line);margin-bottom:28px}
+.eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+h1{font-size:clamp(28px,4.4vw,42px);line-height:1.12;margin:8px 0 12px;letter-spacing:-.02em}
+h2{font-size:26px;line-height:1.2;margin:56px 0 8px;letter-spacing:-.01em}
+h3{font-size:18px;margin:28px 0 8px}
+p{margin:0 0 14px;color:var(--ink)}
+.lede{font-size:18px;color:var(--ink-2);max-width:820px}
+.meta{font-size:13px;color:var(--ink-3);margin-top:10px}
+.sec-q{font-size:13px;color:var(--accent);font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+nav.toc{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0}
+nav.toc a{font-size:13px;color:var(--ink-2);text-decoration:none;border:1px solid var(--line);background:var(--surface);padding:5px 10px;border-radius:999px}
+nav.toc a:hover{color:var(--ink);border-color:var(--ink-3)}
+.tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:24px 0 8px}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.tile .k{font-size:12px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.05em;font-weight:600}
+.tile .v{font-size:28px;font-weight:700;letter-spacing:-.02em;margin:4px 0 2px;font-variant-numeric:tabular-nums}
+.tile .s{font-size:13px;color:var(--ink-2);line-height:1.4}
+.dot{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:baseline}
+.dot.b{background:var(--bank)}.dot.f{background:var(--fin)}.dot.t{background:var(--third)}
+.answer{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;padding:16px 18px;margin:16px 0}
+.answer h4{margin:0 0 6px;font-size:15px}
+.answer p:last-child{margin-bottom:0}
+.punch{background:var(--callout);border-radius:10px;padding:14px 18px;margin:18px 0 8px;font-weight:600}
+.punch::before{content:"Punch line — ";color:var(--accent);font-weight:700}
+.flow{display:grid;grid-template-columns:110px 1fr;gap:6px 16px;margin:12px 0}
+.flow dt{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);padding-top:3px}
+.flow dd{margin:0}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+figure.chart{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 16px 12px;margin:18px 0}
+figure.chart h5{margin:0 0 2px;font-size:15px}
+figure.chart .sub{font-size:13px;color:var(--ink-2);margin:0 0 10px}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:13px;color:var(--ink-2);margin:0 0 8px}
+.cbox{position:relative;height:280px}
+figcaption{font-size:12px;color:var(--ink-3);margin-top:8px;line-height:1.45}
+.tbl{overflow-x:auto;margin:14px 0;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:8px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-3);background:var(--surface-2);font-weight:700}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:1px 7px;border-radius:999px;border:1px solid var(--line);color:var(--ink-2);white-space:nowrap}
+.stack{display:grid;gap:8px;margin:16px 0}
+.layer{display:grid;grid-template-columns:170px 1fr 1fr;gap:10px;align-items:stretch}
+.layer .lbl{font-weight:700;font-size:14px;padding:10px 12px;background:var(--surface-2);border-radius:8px}
+.layer .cell{font-size:13px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);background:var(--surface)}
+.layer .cell.fw{border-left:4px solid var(--fin)}
+.layer .cell.bk{border-left:4px solid var(--bank)}
+.layer.head .cell{border:none;background:none;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-3);padding:0 12px}
+.layer.head .lbl{background:none}
+.timeline{border-left:2px solid var(--line);margin:16px 0 16px 6px;padding-left:18px}
+.timeline .ph{position:relative;margin:0 0 18px}
+.timeline .ph::before{content:"";position:absolute;left:-25px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--surface);border:2px solid var(--accent)}
+.timeline .yr{font-size:12px;font-weight:700;color:var(--accent);letter-spacing:.05em}
+.timeline .t{font-weight:700;margin:0 0 4px}
+.note{font-size:13px;color:var(--ink-2)}
+.src{font-size:12.5px;color:var(--ink-2)}
+.src li{margin:0 0 4px}
+a{color:var(--accent)}
+.toggle{position:fixed;top:12px;right:12px;font-size:12px;background:var(--surface);color:var(--ink-2);border:1px solid var(--line);border-radius:999px;padding:5px 10px;cursor:pointer;z-index:5}
+@media (max-width:820px){
+  .tiles{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .grid2{grid-template-columns:1fr}
+  .layer{grid-template-columns:1fr}
+  .layer.head{display:none}
+  .flow{grid-template-columns:1fr}
+  .flow dt{padding-top:8px}
+}
+@media print{.toggle,nav.toc{display:none}figure.chart,.tbl{break-inside:avoid}}
+</style>
+</head>
+<body>
+<button class="toggle" id="themeBtn" type="button" aria-label="Toggle light or dark theme">Theme</button>
+<div class="wrap">
+
+<header class="hero">
+  <div class="eyebrow">China financials · Sector deep-dive · Data to 2026 H1 (market data to 30 Sep 2026)</div>
+  <h1>Banks vs fintech in China, 2010–2026: fintech won the click, banks kept the balance sheet</h1>
+  <p class="lede">Over 16 years, fintech platforms took about 80% of China's electronic payment <em>transactions</em>, but banks still move about 92% of the <em>value</em>, hold almost all deposits and fund most credit. The two sectors did not replace each other. They split into layers of one stack, and since 2020 regulation has moved bargaining power back toward the licensed balance sheet.</p>
+  <div class="meta">Prepared 14 Oct 2026. Sources: PBOC, NFRA/CBRC, NBS, CNNIC, CFCA, PCAC, AMAC, company filings, Bloomberg Intelligence (BI) and the Bloomberg <code>TIM - 11.xlsx</code> peer panel. 2026 figures are H1/Q2 actuals and are not annualised. Contains licensed Bloomberg content: for internal use only, do not redistribute.</div>
+  <nav class="toc" aria-label="Sections">
+    <a href="#answers">Answers</a><a href="#share">1 · Market share</a><a href="#growth">2 · Growth</a><a href="#usage">3 · Client usage</a><a href="#coexist">4 · Coexistence</a><a href="#outlook">5 · Outlook &amp; positioning</a><a href="#data">Data &amp; sources</a>
+  </nav>
+</header>
+
+<section id="answers">
+  <div class="tiles">
+    <div class="tile"><div class="k"><span class="dot f"></span>Fintech · txn count</div><div class="v">80.0%</div><div class="s">Non-bank share of electronic payment count, 2026 H1 (37.3% in 2013)</div></div>
+    <div class="tile"><div class="k"><span class="dot b"></span>Banks · txn value</div><div class="v">92.4%</div><div class="s">Bank share of electronic payment value, 2026 H1 (99.2% in 2013)</div></div>
+    <div class="tile"><div class="k"><span class="dot f"></span>Wallet duopoly</div><div class="v">~95%</div><div class="s">Alipay + WeChat Pay share of retail mobile payments, 2026 (IMF)</div></div>
+    <div class="tile"><div class="k"><span class="dot b"></span>Bank median P/B</div><div class="v">0.60x</div><div class="s">10 listed banks, Jun-2026, vs 2.06x for the fintech/platform panel</div></div>
+  </div>
+
+  <div class="answer"><h4>Q1 · Market share: how much goes to banks and how much to fintech?</h4>
+  <p>The answer depends on the layer. Fintech has <strong>80.0% of transaction count but only 7.6% of value</strong> (2026 H1). Alipay and WeChat Pay control <strong>~95% of retail mobile wallets</strong>. Third-party platforms overtook banks in mutual-fund distribution for the first time in H1 2026 (<strong>39.2% vs 38.7%</strong>). Banks still hold <strong>~99.7% of system loans and deposits</strong>. WeBank and MYbank, the platform-born licensed banks, have about 0.3% of loans. Ant alone enabled about <strong>21% of short-term consumer credit</strong> at its 2020 peak, and 98% of that was funded by banks.</p></div>
+  <div class="answer"><h4>Q2 · Growth: who grew faster?</h4>
+  <p>Fintech grew faster in activity. Non-bank payment value compounded at <strong>35.0% a year (2013–2025)</strong>, against 10.7% for all bank e-payments. Banks grew faster in scale: assets went from <strong>RMB95tn to RMB498tn</strong>. But bank profitability halved, with sector ROE falling from <strong>17.5% to 7.7%</strong> and median NIM from 2.83% to 1.38%. Platform economics peaked in 2019–2021 and then split: wealth and brokerage platforms are growing, while loan facilitators are shrinking (2026E consensus net income <strong>−21%</strong>).</p></div>
+  <div class="answer"><h4>Q3 · Usage: what do clients use each for?</h4>
+  <p>Clients use fintech for <strong>frequent, small, contextual</strong> jobs: 77.6% of mobile-payment users mostly pay under RMB100, plus small-ticket credit and self-directed funds. They use banks for <strong>large, sticky, trust-heavy</strong> jobs: salary, deposits (RMB167tn household), mortgages, affluent wealth and corporate finance. The user does not choose one or the other: <strong>80.9% of wallet payers fund payments from a bank debit card</strong> and 69.3% from a credit card.</p></div>
+</section>
+
+<!-- ============ 1. MARKET SHARE ============ -->
+<section id="share">
+  <div class="sec-q">Question 1</div>
+  <h2>Market share is a stack, not a pie</h2>
+  <p>A single "bank vs fintech" share is misleading because one purchase touches both sectors. It can be initiated in Alipay, funded from an ICBC deposit, cleared through NetsUnion and settled in central-bank money. So we measure share separately at each layer of the stack.</p>
+
+  <div class="stack" role="table" aria-label="Who owns each layer of China's finance stack">
+    <div class="layer head" role="row"><div class="lbl"></div><div class="cell">Fintech / platforms</div><div class="cell">Conventional banks</div></div>
+    <div class="layer" role="row"><div class="lbl">Interface &amp; frequency</div><div class="cell fw"><strong>Dominant.</strong> ~95% of retail mobile wallets; 80% of e-payment count; 88.5% of users pay by phone daily</div><div class="cell bk">Bank apps are universal (88% of individuals use mobile banking) but are opened less often; ICBC has &gt;290m MAU</div></div>
+    <div class="layer" role="row"><div class="lbl">Product distribution</div><div class="cell fw"><strong>Rising.</strong> 39.2% of top-100 fund holdings (H1 2026). Ant is the #1 distributor with RMB2.21tn</div><div class="cell bk">38.7% of fund holdings and all of the RMB33.7tn bank WMPs. Distribution is now shared about 50/50</div></div>
+    <div class="layer" role="row"><div class="lbl">Clearing rails</div><div class="cell fw">NetsUnion (PBOC-led, platform-owned stakes) carries 77% of rail count</div><div class="cell bk">UnionPay/CIPS/HVPS carry the large values; NetsUnion has 66% of value</div></div>
+    <div class="layer" role="row"><div class="lbl">Credit risk</div><div class="cell fw">Originates/assists; risk-bearing is mostly limited by rule (co-lenders ≥30%)</div><div class="cell bk"><strong>Dominant.</strong> RMB275.7tn loans; funds ~98% of platform-enabled credit</div></div>
+    <div class="layer" role="row"><div class="lbl">Deposits &amp; settlement</div><div class="cell fw">Wallet balances only; 100% of customer reserves must sit at the PBOC since 2019</div><div class="cell bk"><strong>Dominant.</strong> RMB336.1tn deposits; final settlement; custody</div></div>
+  </div>
+
+  <h3>1.1 Payments: fintech wins count, banks keep value</h3>
+  <dl class="flow">
+    <dt>What</dt><dd>The non-bank share of combined electronic payment count rose from <strong>37.3% in 2013 to 80.0% in 2026 H1</strong>. Its share of value peaked at <strong>10.7% in 2021</strong> and slipped back to <strong>7.6%</strong>.</dd>
+    <dt>Why</dt><dd>QR codes made small payments nearly free and social (red packets, P2P). Large transfers such as payroll, B2B, property and securities settlement still run bank-to-bank. The 2021–2025 value decline reflects the platform rectification, weaker consumption and the 2023 statistical change that removed double-counted inter-provider flows.</dd>
+    <dt>Impact</dt><dd>Average non-bank tickets fell from about RMB601 to RMB255, while bank tickets are about RMB11,000. Platforms own <em>behavioural data and frequency</em>. Banks own <em>liquidity and settlement value</em>, and the value layer is where interest margin and float income sit.</dd>
+  </dl>
+  <figure class="chart">
+    <h5>Non-bank share of China's electronic payments, 2013–2026 H1</h5>
+    <p class="sub">Non-bank network payments ÷ (bank e-payments + non-bank network payments). Percent.</p>
+    <div class="legend"><span><span class="dot f"></span>Share of transaction count</span><span><span class="dot b"></span>Share of transaction value</span></div>
+    <div class="cbox"><canvas id="cShare" aria-label="Line chart of non-bank share of payment count and value"></canvas></div>
+    <figcaption>Source: PBOC Payment System Reports (2013–2023), 2025 figures as reproduced in a listed-company filing, and PBOC Q1–Q2 2026 data. 2024 omitted because no verified full-year bank total was retrieved. Breaks: 2015 (bank standard broadened), 2018 (merchant QR moved to acquiring) and 2023 (transfers included, cooperation de-duplicated). The two series overlap, so this is an activity index, not exclusive ownership.</figcaption>
+  </figure>
+
+  <div class="grid2">
+    <figure class="chart">
+      <h5>Alipay + WeChat Pay share of mobile payments</h5>
+      <p class="sub">Combined share of third-party mobile payment, %</p>
+      <div class="cbox" style="height:240px"><canvas id="cDuo" aria-label="Wallet duopoly share over time"></canvas></div>
+      <figcaption>Analysys (2015–1Q19, via BI), iResearch (2Q20), AMRO (2024), IMF (2026, "close to 95%"). Different providers and bases, so read this as a range. In 2015 the split was Alipay 72.9% / Tenpay 17.4%. By 2024 it was 55% / 39%: WeChat's social P2P closed the gap.</figcaption>
+    </figure>
+    <figure class="chart">
+      <h5>Mutual-fund distribution: channel share of top-100 holdings</h5>
+      <p class="sub">Non-money-market fund holdings, %</p>
+      <div class="legend"><span><span class="dot b"></span>Banks</span><span><span class="dot f"></span>Third-party platforms (+insurers)</span><span><span class="dot t"></span>Brokers</span></div>
+      <div class="cbox" style="height:240px"><canvas id="cFund" aria-label="Fund distribution channel shares"></canvas></div>
+      <figcaption>AMAC top-100 lists via Jiemian/36Kr/Tiger. H2 2024 is computed from channel totals (banks RMB4.22tn, third-party RMB3.25tn, brokers RMB1.90tn). H1 2026: RMB5.33tn / 5.40tn / 3.05tn. The big four banks historically held ~60–70% of fund sales.</figcaption>
+    </figure>
+  </div>
+
+  <h3>1.2 Share scorecard by product (latest)</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Market</th><th>Metric</th><th class="n">Fintech / platform</th><th class="n">Banks</th><th>Trend 2010→2026</th></tr></thead>
+    <tbody>
+      <tr><td>E-payments, count</td><td>2026 H1 activity index</td><td class="n">80.0%</td><td class="n">20.0%</td><td>Fintech ↑ from 37% (2013)</td></tr>
+      <tr><td>E-payments, value</td><td>2026 H1 activity index</td><td class="n">7.6%</td><td class="n">92.4%</td><td>Fintech peaked at 10.7% (2021)</td></tr>
+      <tr><td>Retail mobile wallet</td><td>Alipay + WeChat Pay</td><td class="n">~95%</td><td class="n">~5% (incl. UnionPay)</td><td>Duopoly since ~2016</td></tr>
+      <tr><td>Fund distribution</td><td>Top-100 non-MMF holdings, H1 2026</td><td class="n">39.2%</td><td class="n">38.7%</td><td>First time platforms lead</td></tr>
+      <tr><td>Wealth products</td><td>Bank WMPs RMB33.7tn vs Yu'e Bao RMB0.71tn</td><td class="n">Yu'e Bao ≈2%</td><td class="n">WMPs dominant</td><td>Yu'e Bao peaked at RMB1.69tn (Mar-2018)</td></tr>
+      <tr><td>Short-term consumer credit</td><td>Ant-enabled balance ÷ system, Jun-2020</td><td class="n">~21% (enabled)</td><td class="n">~98% of Ant's was funded by FIs</td><td>Platform share capped after 2021</td></tr>
+      <tr><td>Total loans</td><td>WeBank + MYbank vs system, 2024–25</td><td class="n">~0.3%</td><td class="n">~99.7%</td><td>BI expected ~1% by 2025 (2019 view)</td></tr>
+      <tr><td>Deposits</td><td>MYbank RMB344bn vs RMB336tn system</td><td class="n">&lt;0.2%</td><td class="n">&gt;99.8%</td><td>Platform deposit sales banned in 2021</td></tr>
+    </tbody></table></div>
+  <p class="punch">Fintech's share is highest where tickets are smallest and lowest where capital is required. The question is not "who wins" but which layer earns the economics, and since 2020 that has been the licensed layer.</p>
+</section>
+
+<!-- ============ 2. GROWTH ============ -->
+<section id="growth">
+  <div class="sec-q">Question 2</div>
+  <h2>Growth: fintech compounded activity, banks compounded assets but lost returns</h2>
+  <dl class="flow">
+    <dt>What</dt><dd>Bank mobile-payment value compounded at <strong>58.5% a year</strong> (2010–2025) and non-bank network payments at <strong>35.0%</strong> (2013–2025). Banking assets compounded at <strong>11.4%</strong>, but sector profit grew only <strong>6.8%</strong> a year and ROE fell from 17.5% to 7.7%.</dd>
+    <dt>Why</dt><dd>Fintech did not stop banks digitising; it forced them to. Bank margins were compressed for three reasons: interest-rate liberalisation (2013–2015, partly triggered by Yu'e Bao), policy-directed lending to SMEs, property and LGFVs, and repeated LPR/deposit-rate cuts. Platform growth slowed in 2020–2021, when regulators removed float income, P2P and thin-capital lending.</dd>
+    <dt>Impact</dt><dd>Banks are priced as low-growth utilities (median P/B from 1.6x to 0.6x, 4.2% yield). Platforms trade at a premium (2–3x book), but the premium now depends on the sub-model: brokers and wealth platforms are re-rating, while lenders trade at 1.8–3.6x forward P/E.</dd>
+  </dl>
+
+  <div class="grid2">
+    <figure class="chart">
+      <h5>Payment value: bank mobile vs non-bank network</h5>
+      <p class="sub">RMB trillion, log scale</p>
+      <div class="legend"><span><span class="dot b"></span>Bank mobile payments</span><span><span class="dot f"></span>Non-bank network payments</span></div>
+      <div class="cbox"><canvas id="cPayVal" aria-label="Payment value growth"></canvas></div>
+      <figcaption>PBOC. 2010–2012 non-bank figures are consultancy estimates of online payments. 2026 is H1 only and is shown as a hollow point. Bank mobile overtook non-bank in value because large transfers moved from PC to phone.</figcaption>
+    </figure>
+    <figure class="chart">
+      <h5>User adoption: wallet payers vs mobile-banking users</h5>
+      <p class="sub">% of internet users (CNNIC) / % of individuals surveyed (CFCA)</p>
+      <div class="legend"><span><span class="dot f"></span>Network-payment users (CNNIC)</span><span><span class="dot b"></span>Personal mobile-banking users (CFCA)</span></div>
+      <div class="cbox"><canvas id="cUsers" aria-label="User adoption"></canvas></div>
+      <figcaption>CNNIC: 167m payment users (32.5%) in 2011 to 1.029bn (92.9%) in Dec-2024. CFCA: 42% (2016), 71% (2020), 88% (2024); 2015 is derived. Different denominators. Banks reached near-universal app adoption about four years after wallets did.</figcaption>
+    </figure>
+  </div>
+
+  <div class="grid2">
+    <figure class="chart">
+      <h5>Profitability: median ROE</h5>
+      <p class="sub">Bloomberg common-equity ROE, %, year-end medians</p>
+      <div class="legend"><span><span class="dot b"></span>10 listed banks</span><span><span class="dot f"></span>Fintech/platform panel (n=3→9)</span></div>
+      <div class="cbox"><canvas id="cRoe" aria-label="ROE banks vs fintech"></canvas></div>
+      <figcaption>Bloomberg <code>TIM - 11.xlsx</code>, audit-cleaned: CICC removed, duplicate JD removed, latest observation per year. The fintech panel grows from 3 names in 2010 (Tencent, Ping An, East Money) to 9, so early values reflect composition.</figcaption>
+    </figure>
+    <figure class="chart">
+      <h5>Valuation: median price-to-book</h5>
+      <p class="sub">x, year-end medians</p>
+      <div class="legend"><span><span class="dot b"></span>10 listed banks</span><span><span class="dot f"></span>Fintech/platform panel (n≤6 with P/B)</span></div>
+      <div class="cbox"><canvas id="cPb" aria-label="P/B banks vs fintech"></canvas></div>
+      <figcaption>Same source. Bank P/B fell below 1.0x in 2016 and bottomed at 0.47x in 2022. The 2024–25 rebound was dividend-led (SOE recapitalisation, "national team" buying). Platform P/B compressed from about 9x (2014–15) to about 2x by mid-2026.</figcaption>
+    </figure>
+  </div>
+
+  <figure class="chart">
+    <h5>Bank margin squeeze vs platform revenue growth</h5>
+    <p class="sub">Indexed, 2019 = 100</p>
+    <div class="legend"><span><span class="dot b"></span>Bank sector net profit (NFRA)</span><span><span class="dot f"></span>Tencent FinTech &amp; Business Services revenue</span><span><span class="dot t"></span>Bank median NIM (Bloomberg)</span></div>
+    <div class="cbox"><canvas id="cIdx" aria-label="Indexed bank profit, NIM and Tencent fintech revenue"></canvas></div>
+    <figcaption>Tencent FBS: RMB101bn (2019) to RMB229bn (2025) per company filings via BI; the 2026E/27E consensus is RMB252bn/275bn (dashed). Includes cloud. Bank profit: NFRA (2019 RMB2.0tn, 2020 1.94tn, 2023–25 ~2.3–2.4tn). NIM: workbook median 2.43% (2019) to 1.36% (2025).</figcaption>
+  </figure>
+
+  <h3>2.1 Growth scorecard</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Dimension</th><th>Conventional banks</th><th>Fintech / platforms</th><th>Edge</th></tr></thead>
+    <tbody>
+      <tr><td>Transactions</td><td>Bank e-payment value CAGR 10.7% (2013–25); mobile value 58.5% (2010–25)</td><td>Non-bank value CAGR 35.0%, count 45.0% (2013–25); flat since 2021</td><td><span class="tag">Fintech to 2021, then banks</span></td></tr>
+      <tr><td>Users</td><td>Mobile banking 72.6m users (2010) → 88% of individuals (2024); ICBC &gt;290m MAU</td><td>Payment users 167m (2011) → 1.03bn (2024); Alipay &gt;1bn annual users</td><td><span class="tag">Fintech, earlier</span></td></tr>
+      <tr><td>Balance sheet</td><td>Assets RMB95tn → 498tn (CAGR 11.4%); loans 50.9tn → 275.7tn</td><td>Ant Consumer Finance RMB90bn (2022) → 303bn (2025); WeBank loans 4bn (2015) → 436bn (2024)</td><td><span class="tag">Banks, by scale</span></td></tr>
+      <tr><td>Revenue</td><td>Sector profit CAGR 6.8% (2010–25); flat since 2023</td><td>Ant revenue RMB120.6bn (2019); Tencent FBS 14.6% CAGR (2019–25); 9-name panel median 12.8% (2019–25)</td><td><span class="tag">Fintech</span></td></tr>
+      <tr><td>Returns</td><td>ROE 17.5% → 7.7% (sector); NIM 1.42% (2025)</td><td>Median ROE 14.8% (2025); Ant profit RMB38bn (2024) → 15bn (2025, BI calc.)</td><td><span class="tag">Fintech, but falling</span></td></tr>
+      <tr><td>Risk</td><td>NPL 1.13% (2010) → 1.52% (2026 Q2); CAR 15.3%</td><td>Provisions +31% (Lufax), +47% (Qfin) in 2025; Ant CF credit cost +56%</td><td><span class="tag">Banks more stable</span></td></tr>
+    </tbody></table></div>
+  <p class="punch">Fintech took the growth and banks kept the scale. Since 2021 platform growth has depended on bank funding and regulatory permission, so the two growth curves are now linked rather than competing.</p>
+</section>
+
+<!-- ============ 3. USAGE ============ -->
+<section id="usage">
+  <div class="sec-q">Question 3</div>
+  <h2>Client usage: same customer, different jobs</h2>
+  <dl class="flow">
+    <dt>What</dt><dd>In 2025, 88.5% of mobile-payment users paid by phone every day, 93.1% used QR codes, and 77.6% usually paid under RMB100. The money behind those payments was mostly bank money: <strong>80.9% fund from debit cards, 69.3% from credit cards</strong> and only 41.2% from wallet balances (PCAC 2025 survey).</dd>
+    <dt>Why</dt><dd>Wallets solve <em>context</em>: merchants, social, e-commerce and super-app services. Banks solve <em>trust and size</em>: payroll, deposit insurance, mortgages and RM advice. Regulation reinforces the split: platforms cannot take deposits, and since 2021 they cannot sell bank deposits online.</dd>
+    <dt>Impact</dt><dd>Platform revenue comes from <em>fees on others' balance sheets</em>. Ant's H1 2020 mix was CreditTech 39.4%, payments 35.9%, InvestmentTech 15.6% and InsureTech 8.4%. Bank revenue is still mostly <em>spread</em>: fees are 20–30% of revenue at traditional banks against 44% at WeBank in 2018 (BI). Fintech monetises flow; banks monetise stock.</dd>
+  </dl>
+
+  <div class="tbl"><table>
+    <thead><tr><th>Client job</th><th>Mainly fintech</th><th>Mainly banks</th><th>Evidence</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Daily payments / P2P</strong></td><td>✔ Alipay, WeChat Pay (front end)</td><td>✔ Funding source (cards/accounts)</td><td>~95% wallet share; 80.9% use debit cards as the source</td></tr>
+      <tr><td><strong>Salary &amp; savings</strong></td><td>Yu'e Bao / Licaitong for spare cash</td><td>✔ Deposits, payroll</td><td>Household deposits RMB167tn (+9.7% in 2025) vs Yu'e Bao RMB0.71tn</td></tr>
+      <tr><td><strong>Mutual funds (self-directed)</strong></td><td>✔ Ant Fund, Tiantian, Tencent Licaitong</td><td>CMB, ICBC, CCB apps</td><td>Ant RMB2.21tn vs CMB RMB1.58tn (H1 2026)</td></tr>
+      <tr><td><strong>Wealth products &amp; advice</strong></td><td>Platforms sell bank-subsidiary WMPs</td><td>✔ WMPs, private banking, RMs</td><td>Bank WMPs RMB33.7tn (Jun-2026); WMP function use in bank apps −10.4pp (CFCA 2024)</td></tr>
+      <tr><td><strong>Stock trading</strong></td><td>✔ East Money, Futu, Tiger</td><td>Bank-broker links</td><td>East Money turnover RMB38.5tn (2025); onshore cross-border brokerage banned in 2026</td></tr>
+      <tr><td><strong>Small unsecured credit</strong></td><td>✔ Huabei/Jiebei, Weilidai, Qfin, Lexin (origination)</td><td>✔ Funding (≥30% co-lending)</td><td>Ant enabled RMB1.73tn (2020); &gt;80% of new Huabei users in 2024 had no bank credit card (reported)</td></tr>
+      <tr><td><strong>Mortgages &amp; large loans</strong></td><td>—</td><td>✔ Exclusively</td><td>Medium/long-term consumer loans RMB48.7tn (2025)</td></tr>
+      <tr><td><strong>SME / merchant credit</strong></td><td>MYbank, WeBank (licensed digital banks)</td><td>✔ Inclusive loans RMB37tn</td><td>MYbank 77m SME clients (2025)</td></tr>
+      <tr><td><strong>Insurance</strong></td><td>Distribution (Alipay, WeSure, ZhongAn)</td><td>Bancassurance</td><td>Deposit money moved mainly into life insurance in 2025 (bank RMs)</td></tr>
+      <tr><td><strong>Corporate / cross-border</strong></td><td>Ant International (outbound, SME)</td><td>✔ Treasury, trade, FX</td><td>BOC ~25% of cross-border settlement (2025)</td></tr>
+    </tbody></table></div>
+
+  <div class="grid2">
+    <figure class="chart">
+      <h5>Where does the money behind a mobile payment come from?</h5>
+      <p class="sub">% of users who often use each funding source (multi-select), 2025</p>
+      <div class="cbox" style="height:240px"><canvas id="cFunding" aria-label="Funding sources of mobile payments"></canvas></div>
+      <figcaption>Payment &amp; Clearing Association of China, 2025 mobile-payment user survey. Bank cards (blue) fund most wallet (orange) payments. e-CNY is shown in grey.</figcaption>
+    </figure>
+    <figure class="chart">
+      <h5>How a platform earns: Ant revenue mix, H1 2020</h5>
+      <p class="sub">% of revenue (total RMB72.5bn)</p>
+      <div class="cbox" style="height:240px"><canvas id="cAntMix" aria-label="Ant revenue mix"></canvas></div>
+      <figcaption>Ant H-share prospectus (Aug 2020). Payments were more than half of revenue before 2018. By 2020, 63% came from distributing credit, funds and insurance manufactured by licensed partners, mostly banks.</figcaption>
+    </figure>
+  </div>
+  <p class="punch">Chinese clients multi-home. They live in the wallet but keep their money, mortgage and serious wealth in the bank, and the wallet is mostly a front end to bank money.</p>
+</section>
+
+<!-- ============ 4. COEXISTENCE ============ -->
+<section id="coexist">
+  <h2>How they coexist, share, hurt and grow each other</h2>
+  <p>The 16 years fall into four phases. Each started with a regulatory or product shock that changed which side held bargaining power.</p>
+  <div class="timeline">
+    <div class="ph"><div class="yr">2010–2012 · LICENSING</div><p class="t">Fintech gets a legal perimeter</p><p class="note">PBOC payment licences (2011) legitimise Alipay and Tenpay. Online-payment value is only about RMB1–7tn. Banks still have 99% of value and ROE above 20%. The two sectors barely interact.</p></div>
+    <div class="ph"><div class="yr">2013–2017 · DISRUPTION</div><p class="t">Platforms attack deposits, cards and credit</p><p class="note">Yu'e Bao (June 2013) reaches RMB574bn in a year and RMB1.69tn by March 2018, pulling deposits into money funds and accelerating deposit-rate liberalisation (2015). WeChat red packets (2014) make Tenpay a payment rival. P2P peaks at about 5,000 platforms and RMB2.8tn of annual volume in 2017. Bank ROE falls from 21% to 14%.</p></div>
+    <div class="ph"><div class="yr">2017–2020 · RECONNECTION</div><p class="t">Regulators route platforms back through bank rails</p><p class="note">NetsUnion (2018) ends direct platform–bank links. 100% of customer reserves are centralised at the PBOC (Jan 2019), which removes float income. Asset-management rules (2018) curb Yu'e Bao. Banks partner instead: about 98% of Ant's enabled credit is funded by partner banks or securitisation, and the WeBank/MYbank model scales.</p></div>
+    <div class="ph"><div class="yr">2020–2023 · RECTIFICATION</div><p class="t">The licence beats the interface</p><p class="note">Ant's IPO is halted (Nov 2020) and P2P goes to zero. Co-lenders must fund at least 30% (2021), and online deposit sales are banned. Ant becomes a financial holding company and receives a RMB7.1bn fine (2023). The non-bank share of payment value peaks at 10.7% and turns down.</p></div>
+    <div class="ph"><div class="yr">2024–2026 · REGULATED CO-OPETITION</div><p class="t">Banks control funding; platforms control distribution</p><p class="note">New payment regulation (May 2024) and internet loan-assistance whitelists (Oct 2025) require all-in cost disclosure (Aug 2026) and give licensed lenders control of contracting (Sep 2026). Facilitator volumes fall about 20–25%. In wealth, however, platforms overtake banks in fund distribution as RMB30–60tn of time deposits mature into a world of sub-1% deposit rates.</p></div>
+  </div>
+
+  <h3>4.1 The impact matrix</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Channel</th><th>How fintech changed banks</th><th>How banks constrain or enable fintech</th><th>Net effect</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Deposits &amp; pricing</strong></td><td>Yu'e Bao forced banks to pay market rates and build their own MMFs and wealth subsidiaries</td><td>Platforms cannot take deposits; the 2021 ban stopped them selling bank deposits</td><td>Banks keep RMB336tn but at lower NIM</td></tr>
+      <tr><td><strong>Payments &amp; cards</strong></td><td>QR made card acquiring fees and POS less relevant; credit cards fell from 807m (2022 peak) to 677m (Q2 2026)</td><td>Wallets need bank accounts and cards to fund; NetsUnion/UnionPay routing is mandatory</td><td>Fintech owns the front end, banks own the funding</td></tr>
+      <tr><td><strong>Consumer credit</strong></td><td>Huabei/Jiebei took small-ticket demand; bank short-term consumer loans fell from RMB10.2tn (2024) to RMB8.8tn (May-2026)</td><td>≥30% co-lending, whitelists and APR caps shift economics to the funder; banks favour "hyperscalers" (Ant, JD, Douyin)</td><td>Big platforms partner; small facilitators get squeezed</td></tr>
+      <tr><td><strong>Wealth</strong></td><td>Platforms democratised funds (RMB1 minimums); they now lead fund distribution</td><td>Bank wealth subsidiaries manufacture WMPs and sell them <em>through</em> Alipay/Licaitong</td><td>Mutual growth: platform shelf, bank product</td></tr>
+      <tr><td><strong>Technology &amp; UX</strong></td><td>Raised the service bar; bank e-channel diversion is about 94% and mobile banking 88%</td><td>Banks buy cloud/AI from Ant and Tencent and run their own super-apps</td><td>Banks digitised faster because of fintech</td></tr>
+      <tr><td><strong>Licensed hybrids</strong></td><td>WeBank/MYbank show platform data can underwrite thin-file borrowers at ~1.4% NPL</td><td>The banking licence gives them deposits (MYbank RMB344bn)</td><td>The strongest model combines both</td></tr>
+    </tbody></table></div>
+  <p class="punch">Each sector now depends on the other. Fintech needs bank money and licences, and banks need fintech's customers and data. Policy sets the price of that exchange, and since 2020 it has favoured the side holding the licence.</p>
+</section>
+
+<!-- ============ 5. OUTLOOK ============ -->
+<section id="outlook">
+  <h2>Outlook 2026–2027 and positioning</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Driver</th><th>Read-through</th><th>Beneficiary</th></tr></thead>
+    <tbody>
+      <tr><td>RMB30–60tn of time deposits maturing in 2026; deposit rates below 1%</td><td>Deposit migration into WMPs, funds and insurance. Bank WMPs are up 11.2% in 2025 and fund holdings are up 17.9% in H1 2026</td><td>Fund platforms (Ant, Tiantian), CMB-type wealth banks</td></tr>
+      <tr><td>Loan-rate rules: 24% all-in cap enforced; BI scenario of a 12% cap by end-2027 (not enacted)</td><td>Lender consensus for 2026E: revenue −8.7%, net income −21.1%; 2027E rebound of +34% is a low-base effect</td><td>Bank funders; scale platforms over small facilitators</td></tr>
+      <tr><td>Consumer-loan interest subsidy (1pp), extended to Dec 2026 and now covering consumer-finance companies</td><td>Subsidised bank credit competes directly with platform credit for prime borrowers</td><td>Banks, licensed consumer-finance companies</td></tr>
+      <tr><td>AI and agentic commerce (Alipay AI Pay, Ah Bao)</td><td>Ant's R&amp;D rose 44% to RMB35bn; BI expects 2026 profit of RMB16–20bn (estimate, not consensus)</td><td>Interface owners, longer term</td></tr>
+      <tr><td>Bank NIM about 1.4%, near the regulatory floor</td><td>ROE is drifting toward 7–9%; dividends are policy-protected</td><td>Income investors, not growth investors</td></tr>
+    </tbody></table></div>
+
+  <h3>5.1 Positioning: a barbell, not a sector call</h3>
+  <p><strong>Income leg: large-cap Chinese banks.</strong> Valuations are 0.6x P/B and about 6.5x P/E with a 4.2% yield. Earnings are low-growth but policy-anchored, and the state's interest in stable dividends supports the payout. Prefer banks that own wealth relationships, since deposit migration is a fee opportunity for them rather than a pure loss. The risks are NIM below 1.3%, property and LGFV credit, and SME policy lending.</p>
+  <p><strong>Growth leg: platforms that distribute without taking credit risk.</strong> Wealth and brokerage platforms (median 2025 revenue growth 53%, ROE 24% for East Money/Futu) and diversified ecosystems with fintech segments (Tencent FBS, 2026E +10%). The risks are cross-border brokerage enforcement, fee caps and market-turnover cyclicality.</p>
+  <p><strong>Underweight: pure loan facilitators</strong> (Qfin, FinVolution, Lexin), until take rates stabilise. Their 1.8–3.6x forward P/E prices a shrinking earnings base, not a bargain, and banks now set whitelists, funding cost and all-in APR.</p>
+  <p class="note">This is sector analysis for research purposes, not a personalised investment recommendation. Multiples and estimates are point-in-time (workbook data to 30 Jun 2026; BI views dated Jul–Oct 2026).</p>
+
+  <h3>5.2 What would change the view</h3>
+  <ul class="note">
+    <li>A sustained rebound in household credit demand would re-rate lenders and recover bank NIM.</li>
+    <li>Regulators lifting the platform deposit-product ban or allowing platform-owned risk-bearing would shift the balance back toward fintech.</li>
+    <li>e-CNY gaining merchant share at the expense of wallets: it is at 10.8% usage in 2025, with interest-bearing bank-wallet balances from 2026.</li>
+    <li>An Ant (or Ant International) IPO, which would give the first market price for the leading platform since 2020.</li>
+  </ul>
+</section>
+
+<!-- ============ DATA ============ -->
+<section id="data">
+  <h2>Data appendix</h2>
+  <h3>A. Payment activity, 2010–2026 H1</h3>
+  <div class="tbl"><table id="tPay"><thead><tr><th>Year</th><th class="n">Bank e-pay count (bn)</th><th class="n">Bank e-pay value (RMBtn)</th><th class="n">Bank mobile value (RMBtn)</th><th class="n">Non-bank count (bn)</th><th class="n">Non-bank value (RMBtn)</th><th class="n">Non-bank share, count</th><th class="n">Non-bank share, value</th></tr></thead><tbody></tbody></table></div>
+  <h3>B. Banking system and listed-bank panel</h3>
+  <div class="tbl"><table id="tBank"><thead><tr><th>Year</th><th class="n">Sector assets (RMBtn)</th><th class="n">Sector ROE</th><th class="n">Median ROE (10 banks)</th><th class="n">Median NIM</th><th class="n">Median NPL</th><th class="n">Median P/B</th><th class="n">Median div. yield</th><th class="n">Fintech median ROE</th><th class="n">Fintech median P/B</th></tr></thead><tbody></tbody></table></div>
+  <h3>C. Wealth and credit series</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Series</th><th>Observations</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td>Bank WMP balance (RMBtn)</td><td>2015 23.50 · 2016 29.05 · 2018 22.04* · 2019 23.40* · 2020 25.86 · 2021 29.0 · 2023 26.8 · 2024 29.95 · 2025 33.29 · Jun-26 33.66</td><td>China Wealth Mgmt Registry / CS.com.cn / Caixin. *Non-principal-guaranteed only</td></tr>
+      <tr><td>Yu'e Bao AUM (RMBbn)</td><td>Jun-14 574 · Q1-17 &gt;1,000 · Mar-18 1,689 (peak) · Jun-19 1,030 · Dec-20 ~1,200 · Jun-21 781 · Jun-23 675 · Mar-24 750 · Jun-25 793 · Mar-26 708</td><td>Tianhong reports via Xinhua, Fitch, Jiemian, Wind/10jqka</td></tr>
+      <tr><td>Top fund distributors, non-MMF (RMBtn)</td><td>Ant: H1-24 1.35 · H2-24 1.45 · H1-25 1.57 · H1-26 2.21. CMB: 0.86 · 0.95 · 1.04 · 1.58</td><td>AMAC top-100 lists</td></tr>
+      <tr><td>Household short-term consumer loans (RMBtn)</td><td>~8.2 implied (Jun-20, from Ant's 21%) · ~10.0–10.35 (2023) · 10.20 (2024) · 9.49 (2025) · 8.79 (May-26)</td><td>PBOC credit tables via STCN/Yicai; Ant prospectus</td></tr>
+      <tr><td>Ant Consumer Finance (RMBbn)</td><td>Gross loans 2022 ~90 · 2023 ~220 · 2024 ~301 · 2025 303. 2025: NII 18.7, credit cost 15.9, profit 3.1</td><td>BI (Aug 2026)</td></tr>
+      <tr><td>WeBank / MYbank loans (RMBbn)</td><td>WeBank 2015 4 · 2018 120 · 2024 436. MYbank 2015 7 · 2018 48 · 2024 298.5</td><td>BI (Nov 2019); 2024 annual reports</td></tr>
+      <tr><td>Ant Group profit (RMBbn)</td><td>2019 18.1 · 2023 ~24 · 2024 ~38 · 2025 ~15 · 2026E 16–20 (BI estimate)</td><td>Prospectus; BI calc. from Alibaba equity-method income</td></tr>
+      <tr><td>Credit cards in issue (m)</td><td>2012 Q1 340 · 2022 peak 807 · 2025 696 · Q2-26 677</td><td>PBOC payment reports via press</td></tr>
+    </tbody></table></div>
+
+  <h3>D. Method and caveats</h3>
+  <ul class="note">
+    <li><strong>Overlap.</strong> PBOC bank e-payments and non-bank network payments overlap, because a wallet payment funded by a bank card can appear in both. The share index measures activity, not exclusive ownership.</li>
+    <li><strong>Statistical breaks</strong> in 2014, 2015, 2018 and 2023 affect year-on-year comparisons. 2010–2012 non-bank values are consultancy estimates.</li>
+    <li><strong>Classification.</strong> WeBank and MYbank are licensed banks born from platforms. They are shown as "platform-side" in share tables but carry bank economics.</li>
+    <li><strong>Workbook.</strong> 601995 CH (CICC) was excluded from banks and the duplicate JD removed. Q3-2026 fundamentals in the workbook repeat June values, so 2026 H1 is the latest fundamental period. Bloomberg ROE/NIM bases differ from issuer-reported figures.</li>
+    <li><strong>Estimates.</strong> BI 2019/2021 "2025E" scenarios are historical expectations, not actuals. Consensus figures come from BI (Jul 2026), with contributor counts undisclosed.</li>
+    <li><strong>Wallet share.</strong> The PBOC does not publish provider shares, so these are third-party estimates (Analysys, iResearch, AMRO, IMF).</li>
+  </ul>
+
+  <h3>E. Sources</h3>
+  <ol class="src">
+    <li>PBOC, Payment System Operation reports 2010–2023 (e.g. <a href="https://www.gov.cn/xinwen/2022-04/03/5683319/files/65de31f163be4e7a95b119b43abe3a57.pdf">2021</a>, <a href="https://www.pbc.gov.cn/zhifujiesuansi/128525/128545/128643/e65053157ab14b9abf06bc9b18badb3a/2024032815235914509.pdf">2023</a>); 2025 data reproduced in <a href="https://static.cninfo.com.cn/finalpage/2026-03-28/1225042491.PDF">Cuiwei annual report</a>; 2026 <a href="https://m.mpaypass.com.cn/download/202605/16164927.html">Q1</a>/<a href="https://www.mpaypass.com.cn/download/202609/03145833.html">Q2</a>.</li>
+    <li>NFRA/CBIRC/CBRC annual banking statistics (<a href="https://www.nfra.gov.cn/chinese/subject/subject/nianbao2010/english/1.pdf">2010</a>, <a href="https://www.nfra.gov.cn/en/view/pages/ItemDetail.html?docId=1251267&amp;itemId=980">2025</a>, <a href="https://www.nfra.gov.cn/en/view/pages/ItemDetail.html?docId=1270720">2026 Q2</a>); <a href="https://www.stats.gov.cn/english/PressRelease/202602/t20260228_1962661.html">NBS 2025 communiqué</a>.</li>
+    <li>IMF <a href="https://www.elibrary.imf.org/view/journals/005/2026/009/article-A001-en.xml">2026 China FSAP note</a>; <a href="https://amro-asia.org/wp-content/uploads/2025/10/AMRO-AFSR-2025-Full-Report-Web.pdf">AMRO AFSR 2025</a>.</li>
+    <li>CNNIC statistical reports (<a href="https://www.cac.gov.cn/2015-07/23/c_1116018641.htm">2015</a>, <a href="https://www.news.cn/politics/20250117/f208db8cade545789410bac9d8e5266b/c.html">2024</a>); CFCA e-/digital banking surveys (<a href="https://www.nbd.com.cn/articles/2016-12-09/1060190.html">2016</a>, <a href="https://cs.com.cn/lc/202012/t20201217_6121623.html">2020</a>, <a href="https://www.jiemian.com/article/12018717.html">2024</a>).</li>
+    <li>Payment &amp; Clearing Association of China, 2025 mobile-payment user survey (<a href="https://news.10jqka.com.cn/20260825/c679267713.shtml">10jqka</a>, <a href="https://www.yzwb.net/news/ch/202608/t20260827_386789.html">Yangtse Evening Post</a>).</li>
+    <li>AMAC fund-distributor top-100 via <a href="https://eu.36kr.com/en/p/3985506453715712">36Kr</a>, <a href="https://www-web.itiger.com/news/1143160427">Tiger</a>, <a href="https://news.10jqka.com.cn/20260915/c679897738.shtml">10jqka</a>, <a href="https://m.jiemian.com/article/12475864.html">Jiemian</a>.</li>
+    <li>Bank WMPs: <a href="https://www.caixinglobal.com/2026-01-24/china-wealth-management-market-hits-48-trillion-despite-yield-drop-102407442.html">Caixin</a>, <a href="https://cs.com.cn/yh/04/202202/t20220228_6245403.html">CS.com.cn</a>, <a href="https://cs.com.cn/yh/04/202402/t20240202_6388855.html">CS.com.cn 2023</a>. Yu'e Bao: <a href="https://www.alizila.com/?p=669">Alizila</a>, <a href="https://cranedata.com/archives/all-articles/7895">Crane Data</a>, <a href="https://m.jiemian.com/article/6387630.html">Jiemian</a>, <a href="https://www.yzwb.net/news/ch/202509/t20250924_268790.html">YZWB</a>.</li>
+    <li>Consumer credit: <a href="https://www.yicai.com/news/102643270.html">Yicai</a>, <a href="https://news.10jqka.com.cn/20260625/c677693286.shtml">10jqka/STCN</a>; Ant share of short-term consumer loans via <a href="https://www.caixinglobal.com/2020-07-29/banks-told-to-report-data-on-consumer-lending-via-ants-platforms-101585742.html">Caixin</a>; credit cards via <a href="https://www.newsghana.com.gh/chinas-credit-card-count-falls-for-14-straight-quarters-to-687-million/">NewsGhana</a>/<a href="https://www.kucoin.com/news/flash/china-s-credit-card-count-drops-by-10-million-in-q2-2026">KuCoin flash</a> (PBOC relays).</li>
+    <li>P2P: <a href="https://iems.ust.hk/assets/publications/thought-leadership-briefs/2022/hkustiems-huang-why-did-the-peer-to-peer-lending-market-fail-in-china-tlb61.pdf">HKUST IEMS</a>, <a href="https://yicaiglobal.com/news/only-15-p2p-lenders-are-left-in-china-after-two-year-crackdown-">Yicai Global</a>.</li>
+    <li>Ant prospectus (<a href="https://www1.hkexnews.hk/listedco/listconews/sehk/2020/1026/2020102600165.pdf">HKEX 2020</a>); revenue mix via <a href="https://www.caixinglobal.com/2020-08-26/ants-ipo-filings-reveal-scope-and-momentum-of-payment-giants-business-101597040.html">Caixin</a>, <a href="https://technode.com/2020/08/26/ant-group-ipo-filings-five-key-takeaways">TechNode</a>.</li>
+    <li>Policy: consumer-loan subsidy (<a href="https://www.caixinglobal.com/2026-01-20/china-expands-consumer-loan-subsidies-to-boost-spending-102405916.html">Caixin Jan-26</a>, <a href="https://www.caixinglobal.com/2026-08-21/china-expands-subsidized-loan-program-to-revive-demand-102476362.html">Aug-26</a>); deposit maturity wave (<a href="https://www.caixinglobal.com/2026-01-09/analysis-chinas-deposit-maturity-wave-puts-household-money-to-the-test-102402154.html">Caixin</a>); household deposits (<a href="https://www2.yicaiglobal.com/news/china-household-deposits-rise-nearly-10-in-2025-as-borrowing-weakens">Yicai</a>); NFRA <a href="https://www.nfra.gov.cn/en/view/pages/ItemDetail.html?docId=1252542&amp;itemId=981">loan-cost</a> and <a href="https://www.nfra.gov.cn/en/view/pages/ItemDetail.html?docId=1257542&amp;itemId=981">marketing</a> rules.</li>
+    <li>Bloomberg Intelligence (licensed, internal): Ant Group Private Company Research (Sep 2026, incl. Jul–Oct 2026 notes); "China's Tencent Crackdown May Be Fintech's Growth Warning Signal" (29 Mar 2021); "Fertile Soil for Online Banks in China" (11 Nov 2019). Bloomberg <code>TIM - 11.xlsx</code> panel (BDH, refreshed 14 Oct 2026).</li>
+    <li>Company reports: <a href="https://v.icbc.com.cn/userfiles/Resources/ICBCLTD/download/2026/2025AnnualReport.pdf">ICBC 2025</a>, <a href="https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0427/2026042700894.pdf">CMB 2025</a>, <a href="https://tctp.tctpwebankcdn.net/owb-admin/data/appsystems/owb-admin/1756804158938-13423.pdf">WeBank 2024</a>, <a href="https://qxb-pdf-osscache.qixin.com/AnBaseinfo/7f4fb677abdf6a905d911992520c8b93.pdf">MYbank 2024</a>, <a href="https://static.cninfo.com.cn/finalpage/2026-03-20/1225019509.PDF">East Money 2025</a>, Q2-2026 releases of <a href="https://360finance.gcs-web.com/news-releases/news-release-details/qfin-holdings-announces-second-quarter-and-interim-2026">Qfin</a>, <a href="https://ir.finvgroup.com/news-releases/news-release-details/finvolution-group-reports-second-quarter-2026-unaudited">FinVolution</a>, <a href="https://ir.lufaxholding.com/2026-08-18-Lufax-Reports-Second-Quarter-2026-Financial-Results">Lufax</a>.</li>
+  </ol>
+</section>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+// ---------- DATA ----------
+// Bank e-payments (all channels): count bn, value RMBtn. Non-bank network payments: count bn, value RMBtn. PBOC.
+const PAY = [
+ // yr, bankCnt, bankVal, bankMobVal, nbCnt, nbVal
+ ['2010', null, null, 0.57, null, 1.086],
+ ['2011', null, null, null, null, 2.161],
+ ['2012', null, null, 2.31, null, 6.89],
+ ['2013', 25.783, 1075.16, 9.64, 15.338, 9.22],
+ ['2014', 33.333, 1404.65, 22.59, 37.422, 24.72],
+ ['2015', 105.234, 2506.23, 108.22, 82.145, 49.48],
+ ['2016', 139.561, 2494.45, 157.55, 163.902, 99.27],
+ ['2017', 152.580, 2419.20, 202.93, 286.747, 143.26],
+ ['2018', 175.192, 2539.70, 277.39, 530.610, 208.07],
+ ['2019', 223.388, 2607.04, 347.11, 719.998, 249.88],
+ ['2020', 235.225, 2711.81, 432.16, 827.297, 294.56],
+ ['2021', 274.969, 2976.22, 526.98, 1028.322, 355.46],
+ ['2022', 278.965, 3110.13, 499.62, 1024.181, 337.87],
+ ['2023', 296.163, 3395.27, 555.33, 1230, 340.25],
+ ['2024', null, null, 563.70, 1340, 331.68],
+ ['2025', 1325.445*19.4/80.6, 337.81*91.5/8.5, 571.97, 1325.445, 337.81],
+ ['2026H1', 645.572*20.0/80.0, 164.90*92.4/7.6, 311.22, 645.572, 164.90]
+];
+const shareCnt = PAY.map(r => r[1]!=null ? +(100*r[4]/(r[1]+r[4])).toFixed(1) : null);
+const shareVal = PAY.map(r => r[2]!=null ? +(100*r[5]/(r[2]+r[5])).toFixed(1) : null);
+// override 2025/2026H1 with published splits
+shareCnt[15]=80.6; shareVal[15]=8.5; shareCnt[16]=80.0; shareVal[16]=7.6;
+
+const YRS = ['2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025','2026H1'];
+// Workbook medians (Bloomberg TIM-11, cleaned)
+const B_ROE=[20.87,20.52,20.95,21.38,19.57,16.96,15.14,14.09,12.86,12.38,11.41,11.91,11.41,10.97,10.32,9.68,9.47];
+const B_NIM=[2.83,3.25,3.14,3.10,3.08,3.07,2.44,2.48,2.49,2.43,2.34,2.28,2.03,1.70,1.50,1.36,1.38];
+const B_NPL=[1.08,0.86,0.92,0.94,1.17,1.56,1.65,1.58,1.51,1.43,1.56,1.42,1.36,1.33,1.30,1.27,1.27];
+const B_PB =[1.61,1.21,1.21,0.97,1.22,1.02,0.86,0.93,0.73,0.79,0.62,0.53,0.47,0.51,0.68,0.67,0.60];
+const B_DY =[3.65,2.28,3.82,5.83,4.21,4.19,4.68,3.62,4.55,4.26,5.53,5.60,6.32,5.95,4.57,4.20,4.25];
+const F_ROE=[17.57,16.04,13.80,16.45,16.63,28.80,22.64,20.80,20.86,27.24,24.19,22.16,13.99,11.95,16.46,14.78,15.34];
+const F_PB =[5.03,2.51,2.59,6.04,9.70,9.20,4.70,8.71,3.98,3.12,2.84,3.28,3.03,2.90,3.59,3.34,2.06];
+const S_ASSET=[95.3,null,null,null,null,199.3,null,null,null,null,319.7,null,null,417.3,444.6,480.0,498.0];
+const S_ROE=[17.5,null,null,null,null,null,null,null,null,null,9.48,null,null,8.93,8.10,7.78,7.72];
+
+// ---------- CHART HELPERS ----------
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+let charts=[];
+function base(yTitle, extra={}){
+  return {
+    responsive:true, maintainAspectRatio:false, animation:false,
+    interaction:{mode:'index',intersect:false},
+    plugins:{legend:{display:false},
+      tooltip:{backgroundColor:css('--surface'),titleColor:css('--ink'),bodyColor:css('--ink-2'),borderColor:css('--line'),borderWidth:1,padding:10,
+        callbacks:{label:c=> c.parsed.y==null?null:` ${c.dataset.label}: ${extra.fmt?extra.fmt(c.parsed.y):c.parsed.y}`}}},
+    scales:{
+      x:{grid:{display:false},ticks:{color:css('--ink-3'),maxRotation:0,autoSkip:true,autoSkipPadding:8},border:{color:css('--line')}},
+      y:Object.assign({grid:{color:css('--grid')},ticks:{color:css('--ink-3')},border:{display:false},title:{display:!!yTitle,text:yTitle,color:css('--ink-3')}},extra.y||{})
+    }
+  };
+}
+function line(label,data,color,opt={}){
+  return Object.assign({label,data,borderColor:color,backgroundColor:color,borderWidth:2,pointRadius:3,pointHoverRadius:5,spanGaps:true,tension:0},opt);
+}
+function hollowLast(n,color){ // last point hollow (H1, partial)
+  return {pointBackgroundColor:Array.from({length:n},(_,i)=> i===n-1? css('--surface') : color), pointBorderColor:color, pointBorderWidth:2};
+}
+
+function render(){
+  charts.forEach(c=>c.destroy()); charts=[];
+  Chart.defaults.font.family = getComputedStyle(document.body).fontFamily;
+  Chart.defaults.font.size = 12;
+  const BK=css('--bank'), FN=css('--fin'), TH=css('--third'), NU=css('--neutral');
+  const pct = v=>v.toFixed(1)+'%';
+
+  const lbl = YRS.slice(3);
+  charts.push(new Chart(cShare,{type:'line',data:{labels:lbl,datasets:[
+    line('Share of count',shareCnt.slice(3),FN),
+    line('Share of value',shareVal.slice(3),BK)
+  ]},options:base('% of combined',{fmt:pct,y:{min:0,max:100}})}));
+
+  charts.push(new Chart(cDuo,{type:'line',data:{labels:['2015','2016','2017','2018','1Q19','2Q20','2024','2026'],datasets:[
+    line('Alipay + WeChat Pay',[90.3,91.1,92.5,92.7,92.6,94.4,94,95],FN,{pointRadius:[3,3,3,3,3,3,3,5]})
+  ]},options:base('%',{fmt:pct,y:{min:80,max:100}})}));
+
+  charts.push(new Chart(cFund,{type:'bar',data:{labels:['H2 2024','H1 2026'],datasets:[
+    {label:'Banks',data:[45.0,38.7],backgroundColor:BK,borderRadius:4,borderSkipped:'bottom',borderColor:css('--surface'),borderWidth:{left:2,right:2}},
+    {label:'Third-party platforms',data:[34.7,39.2],backgroundColor:FN,borderRadius:4,borderSkipped:'bottom',borderColor:css('--surface'),borderWidth:{left:2,right:2}},
+    {label:'Brokers',data:[20.3,22.2],backgroundColor:TH,borderRadius:4,borderSkipped:'bottom',borderColor:css('--surface'),borderWidth:{left:2,right:2}}
+  ]},options:Object.assign(base('% of top-100 holdings',{fmt:pct,y:{min:0,max:50}}),{interaction:{mode:'index',intersect:false}})}));
+
+  const mob=PAY.map(r=>r[3]), nb=PAY.map(r=>r[5]);
+  charts.push(new Chart(cPayVal,{type:'line',data:{labels:YRS,datasets:[
+    line('Bank mobile',mob,BK,hollowLast(YRS.length,BK)),
+    line('Non-bank network',nb,FN,hollowLast(YRS.length,FN))
+  ]},options:base('RMB tn (log)',{fmt:v=>'RMB'+v.toLocaleString(undefined,{maximumFractionDigits:2})+'tn',y:{type:'logarithmic',ticks:{color:css('--ink-3'),callback:v=>[0.5,1,5,10,50,100,500].includes(v)?v:null}}})}));
+
+  const uY=['2011','2013','2014','2015','2016','2018','2019','2020','2021','2024'];
+  charts.push(new Chart(cUsers,{type:'line',data:{labels:uY,datasets:[
+    line('Network-payment users',[32.5,null,46.9,53.7,null,71.0,74.1,85.7,87.6,92.9],FN),
+    line('Mobile-banking users',[null,null,null,32.4,42,null,null,71,null,88],BK)
+  ]},options:base('%',{fmt:pct,y:{min:0,max:100}})}));
+
+  charts.push(new Chart(cRoe,{type:'line',data:{labels:YRS,datasets:[
+    line('Banks',B_ROE,BK,hollowLast(YRS.length,BK)),
+    line('Fintech/platforms',F_ROE,FN,hollowLast(YRS.length,FN))
+  ]},options:base('ROE %',{fmt:pct,y:{min:0}})}));
+
+  charts.push(new Chart(cPb,{type:'line',data:{labels:YRS,datasets:[
+    line('Banks',B_PB,BK,hollowLast(YRS.length,BK)),
+    line('Fintech/platforms',F_PB,FN,hollowLast(YRS.length,FN))
+  ]},options:base('P/B (x)',{fmt:v=>v.toFixed(2)+'x',y:{min:0}})}));
+
+  const iY=['2019','2020','2021','2022','2023','2024','2025','2026E','2027E'];
+  const ten=[101,128,172,177,204,212,229,252,275].map(v=>+(100*v/101).toFixed(1));
+  const prof=[2.0,1.94,null,null,2.4,2.3,2.4,null,null].map(v=>v==null?null:+(100*v/2.0).toFixed(1));
+  const nim=[2.43,2.34,2.28,2.03,1.70,1.50,1.36,null,null].map(v=>v==null?null:+(100*v/2.43).toFixed(1));
+  charts.push(new Chart(cIdx,{type:'line',data:{labels:iY,datasets:[
+    line('Bank sector profit',prof,BK),
+    line('Tencent FBS revenue',ten,FN,{segment:{borderDash:c=> c.p1DataIndex>=7?[5,4]:undefined}}),
+    line('Bank median NIM',nim,TH)
+  ]},options:base('Index, 2019 = 100',{fmt:v=>v.toFixed(0),y:{min:40}})}));
+
+  charts.push(new Chart(cFunding,{type:'bar',data:{labels:['Debit card','Credit card','Wallet balance','e-CNY'],datasets:[
+    {label:'Users',data:[80.9,69.3,41.2,10.8],backgroundColor:[BK,BK,FN,NU],borderRadius:4,borderSkipped:'start'}
+  ]},options:Object.assign(base('',{fmt:pct,y:{min:0,max:100}}),{indexAxis:'y',scales:{x:{min:0,max:100,grid:{color:css('--grid')},ticks:{color:css('--ink-3'),callback:v=>v+'%'},border:{display:false}},y:{grid:{display:false},ticks:{color:css('--ink-2')},border:{color:css('--line')}}},plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.parsed.x+'% of users'}}}})}));
+
+  charts.push(new Chart(cAntMix,{type:'bar',data:{labels:['CreditTech','Payments & merchant','InvestmentTech','InsureTech','Other'],datasets:[
+    {label:'Share',data:[39.4,35.9,15.6,8.4,0.7],backgroundColor:FN,borderRadius:4,borderSkipped:'start'}
+  ]},options:Object.assign(base('',{}),{indexAxis:'y',scales:{x:{min:0,max:50,grid:{color:css('--grid')},ticks:{color:css('--ink-3'),callback:v=>v+'%'},border:{display:false}},y:{grid:{display:false},ticks:{color:css('--ink-2')},border:{color:css('--line')}}},plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.parsed.x+'% of revenue'}}}})}));
+}
+
+// ---------- TABLES ----------
+const f=(v,d=1)=> v==null||isNaN(v)?'—':(+v).toLocaleString(undefined,{minimumFractionDigits:d,maximumFractionDigits:d});
+document.querySelector('#tPay tbody').innerHTML = PAY.map((r,i)=>`<tr><td>${r[0]}${(i>=15)?'*':''}</td><td class="n">${f(r[1],1)}</td><td class="n">${f(r[2],0)}</td><td class="n">${f(r[3],2)}</td><td class="n">${f(r[4],1)}</td><td class="n">${f(r[5],2)}</td><td class="n">${shareCnt[i]==null?'—':f(shareCnt[i])+'%'}</td><td class="n">${shareVal[i]==null?'—':f(shareVal[i])+'%'}</td></tr>`).join('')
+ + `<tr><td colspan="8" class="note">2010–2012 non-bank values are online-payment estimates. 2023–2024 non-bank counts are approximate (revised basis). *2025/2026 H1 bank totals are back-solved from the published share splits; 2026 H1 is half-year only.</td></tr>`;
+document.querySelector('#tBank tbody').innerHTML = YRS.map((y,i)=>`<tr><td>${y}</td><td class="n">${f(S_ASSET[i])}</td><td class="n">${S_ROE[i]==null?'—':f(S_ROE[i],2)+'%'}</td><td class="n">${f(B_ROE[i],2)}%</td><td class="n">${f(B_NIM[i],2)}%</td><td class="n">${f(B_NPL[i],2)}%</td><td class="n">${f(B_PB[i],2)}x</td><td class="n">${f(B_DY[i],2)}%</td><td class="n">${f(F_ROE[i],2)}%</td><td class="n">${f(F_PB[i],2)}x</td></tr>`).join('')
+ + `<tr><td colspan="10" class="note">Sector: NFRA/CBRC (blank where not compiled). Medians: Bloomberg TIM-11 panel. Banks: ICBC, CCB, ABC, BOC, BoCom, PSBC (from 2016), CMB, SPDB, Minsheng, Ping An Bank. Fintech: Tencent, Alibaba, JD, Ping An, East Money, Futu, Qfin, Lexin, FinVolution (coverage varies by year).</td></tr>`;
+
+// ---------- THEME ----------
+const root=document.documentElement;
+document.getElementById('themeBtn').addEventListener('click',()=>{
+  const dark = root.dataset.theme ? root.dataset.theme==='dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  root.dataset.theme = dark ? 'light' : 'dark'; render();
+});
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change',render);
+if (window.Chart) render(); else window.addEventListener('load',()=>window.Chart&&render());
+</script>
+</body>
+</html>
