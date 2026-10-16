@@ -22,11 +22,11 @@
         "word": "Slightly positive",
         "bin": "p1",
         "score": 2,
-        "good": 504,
+        "good": 503,
         "bad": 481,
-        "neutral": 380,
+        "neutral": 377,
         "unclear": 0,
-        "counted": 1365,
+        "counted": 1361,
         "trend": null
       }
     },
@@ -329,7 +329,7 @@
     {
       "event_id": 6820,
       "title": "Japan finance minister: G20 concerned over yields, FX volatility",
-      "when": "9 hours ago",
+      "when": "10 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "n3",
@@ -536,7 +536,7 @@
     {
       "event_id": 6789,
       "title": "Wholesale prices jumped 6.3% annually in September, biggest gain since 2022",
-      "when": "10 hours ago",
+      "when": "11 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "p3",
@@ -545,7 +545,7 @@
     {
       "event_id": 6786,
       "title": "Tech market sell-off deepens amid fears over US inflation and AI debt",
-      "when": "10 hours ago",
+      "when": "11 hours ago",
       "topic": "Interest rates & central banks",
       "chips": [],
       "bin": "n3",
@@ -689,7 +689,7 @@
     {
       "event_id": 6762,
       "title": "U.S. Treasury dismisses IMF debt warning and 'messy' forecasting",
-      "when": "11 hours ago",
+      "when": "12 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "n3",
@@ -698,7 +698,7 @@
     {
       "event_id": 6759,
       "title": "Indonesia faces wildfire challenges ahead of Prabowo’s second year",
-      "when": "11 hours ago",
+      "when": "12 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "n3",
@@ -806,7 +806,7 @@
     {
       "event_id": 6734,
       "title": "Shook Research Changes Name to Veritant After Forbes Scandal",
-      "when": "12 hours ago",
+      "when": "13 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "z",
@@ -815,7 +815,7 @@
     {
       "event_id": 6730,
       "title": "This 30-year market veteran is alarmed by a record-chasing S&P 500. Here’s where he’s investing instead.",
-      "when": "12 hours ago",
+      "when": "13 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "z",
@@ -824,7 +824,7 @@
     {
       "event_id": 6729,
       "title": "US Treasury pushes global partners to rename AI as 'super intelligence'",
-      "when": "12 hours ago",
+      "when": "13 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "p3",
@@ -950,7 +950,7 @@
     {
       "event_id": 6705,
       "title": "Tech Mahindra Q2 Results: Net profit jumps 33% YoY to Rs 1,586 crore; co declares Rs 15/share dividend, 1:1 bonus issue",
-      "when": "13 hours ago",
+      "when": "14 hours ago",
       "topic": "Company results",
       "chips": [],
       "bin": "z",
@@ -959,7 +959,7 @@
     {
       "event_id": 6704,
       "title": "Indonesia eyes Russian partnership to boost IT, shipbuilding industry",
-      "when": "13 hours ago",
+      "when": "14 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "p3",
@@ -968,7 +968,7 @@
     {
       "event_id": 6702,
       "title": "India's Tech Mahindra maintains fiscal 2027 margin target after large deals drive revenue beat",
-      "when": "13 hours ago",
+      "when": "14 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "p3",
@@ -1067,7 +1067,7 @@
     {
       "event_id": 6677,
       "title": "2026 Indonesian MotoGP generates US$289 million economic impact: ITDC",
-      "when": "14 hours ago",
+      "when": "15 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "z",
@@ -1076,7 +1076,7 @@
     {
       "event_id": 6676,
       "title": "AI boom puts growing strain on electricity grids, says Hitachi Energy CEO",
-      "when": "14 hours ago",
+      "when": "15 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "p3",
@@ -1085,7 +1085,7 @@
     {
       "event_id": 6675,
       "title": "Ace investor Sunil Singhania adds 6 new stocks in Q2; likely exits two companies after 150% rally",
-      "when": "14 hours ago",
+      "when": "15 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "p3",
@@ -1202,7 +1202,7 @@
     {
       "event_id": 6646,
       "title": "Why are prices so high? Robert Reich answers your questions – Stateside with Kai and Carter",
-      "when": "15 hours ago",
+      "when": "16 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "n3",
@@ -1211,7 +1211,7 @@
     {
       "event_id": 6645,
       "title": "Bank BSN Pushes for ASEAN Islamic Finance Integration to Support Sustainable Growth",
-      "when": "15 hours ago",
+      "when": "16 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "p3",
@@ -1220,7 +1220,7 @@
     {
       "event_id": 6642,
       "title": "How Ukraine’s biggest bank is run in a war zone",
-      "when": "15 hours ago",
+      "when": "16 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "z",
@@ -1337,7 +1337,7 @@
     {
       "event_id": 6618,
       "title": "Malaysia’s central bank chief signals room to act as inflation risks rise",
-      "when": "16 hours ago",
+      "when": "17 hours ago",
       "topic": "Interest rates & central banks",
       "chips": [],
       "bin": "z",
@@ -1346,7 +1346,7 @@
     {
       "event_id": 6617,
       "title": "UK economy grew 0.1% in August, beating expectations",
-      "when": "16 hours ago",
+      "when": "17 hours ago",
       "topic": "Interest rates & central banks",
       "chips": [],
       "bin": "n3",
@@ -1355,7 +1355,7 @@
     {
       "event_id": 6614,
       "title": "TSMC CEO sees no sign of a slowdown as chip foundry reports record profit",
-      "when": "16 hours ago",
+      "when": "17 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "p3",
@@ -1364,7 +1364,7 @@
     {
       "event_id": 6611,
       "title": "TSMC open to Terafab collaboration but insists on controlling its own plants",
-      "when": "16 hours ago",
+      "when": "17 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "z",
@@ -1373,7 +1373,7 @@
     {
       "event_id": 6610,
       "title": "Xiaomi shares outperform weak markets after positive EV feedback",
-      "when": "16 hours ago",
+      "when": "17 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "p3",
@@ -1382,7 +1382,7 @@
     {
       "event_id": 6609,
       "title": "Global chipmakers sink as inflation data fuels rate-hike fears, AI rout",
-      "when": "16 hours ago",
+      "when": "17 hours ago",
       "topic": "Interest rates & central banks",
       "chips": [],
       "bin": "n3",
@@ -1391,7 +1391,7 @@
     {
       "event_id": 6608,
       "title": "UBS says dollar long positions return amid equity pullback",
-      "when": "16 hours ago",
+      "when": "17 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "p3",
@@ -1400,7 +1400,7 @@
     {
       "event_id": 6607,
       "title": "Saab shares up 2% after $123 million Gripen flight control order",
-      "when": "16 hours ago",
+      "when": "17 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "p3",
@@ -1409,7 +1409,7 @@
     {
       "event_id": 6604,
       "title": "Tech sector breaks uptrend, raising risk of further S&P 500 losses",
-      "when": "16 hours ago",
+      "when": "17 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "n3",
@@ -1472,7 +1472,7 @@
     {
       "event_id": 6584,
       "title": "Hyundai to recall over 94,600 US vehicles over fire risk from overheating, NHTSA says",
-      "when": "17 hours ago",
+      "when": "18 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "n3",
@@ -1481,7 +1481,7 @@
     {
       "event_id": 6581,
       "title": "UK economy sees surprise growth in August ahead of Healey's first Budget",
-      "when": "17 hours ago",
+      "when": "18 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "p3",
@@ -1490,7 +1490,7 @@
     {
       "event_id": 6579,
       "title": "Bessent urges World Bank to end restrictions on upstream oil, gas financing",
-      "when": "17 hours ago",
+      "when": "18 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "p3",
@@ -1544,7 +1544,7 @@
     {
       "event_id": 6556,
       "title": "Indonesia reinforces corporate responsibility in wildfire mitigation",
-      "when": "18 hours ago",
+      "when": "19 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "p3",
@@ -1553,7 +1553,7 @@
     {
       "event_id": 6554,
       "title": "Taiwan chip giant TSMC says net profit hit record in third quarter",
-      "when": "18 hours ago",
+      "when": "19 hours ago",
       "topic": "Company results",
       "chips": [],
       "bin": "p3",
@@ -1787,7 +1787,7 @@
     {
       "event_id": 6499,
       "title": "Global Market: China stocks fall as hot US inflation data revives rate hike fears",
-      "when": "20 hours ago",
+      "when": "21 hours ago",
       "topic": "Interest rates & central banks",
       "chips": [],
       "bin": "n3",
@@ -1796,7 +1796,7 @@
     {
       "event_id": 6498,
       "title": "Asian markets sell off after US inflation fuels rate hike bets",
-      "when": "20 hours ago",
+      "when": "21 hours ago",
       "topic": "Interest rates & central banks",
       "chips": [],
       "bin": "n3",
@@ -1805,7 +1805,7 @@
     {
       "event_id": 6497,
       "title": "Prolonged war, renewed disruptions pose biggest risk to Middle East region, IMF says",
-      "when": "20 hours ago",
+      "when": "21 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "n3",
@@ -1814,7 +1814,7 @@
     {
       "event_id": 6496,
       "title": "Indonesia weighs industry feedback on plastic import duty exemptions",
-      "when": "20 hours ago",
+      "when": "21 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "p3",
@@ -1940,7 +1940,7 @@
     {
       "event_id": 6471,
       "title": "UBS considers leaving Switzerland over capital rule plans, WSJ reports",
-      "when": "21 hours ago",
+      "when": "22 hours ago",
       "topic": "Rules & regulators",
       "chips": [],
       "bin": "n3",
@@ -1949,7 +1949,7 @@
     {
       "event_id": 6469,
       "title": "SK Hynix seeks U.S. chip equipment exports to China tied to new factory - Reuters",
-      "when": "21 hours ago",
+      "when": "22 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "z",
@@ -1958,7 +1958,7 @@
     {
       "event_id": 6467,
       "title": "Anthropic flags revenue surge to investors ahead of stock market debut",
-      "when": "21 hours ago",
+      "when": "22 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "n3",
@@ -2039,7 +2039,7 @@
     {
       "event_id": 6445,
       "title": "Tunisia: What has Kais Saied achieved economically in seven years?",
-      "when": "22 hours ago",
+      "when": "23 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "n3",
@@ -2129,7 +2129,7 @@
     {
       "event_id": 6423,
       "title": "BOJ should not be overly cautious in raising rates, board member Koeda says",
-      "when": "23 hours ago",
+      "when": "24 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "z",
@@ -2264,7 +2264,7 @@
     {
       "event_id": 6393,
       "title": "The AI trade is splintering as inflation fears rattle hyped-up tech stocks",
-      "when": "25 hours ago",
+      "when": "26 hours ago",
       "topic": "Interest rates & central banks",
       "chips": [],
       "bin": "n3",
@@ -2300,7 +2300,7 @@
     {
       "event_id": 6385,
       "title": "Battle Over the Pierre Ends in Defeat for the Buyer Pushed by Lutnick",
-      "when": "26 hours ago",
+      "when": "27 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "z",
@@ -2471,7 +2471,7 @@
     {
       "event_id": 6362,
       "title": "Nasdaq ends sharply lower as hot US inflation data stirs rate-hike worries",
-      "when": "28 hours ago",
+      "when": "29 hours ago",
       "topic": "Interest rates & central banks",
       "chips": [],
       "bin": "n3",
@@ -2480,7 +2480,7 @@
     {
       "event_id": 6361,
       "title": "Sky turns orange as wildfires rage across Indonesia",
-      "when": "28 hours ago",
+      "when": "29 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "n3",
@@ -2750,7 +2750,7 @@
     {
       "event_id": 6329,
       "title": "Surging Inflation Complicates Trump’s Final Push to Sell Voters on Strong Economy",
-      "when": "30 hours ago",
+      "when": "31 hours ago",
       "topic": "Interest rates & central banks",
       "chips": [],
       "bin": "n3",
@@ -2759,7 +2759,7 @@
     {
       "event_id": 6328,
       "title": "Red hot CPI report fuels AI rout",
-      "when": "30 hours ago",
+      "when": "31 hours ago",
       "topic": "Prices & inflation",
       "chips": [],
       "bin": "n3",
@@ -2939,7 +2939,7 @@
     {
       "event_id": 6307,
       "title": "As Wall Street banks finance and adopt AI, risks mount on both fronts",
-      "when": "32 hours ago",
+      "when": "33 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "z",
@@ -2948,7 +2948,7 @@
     {
       "event_id": 6305,
       "title": "Tehran municipality accused of ‘overstep’ after launching welfare projects",
-      "when": "32 hours ago",
+      "when": "33 hours ago",
       "topic": "Interest rates & central banks",
       "chips": [],
       "bin": "n3",
@@ -2957,7 +2957,7 @@
     {
       "event_id": 6304,
       "title": "BI logs 200 cross-border QRIS transactions at 2026 Mandalika MotoGP",
-      "when": "32 hours ago",
+      "when": "33 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "z",
@@ -3074,7 +3074,7 @@
     {
       "event_id": 6289,
       "title": "The Knot Worldwide to acquire Zola in wedding platform union, sources say",
-      "when": "33 hours ago",
+      "when": "34 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "z",
@@ -3083,7 +3083,7 @@
     {
       "event_id": 6288,
       "title": "Silver futures plunge 4% on MCX ahead of US CPI; rising oil adds pressure",
-      "when": "33 hours ago",
+      "when": "34 hours ago",
       "topic": "Prices & inflation",
       "chips": [],
       "bin": "n3",
@@ -3164,7 +3164,7 @@
     {
       "event_id": 6274,
       "title": "Here’s the latest.",
-      "when": "34 hours ago",
+      "when": "35 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "z",
@@ -3173,7 +3173,7 @@
     {
       "event_id": 6273,
       "title": "Indonesia's BGN launches 980 MBG kitchens in 3T, high-stunting regions",
-      "when": "34 hours ago",
+      "when": "35 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "z",
@@ -3182,7 +3182,7 @@
     {
       "event_id": 6272,
       "title": "Palantir and London mayor's office settle lawsuit over UK police contract",
-      "when": "34 hours ago",
+      "when": "35 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "n3",
@@ -3317,7 +3317,7 @@
     {
       "event_id": 6246,
       "title": "US inflation heats up in September; Fed rate hike in October back on table",
-      "when": "35 hours ago",
+      "when": "36 hours ago",
       "topic": "Interest rates & central banks",
       "chips": [],
       "bin": "n3",
@@ -3326,7 +3326,7 @@
     {
       "event_id": 6244,
       "title": "Inflation sizzled in September — and Social Security benefits will get a boost",
-      "when": "35 hours ago",
+      "when": "36 hours ago",
       "topic": "Interest rates & central banks",
       "chips": [],
       "bin": "p3",
@@ -3380,7 +3380,7 @@
     {
       "event_id": 6228,
       "title": "Japan Airlines orders up to 26 Embraer jets for regional arm",
-      "when": "36 hours ago",
+      "when": "37 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "p3",
@@ -3389,7 +3389,7 @@
     {
       "event_id": 6227,
       "title": "Managing strategic trade for Indonesia's technology value chains",
-      "when": "36 hours ago",
+      "when": "37 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "z",
@@ -3398,7 +3398,7 @@
     {
       "event_id": 6226,
       "title": "Bali announces three-day work from home to ease fuel oil queues",
-      "when": "36 hours ago",
+      "when": "37 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "z",
@@ -3407,7 +3407,7 @@
     {
       "event_id": 6223,
       "title": "What Allegations of Spying at OpenAI Mean for the A.I. Industry",
-      "when": "36 hours ago",
+      "when": "37 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "n3",
@@ -3515,7 +3515,7 @@
     {
       "event_id": 6192,
       "title": "Indonesia's downstreaming target set at US$618 billion by 2040",
-      "when": "37 hours ago",
+      "when": "38 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "p3",
@@ -3524,7 +3524,7 @@
     {
       "event_id": 6187,
       "title": "Getty Images to go private under ‘pre-packaged’ bankruptcy",
-      "when": "37 hours ago",
+      "when": "38 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "n3",
@@ -3533,7 +3533,7 @@
     {
       "event_id": 6186,
       "title": "Indonesia's modest fashion industry eyes global markets, Minister says",
-      "when": "37 hours ago",
+      "when": "38 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "p3",
@@ -3578,7 +3578,7 @@
     {
       "event_id": 6172,
       "title": "10 Nifty500 stocks that have fallen up to 58% in a year",
-      "when": "38 hours ago",
+      "when": "39 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "n3",
@@ -3587,7 +3587,7 @@
     {
       "event_id": 6171,
       "title": "Wall Street firms tie bonuses, promotions to AI skills, survey finds",
-      "when": "38 hours ago",
+      "when": "39 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "z",
@@ -3650,7 +3650,7 @@
     {
       "event_id": 6157,
       "title": "Temasek Trust, World Bank Group tie up to advance initiatives in climate and energy",
-      "when": "39 hours ago",
+      "when": "40 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "p3",
@@ -3740,7 +3740,7 @@
     {
       "event_id": 6136,
       "title": "Hongkong Land in talks with Ong Beng Seng’s HPL for stake in Orchard Road buildings: Sources",
-      "when": "40 hours ago",
+      "when": "41 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "z",
@@ -3902,7 +3902,7 @@
     {
       "event_id": 6098,
       "title": "Stripchat loses legal fight against EU tech label",
-      "when": "41 hours ago",
+      "when": "42 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "n3",
@@ -3992,7 +3992,7 @@
     {
       "event_id": 6070,
       "title": "Global Market: Japan five-year bond yield steady after strong demand at auction",
-      "when": "42 hours ago",
+      "when": "43 hours ago",
       "topic": "Interest rates & central banks",
       "chips": [],
       "bin": "p3",
@@ -4001,7 +4001,7 @@
     {
       "event_id": 6067,
       "title": "Global Market: Why China’s CXMT is putting global memory chip giants under pressure",
-      "when": "42 hours ago",
+      "when": "43 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "n3",
@@ -4091,7 +4091,7 @@
     {
       "event_id": 6045,
       "title": "Q2 Earnings Results Live Updates: BHEL Q2 net profit soars 120% YoY, revenue jumps 23.8% YoY to Rs 9,300 crore",
-      "when": "43 hours ago",
+      "when": "44 hours ago",
       "topic": "Company results",
       "chips": [],
       "bin": "p3",
@@ -4100,7 +4100,7 @@
     {
       "event_id": 6043,
       "title": "Global Market: China stocks slip as AI selloff deepens, mixed inflation data weighs",
-      "when": "43 hours ago",
+      "when": "44 hours ago",
       "topic": "Interest rates & central banks",
       "chips": [],
       "bin": "n3",
@@ -4109,7 +4109,7 @@
     {
       "event_id": 6041,
       "title": "Can AST SpaceMobile stock rebound after sharp sell-off?",
-      "when": "43 hours ago",
+      "when": "44 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "n3",
@@ -4118,7 +4118,7 @@
     {
       "event_id": 6040,
       "title": "Indonesia brings Bandung Spirit to UN Talks on Africa",
-      "when": "43 hours ago",
+      "when": "44 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "p3",
@@ -4127,7 +4127,7 @@
     {
       "event_id": 6038,
       "title": "TCS, HCL Tech, Infosys shares surge up to 11% in 2 days; Nifty IT soars 2,000 points. More steam left for rally?",
-      "when": "43 hours ago",
+      "when": "44 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "p3",
@@ -4316,7 +4316,7 @@
     {
       "event_id": 5999,
       "title": "BHP’s Escondida copper mine in Chile set for worker strike",
-      "when": "44 hours ago",
+      "when": "45 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "n3",
@@ -4325,7 +4325,7 @@
     {
       "event_id": 5997,
       "title": "Federal Judge Again Blocks Trump’s Ban on CNN, MS NOW and Politico",
-      "when": "44 hours ago",
+      "when": "45 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "n3",
@@ -4415,7 +4415,7 @@
     {
       "event_id": 5970,
       "title": "Austal shares jump as Hanwha gets more time to bid for US unit",
-      "when": "45 hours ago",
+      "when": "46 hours ago",
       "topic": "Other",
       "chips": [],
       "bin": "n3",
@@ -6881,7 +6881,7 @@
     {
       "event_id": 5418,
       "title": "Bank of India declares Rs 575 crore exposure to Future Enterprises as fraud",
-      "when": "2 days ago",
+      "when": "3 days ago",
       "topic": "Other",
       "chips": [],
       "bin": "n3",
@@ -6890,7 +6890,7 @@
     {
       "event_id": 5415,
       "title": "Airtel Money makes weak London market debut",
-      "when": "2 days ago",
+      "when": "3 days ago",
       "topic": "Interest rates & central banks",
       "chips": [],
       "bin": "n3",
@@ -12582,42 +12582,6 @@
       "chips": [],
       "bin": "n3",
       "tone": "negative"
-    },
-    {
-      "event_id": 4108,
-      "title": "Vietnam offshore oil and gas draw Japan, US, Russia to South China Sea",
-      "when": "6 days ago",
-      "topic": "Other",
-      "chips": [],
-      "bin": "z",
-      "tone": "neutral"
-    },
-    {
-      "event_id": 4107,
-      "title": "Samsung, SK Hynix record earnings fuel South Korea spending on AI, youth",
-      "when": "6 days ago",
-      "topic": "Other",
-      "chips": [],
-      "bin": "p3",
-      "tone": "positive"
-    },
-    {
-      "event_id": 4106,
-      "title": "Japan-led Asia decarbonization bloc pivots to oil stockpiling measures",
-      "when": "6 days ago",
-      "topic": "Other",
-      "chips": [],
-      "bin": "z",
-      "tone": "neutral"
-    },
-    {
-      "event_id": 4105,
-      "title": "Line aims to be Thailand's 'everyday AI app' in key market",
-      "when": "6 days ago",
-      "topic": "Other",
-      "chips": [],
-      "bin": "z",
-      "tone": "neutral"
     }
   ],
   "updated": "6 hours ago",
@@ -12641,5 +12605,5 @@
     "U.S. Treasury — Press releases",
     "Yahoo Finance — News"
   ],
-  "generated_at": "2026-10-16T01:32:57.751605+00:00"
+  "generated_at": "2026-10-16T01:46:05.692801+00:00"
 }
