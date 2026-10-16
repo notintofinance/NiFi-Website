@@ -11,7 +11,7 @@ export const siteConfig = {
   links: {
     community: "https://discord.gg/PzXJKTKPd4",
     arthara: "https://arthara.id",
-    marketToday: "/sentiment",
+    marketToday: "/market-today",
     newsletter: "https://notintofinance.beehiiv.com",
   },
 
@@ -36,7 +36,7 @@ export const siteConfig = {
   nav: [
     { label: "About", href: "/#about" },
     { label: "Hub", href: "/hub" },
-    { label: "Sentiment", href: "/sentiment" },
+    { label: "Market Today", href: "/market-today" },
     { label: "Learn", href: "/learn" },
     { label: "Community", href: "/community" },
     { label: "Contact", href: "/contact" },

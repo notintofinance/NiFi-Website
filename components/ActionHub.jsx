@@ -110,10 +110,9 @@ export default function ActionHub() {
             />
             <SecondaryAction
               icon={TrendingUp}
-              label="Market Sentiment"
-              description="See how global and Indonesian markets are feeling, read from live market data."
+              label="Market Today"
+              description="Our daily market briefing: Indonesia and global markets, rates, commodities and more."
               href={siteConfig.links.marketToday}
-              internal
             />
             <SecondaryAction
               icon={Mail}

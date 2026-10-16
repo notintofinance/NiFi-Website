@@ -1,9 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  // Market Today and Market Sentiment were merged into one page at /sentiment.
+  // The full Market Today dashboard is published as a self-contained page in
+  // public/market-today/index.html and served at the clean URL /market-today.
+  async rewrites() {
+    return [{ source: "/market-today", destination: "/market-today/index.html" }];
+  },
+  // The earlier /sentiment page was folded into the full Market Today page.
   async redirects() {
-    return [{ source: "/market-today", destination: "/sentiment", permanent: true }];
+    return [{ source: "/sentiment", destination: "/market-today", permanent: true }];
   },
 };
 

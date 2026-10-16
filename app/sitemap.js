@@ -8,7 +8,7 @@ export default function sitemap() {
   const staticRoutes = [
     "",
     "/hub",
-    "/sentiment",
+    "/market-today",
     "/research",
     "/article",
     "/newsletter",
