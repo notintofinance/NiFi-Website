@@ -22,7 +22,7 @@ import sys
 import urllib.request
 
 ENGINE = "http://127.0.0.1:8000"
-PAGE = "/markets"  # the "Market Today" overview
+PAGE = "/markets?lang=en"  # the "Market Today" overview, in English
 SITE = pathlib.Path(__file__).resolve().parent.parent
 OUT = SITE / "public" / "market-today" / "index.html"
 
