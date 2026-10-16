@@ -1,5 +1,3 @@
-import fs from "node:fs";
-import path from "node:path";
 import { learnTopics } from "@/data/learn-data";
 import { getAllAnalysts } from "@/lib/content";
 import { TAGS } from "@/data/tags-data";
@@ -10,6 +8,7 @@ export default function sitemap() {
   const staticRoutes = [
     "",
     "/hub",
+    "/sentiment",
     "/research",
     "/article",
     "/newsletter",
@@ -24,11 +23,7 @@ export default function sitemap() {
   const analystRoutes = getAllAnalysts().map((a) => `/analyst/${a.slug}`);
   const tagRoutes = Object.values(TAGS).map((t) => `/tag/${t.slug}`);
 
-  const productRoutes = fs.existsSync(path.join(process.cwd(), "public", "market-today", "index.html"))
-    ? ["/market-today"]
-    : [];
-
-  const routes = [...staticRoutes, ...productRoutes, ...learnRoutes, ...analystRoutes, ...tagRoutes];
+  const routes = [...staticRoutes, ...learnRoutes, ...analystRoutes, ...tagRoutes];
 
   return routes.map((path) => ({
     url: `${base}${path}`,

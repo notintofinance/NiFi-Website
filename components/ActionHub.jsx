@@ -1,15 +1,10 @@
-import fs from "node:fs";
-import path from "node:path";
 import Image from "next/image";
 import Link from "next/link";
 import { Users, Mail, ArrowRight, ArrowUpRight, TrendingUp } from "lucide-react";
 import SectionHeading from "./SectionHeading";
 import { siteConfig } from "@/data/site-config";
 
-// Market Today is listed once its page has been published (public/market-today/index.html).
-const hasMarketToday = fs.existsSync(path.join(process.cwd(), "public", "market-today", "index.html"));
-
-// Secondary action row (Arthara, Market Today, Newsletter).
+// Secondary action row (Arthara, Market Sentiment, Newsletter).
 // Pass either a Lucide `icon` or a `logo` image src for the chip.
 // `internal` uses client-side routing (same tab); otherwise opens a new tab.
 function SecondaryAction({ icon: Icon, logo, label, description, href, internal }) {
@@ -113,14 +108,13 @@ export default function ActionHub() {
               description="Explore Arthara, our platform for going deeper into research and the markets."
               href={siteConfig.links.arthara}
             />
-            {hasMarketToday && (
-              <SecondaryAction
-                icon={TrendingUp}
-                label="Market Today"
-                description="Our daily market briefing: Indonesia and global markets, countries, charts and data."
-                href={siteConfig.links.marketToday}
-              />
-            )}
+            <SecondaryAction
+              icon={TrendingUp}
+              label="Market Sentiment"
+              description="See how global and Indonesian markets are feeling, read from live market data."
+              href={siteConfig.links.marketToday}
+              internal
+            />
             <SecondaryAction
               icon={Mail}
               label="Subscribe to Our Free Newsletter"

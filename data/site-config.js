@@ -11,7 +11,7 @@ export const siteConfig = {
   links: {
     community: "https://discord.gg/PzXJKTKPd4",
     arthara: "https://arthara.id",
-    marketToday: "/market-today",
+    marketToday: "/sentiment",
     newsletter: "https://notintofinance.beehiiv.com",
   },
 

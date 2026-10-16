@@ -1,9 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  // Market Today: one self-contained page, published from the Mac into public/market-today/index.html.
-  async rewrites() {
-    return [{ source: "/market-today", destination: "/market-today/index.html" }];
+  // Market Today and Market Sentiment were merged into one page at /sentiment.
+  async redirects() {
+    return [{ source: "/market-today", destination: "/sentiment", permanent: true }];
   },
 };
 
