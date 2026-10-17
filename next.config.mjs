@@ -5,7 +5,7 @@ const nextConfig = {
   // send visitors to the live app. (Temporary redirects so we can later swap
   // in a markets.notintofinance.com subdomain without cache headaches.)
   async redirects() {
-    const dashboard = "https://nifi-market-today.fly.dev/markets";
+    const dashboard = "https://markets.notintofinance.com/markets";
     return [
       { source: "/market-today", destination: dashboard, permanent: false },
       { source: "/sentiment", destination: dashboard, permanent: false },
