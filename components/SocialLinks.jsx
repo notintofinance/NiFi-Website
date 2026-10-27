@@ -42,7 +42,7 @@ export default function SocialLinks() {
           rel="noopener noreferrer"
           aria-label={labels[key] || key}
           title={labels[key] || key}
-          className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-navy-600 bg-navy-800/60 text-slate-400 transition-colors hover:border-accent hover:text-white"
+          className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-line bg-white text-slate-500 transition-colors hover:border-brand hover:text-brand"
         >
           {key === "beehiiv" ? (
             <Mail size={16} />

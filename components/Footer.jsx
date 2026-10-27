@@ -5,14 +5,14 @@ import { siteConfig } from "@/data/site-config";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-navy-700/60 bg-navy-950">
-      <div className="mx-auto max-w-7xl px-6 py-12">
+    <footer className="border-t border-line bg-cream">
+      <div className="mx-auto max-w-6xl px-6 py-14">
         <div className="flex flex-col items-start justify-between gap-8 sm:flex-row sm:items-center">
           <div className="max-w-sm">
-            <Logo size={36} href="/" />
-            <p className="mt-4 text-sm leading-relaxed text-slate-400">
-              Research, education, and community for people who aren&apos;t into
-              finance yet. We&apos;d love for you to learn it with us.
+            <Logo size={34} href="/" />
+            <p className="mt-4 text-sm leading-relaxed text-slate-500">
+              Finance in plain language, for people who aren&apos;t into finance
+              yet. Learn it with us.
             </p>
             <div className="mt-5">
               <SocialLinks />
@@ -24,7 +24,7 @@ export default function Footer() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-sm text-slate-400 transition-colors hover:text-white"
+                className="text-sm font-medium text-slate-600 transition-colors hover:text-brand"
               >
                 {item.label}
               </Link>
@@ -32,7 +32,7 @@ export default function Footer() {
           </nav>
         </div>
 
-        <div className="mt-8 border-t border-navy-800 pt-6 text-center text-xs text-slate-500">
+        <div className="mt-10 border-t border-line pt-6 text-center text-xs text-slate-500">
           <p>
             &copy; {new Date().getFullYear()} {siteConfig.name} ({siteConfig.shortName}).
             All rights reserved.

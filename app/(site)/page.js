@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -8,27 +7,30 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <main className="relative flex min-h-[calc(100vh-4rem)] items-center justify-center overflow-hidden px-6">
-        {/* Soft glow backdrop */}
-        <div className="pointer-events-none absolute -top-24 left-1/2 h-[32rem] w-[32rem] -translate-x-1/2 rounded-full bg-accent/15 blur-[140px]" />
+      <main className="relative flex min-h-[calc(100vh-4rem)] items-center justify-center overflow-hidden bg-white px-6">
+        {/* Warm editorial wash */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-80 bg-gradient-to-b from-cream to-transparent" />
 
-        <div className="relative mx-auto max-w-3xl text-center">
-          <h1 className="font-display text-4xl font-bold leading-[1.1] tracking-tight text-white sm:text-5xl md:text-6xl">
-            Finance, for people who are{" "}
-            <span className="text-accent-bright">not into finance.</span>
+        <div className="relative mx-auto max-w-3xl py-20 text-center">
+          <span className="inline-block rounded-full border border-line bg-cream px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-brand">
+            Finance, in plain language
+          </span>
+
+          <h1 className="mt-7 font-display text-4xl font-bold leading-[1.08] tracking-tight text-brand sm:text-5xl md:text-6xl">
+            Finance, for people who are not into finance.
           </h1>
 
-          <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-slate-300">
+          <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-slate-600">
             Not Into Finance explains money and markets in plain language, and
             brings people together to learn it as a community.
           </p>
 
-          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <div className="mt-10 flex flex-col items-center justify-center gap-3.5 sm:flex-row">
             <a
               href={siteConfig.links.community}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-accent px-7 py-3.5 text-sm font-semibold text-white shadow-glow transition-colors hover:bg-accent-bright sm:w-auto"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-brand-hover sm:w-auto"
             >
               Join the Community
             </a>
@@ -36,7 +38,7 @@ export default function Home() {
               href={siteConfig.links.arthara}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-navy-600 bg-navy-800/60 px-7 py-3.5 text-sm font-semibold text-slate-200 transition-colors hover:border-accent hover:text-white sm:w-auto"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-line bg-white px-7 py-3.5 text-sm font-semibold text-brand transition-colors hover:border-brand sm:w-auto"
             >
               Explore Arthara
               <ArrowUpRight size={16} />

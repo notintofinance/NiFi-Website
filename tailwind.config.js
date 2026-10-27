@@ -21,6 +21,15 @@ module.exports = {
           bright: "#60a5fa",
           mint: "#34d399", // high-contrast secondary
         },
+        // Brand palette — NiFi deep navy (sampled from the logo) on a light,
+        // editorial canvas. Navy is the single brand color; the rest are neutrals.
+        brand: {
+          DEFAULT: "#16294A", // NiFi navy — ink, headings, primary buttons
+          hover: "#1f3a68",
+          soft: "#EEF1F6", // faint navy tint for surfaces
+        },
+        cream: "#F7F5F0", // warm off-white for sections / cards
+        line: "#E7E3DA", // warm hairline borders
       },
       fontFamily: {
         sans: ["var(--font-inter)", "ui-sans-serif", "system-ui", "sans-serif"],
