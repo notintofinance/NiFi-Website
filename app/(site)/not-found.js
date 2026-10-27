@@ -29,11 +29,11 @@ export default function NotFound() {
               Back home
             </Link>
             <Link
-              href="/research"
+              href="/for-business"
               className="inline-flex items-center gap-2 rounded-lg border border-navy-600 bg-navy-800/60 px-6 py-3 text-sm font-semibold text-slate-200 transition-colors hover:border-accent hover:text-white"
             >
               <ArrowLeft size={16} />
-              Browse research
+              For Business
             </Link>
           </div>
         </div>

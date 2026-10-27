@@ -10,7 +10,7 @@ export const siteConfig = {
   // Replace the "#" placeholders when the real URLs are ready.
   links: {
     community: "https://discord.gg/PzXJKTKPd4",
-    arthara: "https://arthara.id",
+    arthara: "https://www.arthara.id/",
     marketToday: "/market-today",
     newsletter: "https://notintofinance.beehiiv.com",
   },
@@ -32,13 +32,13 @@ export const siteConfig = {
   // with a note. (This key is meant to live in client code; it is not secret.)
   contactFormKey: "e29c53e7-d872-4806-b9bb-dd72c722d5d5",
 
-  // Navigation. Hash links resolve on the home page from any route.
+  // Official contact address (used by the For Business "Discuss a
+  // Collaboration" button and as the inbox behind the contact form).
+  contactEmail: "contact@notintofinance.com",
+
+  // Navigation. The site is two pages — Home and For Business — so the nav
+  // carries a single link across to the business page.
   nav: [
-    { label: "About", href: "/#about" },
-    { label: "Hub", href: "/hub" },
-    { label: "Market Today", href: "/market-today" },
-    { label: "Learn", href: "/learn" },
-    { label: "Community", href: "/community" },
-    { label: "Contact", href: "/contact" },
+    { label: "For Business", href: "/for-business" },
   ],
 };
