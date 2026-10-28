@@ -30,6 +30,11 @@ module.exports = {
         },
         cream: "#F7F5F0", // warm off-white for sections / cards
         line: "#E7E3DA", // warm hairline borders
+        // Single warm accent, used sparingly for editorial pop.
+        gold: {
+          DEFAULT: "#E0A43B",
+          soft: "#F6E8C8",
+        },
       },
       fontFamily: {
         sans: ["var(--font-inter)", "ui-sans-serif", "system-ui", "sans-serif"],
@@ -44,6 +49,8 @@ module.exports = {
       boxShadow: {
         glow: "0 0 40px -10px rgba(59, 130, 246, 0.45)",
         card: "0 8px 30px -12px rgba(0, 0, 0, 0.6)",
+        soft: "0 10px 40px -18px rgba(22, 41, 74, 0.22)",
+        lift: "0 20px 60px -24px rgba(22, 41, 74, 0.28)",
       },
       backgroundImage: {
         "grid-fade":
