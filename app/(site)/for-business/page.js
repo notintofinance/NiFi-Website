@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Mail, Megaphone, Images, Newspaper, Users } from "lucide-react";
+import { Mail, GraduationCap, FileText, Users } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { siteConfig } from "@/data/site-config";
@@ -7,43 +7,39 @@ import { siteConfig } from "@/data/site-config";
 export const metadata = {
   title: "For Business | Not Into Finance (NiFi)",
   description:
-    "Promotional placements with Not Into Finance across our social media channels and community. See how we can collaborate.",
+    "Collaborate with Not Into Finance across education, research, and community. See our capabilities and start a conversation.",
   openGraph: {
     title: "For Business | Not Into Finance (NiFi)",
     description:
-      "Promotional placements with Not Into Finance across our social media channels and community.",
+      "Collaborate with Not Into Finance across education, research, and community.",
     url: "https://notintofinance.com/for-business",
     type: "website",
   },
 };
 
-// Channels and formats are limited to what Not Into Finance already runs:
-// its social accounts, carousel explainers, the newsletter, and the community.
-const placements = [
+// Capability groups grounded in what NiFi actually does (Academy/learning,
+// research & content, and its community/channels). Specific campaign formats
+// are framed as "possible collaboration formats", not packaged products.
+const capabilities = [
   {
-    icon: Megaphone,
-    title: "Social media posts",
-    body: "Featured posts across our Instagram, X, and LinkedIn accounts.",
+    icon: GraduationCap,
+    title: "Learning & Programs",
+    body: "Academy classes, workshops, and sessions that explain finance and investing in plain language.",
   },
   {
-    icon: Images,
-    title: "Carousel explainers",
-    body: "Multi-slide carousels that introduce a product or idea in plain language.",
-  },
-  {
-    icon: Newspaper,
-    title: "Newsletter mentions",
-    body: "Placements within our email newsletter.",
+    icon: FileText,
+    title: "Research & Content",
+    body: "Equity and market research, carousels, and explainers made to be understood by everyday readers.",
   },
   {
     icon: Users,
-    title: "Community announcements",
-    body: "Shared with our Discord community.",
+    title: "Community & Distribution",
+    body: "Reach our Discord community and social channels. Possible collaboration formats include social posts, carousels, newsletter mentions, and community announcements.",
   },
 ];
 
-// Approved logo assets. The five below come from NiFi's own partnership deck;
-// Bitget Wallet and ICMSS UI were supplied as official brand assets.
+// Approved logo assets in public/partners. The first five come from NiFi's own
+// partnership deck; Bitget Wallet and ICMSS UI were supplied as official assets.
 const partners = [
   { name: "Ajaib", file: "ajaib.png", w: 342, h: 228 },
   { name: "Bitget Wallet", file: "bitget.png", w: 712, h: 186 },
@@ -64,48 +60,42 @@ export default function ForBusiness() {
       <Navbar />
       <main className="relative overflow-hidden bg-white px-6 pb-20 pt-16 sm:pt-20">
         <div className="pointer-events-none absolute inset-x-0 top-0 h-72 bg-gradient-to-b from-cream to-transparent" />
-        <Image
-          src="/nifi-mark.png"
-          alt=""
-          width={1024}
-          height={798}
-          className="pointer-events-none absolute -right-28 -top-16 w-[30rem] max-w-none opacity-[0.04]"
-        />
+        <div className="pointer-events-none absolute -right-40 -top-28 h-[32rem] w-[32rem] rounded-full bg-cool-soft blur-[120px] opacity-60" />
 
         <div className="relative mx-auto max-w-5xl">
           {/* Intro */}
           <div className="max-w-2xl">
             <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-brand">
-              <span className="h-1.5 w-1.5 rounded-full bg-gold" />
+              <span className="h-1.5 w-1.5 rounded-full bg-cool" />
               For Business
             </span>
             <h1 className="mt-4 font-display text-4xl font-bold leading-[1.08] tracking-tight text-brand sm:text-5xl">
-              Partner with Not Into Finance
+              Let&apos;s build something together
             </h1>
             <p className="mt-5 text-lg leading-relaxed text-slate-600">
-              We help finance and fintech brands reach an engaged,
-              finance-curious audience through promotional posts across our
-              social media accounts and community.
+              Not Into Finance is open to collaborating with brands and
+              organizations in finance and fintech — from education and research
+              to reaching our community.
             </p>
           </div>
 
-          {/* Two boxes */}
+          {/* Two columns */}
           <div className="mt-12 grid gap-6 md:grid-cols-2">
-            {/* Service Details */}
+            {/* Service details / capabilities */}
             <section className="relative overflow-hidden rounded-3xl border border-line bg-white p-8 shadow-soft">
-              <span className="absolute left-0 top-0 h-1 w-20 rounded-br-full bg-gold" />
+              <span className="absolute left-0 top-0 h-1 w-20 rounded-br-full bg-cool" />
               <h2 className="font-display text-xl font-semibold text-brand">
-                Service Details
+                What we can do together
               </h2>
               <p className="mt-3 text-sm leading-relaxed text-slate-500">
-                We run partner placements through the channels and formats we
-                already publish on:
+                A few areas where we collaborate. We&apos;ll scope the right
+                format with you rather than sell a fixed package.
               </p>
 
               <ul className="mt-6 space-y-5">
-                {placements.map(({ icon: Icon, title, body }) => (
+                {capabilities.map(({ icon: Icon, title, body }) => (
                   <li key={title} className="flex gap-4">
-                    <span className="mt-0.5 inline-flex h-10 w-10 flex-none items-center justify-center rounded-xl bg-brand/5 text-brand">
+                    <span className="mt-0.5 inline-flex h-10 w-10 flex-none items-center justify-center rounded-xl bg-cool-soft text-cool">
                       <Icon size={18} />
                     </span>
                     <div>
@@ -127,15 +117,15 @@ export default function ForBusiness() {
               </a>
             </section>
 
-            {/* Previous Partnerships */}
+            {/* Selected collaborations */}
             <section className="relative overflow-hidden rounded-3xl border border-line bg-cream p-8 shadow-soft">
-              <span className="absolute left-0 top-0 h-1 w-20 rounded-br-full bg-gold" />
+              <span className="absolute left-0 top-0 h-1 w-20 rounded-br-full bg-cool" />
               <h2 className="font-display text-xl font-semibold text-brand">
-                Previous Partnerships
+                Selected Collaborations
               </h2>
               <p className="mt-3 text-sm leading-relaxed text-slate-500">
-                A selection of organizations we&apos;ve worked with.
-                Collaboration types have varied across partners.
+                Organizations we&apos;ve worked with. The type of collaboration
+                has varied across partners.
               </p>
 
               <ul className="mt-6 grid grid-cols-2 gap-3">

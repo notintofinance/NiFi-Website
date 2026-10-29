@@ -39,6 +39,7 @@ export const siteConfig = {
   // Navigation. The site is two pages — Home and For Business — so the nav
   // carries a single link across to the business page.
   nav: [
+    { label: "Home", href: "/" },
     { label: "For Business", href: "/for-business" },
   ],
 };

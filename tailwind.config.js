@@ -28,12 +28,13 @@ module.exports = {
           hover: "#1f3a68",
           soft: "#EEF1F6", // faint navy tint for surfaces
         },
-        cream: "#F7F5F0", // warm off-white for sections / cards
-        line: "#E7E3DA", // warm hairline borders
-        // Single warm accent, used sparingly for editorial pop.
-        gold: {
-          DEFAULT: "#E0A43B",
-          soft: "#F6E8C8",
+        // Cool, tech-leaning neutrals (kept the "cream" key to avoid churn).
+        cream: "#F4F6FA", // cool off-white for sections / cards
+        line: "#E4E8F0", // cool hairline borders
+        // Single cool accent, harmonizes with the brand navy. Used sparingly.
+        cool: {
+          DEFAULT: "#2F5BEA",
+          soft: "#E9EEFC",
         },
       },
       fontFamily: {
