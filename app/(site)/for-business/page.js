@@ -1,187 +1,286 @@
 import Image from "next/image";
-import { Mail, ArrowDown } from "lucide-react";
+import { Mail, ArrowDown, ArrowUpRight } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
 import { siteConfig } from "@/data/site-config";
+import { services, partners } from "@/data/business-data";
 
 export const metadata = {
   title: "For Business | Not Into Finance (NiFi)",
   description:
-    "Collaborate with Not Into Finance on learning programs, research and content, and community distribution.",
+    "Brand placement, event and community activation, NiFi Academy and Arthara: ways for brands and organizations to collaborate with Not Into Finance.",
   openGraph: {
     title: "For Business | Not Into Finance (NiFi)",
     description:
-      "Collaborate with Not Into Finance on learning programs, research and content, and community distribution.",
+      "Brand placement, event and community activation, NiFi Academy and Arthara: ways to collaborate with Not Into Finance.",
     url: "https://notintofinance.com/for-business",
     type: "website",
   },
 };
 
-// Grounded in what NiFi already does. Campaign formats are framed as
-// possibilities agreed per collaboration, not as packaged deliverables.
-const services = [
-  {
-    title: "Learning & Programs",
-    body: "Academy class sessions and learning programs that explain finance and investing in plain language.",
-  },
-  {
-    title: "Research & Content",
-    body: "Equity and sector research and explainers produced by the NiFi team. Possible formats include research-led content around a topic you care about.",
-  },
-  {
-    title: "Community & Distribution",
-    body: "Reach our Discord community and social channels. Possible formats include promotional posts, carousels, newsletter mentions, and community announcements.",
-  },
-];
+const mailto = `mailto:${siteConfig.contactEmail}?subject=${encodeURIComponent(
+  "Partnership with Not Into Finance"
+)}`;
 
-// White monochrome versions of the approved logos in public/partners. Five
-// come from NiFi's partnership deck; Bitget Wallet and ICMSS UI were supplied
-// by NiFi as official assets.
-const partners = [
-  { name: "Ajaib", file: "ajaib.png", w: 267, h: 84 },
-  { name: "Bitget Wallet", file: "bitget.png", w: 688, h: 116 },
-  { name: "Samuel Sekuritas", file: "samuel-sekuritas.png", w: 252, h: 100 },
-  { name: "Syailendra Capital", file: "syailendra.png", w: 196, h: 20 },
-  { name: "Doo Financials", file: "doo-financials.png", w: 250, h: 69 },
-  { name: "finplan.id", file: "finplan.png", w: 316, h: 90 },
-  { name: "ICMSS UI", file: "icmss-ui.png", w: 220, h: 218 },
-];
+// Real NiFi material shown beside each service.
+function Shot({ src, w, h, alt, caption, className = "", imgClassName = "h-auto w-full" }) {
+  return (
+    <figure className={className}>
+      <div className="overflow-hidden rounded-xl border border-white/15 bg-ink-800">
+        <Image
+          src={src}
+          alt={alt}
+          width={w}
+          height={h}
+          sizes="(max-width: 1024px) 50vw, 320px"
+          className={imgClassName}
+        />
+      </div>
+      <figcaption className="mt-2.5 text-xs text-slate-400">{caption}</figcaption>
+    </figure>
+  );
+}
+
+const visuals = {
+  "brand-placement": (
+    <>
+      <div className="grid grid-cols-[1fr_1fr_0.75fr] items-start gap-3 sm:gap-4">
+        <Shot src="/content/x-explainer.jpg" w={1145} h={987} alt="A NiFi explainer post on X" caption="Post on X" />
+        <Shot src="/content/journal-krisis.jpg" w={869} h={749} alt="A NiFi Journal post on Instagram" caption="Instagram feed post" />
+        <Shot src="/content/video-explainer.jpg" w={667} h={1081} alt="A NiFi short video explainer" caption="Short video" />
+      </div>
+      <p className="mt-4 text-xs leading-relaxed text-slate-400">
+        Examples of NiFi’s own research-led posts, the format placements
+        follow. These examples are not sponsored.
+      </p>
+    </>
+  ),
+  events: (
+    <div className="grid grid-cols-2 gap-3 sm:gap-4">
+      <Shot
+        src="/community/activity-ramadan.jpg"
+        w={1600}
+        h={1200}
+        alt="Members of the NiFi community together at a meetup"
+        caption="NiFi community meetup"
+        imgClassName="aspect-[4/3] h-auto w-full object-cover"
+      />
+      <Shot
+        src="/community/nifiberbagi-1.jpg"
+        w={1600}
+        h={900}
+        alt="NiFi volunteers at a #NiFiBerbagi charity activity, with faces covered for privacy"
+        caption="#NiFiBerbagi charity activity"
+        imgClassName="aspect-[4/3] h-auto w-full object-cover"
+      />
+    </div>
+  ),
+  academy: (
+    <div className="grid gap-3 sm:grid-cols-2 sm:gap-4">
+      <Shot
+        src="/content/academy-capital-market-class.jpg"
+        w={480}
+        h={212}
+        alt="Poster for a NiFi Academy Capital Market Class session"
+        caption="Capital Market Class"
+      />
+      <Shot
+        src="/content/academy-portfolio-construction.jpg"
+        w={480}
+        h={212}
+        alt="Poster for a NiFi Academy class on market-neutral portfolio construction"
+        caption="Portfolio construction class"
+      />
+    </div>
+  ),
+  arthara: (
+    <div className="flex flex-col items-start gap-6 rounded-2xl border border-white/10 bg-ink-900 p-7 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex items-center gap-4">
+        <span className="inline-flex h-14 w-14 items-center justify-center rounded-xl border border-white/10 bg-ink-800">
+          <Image src="/arthara-mark.png" alt="" width={32} height={32} className="h-7 w-7 object-contain invert" />
+        </span>
+        <div>
+          <p className="text-base font-semibold text-white">Arthara</p>
+          <p className="text-sm text-slate-400">arthara.id</p>
+        </div>
+      </div>
+      <a
+        href={siteConfig.links.arthara}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="btn-secondary"
+      >
+        Explore Arthara
+        <ArrowUpRight size={15} className="text-slate-500" aria-hidden="true" />
+      </a>
+    </div>
+  ),
+};
 
 export default function ForBusiness() {
-  const mailto = `mailto:${siteConfig.contactEmail}?subject=${encodeURIComponent(
-    "Collaboration with Not Into Finance"
-  )}`;
-
   return (
     <>
       <Navbar />
       <main>
         {/* ── Hero ─────────────────────────────────────────── */}
-        <section className="mx-auto max-w-6xl px-5 pb-20 pt-16 sm:px-6 sm:pb-28 sm:pt-24">
+        <section className="mx-auto max-w-6xl px-5 pb-16 pt-16 sm:px-6 sm:pb-20 sm:pt-24">
           <div className="max-w-3xl">
             <p className="eyebrow">For Business</p>
             <h1 className="mt-6 text-[3rem] leading-[1.03] sm:text-7xl">
               Open for <em className="text-cool">collaboration.</em>
             </h1>
             <p className="mt-7 max-w-xl text-lg leading-relaxed text-slate-400">
-              We work with finance and fintech brands and institutions on
-              learning programs, research and content, and reaching our
-              community.
+              NiFi works with brands and organizations to reach people who follow
+              finance and investing — through our content, events, Academy and
+              Arthara.
             </p>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
               <a href={mailto} className="btn-primary">
                 <Mail size={17} aria-hidden="true" />
-                Discuss a Collaboration
+                Discuss a partnership
               </a>
               <a href="#services" className="btn-secondary">
-                Services &amp; partnerships
+                See services
                 <ArrowDown size={15} className="text-slate-500" aria-hidden="true" />
               </a>
             </div>
           </div>
+
+          {/* On this page */}
+          <nav aria-label="Services on this page" className="mt-16 border-t border-white/[0.08]">
+            <ol className="grid sm:grid-cols-2 lg:grid-cols-4">
+              {services.map((s, i) => (
+                <li key={s.id} className="border-b border-white/[0.08] lg:border-b-0">
+                  <a
+                    href={`#${s.id}`}
+                    className="flex min-h-[56px] items-center gap-3 py-4 pr-4 text-sm text-slate-300 transition-colors hover:text-white"
+                  >
+                    <span className="text-cool">0{i + 1}</span>
+                    {s.title}
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </nav>
         </section>
 
-        {/* ── Services & Previous Partnerships ─────────────── */}
-        <section
+        {/* ── Services + Previous Partnerships ─────────────── */}
+        <div
           id="services"
-          aria-labelledby="services-title"
-          className="border-t border-white/[0.08]"
+          className="mx-auto grid max-w-6xl scroll-mt-20 gap-16 px-5 sm:px-6 lg:grid-cols-[minmax(0,1fr)_340px] lg:gap-16"
         >
-          <div className="mx-auto max-w-6xl px-5 py-20 sm:px-6 sm:py-24">
-            <h2 id="services-title" className="text-4xl leading-[1.08] sm:text-5xl">
-              Services &amp; Previous Partnerships
-            </h2>
-
-            <div className="mt-14 grid gap-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20">
-              {/* Services */}
-              <Reveal>
-                <div>
-                  <p className="eyebrow">Services</p>
-                  <ol className="mt-6 border-t border-white/[0.08]">
-                    {services.map((s, i) => (
-                      <li
-                        key={s.title}
-                        className="grid grid-cols-[2.5rem_1fr] gap-4 border-b border-white/[0.08] py-8"
-                      >
-                        <span className="pt-1.5 text-sm font-medium text-cool">
-                          0{i + 1}
-                        </span>
-                        <div>
-                          <h3 className="text-2xl sm:text-3xl">{s.title}</h3>
-                          <p className="mt-3 text-base leading-relaxed text-slate-400">
-                            {s.body}
-                          </p>
-                        </div>
-                      </li>
-                    ))}
-                  </ol>
-                  <p className="mt-6 text-sm text-slate-400">
-                    Scope and deliverables are agreed for each collaboration.
+          {/* Services, one by one */}
+          <div>
+            {services.map((s, i) => (
+              <section
+                key={s.id}
+                id={s.id}
+                aria-labelledby={`${s.id}-title`}
+                className="border-t border-white/[0.08] py-14 sm:py-16"
+              >
+                <Reveal>
+                  <p className="eyebrow">
+                    <span className="text-cool">0{i + 1}</span>
+                    {s.kind}
                   </p>
-                </div>
-              </Reveal>
-
-              {/* Previous partnerships */}
-              <Reveal>
-                <div>
-                  <p className="eyebrow">Previous Partnerships</p>
-                  <p className="mt-4 max-w-sm text-sm leading-relaxed text-slate-400">
-                    Organizations NiFi has collaborated with. The type of
-                    collaboration has varied from partner to partner.
+                  <h2 id={`${s.id}-title`} className="mt-5 text-4xl leading-[1.08] sm:text-5xl">
+                    {s.title}
+                  </h2>
+                  <p className="mt-5 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg">
+                    {s.lead}
                   </p>
-                  <ul className="mt-6 grid grid-cols-2 overflow-hidden rounded-2xl border border-white/[0.08]">
-                    {partners.map((p, i) => (
-                      <li
-                        key={p.file}
-                        className={`flex min-h-[8.5rem] flex-col items-center justify-center gap-3 border-white/[0.08] px-4 py-6 ${
-                          i % 2 === 0 && i !== partners.length - 1 ? "border-r" : ""
-                        } ${i < partners.length - 1 ? "border-b" : ""} ${
-                          i === partners.length - 1 ? "col-span-2" : ""
-                        }`}
-                      >
-                        <Image
-                          src={`/partners/mono/${p.file}`}
-                          alt=""
-                          width={p.w}
-                          height={p.h}
-                          className="max-h-9 w-auto max-w-[75%] object-contain opacity-90"
-                        />
-                        <span className="text-xs text-slate-400">{p.name}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </Reveal>
-            </div>
+
+                  {s.includes.length > 0 && (
+                    <div className="mt-8">
+                      <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">
+                        Can include
+                      </p>
+                      <ul className="mt-4 max-w-2xl border-t border-white/[0.08]">
+                        {s.includes.map((item) => (
+                          <li
+                            key={item}
+                            className="border-b border-white/[0.08] py-3.5 text-sm leading-relaxed text-slate-300 sm:text-base"
+                          >
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  <div className="mt-10">{visuals[s.id]}</div>
+                </Reveal>
+              </section>
+            ))}
+            <p className="border-t border-white/[0.08] pt-6 text-sm text-slate-400">
+              Formats, scope and deliverables are agreed for each collaboration.
+            </p>
           </div>
-        </section>
+
+          {/* Previous partnerships — sticky on desktop only */}
+          <aside
+            id="partnerships"
+            aria-labelledby="partnerships-title"
+            className="lg:sticky lg:top-20 lg:max-h-[calc(100vh-6rem)] lg:self-start lg:overflow-y-auto lg:pt-6"
+          >
+            <div className="rounded-[1.5rem] border border-white/10 bg-ink-900 p-6">
+              <h2 id="partnerships-title" className="text-3xl leading-[1.1]">
+                Previous Partnerships
+              </h2>
+              <p className="mt-3 text-sm leading-relaxed text-slate-400">
+                Organizations NiFi has collaborated with. Collaboration types
+                varied; roles are noted where documented.
+              </p>
+              <ul className="mt-5 border-t border-white/[0.08]">
+                {partners.map((p) => (
+                  <li
+                    key={p.file}
+                    className="flex items-center gap-4 border-b border-white/[0.08] py-2.5"
+                  >
+                    <span className="flex h-9 w-24 flex-none items-center justify-center">
+                      <Image
+                        src={`/partners/mono/${p.file}`}
+                        alt=""
+                        width={p.w}
+                        height={p.h}
+                        className="max-h-7 w-auto max-w-full object-contain opacity-90"
+                      />
+                    </span>
+                    <span>
+                      <span className="block text-sm font-medium text-white">{p.name}</span>
+                      <span className="block text-xs text-slate-400">{p.relation}</span>
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              <a href={mailto} className="btn-primary mt-5 w-full">
+                <Mail size={16} aria-hidden="true" />
+                Discuss a partnership
+              </a>
+            </div>
+          </aside>
+        </div>
 
         {/* ── Closing CTA ──────────────────────────────────── */}
-        <section
-          aria-labelledby="contact-title"
-          className="mx-auto max-w-6xl px-5 pb-24 sm:px-6"
-        >
+        <section aria-labelledby="contact-title" className="mx-auto max-w-6xl px-5 py-24 sm:px-6 sm:py-28">
           <Reveal>
             <div className="rounded-[1.75rem] border border-white/10 bg-cool-deep px-6 py-16 text-center sm:px-12 sm:py-20">
-              <h2
-                id="contact-title"
-                className="mx-auto max-w-2xl text-4xl leading-[1.08] sm:text-6xl"
-              >
-                Let&apos;s talk about working together.
+              <h2 id="contact-title" className="mx-auto max-w-2xl text-4xl leading-[1.08] sm:text-6xl">
+                Let’s collaborate.
               </h2>
               <p className="mx-auto mt-5 max-w-md text-base text-slate-300">
-                Tell us about your brand and what you have in mind. We&apos;ll
-                reply by email.
+                Tell us about your brand or organization and what you have in
+                mind. We’ll reply by email.
               </p>
               <div className="mt-9 flex flex-col items-center gap-4">
                 <a href={mailto} className="btn-primary">
                   <Mail size={17} aria-hidden="true" />
-                  Discuss a Collaboration
+                  Discuss a partnership
                 </a>
                 <a
                   href={mailto}
-                  className="text-sm text-slate-300 underline-offset-4 hover:text-white hover:underline"
+                  className="inline-flex min-h-[44px] items-center text-sm text-slate-300 underline-offset-4 hover:text-white hover:underline"
                 >
                   {siteConfig.contactEmail}
                 </a>
