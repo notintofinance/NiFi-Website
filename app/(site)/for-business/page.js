@@ -252,16 +252,20 @@ export default function ForBusiness() {
           </div>
 
           {/* On this page */}
-          <nav aria-label="Services on this page" className="mt-16 border-t border-white/[0.08]">
-            <ol className="grid sm:grid-cols-2 lg:grid-cols-4">
+          {/* Equal cells with hairline dividers (gap-px over a tinted
+              background), content centred so the row reads as symmetric. */}
+          <nav aria-label="Services on this page" className="mt-16">
+            <ol className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 lg:grid-cols-4">
               {services.map((s, i) => (
-                <li key={s.id} className="border-b border-white/[0.08] lg:border-b-0">
+                <li key={s.id} className="bg-ink-950">
                   <a
                     href={`#${s.id}`}
-                    className="flex min-h-[56px] items-center gap-3 py-4 pr-4 text-sm text-slate-300 transition-colors hover:text-white"
+                    className="flex h-full min-h-[88px] flex-col items-center justify-center gap-1.5 px-4 py-5 text-center transition-colors hover:bg-white/[0.04]"
                   >
-                    <span className="text-cool">0{i + 1}</span>
-                    {s.title}
+                    <span className="text-xs font-medium tracking-[0.18em] text-cool">
+                      0{i + 1}
+                    </span>
+                    <span className="text-sm font-medium text-slate-200">{s.title}</span>
                   </a>
                 </li>
               ))}
