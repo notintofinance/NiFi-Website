@@ -1,58 +1,50 @@
 import Image from "next/image";
-import { Mail, GraduationCap, FileText, Users, ArrowDown } from "lucide-react";
+import { Mail, ArrowDown } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Reveal from "@/components/Reveal";
 import { siteConfig } from "@/data/site-config";
 
 export const metadata = {
   title: "For Business | Not Into Finance (NiFi)",
   description:
-    "Collaborate with Not Into Finance across education, research, and community. See our capabilities and start a conversation.",
+    "Collaborate with Not Into Finance on learning programs, research and content, and community distribution.",
   openGraph: {
     title: "For Business | Not Into Finance (NiFi)",
     description:
-      "Collaborate with Not Into Finance across education, research, and community.",
+      "Collaborate with Not Into Finance on learning programs, research and content, and community distribution.",
     url: "https://notintofinance.com/for-business",
     type: "website",
   },
 };
 
-// Capability groups grounded in what NiFi actually does. Specific campaign
-// formats are framed as "possible collaboration formats", not packaged products.
-const capabilities = [
+// Grounded in what NiFi already does. Campaign formats are framed as
+// possibilities agreed per collaboration, not as packaged deliverables.
+const services = [
   {
-    icon: GraduationCap,
     title: "Learning & Programs",
-    body: "Academy classes, workshops, and sessions that explain finance and investing in plain language.",
+    body: "Academy class sessions and learning programs that explain finance and investing in plain language.",
   },
   {
-    icon: FileText,
     title: "Research & Content",
-    body: "Equity and market research, carousels, and explainers written for everyday readers.",
+    body: "Equity and sector research and explainers produced by the NiFi team. Possible formats include research-led content around a topic you care about.",
   },
   {
-    icon: Users,
     title: "Community & Distribution",
-    body: "Reach our Discord community and social channels. Possible formats include social posts, carousels, newsletter mentions, and community announcements.",
+    body: "Reach our Discord community and social channels. Possible formats include promotional posts, carousels, newsletter mentions, and community announcements.",
   },
 ];
 
-// Real NiFi research covers, shown as proof of the research we publish.
-const research = [
-  { title: "The Greatest of Indonesiawit", file: "indonesiawit-palm-oil.jpg" },
-  { title: "The New Alternative Energy", file: "new-alternative-energy.jpg" },
-  { title: "LPCK: Lippo Cikarang", file: "lpck-lippo-cikarang.jpg" },
-];
-
-// Approved logo assets in public/partners. The first five come from NiFi's own
-// partnership deck; Bitget Wallet and ICMSS UI were supplied as official assets.
+// White monochrome versions of the approved logos in public/partners. Five
+// come from NiFi's partnership deck; Bitget Wallet and ICMSS UI were supplied
+// by NiFi as official assets.
 const partners = [
-  { name: "Ajaib", file: "ajaib.png", w: 342, h: 228 },
-  { name: "Bitget Wallet", file: "bitget.png", w: 712, h: 186 },
-  { name: "Samuel Sekuritas Indonesia", file: "samuel-sekuritas.png", w: 252, h: 100 },
+  { name: "Ajaib", file: "ajaib.png", w: 267, h: 84 },
+  { name: "Bitget Wallet", file: "bitget.png", w: 688, h: 116 },
+  { name: "Samuel Sekuritas", file: "samuel-sekuritas.png", w: 252, h: 100 },
   { name: "Syailendra Capital", file: "syailendra.png", w: 196, h: 20 },
   { name: "Doo Financials", file: "doo-financials.png", w: 250, h: 69 },
-  { name: "Finplan.id", file: "finplan.png", w: 316, h: 90 },
+  { name: "finplan.id", file: "finplan.png", w: 316, h: 90 },
   { name: "ICMSS UI", file: "icmss-ui.png", w: 220, h: 218 },
 ];
 
@@ -64,143 +56,139 @@ export default function ForBusiness() {
   return (
     <>
       <Navbar />
-      <main className="relative overflow-hidden bg-white">
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-[28rem] bg-gradient-to-b from-cream to-transparent" />
-        <div className="pointer-events-none absolute -right-40 -top-28 h-[32rem] w-[32rem] rounded-full bg-cool-soft opacity-70 blur-[120px]" />
+      <main>
+        {/* ── Hero ─────────────────────────────────────────── */}
+        <section className="mx-auto max-w-6xl px-5 pb-20 pt-16 sm:px-6 sm:pb-28 sm:pt-24">
+          <div className="max-w-3xl">
+            <p className="eyebrow">For Business</p>
+            <h1 className="mt-6 text-[3rem] leading-[1.03] sm:text-7xl">
+              Open for <em className="text-cool">collaboration.</em>
+            </h1>
+            <p className="mt-7 max-w-xl text-lg leading-relaxed text-slate-400">
+              We work with finance and fintech brands and institutions on
+              learning programs, research and content, and reaching our
+              community.
+            </p>
+            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+              <a href={mailto} className="btn-primary">
+                <Mail size={17} aria-hidden="true" />
+                Discuss a Collaboration
+              </a>
+              <a href="#services" className="btn-secondary">
+                Services &amp; partnerships
+                <ArrowDown size={15} className="text-slate-500" aria-hidden="true" />
+              </a>
+            </div>
+          </div>
+        </section>
 
-        <div className="relative mx-auto max-w-6xl px-6">
-          {/* Hero */}
-          <section className="pb-14 pt-16 sm:pt-24 lg:pb-16">
-            <div className="max-w-3xl">
-              <span className="eyebrow-pill">
-                <span className="h-1.5 w-1.5 rounded-full bg-cool" />
-                For Business
-              </span>
-              <h1 className="mt-7 font-display text-[2.6rem] font-bold leading-[1.04] tracking-[-0.03em] text-brand sm:text-6xl">
-                Partner with a community that{" "}
-                <span className="text-cool">explains finance clearly.</span>
-              </h1>
-              <p className="mt-7 max-w-2xl text-lg leading-relaxed text-slate-600">
-                Not Into Finance is open to collaboration with finance and
-                fintech brands, from education and research to reaching our
-                community.
+        {/* ── Services & Previous Partnerships ─────────────── */}
+        <section
+          id="services"
+          aria-labelledby="services-title"
+          className="border-t border-white/[0.08]"
+        >
+          <div className="mx-auto max-w-6xl px-5 py-20 sm:px-6 sm:py-24">
+            <h2 id="services-title" className="text-4xl leading-[1.08] sm:text-5xl">
+              Services &amp; Previous Partnerships
+            </h2>
+
+            <div className="mt-14 grid gap-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20">
+              {/* Services */}
+              <Reveal>
+                <div>
+                  <p className="eyebrow">Services</p>
+                  <ol className="mt-6 border-t border-white/[0.08]">
+                    {services.map((s, i) => (
+                      <li
+                        key={s.title}
+                        className="grid grid-cols-[2.5rem_1fr] gap-4 border-b border-white/[0.08] py-8"
+                      >
+                        <span className="pt-1.5 text-sm font-medium text-cool">
+                          0{i + 1}
+                        </span>
+                        <div>
+                          <h3 className="text-2xl sm:text-3xl">{s.title}</h3>
+                          <p className="mt-3 text-base leading-relaxed text-slate-400">
+                            {s.body}
+                          </p>
+                        </div>
+                      </li>
+                    ))}
+                  </ol>
+                  <p className="mt-6 text-sm text-slate-400">
+                    Scope and deliverables are agreed for each collaboration.
+                  </p>
+                </div>
+              </Reveal>
+
+              {/* Previous partnerships */}
+              <Reveal>
+                <div>
+                  <p className="eyebrow">Previous Partnerships</p>
+                  <p className="mt-4 max-w-sm text-sm leading-relaxed text-slate-400">
+                    Organizations NiFi has collaborated with. The type of
+                    collaboration has varied from partner to partner.
+                  </p>
+                  <ul className="mt-6 grid grid-cols-2 overflow-hidden rounded-2xl border border-white/[0.08]">
+                    {partners.map((p, i) => (
+                      <li
+                        key={p.file}
+                        className={`flex min-h-[8.5rem] flex-col items-center justify-center gap-3 border-white/[0.08] px-4 py-6 ${
+                          i % 2 === 0 && i !== partners.length - 1 ? "border-r" : ""
+                        } ${i < partners.length - 1 ? "border-b" : ""} ${
+                          i === partners.length - 1 ? "col-span-2" : ""
+                        }`}
+                      >
+                        <Image
+                          src={`/partners/mono/${p.file}`}
+                          alt=""
+                          width={p.w}
+                          height={p.h}
+                          className="max-h-9 w-auto max-w-[75%] object-contain opacity-90"
+                        />
+                        <span className="text-xs text-slate-400">{p.name}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </Reveal>
+            </div>
+          </div>
+        </section>
+
+        {/* ── Closing CTA ──────────────────────────────────── */}
+        <section
+          aria-labelledby="contact-title"
+          className="mx-auto max-w-6xl px-5 pb-24 sm:px-6"
+        >
+          <Reveal>
+            <div className="rounded-[1.75rem] border border-white/10 bg-cool-deep px-6 py-16 text-center sm:px-12 sm:py-20">
+              <h2
+                id="contact-title"
+                className="mx-auto max-w-2xl text-4xl leading-[1.08] sm:text-6xl"
+              >
+                Let&apos;s talk about working together.
+              </h2>
+              <p className="mx-auto mt-5 max-w-md text-base text-slate-300">
+                Tell us about your brand and what you have in mind. We&apos;ll
+                reply by email.
               </p>
-
-              <div className="mt-10 flex flex-col gap-3.5 sm:flex-row">
-                <a
-                  href={mailto}
-                  className="inline-flex items-center justify-center gap-2.5 rounded-full bg-brand px-7 py-3.5 text-sm font-semibold text-white shadow-soft transition-colors hover:bg-brand-hover"
-                >
-                  <Mail size={16} />
+              <div className="mt-9 flex flex-col items-center gap-4">
+                <a href={mailto} className="btn-primary">
+                  <Mail size={17} aria-hidden="true" />
                   Discuss a Collaboration
                 </a>
                 <a
-                  href="#services"
-                  className="inline-flex items-center justify-center gap-2.5 rounded-full border border-line bg-white px-7 py-3.5 text-sm font-semibold text-brand transition-colors hover:border-brand"
+                  href={mailto}
+                  className="text-sm text-slate-300 underline-offset-4 hover:text-white hover:underline"
                 >
-                  See what we offer
-                  <ArrowDown size={15} className="text-slate-400" />
+                  {siteConfig.contactEmail}
                 </a>
               </div>
             </div>
-          </section>
-
-          {/* Two boxes */}
-          <section
-            id="services"
-            className="scroll-mt-24 grid gap-6 pb-24 md:grid-cols-2"
-          >
-            {/* What we can do together */}
-            <div className="relative overflow-hidden rounded-[1.75rem] border border-line bg-white p-8 shadow-soft transition-shadow hover:shadow-lift sm:p-9">
-              <span className="absolute left-0 top-0 h-1 w-20 rounded-br-full bg-cool" />
-              <h2 className="font-display text-xl font-semibold text-brand">
-                What we can do together
-              </h2>
-              <p className="mt-3 text-sm leading-relaxed text-slate-500">
-                A few areas where we collaborate. We&apos;ll scope the right
-                format with you rather than sell a fixed package.
-              </p>
-
-              <ul className="mt-7 space-y-5">
-                {capabilities.map(({ icon: Icon, title, body }) => (
-                  <li key={title} className="flex gap-4">
-                    <span className="mt-0.5 inline-flex h-10 w-10 flex-none items-center justify-center rounded-xl bg-cool-soft text-cool">
-                      <Icon size={18} />
-                    </span>
-                    <div>
-                      <p className="text-sm font-semibold text-brand">{title}</p>
-                      <p className="mt-0.5 text-sm leading-relaxed text-slate-500">
-                        {body}
-                      </p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="mt-8 border-t border-line pt-6">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
-                  Research we publish
-                </p>
-                <ul className="mt-4 grid grid-cols-3 gap-3">
-                  {research.map((r) => (
-                    <li key={r.file} className="group">
-                      <div className="relative aspect-[3/4] overflow-hidden rounded-xl border border-line bg-cream">
-                        <Image
-                          src={`/research/covers/${r.file}`}
-                          alt={`Cover of ${r.title}`}
-                          fill
-                          sizes="(max-width: 768px) 30vw, 14rem"
-                          className="object-cover transition duration-300 group-hover:scale-105"
-                        />
-                      </div>
-                      <p className="mt-2 line-clamp-2 text-xs leading-snug text-slate-500">
-                        {r.title}
-                      </p>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <a
-                href={mailto}
-                className="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-brand px-6 py-3 text-sm font-semibold text-white shadow-soft transition-colors hover:bg-brand-hover"
-              >
-                <Mail size={16} />
-                Discuss a Collaboration
-              </a>
-            </div>
-
-            {/* Selected collaborations */}
-            <div className="relative overflow-hidden rounded-[1.75rem] border border-line bg-cream p-8 shadow-soft transition-shadow hover:shadow-lift sm:p-9">
-              <span className="absolute left-0 top-0 h-1 w-20 rounded-br-full bg-cool" />
-              <h2 className="font-display text-xl font-semibold text-brand">
-                Selected Collaborations
-              </h2>
-              <p className="mt-3 text-sm leading-relaxed text-slate-500">
-                Organizations we&apos;ve worked with. The type of collaboration
-                has varied across partners.
-              </p>
-
-              <ul className="mt-7 grid grid-cols-2 gap-3">
-                {partners.map((p) => (
-                  <li
-                    key={p.file}
-                    className="group flex h-[76px] items-center justify-center rounded-2xl border border-line bg-white p-4"
-                  >
-                    <Image
-                      src={`/partners/${p.file}`}
-                      alt={p.name}
-                      title={p.name}
-                      width={p.w}
-                      height={p.h}
-                      className="max-h-9 w-auto max-w-full object-contain transition duration-300 group-hover:scale-105"
-                    />
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </section>
-        </div>
+          </Reveal>
+        </section>
       </main>
       <Footer />
     </>

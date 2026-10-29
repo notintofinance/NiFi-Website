@@ -10,10 +10,10 @@ export default function Logo({ size = 36, withWordmark = true, href = "#top" }) 
         width={size}
         height={size}
         priority
-        className="rounded-lg ring-1 ring-black/5"
+        className="rounded-lg ring-1 ring-white/15"
       />
       {withWordmark && (
-        <span className="text-lg font-bold tracking-tight text-brand">
+        <span className="text-[17px] font-semibold tracking-tight text-white">
           Not Into Finance
         </span>
       )}

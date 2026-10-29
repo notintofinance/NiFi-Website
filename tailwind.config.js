@@ -28,13 +28,18 @@ module.exports = {
           hover: "#1f3a68",
           soft: "#EEF1F6", // faint navy tint for surfaces
         },
-        // Cool, tech-leaning neutrals (kept the "cream" key to avoid churn).
-        cream: "#F4F6FA", // cool off-white for sections / cards
-        line: "#E4E8F0", // cool hairline borders
-        // Single cool accent, harmonizes with the brand navy. Used sparingly.
+        // Dark, high-contrast canvas (black / charcoal).
+        ink: {
+          950: "#08090B", // page background
+          900: "#0D0F12", // alternate section
+          800: "#14171B", // raised surface / cards
+          700: "#1D2127", // stronger surface
+        },
+        // Single cool accent — a lifted tint of the NiFi navy so it reads on
+        // black. Used sparingly for emphasis, never as a large fill.
         cool: {
-          DEFAULT: "#2F5BEA",
-          soft: "#E9EEFC",
+          DEFAULT: "#8FAEFF",
+          deep: "#16294A", // the brand navy itself, for panels
         },
       },
       fontFamily: {

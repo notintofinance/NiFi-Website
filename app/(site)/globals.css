@@ -5,31 +5,32 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    color-scheme: dark;
   }
 
   body {
-    @apply bg-white text-slate-600 antialiased;
+    @apply bg-ink-950 text-slate-300 antialiased;
     font-feature-settings: "cv11", "ss01";
   }
 
-  /* Display font for all headings — gives an editorial, credible feel */
+  /* Editorial serif for headings */
   h1,
   h2,
   h3 {
-    @apply font-display text-brand;
-    letter-spacing: -0.02em;
+    @apply font-display font-normal text-white;
+    letter-spacing: -0.015em;
   }
 
   /* Branded text selection */
   ::selection {
-    @apply bg-brand/10 text-brand;
+    @apply bg-cool/30 text-white;
   }
 
   /* Visible keyboard focus (accessibility) */
   :focus-visible {
     outline: 2px solid theme("colors.cool.DEFAULT");
-    outline-offset: 2px;
-    border-radius: 4px;
+    outline-offset: 3px;
+    border-radius: 6px;
   }
 
   /* Consistent scroll offset so anchored sections clear the sticky navbar */
@@ -39,14 +40,22 @@
 }
 
 @layer components {
-  /* Reusable section heading eyebrow */
+  /* Small uppercase label above a heading */
   .eyebrow {
-    @apply inline-block text-xs font-semibold uppercase tracking-[0.2em] text-brand;
+    @apply inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.2em] text-slate-400;
   }
 
-  /* Small pill label above a headline */
-  .eyebrow-pill {
-    @apply inline-flex items-center gap-2 rounded-full border border-line bg-white/80 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-brand backdrop-blur;
+  /* Buttons — white primary, outlined secondary (both ≥44px tall) */
+  .btn-primary {
+    @apply inline-flex min-h-[48px] items-center justify-center gap-2.5 rounded-full bg-white px-6 text-sm font-semibold text-ink-950 transition-colors hover:bg-slate-200;
+  }
+  .btn-secondary {
+    @apply inline-flex min-h-[48px] items-center justify-center gap-2.5 rounded-full border border-white/15 px-6 text-sm font-semibold text-white transition-colors hover:border-white/40 hover:bg-white/[0.04];
+  }
+
+  /* Text link with an arrow */
+  .link-arrow {
+    @apply inline-flex items-center gap-1.5 text-sm font-medium text-white underline-offset-4 transition-colors hover:text-cool hover:underline;
   }
 }
 
