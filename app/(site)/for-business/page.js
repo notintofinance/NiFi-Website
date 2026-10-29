@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Mail, ArrowDown, ArrowUpRight } from "lucide-react";
+import { Mail, ArrowDown, ArrowUpRight, Check, Plus } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
@@ -47,17 +47,59 @@ function Shot({ src, w, h, alt, caption, className = "", imgClassName = "h-auto 
   );
 }
 
+const brandPlacement = services.find((s) => s.id === "brand-placement");
+
 const visuals = {
   "brand-placement": (
     <>
-      <div className="grid grid-cols-[1fr_1fr_0.75fr] items-start gap-3 sm:gap-4">
-        <Shot src="/content/x-explainer.jpg" w={1145} h={987} alt="A NiFi explainer post on X" caption="Post on X" />
-        <Shot src="/content/journal-krisis.jpg" w={869} h={749} alt="A NiFi Journal post on Instagram" caption="Instagram feed post" />
-        <Shot src="/content/video-explainer.jpg" w={667} h={1081} alt="A NiFi short video explainer" caption="Short video" />
+      <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">
+        Placement formats
+      </p>
+      <ol className="mt-4 grid gap-4 sm:grid-cols-2">
+        {brandPlacement.formats.map((f, i) => (
+          <li
+            key={f.name}
+            className="flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-ink-900"
+          >
+            <figure className="border-b border-white/10">
+              <Image
+                src={f.example.src}
+                alt={f.example.alt}
+                width={f.example.w}
+                height={f.example.h}
+                sizes="(max-width: 640px) 100vw, 340px"
+                className="aspect-[4/3] h-auto w-full object-cover object-top"
+              />
+              <figcaption className="sr-only">{f.example.caption}</figcaption>
+            </figure>
+            <div className="flex flex-1 flex-col p-5">
+              <p className="text-xs font-medium uppercase tracking-[0.18em] text-cool">
+                Format 0{i + 1}
+              </p>
+              <h3 className="mt-2 text-2xl leading-[1.15]">{f.name}</h3>
+              <ul className="mt-4 space-y-2.5">
+                {f.items.map((item) => (
+                  <li key={item} className="flex gap-2.5 text-sm leading-snug text-slate-300">
+                    <Check size={16} className="mt-0.5 flex-none text-cool" aria-hidden="true" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-auto pt-5 text-xs text-slate-400">{f.example.caption}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+      <div className="mt-4 flex items-center gap-3 rounded-2xl border border-white/10 px-5 py-4 text-sm text-slate-300">
+        <Plus size={16} className="flex-none text-cool" aria-hidden="true" />
+        <span>
+          <span className="font-medium text-white">Add-on · </span>
+          {brandPlacement.addOn}
+        </span>
       </div>
       <p className="mt-4 text-xs leading-relaxed text-slate-400">
-        Examples of NiFi’s own research-led posts, the format placements
-        follow. These examples are not sponsored.
+        Examples are NiFi’s own research-led posts, the style placements
+        follow. They are not sponsored.
       </p>
     </>
   ),
@@ -230,7 +272,7 @@ export default function ForBusiness() {
         {/* ── Services + Previous Partnerships ─────────────── */}
         <div
           id="services"
-          className="mx-auto grid max-w-6xl scroll-mt-20 gap-16 px-5 sm:px-6 lg:grid-cols-[minmax(0,1fr)_340px] lg:gap-16"
+          className="mx-auto grid max-w-6xl scroll-mt-20 grid-cols-[minmax(0,1fr)] gap-16 px-5 sm:px-6 lg:grid-cols-[minmax(0,1fr)_340px] lg:gap-16"
         >
           {/* Services, one by one */}
           <div>

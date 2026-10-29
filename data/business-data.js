@@ -20,12 +20,44 @@ export const services = [
     title: "Brand Placement",
     short: "Your brand inside research-led content on NiFi’s channels.",
     lead: "Place your brand inside research-led finance content. Every placement is written and designed by the NiFi team in our research-led style, then published on NiFi’s channels.",
-    includes: [
-      "An Instagram feed post and a post on X, with copy and design by the NiFi team",
-      "A short video on Instagram Reels, TikTok and X plus an Instagram feed post — scripted, filmed and edited by NiFi",
-      "A brand mention and tag in the caption",
-      "Optional paid promotion on top of our organic reach",
+    // Shown as two side-by-side formats instead of a generic list.
+    includes: [],
+    formats: [
+      {
+        name: "Instagram + X",
+        items: [
+          "1 feed post on Instagram",
+          "1 post on X",
+          "Copy and design by the NiFi team",
+          "Brand mention and tag in the caption",
+        ],
+        example: {
+          src: "/content/journal-krisis.jpg",
+          w: 869,
+          h: 749,
+          alt: "A NiFi Journal post on Instagram",
+          caption: "Example: NiFi Journal post",
+        },
+      },
+      {
+        name: "Video on Reels, TikTok & X",
+        items: [
+          "1 video on Instagram Reels, TikTok and X",
+          "1 feed post on Instagram",
+          "Scripted, filmed and edited by NiFi",
+          "Full content ownership for your brand",
+          "Brand mention and tag in the caption",
+        ],
+        example: {
+          src: "/content/video-explainer.jpg",
+          w: 667,
+          h: 1081,
+          alt: "A NiFi short video explainer",
+          caption: "Example: NiFi short video",
+        },
+      },
     ],
+    addOn: "Paid promotion can be added on top of our organic reach.",
   },
   {
     id: "events",
