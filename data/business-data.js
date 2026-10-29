@@ -64,7 +64,7 @@ export const services = [
     kind: "Service",
     title: "Event & Community Activation",
     short: "Sponsor NiFi events, bootcamps and community activations.",
-    lead: "Meet NiFi’s community online, in person and on Discord. We run #NiFiBerbagi online class sessions and charity activities, bootcamps and meetups, and can tailor an activation around your goals.",
+    lead: "Meet NiFi’s community online, in person and on Discord. We run #NiFiBerbagi online class sessions and charity activities, bootcamps, meetups and events with partners, and can tailor an activation around your goals.",
     includes: [
       "Event and bootcamp sponsorship",
       "Co-hosting or sponsoring an online class session",

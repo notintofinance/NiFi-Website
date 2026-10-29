@@ -29,7 +29,16 @@ const mailto = `mailto:${siteConfig.contactEmail}?subject=${encodeURIComponent(
 )}`;
 
 // Real NiFi material shown beside each service.
-function Shot({ src, w, h, alt, caption, className = "", imgClassName = "h-auto w-full" }) {
+function Shot({
+  src,
+  w,
+  h,
+  alt,
+  caption,
+  className = "",
+  imgClassName = "h-auto w-full",
+  sizes = "(max-width: 1024px) 50vw, 320px",
+}) {
   return (
     <figure className={className}>
       <div className="overflow-hidden rounded-xl border border-white/15 bg-ink-800">
@@ -38,7 +47,7 @@ function Shot({ src, w, h, alt, caption, className = "", imgClassName = "h-auto 
           alt={alt}
           width={w}
           height={h}
-          sizes="(max-width: 1024px) 50vw, 320px"
+          sizes={sizes}
           className={imgClassName}
         />
       </div>
@@ -104,23 +113,34 @@ const visuals = {
     </>
   ),
   events: (
-    <div className="grid grid-cols-2 gap-3 sm:gap-4">
+    <div className="space-y-3 sm:space-y-4">
       <Shot
-        src="/community/activity-ramadan.jpg"
+        src="/content/events/doo-financial-event.jpg"
         w={1600}
-        h={1200}
-        alt="Members of the NiFi community together at a meetup"
-        caption="NiFi community meetup"
-        imgClassName="aspect-[4/3] h-auto w-full object-cover"
+        h={1066}
+        alt="NiFi community members and guests together at an event with Doo Financial"
+        caption="NiFi event with Doo Financial"
+        sizes="(max-width: 1024px) 100vw, 700px"
+        imgClassName="aspect-[3/2] h-auto w-full object-cover"
       />
-      <Shot
-        src="/community/nifiberbagi-1.jpg"
-        w={1600}
-        h={900}
-        alt="NiFi volunteers at a #NiFiBerbagi charity activity, with faces covered for privacy"
-        caption="#NiFiBerbagi charity activity"
-        imgClassName="aspect-[4/3] h-auto w-full object-cover"
-      />
+      <div className="grid grid-cols-2 gap-3 sm:gap-4">
+        <Shot
+          src="/community/activity-ramadan.jpg"
+          w={1600}
+          h={1200}
+          alt="Members of the NiFi community together at a meetup"
+          caption="NiFi community meetup"
+          imgClassName="aspect-[4/3] h-auto w-full object-cover"
+        />
+        <Shot
+          src="/community/nifiberbagi-1.jpg"
+          w={1600}
+          h={900}
+          alt="NiFi volunteers at a #NiFiBerbagi charity activity, with faces covered for privacy"
+          caption="#NiFiBerbagi charity activity"
+          imgClassName="aspect-[4/3] h-auto w-full object-cover"
+        />
+      </div>
     </div>
   ),
   academy: (
