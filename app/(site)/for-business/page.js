@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Mail, GraduationCap, FileText, Users } from "lucide-react";
+import { Mail, GraduationCap, FileText, Users, ArrowDown } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { siteConfig } from "@/data/site-config";
@@ -17,9 +17,8 @@ export const metadata = {
   },
 };
 
-// Capability groups grounded in what NiFi actually does (Academy/learning,
-// research & content, and its community/channels). Specific campaign formats
-// are framed as "possible collaboration formats", not packaged products.
+// Capability groups grounded in what NiFi actually does. Specific campaign
+// formats are framed as "possible collaboration formats", not packaged products.
 const capabilities = [
   {
     icon: GraduationCap,
@@ -29,13 +28,20 @@ const capabilities = [
   {
     icon: FileText,
     title: "Research & Content",
-    body: "Equity and market research, carousels, and explainers made to be understood by everyday readers.",
+    body: "Equity and market research, carousels, and explainers written for everyday readers.",
   },
   {
     icon: Users,
     title: "Community & Distribution",
-    body: "Reach our Discord community and social channels. Possible collaboration formats include social posts, carousels, newsletter mentions, and community announcements.",
+    body: "Reach our Discord community and social channels. Possible formats include social posts, carousels, newsletter mentions, and community announcements.",
   },
+];
+
+// Real NiFi research covers, shown as proof of the research we publish.
+const research = [
+  { title: "The Greatest of Indonesiawit", file: "indonesiawit-palm-oil.jpg" },
+  { title: "The New Alternative Energy", file: "new-alternative-energy.jpg" },
+  { title: "LPCK: Lippo Cikarang", file: "lpck-lippo-cikarang.jpg" },
 ];
 
 // Approved logo assets in public/partners. The first five come from NiFi's own
@@ -58,31 +64,54 @@ export default function ForBusiness() {
   return (
     <>
       <Navbar />
-      <main className="relative overflow-hidden bg-white px-6 pb-20 pt-16 sm:pt-20">
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-72 bg-gradient-to-b from-cream to-transparent" />
-        <div className="pointer-events-none absolute -right-40 -top-28 h-[32rem] w-[32rem] rounded-full bg-cool-soft blur-[120px] opacity-60" />
+      <main className="relative overflow-hidden bg-white">
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-[28rem] bg-gradient-to-b from-cream to-transparent" />
+        <div className="pointer-events-none absolute -right-40 -top-28 h-[32rem] w-[32rem] rounded-full bg-cool-soft opacity-70 blur-[120px]" />
 
-        <div className="relative mx-auto max-w-5xl">
-          {/* Intro */}
-          <div className="max-w-2xl">
-            <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-brand">
-              <span className="h-1.5 w-1.5 rounded-full bg-cool" />
-              For Business
-            </span>
-            <h1 className="mt-4 font-display text-4xl font-bold leading-[1.08] tracking-tight text-brand sm:text-5xl">
-              Let&apos;s build something together
-            </h1>
-            <p className="mt-5 text-lg leading-relaxed text-slate-600">
-              Not Into Finance is open to collaborating with brands and
-              organizations in finance and fintech — from education and research
-              to reaching our community.
-            </p>
-          </div>
+        <div className="relative mx-auto max-w-6xl px-6">
+          {/* Hero */}
+          <section className="pb-14 pt-16 sm:pt-24 lg:pb-16">
+            <div className="max-w-3xl">
+              <span className="eyebrow-pill">
+                <span className="h-1.5 w-1.5 rounded-full bg-cool" />
+                For Business
+              </span>
+              <h1 className="mt-7 font-display text-[2.6rem] font-bold leading-[1.04] tracking-[-0.03em] text-brand sm:text-6xl">
+                Partner with a community that{" "}
+                <span className="text-cool">explains finance clearly.</span>
+              </h1>
+              <p className="mt-7 max-w-2xl text-lg leading-relaxed text-slate-600">
+                Not Into Finance is open to collaboration with finance and
+                fintech brands, from education and research to reaching our
+                community.
+              </p>
 
-          {/* Two columns */}
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
-            {/* Service details / capabilities */}
-            <section className="relative overflow-hidden rounded-3xl border border-line bg-white p-8 shadow-soft">
+              <div className="mt-10 flex flex-col gap-3.5 sm:flex-row">
+                <a
+                  href={mailto}
+                  className="inline-flex items-center justify-center gap-2.5 rounded-full bg-brand px-7 py-3.5 text-sm font-semibold text-white shadow-soft transition-colors hover:bg-brand-hover"
+                >
+                  <Mail size={16} />
+                  Discuss a Collaboration
+                </a>
+                <a
+                  href="#services"
+                  className="inline-flex items-center justify-center gap-2.5 rounded-full border border-line bg-white px-7 py-3.5 text-sm font-semibold text-brand transition-colors hover:border-brand"
+                >
+                  See what we offer
+                  <ArrowDown size={15} className="text-slate-400" />
+                </a>
+              </div>
+            </div>
+          </section>
+
+          {/* Two boxes */}
+          <section
+            id="services"
+            className="scroll-mt-24 grid gap-6 pb-24 md:grid-cols-2"
+          >
+            {/* What we can do together */}
+            <div className="relative overflow-hidden rounded-[1.75rem] border border-line bg-white p-8 shadow-soft transition-shadow hover:shadow-lift sm:p-9">
               <span className="absolute left-0 top-0 h-1 w-20 rounded-br-full bg-cool" />
               <h2 className="font-display text-xl font-semibold text-brand">
                 What we can do together
@@ -92,7 +121,7 @@ export default function ForBusiness() {
                 format with you rather than sell a fixed package.
               </p>
 
-              <ul className="mt-6 space-y-5">
+              <ul className="mt-7 space-y-5">
                 {capabilities.map(({ icon: Icon, title, body }) => (
                   <li key={title} className="flex gap-4">
                     <span className="mt-0.5 inline-flex h-10 w-10 flex-none items-center justify-center rounded-xl bg-cool-soft text-cool">
@@ -108,6 +137,30 @@ export default function ForBusiness() {
                 ))}
               </ul>
 
+              <div className="mt-8 border-t border-line pt-6">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
+                  Research we publish
+                </p>
+                <ul className="mt-4 grid grid-cols-3 gap-3">
+                  {research.map((r) => (
+                    <li key={r.file} className="group">
+                      <div className="relative aspect-[3/4] overflow-hidden rounded-xl border border-line bg-cream">
+                        <Image
+                          src={`/research/covers/${r.file}`}
+                          alt={`Cover of ${r.title}`}
+                          fill
+                          sizes="(max-width: 768px) 30vw, 14rem"
+                          className="object-cover transition duration-300 group-hover:scale-105"
+                        />
+                      </div>
+                      <p className="mt-2 line-clamp-2 text-xs leading-snug text-slate-500">
+                        {r.title}
+                      </p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
               <a
                 href={mailto}
                 className="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-brand px-6 py-3 text-sm font-semibold text-white shadow-soft transition-colors hover:bg-brand-hover"
@@ -115,10 +168,10 @@ export default function ForBusiness() {
                 <Mail size={16} />
                 Discuss a Collaboration
               </a>
-            </section>
+            </div>
 
             {/* Selected collaborations */}
-            <section className="relative overflow-hidden rounded-3xl border border-line bg-cream p-8 shadow-soft">
+            <div className="relative overflow-hidden rounded-[1.75rem] border border-line bg-cream p-8 shadow-soft transition-shadow hover:shadow-lift sm:p-9">
               <span className="absolute left-0 top-0 h-1 w-20 rounded-br-full bg-cool" />
               <h2 className="font-display text-xl font-semibold text-brand">
                 Selected Collaborations
@@ -128,7 +181,7 @@ export default function ForBusiness() {
                 has varied across partners.
               </p>
 
-              <ul className="mt-6 grid grid-cols-2 gap-3">
+              <ul className="mt-7 grid grid-cols-2 gap-3">
                 {partners.map((p) => (
                   <li
                     key={p.file}
@@ -145,8 +198,8 @@ export default function ForBusiness() {
                   </li>
                 ))}
               </ul>
-            </section>
-          </div>
+            </div>
+          </section>
         </div>
       </main>
       <Footer />

@@ -43,6 +43,11 @@
   .eyebrow {
     @apply inline-block text-xs font-semibold uppercase tracking-[0.2em] text-brand;
   }
+
+  /* Small pill label above a headline */
+  .eyebrow-pill {
+    @apply inline-flex items-center gap-2 rounded-full border border-line bg-white/80 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-brand backdrop-blur;
+  }
 }
 
 /* Respect users who prefer reduced motion */
