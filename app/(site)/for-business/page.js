@@ -4,7 +4,12 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
 import { siteConfig } from "@/data/site-config";
-import { services, partners } from "@/data/business-data";
+import {
+  services,
+  partners,
+  academyIncubation,
+  academyClasses,
+} from "@/data/business-data";
 
 export const metadata = {
   title: "For Business | Not Into Finance (NiFi)",
@@ -77,21 +82,78 @@ const visuals = {
     </div>
   ),
   academy: (
-    <div className="grid gap-3 sm:grid-cols-2 sm:gap-4">
-      <Shot
-        src="/content/academy-capital-market-class.jpg"
-        w={480}
-        h={212}
-        alt="Poster for a NiFi Academy Capital Market Class session"
-        caption="Capital Market Class"
-      />
-      <Shot
-        src="/content/academy-portfolio-construction.jpg"
-        w={480}
-        h={212}
-        alt="Poster for a NiFi Academy class on market-neutral portfolio construction"
-        caption="Portfolio construction class"
-      />
+    <div className="space-y-10">
+      {/* Incubation program */}
+      <div className="grid items-center gap-6 rounded-2xl border border-white/10 bg-ink-900 p-5 sm:grid-cols-[0.8fr_1fr] sm:p-6">
+        <div className="overflow-hidden rounded-xl border border-white/15">
+          <Image
+            src={`/content/academy/${academyIncubation.file}`}
+            alt="Poster for the NiFi Academy Incubation program “Research to Win”"
+            width={academyIncubation.w}
+            height={academyIncubation.h}
+            sizes="(max-width: 640px) 100vw, 300px"
+            className="h-auto w-full"
+          />
+        </div>
+        <div>
+          <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">
+            Program · {academyIncubation.period}
+          </p>
+          <h3 className="mt-3 text-2xl leading-[1.15] sm:text-3xl">
+            {academyIncubation.title}
+          </h3>
+          <p className="mt-3 text-sm leading-relaxed text-slate-400">
+            {academyIncubation.summary}
+          </p>
+          <ol className="mt-5 border-t border-white/[0.08]">
+            {academyIncubation.steps.map((step, i) => (
+              <li
+                key={step}
+                className="flex gap-3 border-b border-white/[0.08] py-2.5 text-sm text-slate-300"
+              >
+                <span className="text-cool">0{i + 1}</span>
+                {step}
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
+
+      {/* Past online classes */}
+      <div>
+        <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">
+          Past online class sessions
+        </p>
+        <div
+          role="region"
+          aria-label="Past NiFi online class sessions"
+          tabIndex={0}
+          className="mt-4 overflow-x-auto"
+        >
+          <ul className="flex w-max gap-4 pb-3">
+            {academyClasses.map((c) => (
+              <li key={c.file} className="w-[150px] flex-none sm:w-[168px]">
+                <div className="overflow-hidden rounded-lg border border-white/15">
+                  <Image
+                    src={`/content/academy/${c.file}`}
+                    alt={`Poster for the NiFi class “${c.title}” with ${c.speaker}`}
+                    width={c.w}
+                    height={c.h}
+                    sizes="170px"
+                    className="aspect-[4/5] h-auto w-full object-cover object-top"
+                  />
+                </div>
+                <p className="mt-2.5 line-clamp-2 text-xs font-medium leading-snug text-slate-200">
+                  {c.title}
+                </p>
+                <p className="mt-1 text-xs text-slate-400">
+                  {c.speaker} · {c.date}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </div>
   ),
   arthara: (

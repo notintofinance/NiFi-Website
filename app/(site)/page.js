@@ -5,19 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
 import { siteConfig } from "@/data/site-config";
-import { getReportsByDate } from "@/data/research-data";
 import { services, partners } from "@/data/business-data";
-
-const [reportA, reportB] = getReportsByDate();
-
-// Hero visual: a shelf of real NiFi work (no community photos on Home).
-const shelf = [
-  { src: reportA.cover, w: 707, h: 1000, label: "Research report", alt: `Cover of the NiFi research report “${reportA.title}”` },
-  { src: "/content/video-explainer.jpg", w: 667, h: 1081, label: "Short video", alt: "A NiFi short video explainer" },
-  { src: "/content/journal-krisis.jpg", w: 869, h: 749, label: "NiFi Journal", alt: "A NiFi Journal explainer post" },
-  { src: "/content/x-explainer.jpg", w: 1145, h: 987, label: "Explainer on X", alt: "A NiFi explainer post on X" },
-  { src: reportB.cover, w: 707, h: 1000, label: "Research report", alt: `Cover of the NiFi research report “${reportB.title}”` },
-];
 
 function CommunityButton() {
   return (
@@ -70,35 +58,6 @@ export default function Home() {
               <CommunityButton />
               <ArtharaButton />
             </div>
-          </div>
-
-          {/* Shelf of real NiFi work */}
-          <div
-            role="region"
-            aria-label="Examples of NiFi’s work"
-            tabIndex={0}
-            className="mt-16 overflow-x-auto rounded-[1.75rem] border border-white/10 bg-ink-900 sm:mt-20"
-          >
-            <ul className="mx-auto flex w-max items-start gap-4 px-6 pb-8 pt-8 sm:gap-5 sm:px-8 sm:pb-12 sm:pt-10">
-              {shelf.map((item, i) => (
-                <li key={item.src} className={`flex-none ${i % 2 === 1 ? "md:mt-10" : ""}`}>
-                  <figure>
-                    <div className="overflow-hidden rounded-xl border border-white/15 shadow-2xl shadow-black/50">
-                      <Image
-                        src={item.src}
-                        alt={item.alt}
-                        width={item.w}
-                        height={item.h}
-                        sizes="320px"
-                        priority={i < 3}
-                        className="h-[190px] w-auto sm:h-[215px]"
-                      />
-                    </div>
-                    <figcaption className="mt-3 text-xs text-slate-400">{item.label}</figcaption>
-                  </figure>
-                </li>
-              ))}
-            </ul>
           </div>
         </section>
 
@@ -169,7 +128,7 @@ export default function Home() {
                 <ArrowRight size={15} aria-hidden="true" />
               </Link>
             </div>
-            <ul className="mt-8 grid grid-cols-2 items-center gap-x-8 gap-y-10 border-y border-white/[0.08] py-10 sm:grid-cols-4 lg:grid-cols-7">
+            <ul className="mt-8 grid grid-cols-2 items-center gap-x-8 gap-y-10 border-y border-white/[0.08] py-10 sm:grid-cols-4 lg:grid-cols-8">
               {partners.map((p) => (
                 <li key={p.file} className="flex justify-center">
                   <Image

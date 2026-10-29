@@ -32,9 +32,10 @@ export const services = [
     kind: "Service",
     title: "Event & Community Activation",
     short: "Sponsor NiFi events, bootcamps and community activations.",
-    lead: "Meet NiFi’s community in person and on Discord. We have run classes, bootcamps, meetups and #NiFiBerbagi charity activities, and can tailor an activation around your goals.",
+    lead: "Meet NiFi’s community online, in person and on Discord. We run #NiFiBerbagi online class sessions and charity activities, bootcamps and meetups, and can tailor an activation around your goals.",
     includes: [
       "Event and bootcamp sponsorship",
+      "Co-hosting or sponsoring an online class session",
       "Community activations on Discord and at NiFi meetups",
       "A scope agreed up front: what NiFi runs and what your team provides",
     ],
@@ -43,12 +44,13 @@ export const services = [
     id: "academy",
     kind: "Service",
     title: "NiFi Academy",
-    short: "Classes and bootcamps on investing, risk and valuation.",
-    lead: "NiFi Academy runs classes and bootcamps on investing fundamentals, risk, valuation and equity research, with practitioners from the industry as speakers.",
+    short: "Online classes and an equity research incubation program.",
+    lead: "NiFi Academy runs online class sessions led by practitioners, and an incubation program that trains students to write equity research for competitions, with mentors from the finance industry.",
     includes: [
       "Classes and webinars built with partners",
       "Speaker sessions with practitioners",
-      "Bootcamp sponsorship",
+      "Sponsoring the Academy incubation program",
+      "Hosting a company visit for Academy participants",
     ],
   },
   {
@@ -66,6 +68,8 @@ export const services = [
 // specific where the deck documents the relationship; otherwise it stays
 // neutral, matching the deck's "Not Into Finance Partners" list.
 export const partners = [
+  // Partnership confirmed by NiFi (logo supplied by NiFi).
+  { name: "Sucorwave", file: "sucorwave.png", w: 640, h: 127, relation: "Partner" },
   { name: "Ajaib", file: "ajaib.png", w: 267, h: 84, relation: "Partner" },
   { name: "Bitget Wallet", file: "bitget.png", w: 688, h: 116, relation: "Partner" },
   {
@@ -85,4 +89,28 @@ export const partners = [
   { name: "Doo Financials", file: "doo-financials.png", w: 250, h: 69, relation: "Partner" },
   { name: "finplan.id", file: "finplan.png", w: 316, h: 90, relation: "Partner" },
   { name: "ICMSS UI", file: "icmss-ui.png", w: 220, h: 218, relation: "Partner" },
+];
+
+// NiFi Academy material (posters supplied by NiFi). The incubation program
+// ran Oct 2025 – Feb 2026; class sessions are #NiFiBerbagi online classes,
+// newest first. Posters live in public/content/academy.
+export const academyIncubation = {
+  title: "NiFi Academy Incubation: Research to Win",
+  period: "2025–2026",
+  summary:
+    "A program for Indonesian undergraduates focused on writing equity research papers for competitions, with mentors from the finance industry.",
+  steps: ["Open recruitment", "Incubation with mentors", "Company visit", "Graduation"],
+  file: "academy-incubation-2025.jpg",
+  w: 900,
+  h: 1086,
+};
+
+export const academyClasses = [
+  { title: "From Market View to Investment Thesis", speaker: "Yulianni Liyuwardi", date: "Oct 2026", file: "class-market-view-to-investment-thesis.jpg", w: 720, h: 886 },
+  { title: "The System Behind Your Investment", speaker: "Hany Gungoro, CFA", date: "Oct 2026", file: "class-system-behind-your-investment.jpg", w: 720, h: 890 },
+  { title: "Market Neutral Portfolio Construction", speaker: "Bagus P. Perdana", date: "Sep 2026", file: "class-market-neutral-portfolio.jpg", w: 720, h: 889 },
+  { title: "The Current Market Outlook: After New Policy & MSCI", speaker: "Handi Erawan", date: "Jun 2026", file: "class-market-outlook.jpg", w: 720, h: 889 },
+  { title: "Smart Entry Strategy: VWAP", speaker: "@lilbromainsaham", date: "Apr 2026", file: "class-vwap-entry-strategy.jpg", w: 720, h: 885 },
+  { title: "Introduction to Smart Money Concept", speaker: "Jamie Runcandell", date: "Feb 2026", file: "class-smart-money-concept.jpg", w: 720, h: 889 },
+  { title: "Basic Technical Analysis", speaker: "@dedewizard", date: "Feb 2026", file: "class-basic-technical-analysis.jpg", w: 720, h: 951 },
 ];
