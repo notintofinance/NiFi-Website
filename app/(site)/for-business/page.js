@@ -7,6 +7,7 @@ import { siteConfig } from "@/data/site-config";
 import {
   services,
   partners,
+  partnerGroups,
   academyIncubation,
   academyClasses,
 } from "@/data/business-data";
@@ -357,31 +358,37 @@ export default function ForBusiness() {
                 Previous Partnerships
               </h2>
               <p className="mt-3 text-sm leading-relaxed text-slate-400">
-                Organizations NiFi has collaborated with. Collaboration types
-                varied; roles are noted where documented.
+                Organizations NiFi has collaborated with, grouped by the type
+                of collaboration.
               </p>
-              <ul className="mt-5 border-t border-white/[0.08]">
-                {partners.map((p) => (
-                  <li
-                    key={p.file}
-                    className="flex items-center gap-4 border-b border-white/[0.08] py-2.5"
-                  >
-                    <span className="flex h-9 w-24 flex-none items-center justify-center">
-                      <Image
-                        src={`/partners/mono/${p.file}`}
-                        alt=""
-                        width={p.w}
-                        height={p.h}
-                        className="max-h-7 w-auto max-w-full object-contain opacity-90"
-                      />
-                    </span>
-                    <span>
-                      <span className="block text-sm font-medium text-white">{p.name}</span>
-                      <span className="block text-xs text-slate-400">{p.relation}</span>
-                    </span>
-                  </li>
-                ))}
-              </ul>
+              {partnerGroups.map((g) => (
+                <div key={g.id} className="mt-4">
+                  <h3 className="font-sans text-xs font-medium uppercase tracking-[0.18em] text-slate-400">
+                    {g.label}
+                  </h3>
+                  <ul className="mt-3 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-white/10 bg-white/10">
+                    {partners
+                      .filter((p) => p.group === g.id)
+                      .map((p) => (
+                        <li
+                          key={p.file}
+                          title={p.name}
+                          className="flex h-12 items-center justify-center bg-ink-900 px-3"
+                        >
+                          <Image
+                            src={`/partners/mono/${p.file}`}
+                            alt={p.name}
+                            width={p.w}
+                            height={p.h}
+                            className={`${
+                              p.w / p.h < 2.8 ? "max-h-9" : "max-h-6"
+                            } w-auto max-w-[80%] object-contain opacity-90`}
+                          />
+                        </li>
+                      ))}
+                  </ul>
+                </div>
+              ))}
               <a href={mailto} className="btn-primary mt-5 w-full">
                 <Mail size={16} aria-hidden="true" />
                 Discuss a partnership

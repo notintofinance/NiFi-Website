@@ -137,7 +137,9 @@ export default function Home() {
                     title={p.name}
                     width={p.w}
                     height={p.h}
-                    className="max-h-7 w-auto max-w-[120px] object-contain opacity-70 transition-opacity hover:opacity-100"
+                    className={`${
+                      p.w / p.h < 2.8 ? "max-h-10" : "max-h-7"
+                    } w-auto max-w-[120px] object-contain opacity-70 transition-opacity hover:opacity-100`}
                   />
                 </li>
               ))}

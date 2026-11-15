@@ -95,32 +95,33 @@ export const services = [
   },
 ];
 
-// Previous partnerships. White monochrome logos live in public/partners/mono
-// (generated from the approved logos in public/partners). `relation` is only
-// specific where the deck documents the relationship; otherwise it stays
-// neutral, matching the deck's "Not Into Finance Partners" list.
+// Previous partnerships, grouped by the relationship NiFi has confirmed.
+// White monochrome logos live in public/partners/mono (generated from the
+// approved logos in public/partners). All logos were supplied by NiFi or come
+// from its partnership deck.
+export const partnerGroups = [
+  { id: "academy", label: "NiFi Academy partners" },
+  { id: "speakers", label: "NiFi Academy keynote speakers" },
+  { id: "partners", label: "Partners" },
+];
+
 export const partners = [
-  // Partnership confirmed by NiFi (logo supplied by NiFi).
-  { name: "Sucorwave", file: "sucorwave.png", w: 640, h: 127, relation: "Partner" },
-  { name: "Ajaib", file: "ajaib.png", w: 267, h: 84, relation: "Partner" },
-  { name: "Bitget Wallet", file: "bitget.png", w: 688, h: 116, relation: "Partner" },
-  {
-    name: "Samuel Sekuritas",
-    file: "samuel-sekuritas.png",
-    w: 252,
-    h: 100,
-    relation: "NiFi Academy keynote speaker",
-  },
-  {
-    name: "Syailendra Capital",
-    file: "syailendra.png",
-    w: 196,
-    h: 20,
-    relation: "NiFi Academy keynote speaker",
-  },
-  { name: "Doo Financials", file: "doo-financials.png", w: 250, h: 69, relation: "Partner" },
-  { name: "finplan.id", file: "finplan.png", w: 316, h: 90, relation: "Partner" },
-  { name: "ICMSS UI", file: "icmss-ui.png", w: 220, h: 218, relation: "Partner" },
+  { group: "academy", name: "Goldman Sachs", file: "goldman-sachs.png", w: 640, h: 268 },
+  { group: "academy", name: "Bloomberg", file: "bloomberg.png", w: 640, h: 129 },
+  { group: "academy", name: "CFA Institute", file: "cfa-institute.png", w: 464, h: 101 },
+  { group: "academy", name: "Ashmore Asset Management", file: "ashmore.png", w: 640, h: 203 },
+  { group: "academy", name: "Mirae Asset Sekuritas", file: "mirae-asset.png", w: 348, h: 144 },
+  { group: "academy", name: "BRI Danareksa Sekuritas", file: "bri-danareksa.png", w: 500, h: 223 },
+  { group: "academy", name: "Ciptadana Sekuritas", file: "ciptadana.png", w: 616, h: 174 },
+  { group: "academy", name: "Kiwoom Sekuritas Indonesia", file: "kiwoom.png", w: 640, h: 197 },
+  { group: "speakers", name: "Samuel Sekuritas", file: "samuel-sekuritas.png", w: 252, h: 100 },
+  { group: "speakers", name: "Syailendra Capital", file: "syailendra.png", w: 196, h: 20 },
+  { group: "partners", name: "Sucorwave", file: "sucorwave.png", w: 640, h: 127 },
+  { group: "partners", name: "Ajaib", file: "ajaib.png", w: 267, h: 84 },
+  { group: "partners", name: "Bitget Wallet", file: "bitget.png", w: 688, h: 116 },
+  { group: "partners", name: "Doo Financials", file: "doo-financials.png", w: 250, h: 69 },
+  { group: "partners", name: "finplan.id", file: "finplan.png", w: 316, h: 90 },
+  { group: "partners", name: "ICMSS UI", file: "icmss-ui.png", w: 220, h: 218 },
 ];
 
 // NiFi Academy material (posters supplied by NiFi). The incubation program
