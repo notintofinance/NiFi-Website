@@ -1,4 +1,5 @@
-import { Inter, Plus_Jakarta_Sans } from "next/font/google";
+import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import { siteConfig } from "@/data/site-config";
@@ -10,10 +11,13 @@ const inter = Inter({
 });
 
 // Plus Jakarta Sans for headlines (designed in Jakarta); Inter carries the UI
-// and body text.
-const jakarta = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  weight: ["500", "600", "700", "800"],
+// and body text. Self-hosted from @fontsource-variable: Google Fonts serves
+// this family from extension-less URLs, which next/font/google in Next 14.2
+// cannot parse (the Vercel build fails).
+const jakarta = localFont({
+  src: "../../node_modules/@fontsource-variable/plus-jakarta-sans/files/plus-jakarta-sans-latin-wght-normal.woff2",
+  weight: "200 800",
+  style: "normal",
   variable: "--font-display",
   display: "swap",
 });
