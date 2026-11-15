@@ -62,6 +62,17 @@ module.exports = {
         "grid-fade":
           "radial-gradient(circle at 50% 0%, rgba(59,130,246,0.12), transparent 60%)",
       },
+      // Partner logo marquee: the track holds two copies of the list, so
+      // shifting by half its width loops seamlessly.
+      keyframes: {
+        marquee: {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(-50%)" },
+        },
+      },
+      animation: {
+        marquee: "marquee 50s linear infinite",
+      },
     },
   },
   plugins: [],

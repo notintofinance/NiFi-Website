@@ -101,7 +101,7 @@ export const services = [
 // from its partnership deck.
 export const partnerGroups = [
   { id: "academy", label: "NiFi Academy partners" },
-  { id: "partners", label: "Partners" },
+  { id: "partners", label: "Business Partners" },
 ];
 
 export const partners = [
