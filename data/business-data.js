@@ -101,7 +101,6 @@ export const services = [
 // from its partnership deck.
 export const partnerGroups = [
   { id: "academy", label: "NiFi Academy partners" },
-  { id: "speakers", label: "NiFi Academy keynote speakers" },
   { id: "partners", label: "Partners" },
 ];
 
@@ -114,8 +113,8 @@ export const partners = [
   { group: "academy", name: "BRI Danareksa Sekuritas", file: "bri-danareksa.png", w: 500, h: 223 },
   { group: "academy", name: "Ciptadana Sekuritas", file: "ciptadana.png", w: 616, h: 174 },
   { group: "academy", name: "Kiwoom Sekuritas Indonesia", file: "kiwoom.png", w: 640, h: 197 },
-  { group: "speakers", name: "Samuel Sekuritas", file: "samuel-sekuritas.png", w: 252, h: 100 },
-  { group: "speakers", name: "Syailendra Capital", file: "syailendra.png", w: 196, h: 20 },
+  { group: "academy", name: "Samuel Sekuritas", file: "samuel-sekuritas.png", w: 252, h: 100 },
+  { group: "academy", name: "Syailendra Capital", file: "syailendra.png", w: 196, h: 20 },
   { group: "partners", name: "Sucorwave", file: "sucorwave.png", w: 640, h: 127 },
   { group: "partners", name: "Ajaib", file: "ajaib.png", w: 267, h: 84 },
   { group: "partners", name: "Bitget Wallet", file: "bitget.png", w: 688, h: 116 },
