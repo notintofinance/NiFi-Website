@@ -13,12 +13,12 @@
     font-feature-settings: "cv11", "ss01";
   }
 
-  /* Editorial serif for headings */
+  /* Plus Jakarta Sans for headings */
   h1,
   h2,
   h3 {
-    @apply font-display font-normal text-white;
-    letter-spacing: -0.015em;
+    @apply font-display font-bold text-white;
+    letter-spacing: -0.03em;
   }
 
   /* Branded text selection */
@@ -59,6 +59,96 @@
   }
 }
 
+/* ── Hero headline effects ───────────────────────────────────────────
+   .reveal   words fade in from a blur, one after another (plays once)
+   .hl       a colourful marker that sweeps in, holds, sweeps out (loops)
+   .hl-text  gradient text that pans slowly (loops)
+   Words stay inline (no transforms), so the headline wraps naturally. */
+.reveal {
+  opacity: 0;
+  filter: blur(10px);
+  animation: reveal 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+}
+
+.hl {
+  opacity: 0;
+  filter: blur(10px);
+  padding: 0 0.06em;
+  background-image: linear-gradient(
+    90deg,
+    rgba(59, 130, 246, 0.6),
+    rgba(139, 92, 246, 0.6),
+    rgba(236, 72, 153, 0.5),
+    rgba(6, 182, 212, 0.6)
+  );
+  background-repeat: no-repeat;
+  background-position: 0% 92%;
+  background-size: 0% 0.4em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  animation:
+    reveal 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) 0.55s forwards,
+    marker 5.5s cubic-bezier(0.65, 0, 0.35, 1) 1.3s infinite;
+}
+
+.hl-text {
+  background-image: linear-gradient(
+    90deg,
+    #ffffff,
+    #8faeff,
+    #c4b5fd,
+    #67e8f9,
+    #8faeff,
+    #ffffff
+  );
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  animation: gradient-pan 9s linear infinite;
+}
+
+@keyframes reveal {
+  to {
+    opacity: 1;
+    filter: none;
+  }
+}
+
+/* In from the left, hold, out to the right. The position jump happens while
+   the marker is full width, so it is invisible. */
+@keyframes marker {
+  0% {
+    background-size: 0% 0.4em;
+    background-position: 0% 92%;
+  }
+  28% {
+    background-size: 100% 0.4em;
+    background-position: 0% 92%;
+  }
+  72% {
+    background-size: 100% 0.4em;
+    background-position: 100% 92%;
+  }
+  100% {
+    background-size: 0% 0.4em;
+    background-position: 100% 92%;
+  }
+}
+
+/* With a 300%-wide repeating gradient, 150% shifts it by exactly one tile,
+   so the loop is seamless (the gradient starts and ends on the same colour). */
+@keyframes gradient-pan {
+  from {
+    background-position: 0% 50%;
+  }
+  to {
+    background-position: 150% 50%;
+  }
+}
+
 /* Respect users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -71,5 +161,14 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+  /* Show the finished state: words visible, marker in place, static gradient */
+  .reveal,
+  .hl {
+    opacity: 1;
+    filter: none;
+  }
+  .hl {
+    background-size: 100% 0.4em;
   }
 }

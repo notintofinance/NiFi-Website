@@ -1,4 +1,4 @@
-import { Inter, Instrument_Serif } from "next/font/google";
+import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import { siteConfig } from "@/data/site-config";
@@ -9,11 +9,11 @@ const inter = Inter({
   display: "swap",
 });
 
-// Editorial serif for headlines; Inter carries the UI and body text.
-const instrumentSerif = Instrument_Serif({
+// Plus Jakarta Sans for headlines (designed in Jakarta); Inter carries the UI
+// and body text.
+const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
+  weight: ["500", "600", "700", "800"],
   variable: "--font-display",
   display: "swap",
 });
@@ -66,7 +66,7 @@ const orgJsonLd = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${inter.variable} ${instrumentSerif.variable}`}>
+    <html lang="en" className={`${inter.variable} ${jakarta.variable}`}>
       <body>
         {children}
         <script

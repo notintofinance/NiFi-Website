@@ -3,6 +3,7 @@ import { Mail, ArrowDown, ArrowUpRight, Check, Plus } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
+import HighlightHeadline from "@/components/HighlightHeadline";
 import { siteConfig } from "@/data/site-config";
 import {
   services,
@@ -162,7 +163,7 @@ const visuals = {
           <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">
             Program · {academyIncubation.period}
           </p>
-          <h3 className="mt-3 text-2xl leading-[1.15] sm:text-3xl">
+          <h3 className="mt-3 text-xl leading-[1.2] sm:text-2xl">
             {academyIncubation.title}
           </h3>
           <p className="mt-3 text-sm leading-relaxed text-slate-400">
@@ -252,9 +253,11 @@ export default function ForBusiness() {
         <section className="mx-auto max-w-6xl px-5 pb-16 pt-16 sm:px-6 sm:pb-20 sm:pt-24">
           <div className="max-w-3xl">
             <p className="eyebrow">For Business</p>
-            <h1 className="mt-6 text-[3rem] leading-[1.03] sm:text-7xl">
-              Open for <em className="text-cool">collaboration.</em>
-            </h1>
+            <HighlightHeadline
+              lead="Open for"
+              highlight="collaboration."
+              className="mt-6 text-[2.75rem] font-extrabold leading-[1.06] sm:text-6xl lg:text-[4.6rem]"
+            />
             <p className="mt-7 max-w-xl text-lg leading-relaxed text-slate-400">
               NiFi works with brands and organizations to reach people who follow
               finance and investing — through our content, events, Academy and
@@ -292,7 +295,7 @@ export default function ForBusiness() {
                     <span className="text-cool">0{i + 1}</span>
                     {s.kind}
                   </p>
-                  <h2 id={`${s.id}-title`} className="mt-5 text-4xl leading-[1.08] sm:text-5xl">
+                  <h2 id={`${s.id}-title`} className="mt-5 text-3xl leading-[1.1] sm:text-4xl">
                     {s.title}
                   </h2>
                   <p className="mt-5 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg">
@@ -333,7 +336,7 @@ export default function ForBusiness() {
             className="lg:sticky lg:top-20 lg:max-h-[calc(100vh-6rem)] lg:self-start lg:overflow-y-auto lg:pt-6"
           >
             <div className="rounded-[1.5rem] border border-white/10 bg-ink-900 p-6">
-              <h2 id="partnerships-title" className="text-3xl leading-[1.1]">
+              <h2 id="partnerships-title" className="text-2xl leading-[1.15]">
                 Previous Partnerships
               </h2>
               <p className="mt-3 text-sm leading-relaxed text-slate-400">
@@ -380,7 +383,7 @@ export default function ForBusiness() {
         <section aria-labelledby="contact-title" className="mx-auto max-w-6xl px-5 py-24 sm:px-6 sm:py-28">
           <Reveal>
             <div className="rounded-[1.75rem] border border-white/10 bg-cool-deep px-6 py-16 text-center sm:px-12 sm:py-20">
-              <h2 id="contact-title" className="mx-auto max-w-2xl text-4xl leading-[1.08] sm:text-6xl">
+              <h2 id="contact-title" className="mx-auto max-w-2xl text-4xl leading-[1.08] sm:text-5xl">
                 Let’s collaborate.
               </h2>
               <p className="mx-auto mt-5 max-w-md text-base text-slate-300">

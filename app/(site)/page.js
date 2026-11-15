@@ -4,6 +4,7 @@ import { ArrowUpRight, ArrowRight } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
+import HighlightHeadline from "@/components/HighlightHeadline";
 import { siteConfig } from "@/data/site-config";
 import { services, partners } from "@/data/business-data";
 
@@ -45,10 +46,11 @@ export default function Home() {
         <section className="mx-auto max-w-6xl px-5 pt-10 sm:px-6 sm:pt-24">
           <div className="max-w-3xl">
             <p className="eyebrow">Research · Education · Community</p>
-            <h1 className="mt-6 text-[3.1rem] leading-[1.02] sm:text-7xl lg:text-[5.5rem]">
-              Finance, for people who are{" "}
-              <em className="text-cool">not into finance.</em>
-            </h1>
+            <HighlightHeadline
+              lead="Finance, for people who are"
+              highlight="not into finance."
+              className="mt-6 text-[2.6rem] font-extrabold leading-[1.06] sm:text-6xl lg:text-[4.6rem]"
+            />
             <p className="mt-7 max-w-xl text-lg leading-relaxed text-slate-400">
               NiFi is a research, education, and community platform that makes
               finance and investing easier to understand. Join the community,
@@ -124,7 +126,7 @@ export default function Home() {
             <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
               <div>
                 <p className="eyebrow">Our services</p>
-                <h2 id="services-title" className="mt-5 text-4xl leading-[1.08] sm:text-6xl">
+                <h2 id="services-title" className="mt-5 text-4xl leading-[1.08] sm:text-5xl">
                   Work with NiFi.
                 </h2>
               </div>
@@ -148,7 +150,7 @@ export default function Home() {
                       <span className="text-cool">0{i + 1}</span>
                       {s.kind}
                     </span>
-                    <span className="mt-8 font-display text-3xl leading-[1.1] text-white">
+                    <span className="mt-8 font-display text-2xl font-bold leading-[1.15] tracking-tight text-white">
                       {s.title}
                     </span>
                     <span className="mt-3 text-sm leading-relaxed text-slate-400">{s.short}</span>
@@ -167,7 +169,7 @@ export default function Home() {
         <section aria-labelledby="cta-title" className="mx-auto max-w-6xl px-5 py-24 sm:px-6 sm:py-28">
           <Reveal>
             <div className="rounded-[1.75rem] border border-white/10 bg-cool-deep px-6 py-16 text-center sm:px-12 sm:py-20">
-              <h2 id="cta-title" className="mx-auto max-w-2xl text-4xl leading-[1.08] sm:text-6xl">
+              <h2 id="cta-title" className="mx-auto max-w-2xl text-4xl leading-[1.08] sm:text-5xl">
                 Finance makes more sense together.
               </h2>
               <p className="mx-auto mt-5 max-w-md text-base text-slate-300">
