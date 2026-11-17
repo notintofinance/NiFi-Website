@@ -45,18 +45,19 @@ const id = {
   partners: { title: "Partner sebelumnya", link: "Lihat partnership", linkShort: "Semua" },
 
   sections: {
-    mulai: { no: "01", label: "Mulai", title: "Mau mulai dari mana?", rest: "Ada tiga cara. Pilih yang paling cocok buat kamu." },
-    lab: { no: "02", label: "Lab", title: "Coba hitung sendiri.", rest: "Lima alat kecil tentang cara kerja uang. Pilih satu, lalu ubah angkanya." },
-    research: { no: "03", label: "Research", title: "Riset dan artikel NiFi.", rest: "Tentang perusahaan, sektor, dan kebijakan ekonomi di Indonesia." },
-    belajar: { no: "04", label: "Learn", title: "Belajar dari dasar.", rest: "Lima primer pendek untuk pemula. Baca berurutan, atau langsung ke topik yang kamu cari." },
-    komunitas: { no: "05", label: "Community", title: "Komunitas NiFi ada di Discord." },
+    mulai: { label: "Mulai", title: "Mau mulai dari mana?", rest: "Ada tiga cara. Pilih yang paling cocok buat kamu." },
+    research: { label: "Research", title: "Riset dan artikel NiFi.", rest: "Tentang perusahaan, sektor, dan kebijakan ekonomi di Indonesia." },
+    komunitas: { label: "Community", title: "Komunitas NiFi ada di Discord." },
+    // Halaman Learn
+    belajar: { label: "Learn", title: "Belajar dari dasar.", rest: "Lima primer pendek untuk pemula, lima alat hitung di Lab, dan kelas NiFi Academy." },
+    lab: { label: "Lab", title: "Coba hitung sendiri.", rest: "Lima alat kecil tentang cara kerja uang. Pilih satu, lalu ubah angkanya." },
   },
 
   paths: {
     list: "Cara mulai",
     items: [
       { id: "baca", verb: "Baca", label: "Research", hue: "blue", href: "#research", body: "Riset dan artikel tentang perusahaan dan ekonomi Indonesia, ditulis dengan bahasa sehari-hari.", cta: "Lihat riset dan artikel" },
-      { id: "belajar", verb: "Belajar", label: "NiFi Academy", hue: "violet", href: "#belajar", body: "Lima primer pendek untuk pemula, ditambah kelas online yang diisi praktisi.", cta: "Buka jalur pemula" },
+      { id: "belajar", verb: "Belajar", label: "NiFi Academy", hue: "violet", href: "/learn", body: "Lima primer pendek untuk pemula, alat hitung di Lab, dan kelas online yang diisi praktisi.", cta: "Buka jalur pemula" },
       { id: "gabung", verb: "Gabung", label: "Community", hue: "cyan", href: "#komunitas", body: "Tempat bertanya dan berdiskusi soal pasar dengan orang yang juga sedang belajar.", cta: "Lihat komunitas" },
     ],
     coverAlt: (title) => `Sampul laporan riset NiFi: ${title}`,
@@ -138,6 +139,37 @@ const id = {
     artharaCta: "Buka arthara.id",
   },
 
+  coal: {
+    tag: "Riset terbaru",
+    published: (d) => `Terbit ${d}`,
+    coverAlt: "Sampul laporan riset NiFi: The Coal Paradox",
+    lead: "The Coal Paradox membahas permintaan, pasokan, dan hitungan ekonomi baru batu bara termal Indonesia. Di laporan ini kami menjelaskan tesis kami soal batu bara dan kenapa kami tertarik pada AADI.",
+    result: (pub, peak, a, j) =>
+      `Grafik ini membandingkan harga saham AADI dengan IHSG. Dari hari laporan terbit (${pub}) sampai harga penutupan tertinggi AADI (${peak}), AADI naik ${a} dan IHSG naik ${j}.`,
+    topicsLabel: "Isi laporan",
+    topics: ["Supply dan demand listrik batu bara", "Forecast harga batu bara", "Dark spread dan spark spread", "Studi kasus: AADI"],
+    by: "Ditulis oleh",
+    chartTitle: "AADI dibanding IHSG",
+    chartSub: "Perubahan harga sejak hari riset terbit",
+    index: "IHSG",
+    ranges: "Rentang waktu",
+    since: "Sejak terbit",
+    all: "Sejak Des 2025",
+    gap: "Selisih",
+    gapUnit: "poin persentase",
+    to: (a, b) => `${a} ke ${b}`,
+    marker: "Riset terbit",
+    peak: "Tertinggi",
+    band: "Dari riset terbit sampai harga tertinggi AADI",
+    chartAlt: (pub, peak, a, j) =>
+      `Grafik garis perubahan harga AADI dan IHSG dibanding penutupan ${pub}. Sampai ${peak}, AADI ${a} dan IHSG ${j}. Tekan panah kiri atau kanan untuk membaca tiap tanggal.`,
+    note: (from, to) =>
+      `Kedua garis menunjukkan perubahan dari harga penutupan pada hari riset terbit. Data: harga penutupan harian, ${from} sampai ${to}.`,
+    disclaimer: "Kinerja masa lalu tidak menjamin hasil ke depan. Ini bukan rekomendasi beli atau jual.",
+    table: "Lihat datanya dalam tabel",
+    cols: ["Tanggal", "AADI (Rp)", "IHSG"],
+  },
+
   learn: {
     window: "Jalur pemula",
     done: (a, b) => `${a} dari ${b} selesai`,
@@ -215,7 +247,7 @@ const id = {
     entries: {
       lab: ["Lab", "Bunga majemuk, inflasi, aturan 72, diversifikasi, kuis"],
       research: ["Research", "Riset dan artikel NiFi"],
-      learn: ["Learn", "Jalur pemula dan kelas NiFi Academy"],
+      learn: ["Learn", "Jalur pemula, Lab, dan kelas NiFi Academy"],
       community: ["Community", "Komunitas NiFi di Discord"],
       business: ["For Business", "Kerja sama untuk brand dan organisasi"],
       discord: ["Gabung komunitas di Discord", "Buka undangan Discord NiFi"],
@@ -267,18 +299,19 @@ const en = {
   partners: { title: "Previous partners", link: "See partnerships", linkShort: "All" },
 
   sections: {
-    mulai: { no: "01", label: "Start", title: "Where do you want to start?", rest: "There are three ways in. Pick the one that suits you." },
-    lab: { no: "02", label: "Lab", title: "Run the numbers yourself.", rest: "Five small tools about how money works. Pick one and change the numbers." },
-    research: { no: "03", label: "Research", title: "NiFi research and articles.", rest: "On Indonesian companies, sectors and economic policy." },
-    belajar: { no: "04", label: "Learn", title: "Learn the basics.", rest: "Five short primers for beginners. Read them in order, or go straight to the topic you need." },
-    komunitas: { no: "05", label: "Community", title: "The NiFi community is on Discord." },
+    mulai: { label: "Start", title: "Where do you want to start?", rest: "There are three ways in. Pick the one that suits you." },
+    research: { label: "Research", title: "NiFi research and articles.", rest: "On Indonesian companies, sectors and economic policy." },
+    komunitas: { label: "Community", title: "The NiFi community is on Discord." },
+    // The Learn page
+    belajar: { label: "Learn", title: "Learn the basics.", rest: "Five short primers for beginners, five small calculators in the Lab, and NiFi Academy classes." },
+    lab: { label: "Lab", title: "Run the numbers yourself.", rest: "Five small tools about how money works. Pick one and change the numbers." },
   },
 
   paths: {
     list: "Ways to start",
     items: [
       { id: "baca", verb: "Read", label: "Research", hue: "blue", href: "#research", body: "Research and articles on Indonesian companies and the economy, written in everyday language.", cta: "See research and articles" },
-      { id: "belajar", verb: "Learn", label: "NiFi Academy", hue: "violet", href: "#belajar", body: "Five short primers for beginners, plus online classes taught by practitioners.", cta: "Open the beginner path" },
+      { id: "belajar", verb: "Learn", label: "NiFi Academy", hue: "violet", href: "/learn", body: "Five short primers for beginners, the Lab calculators, and online classes taught by practitioners.", cta: "Open the beginner path" },
       { id: "gabung", verb: "Join", label: "Community", hue: "cyan", href: "#komunitas", body: "A place to ask questions and talk about markets with people who are also learning.", cta: "See the community" },
     ],
     coverAlt: (title) => `Cover of the NiFi research report: ${title}`,
@@ -360,6 +393,37 @@ const en = {
     artharaCta: "Open arthara.id",
   },
 
+  coal: {
+    tag: "Latest research",
+    published: (d) => `Published ${d}`,
+    coverAlt: "Cover of the NiFi research report: The Coal Paradox",
+    lead: "The Coal Paradox looks at demand, supply and the new economics of Indonesian thermal coal. In it we set out our thesis on coal and explain why we are interested in AADI.",
+    result: (pub, peak, a, j) =>
+      `The chart compares AADI's share price with the JCI. From the day the report came out (${pub}) to AADI's highest close (${peak}), AADI rose ${a} and the JCI rose ${j}.`,
+    topicsLabel: "In the report",
+    topics: ["Coal power supply and demand", "Coal price forecast", "Dark spread and spark spread", "Case study: AADI"],
+    by: "Written by",
+    chartTitle: "AADI against the JCI",
+    chartSub: "Price change since the day the report came out",
+    index: "JCI",
+    ranges: "Time range",
+    since: "Since publication",
+    all: "Since Dec 2025",
+    gap: "Gap",
+    gapUnit: "percentage points",
+    to: (a, b) => `${a} to ${b}`,
+    marker: "Report published",
+    peak: "Highest",
+    band: "From publication to AADI's highest close",
+    chartAlt: (pub, peak, a, j) =>
+      `Line chart of the price change in AADI and the JCI against the close on ${pub}. By ${peak}, AADI was ${a} and the JCI ${j}. Press the left or right arrow to read each date.`,
+    note: (from, to) =>
+      `Both lines show the change from the closing price on the day the report came out. Data: daily closing prices, ${from} to ${to}.`,
+    disclaimer: "Past performance does not guarantee future results. This is not a recommendation to buy or sell.",
+    table: "See the data as a table",
+    cols: ["Date", "AADI (Rp)", "JCI"],
+  },
+
   learn: {
     window: "Beginner path",
     done: (a, b) => `${a} of ${b} done`,
@@ -437,7 +501,7 @@ const en = {
     entries: {
       lab: ["Lab", "Compound interest, inflation, rule of 72, diversification, quiz"],
       research: ["Research", "NiFi research and articles"],
-      learn: ["Learn", "Beginner path and NiFi Academy classes"],
+      learn: ["Learn", "Beginner path, Lab and NiFi Academy classes"],
       community: ["Community", "The NiFi community on Discord"],
       business: ["For Business", "Working with brands and organisations"],
       discord: ["Join the community on Discord", "Open the NiFi Discord invite"],

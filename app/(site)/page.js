@@ -5,44 +5,19 @@ import Hero from "@/components/home/Hero";
 import PartnerMarquee from "@/components/home/PartnerMarquee";
 import Section from "@/components/home/Section";
 import PathShowcase from "@/components/home/PathShowcase";
-import LabTabs from "@/components/home/lab/LabTabs";
+import CoalFeature from "@/components/home/CoalFeature";
 import ContentBrowser from "@/components/home/ContentBrowser";
-import LearnPath from "@/components/home/LearnPath";
-import AcademyClasses from "@/components/home/AcademyClasses";
 import CommunitySection from "@/components/home/CommunitySection";
 import BusinessBlock from "@/components/home/BusinessBlock";
 import { researchReports } from "@/data/research-data";
-import { articles } from "@/data/article-data";
-import { contentMeta, topics } from "@/data/home-data";
-
-// Real research reports (PDF) and articles (on X), newest first. Titles stay
-// as published; the one-line summaries exist in both languages.
-const meta = (id, fallback) => ({
-  topics: contentMeta[id]?.topics ?? ["other"],
-  summary: { id: contentMeta[id]?.id ?? fallback, en: contentMeta[id]?.en ?? fallback },
-});
-const content = [
-  ...researchReports.map((r) => ({
-    id: r.id,
-    type: "research",
-    title: r.title,
-    date: r.date,
-    href: r.file,
-    cover: r.cover,
-    ...meta(r.id, r.summary),
-  })),
-  ...articles.map((a) => ({
-    id: a.id,
-    type: "article",
-    title: a.title,
-    date: a.date,
-    href: a.url,
-    ...meta(a.id, a.summary),
-  })),
-].sort((a, b) => b.date.localeCompare(a.date));
+import { content } from "@/data/content";
+import { topics } from "@/data/home-data";
 
 const covers = researchReports.slice(0, 3).map((r) => ({ src: r.cover, title: r.title }));
 
+// Home: hero, previous partners, three ways to start, research (led by the
+// latest report, The Coal Paradox), community and the For Business block.
+// The beginner primers, the Lab and the classes live on /learn.
 // Section headings and all interface text are in data/copy.js (two
 // languages); the sections read them through useLang().
 export default function Home() {
@@ -64,18 +39,10 @@ export default function Home() {
             <PathShowcase covers={covers} />
           </Section>
 
-          <Section id="lab">
-            <LabTabs />
-          </Section>
-
           <Section id="research">
-            <ContentBrowser items={content} topics={topics} />
-          </Section>
-
-          <Section id="belajar">
-            <LearnPath />
-            <div className="mt-14 sm:mt-20">
-              <AcademyClasses />
+            <CoalFeature />
+            <div className="mt-10 sm:mt-14">
+              <ContentBrowser items={content} topics={topics} />
             </div>
           </Section>
 

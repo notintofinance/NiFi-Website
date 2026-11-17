@@ -21,9 +21,9 @@ export function buildIndex(lang) {
 
   const entries = [
     // Where to go
-    { id: "nav-lab", group: p.groups.nav, ...entry("lab"), href: "/#lab" },
+    { id: "nav-lab", group: p.groups.nav, ...entry("lab"), href: "/learn#lab" },
     { id: "nav-research", group: p.groups.nav, ...entry("research"), href: "/#research" },
-    { id: "nav-learn", group: p.groups.nav, ...entry("learn"), href: "/#belajar" },
+    { id: "nav-learn", group: p.groups.nav, ...entry("learn"), href: "/learn" },
     { id: "nav-community", group: p.groups.nav, ...entry("community"), href: "/#komunitas" },
     { id: "nav-business", group: p.groups.nav, ...entry("business"), href: "/for-business" },
 
@@ -61,7 +61,7 @@ export function buildIndex(lang) {
       title: primer.title,
       sub: primer.summary,
       tag: p.tags.primer,
-      href: "/#belajar",
+      href: `/learn#primer-${primer.id}`,
       primer: primer.id,
       keywords: "primer",
     })),
@@ -71,7 +71,7 @@ export function buildIndex(lang) {
       title: c.title,
       sub: c.speaker,
       tag: p.tags.class,
-      href: "/#kelas",
+      href: "/learn#kelas",
       keywords: `${p.tags.class} academy nifiberbagi`,
     })),
 

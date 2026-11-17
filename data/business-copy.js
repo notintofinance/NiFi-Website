@@ -33,6 +33,56 @@ export const businessCopy = {
     groups: { academy: "Partner NiFi Academy", partners: "Business Partners" },
     closingTitle: "Mari bekerja sama.",
     closingBody: "Ceritakan brand atau organisasimu dan rencana yang kamu pikirkan. Kami akan membalas lewat email.",
+    orbit: {
+      label: "Ekosistem bisnis NiFi",
+      hint: "Seret untuk memutar. Tekan satu unit untuk melihat ringkasannya.",
+      hintFlat: "Tekan satu unit untuk melihat ringkasannya.",
+      close: "Tutup ringkasan",
+      units: {
+        academy: {
+          name: "NiFi Academy",
+          kind: "Edukasi",
+          summary: "NiFi Academy mengadakan kelas online yang dipandu praktisi, bootcamp riset ekuitas, dan program inkubasi untuk mahasiswa.",
+          points: [
+            "Kelas online dengan praktisi",
+            "Equity Research Bootcamp bersama ICMSS",
+            "Program inkubasi riset ekuitas",
+          ],
+          link: "Lihat NiFi Academy",
+          alt: "Poster Equity Research Bootcamp dari NiFi Academy dan ICMSS",
+        },
+        media: {
+          name: "NiFi Media",
+          kind: "Konten",
+          summary: "NiFi Media membuat konten finance berbasis riset untuk Instagram, X, dan TikTok. Tim NiFi yang menulis dan mendesainnya.",
+          points: [
+            "Feed post di Instagram dan X",
+            "Video pendek di Reels, TikTok, dan X",
+            "Brand disebut dan di-tag di caption",
+          ],
+          link: "Lihat Brand Placement",
+          alt: "Post NiFi Journal di Instagram",
+        },
+        research: {
+          name: "NiFi Research",
+          kind: "Riset · Arthara",
+          summary: "NiFi Research menulis riset tentang perusahaan dan sektor di Indonesia. Arthara adalah platform analisis saham dari NiFi.",
+          points: [
+            "Laporan riset perusahaan dan sektor",
+            "Riset terbaru: The Coal Paradox",
+            "Arthara: analisis saham di BEI",
+          ],
+          link: "Lihat Arthara",
+          alt: "Sampul laporan riset NiFi: The Coal Paradox",
+        },
+      },
+    },
+    bootcamp: {
+      label: "Bootcamp · bersama ICMSS",
+      summary: "Bootcamp riset ekuitas yang diadakan NiFi Academy bersama ICMSS. Sembilan pembicaranya adalah profesional dari institusi keuangan.",
+      from: "Pembicara dari",
+      alt: "Poster Equity Research Bootcamp: sembilan pembicara dari institusi keuangan",
+    },
     incubation: {
       summary: "Program untuk mahasiswa S1 Indonesia yang berfokus pada penulisan riset ekuitas untuk kompetisi, dengan mentor dari industri keuangan.",
       steps: ["Open recruitment", "Inkubasi dengan mentor", "Company visit", "Kelulusan"],
@@ -118,6 +168,56 @@ export const businessCopy = {
     groups: { academy: "NiFi Academy partners", partners: "Business Partners" },
     closingTitle: "Let's work together.",
     closingBody: "Tell us about your brand or organisation and what you have in mind. We'll reply by email.",
+    orbit: {
+      label: "The NiFi business ecosystem",
+      hint: "Drag to spin. Press a unit to see its summary.",
+      hintFlat: "Press a unit to see its summary.",
+      close: "Close summary",
+      units: {
+        academy: {
+          name: "NiFi Academy",
+          kind: "Education",
+          summary: "NiFi Academy runs online classes led by practitioners, an equity research bootcamp, and an incubation program for students.",
+          points: [
+            "Online classes with practitioners",
+            "Equity Research Bootcamp with ICMSS",
+            "Equity research incubation program",
+          ],
+          link: "See NiFi Academy",
+          alt: "Poster for the Equity Research Bootcamp by NiFi Academy and ICMSS",
+        },
+        media: {
+          name: "NiFi Media",
+          kind: "Content",
+          summary: "NiFi Media makes finance content built on research for Instagram, X and TikTok. The NiFi team writes and designs it.",
+          points: [
+            "Feed posts on Instagram and X",
+            "Short videos on Reels, TikTok and X",
+            "Brand mention and tag in the caption",
+          ],
+          link: "See Brand Placement",
+          alt: "A NiFi Journal post on Instagram",
+        },
+        research: {
+          name: "NiFi Research",
+          kind: "Research · Arthara",
+          summary: "NiFi Research writes research on Indonesian companies and sectors. Arthara is NiFi's stock analysis platform.",
+          points: [
+            "Company and sector research reports",
+            "Latest report: The Coal Paradox",
+            "Arthara: stock analysis for the IDX",
+          ],
+          link: "See Arthara",
+          alt: "Cover of the NiFi research report: The Coal Paradox",
+        },
+      },
+    },
+    bootcamp: {
+      label: "Bootcamp · with ICMSS",
+      summary: "An equity research bootcamp run by NiFi Academy with ICMSS. Its nine speakers are professionals from financial institutions.",
+      from: "Speakers from",
+      alt: "Poster for the Equity Research Bootcamp: nine speakers from financial institutions",
+    },
     incubation: {
       summary: "A program for Indonesian undergraduates focused on writing equity research papers for competitions, with mentors from the finance industry.",
       steps: ["Open recruitment", "Incubation with mentors", "Company visit", "Graduation"],

@@ -4,10 +4,11 @@ import Image from "next/image";
 import { Mail, ArrowDown, ArrowUpRight, Check, Plus } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import HighlightHeadline from "@/components/HighlightHeadline";
+import BusinessOrbit from "./BusinessOrbit";
 import { useLang } from "@/components/Lang";
 import { monthYear } from "@/lib/format";
 import { siteConfig } from "@/data/site-config";
-import { services, partners, partnerGroups, academyIncubation, academyClasses } from "@/data/business-data";
+import { services, partners, partnerGroups, academyIncubation, academyBootcamp, academyClasses } from "@/data/business-data";
 import { businessCopy } from "@/data/business-copy";
 
 // The For Business page body. Structure and images come from
@@ -128,6 +129,33 @@ function Academy({ c, lang }) {
         </div>
       </div>
 
+      {/* Equity Research Bootcamp */}
+      <div className="grid items-center gap-6 rounded-2xl border border-white/10 bg-ink-900 p-5 sm:grid-cols-[1fr_0.8fr] sm:p-6">
+        <div className="order-2 sm:order-1">
+          <p className={micro}>{c.bootcamp.label}</p>
+          <h3 className="mt-3 text-xl leading-[1.2] sm:text-2xl">{academyBootcamp.title}</h3>
+          <p className="mt-3 text-sm leading-relaxed text-slate-400">{c.bootcamp.summary}</p>
+          <p className={`mt-5 ${micro}`}>{c.bootcamp.from}</p>
+          <ul className="mt-3 flex flex-wrap gap-1.5">
+            {academyBootcamp.institutions.map((name) => (
+              <li key={name} className="rounded-full border border-white/10 px-2.5 py-1 text-xs text-slate-300">
+                {name}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="order-1 overflow-hidden rounded-xl border border-white/15 sm:order-2">
+          <Image
+            src={`/content/academy/${academyBootcamp.file}`}
+            alt={c.bootcamp.alt}
+            width={academyBootcamp.w}
+            height={academyBootcamp.h}
+            sizes="(max-width: 640px) 100vw, 300px"
+            className="h-auto w-full"
+          />
+        </div>
+      </div>
+
       {/* Past online classes */}
       <div>
         <p className={micro}>{c.pastClasses}</p>
@@ -163,7 +191,7 @@ function Arthara({ c }) {
     <div className="flex flex-col items-start gap-6 rounded-2xl border border-white/10 bg-ink-900 p-7 sm:flex-row sm:items-center sm:justify-between">
       <div className="flex items-center gap-4">
         <span className="inline-flex h-14 w-14 items-center justify-center rounded-xl border border-white/10 bg-ink-800">
-          <Image src="/arthara-mark.png" alt="" width={32} height={32} className="h-7 w-7 object-contain invert" />
+          <Image src="/arthara-mark-white.png" alt="" width={512} height={484} className="h-7 w-7 object-contain" />
         </span>
         <div>
           <p className="text-base font-semibold text-white">Arthara</p>
@@ -188,14 +216,14 @@ export default function ForBusinessContent() {
   return (
     <main>
       {/* ── Hero ─────────────────────────────────────────── */}
-      <section className="mx-auto max-w-6xl px-5 pb-16 pt-16 sm:px-6 sm:pb-20 sm:pt-24">
-        <div className="max-w-3xl">
+      <section className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)] items-center gap-12 px-5 pb-16 pt-16 sm:px-6 sm:pb-20 sm:pt-20 lg:grid-cols-[minmax(0,0.94fr)_minmax(0,1.06fr)] lg:gap-6">
+        <div>
           <p className="eyebrow">{c.eyebrow}</p>
           <HighlightHeadline
             key={lang}
             lead={c.headline[0]}
             highlight={c.headline[1]}
-            className="mt-6 text-[2.75rem] font-extrabold leading-[1.06] sm:text-6xl lg:text-[4.6rem]"
+            className="mt-6 text-[2.75rem] font-extrabold leading-[1.06] sm:text-6xl lg:text-[4rem] xl:text-[4.4rem]"
           />
           <p className="mt-7 max-w-xl text-lg leading-relaxed text-slate-400">{c.sub}</p>
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
@@ -209,6 +237,9 @@ export default function ForBusinessContent() {
             </a>
           </div>
         </div>
+
+        {/* The business ecosystem, in orbit */}
+        <BusinessOrbit />
       </section>
 
       {/* ── Services + Previous Partnerships ─────────────── */}

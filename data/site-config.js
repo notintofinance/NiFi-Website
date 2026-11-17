@@ -36,11 +36,11 @@ export const siteConfig = {
   // Collaboration" button and as the inbox behind the contact form).
   contactEmail: "contact@notintofinance.com",
 
-  // Navigation. The first three jump to sections of the Home page; For
-  // Business is its own page.
+  // Navigation. Research and Community are sections of the Home page; Learn
+  // (primers, Lab and classes) and For Business are their own pages.
   nav: [
     { label: "Research", href: "/#research" },
-    { label: "Learn", href: "/#belajar" },
+    { label: "Learn", href: "/learn" },
     { label: "Community", href: "/#komunitas" },
     { label: "For Business", href: "/for-business" },
   ],

@@ -146,3 +146,58 @@ export const academyClasses = [
   { title: "Introduction to Smart Money Concept", speaker: "Jamie Runcandell", date: "Feb 2026", file: "class-smart-money-concept.jpg", w: 720, h: 889 },
   { title: "Basic Technical Analysis", speaker: "@dedewizard", date: "Feb 2026", file: "class-basic-technical-analysis.jpg", w: 720, h: 951 },
 ];
+
+// Equity Research Bootcamp run with ICMSS (poster supplied by NiFi). The
+// institutions are the ones printed on the poster's "Speaker Reveal".
+export const academyBootcamp = {
+  title: "Equity Research Bootcamp",
+  file: "bootcamp-equity-research-speakers.jpg",
+  w: 1200,
+  h: 1500,
+  institutions: [
+    "Goldman Sachs",
+    "Bloomberg",
+    "CFA Society Indonesia",
+    "Ashmore",
+    "Samuel Sekuritas Indonesia",
+    "Kiwoom Sekuritas Indonesia",
+    "Mirae Asset Sekuritas",
+    "BRI Danareksa Sekuritas",
+    "Ciptadana Sekuritas",
+  ],
+};
+
+// NiFi's business units, shown as the orbit in the For Business hero. Logos
+// are the unit lockups supplied by NiFi (white versions in public/logos);
+// the Arthara mark (white, transparent) circles NiFi Research. `service` is the
+// section of the page each unit's card links to. Words are in
+// data/business-copy.js (orbit.units).
+export const businessUnits = [
+  {
+    id: "academy",
+    logo: "/logos/nifi-academy-white.png",
+    w: 1200,
+    h: 246,
+    service: "academy",
+    image: { src: "/content/academy/bootcamp-equity-research-speakers.jpg", w: 1200, h: 1500 },
+  },
+  {
+    id: "media",
+    logo: "/logos/nifi-media-white.png",
+    w: 1200,
+    h: 315,
+    service: "brand-placement",
+    image: { src: "/content/journal-krisis.jpg", w: 869, h: 749 },
+  },
+  {
+    id: "research",
+    logo: "/logos/nifi-research-white.png",
+    w: 1200,
+    h: 236,
+    service: "arthara",
+    moon: "/arthara-mark-white.png",
+    moonW: 512,
+    moonH: 484,
+    image: { src: "/research/covers/coal-paradox.jpg", w: 900, h: 1274 },
+  },
+];

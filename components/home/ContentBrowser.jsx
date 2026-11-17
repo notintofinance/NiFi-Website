@@ -216,7 +216,7 @@ export default function ContentBrowser({ items, topics }) {
       <div className="flex flex-col gap-4 border-t border-white/[0.08] bg-ink-800/60 p-5 sm:flex-row sm:items-center sm:justify-between sm:px-6">
         <div className="flex items-center gap-4">
           <span className="inline-flex h-11 w-11 flex-none items-center justify-center rounded-xl border border-white/10 bg-ink-900">
-            <Image src="/arthara-mark.png" alt="" width={28} height={28} className="h-6 w-6 object-contain invert" />
+            <Image src="/arthara-mark-white.png" alt="" width={512} height={484} className="h-6 w-6 object-contain" />
           </span>
           <p className="text-sm leading-relaxed text-slate-300">
             <strong className="font-semibold text-white">{R.artharaLead}</strong>

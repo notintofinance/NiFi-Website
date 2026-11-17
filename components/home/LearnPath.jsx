@@ -26,10 +26,18 @@ export default function LearnPath() {
       const saved = JSON.parse(window.localStorage.getItem(KEY) || "[]");
       if (Array.isArray(saved)) setDone(saved.filter((id) => primerIds.includes(id)));
     } catch {}
-    // The site search can ask for a specific primer.
-    const onPick = (e) => primerIds.includes(e.detail) && setCurrent(e.detail);
+    // The site search can ask for a specific primer: with an event when this
+    // page is already open, or with a link such as /learn#primer-risk.
+    const open = (id) => primerIds.includes(id) && setCurrent(id);
+    const onPick = (e) => open(e.detail);
+    const onHash = () => open(window.location.hash.replace("#primer-", ""));
+    onHash();
     window.addEventListener("nifi:primer", onPick);
-    return () => window.removeEventListener("nifi:primer", onPick);
+    window.addEventListener("hashchange", onHash);
+    return () => {
+      window.removeEventListener("nifi:primer", onPick);
+      window.removeEventListener("hashchange", onHash);
+    };
   }, []);
 
   const save = (next) => {

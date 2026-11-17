@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  // The site is Home (with Research / Learn / Community sections) plus For
+  // The site is Home (with Research and Community sections), Learn and For
   // Business. These keep links to the old content-hub routes working by
   // sending visitors to the closest match.
   // Temporary redirects, so destinations can change later without cache issues.
@@ -13,8 +13,8 @@ const nextConfig = {
       t("/market-today", dashboard),
       t("/sentiment", dashboard),
       t("/research", "/#research"),
-      t("/learn", "/#belajar"),
-      t("/learn/:slug", "/#belajar"),
+      t("/learn/:slug", "/learn"),
+      t("/lab", "/learn#lab"),
       t("/community", "/#komunitas"),
       t("/contact", "/for-business"),
       t("/newsletter", "https://notintofinance.beehiiv.com"),

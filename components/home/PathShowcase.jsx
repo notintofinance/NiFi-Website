@@ -2,13 +2,14 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { useLang } from "@/components/Lang";
 import { getMoments } from "@/data/home-data";
 import { academyClasses } from "@/data/business-data";
 
 // "Mau mulai dari mana?": three picture-led panels (Baca, Belajar, Gabung),
-// each one a link to its section. On wide screens the panel under the
+// each one a link to its section (Belajar opens the Learn page). On wide screens the panel under the
 // pointer (or keyboard focus) opens wider and shows its description; on
 // small screens they stack and show everything. The pictures are real NiFi
 // material: report covers, class posters and a community photo.
@@ -71,6 +72,7 @@ export default function PathShowcase({ covers }) {
         const open = i === active;
         const tint = TINT[p.hue];
         const isPhoto = p.id === "gabung";
+        const Anchor = p.href.startsWith("/") ? Link : "a";
         return (
           <li
             key={p.id}
@@ -78,7 +80,7 @@ export default function PathShowcase({ covers }) {
               open ? "lg:grow-[2.2]" : "lg:grow"
             }`}
           >
-            <a
+            <Anchor
               href={p.href}
               onPointerEnter={(e) => e.pointerType === "mouse" && setActive(i)}
               onFocus={() => setActive(i)}
@@ -161,7 +163,7 @@ export default function PathShowcase({ covers }) {
                   </span>
                 </span>
               </span>
-            </a>
+            </Anchor>
           </li>
         );
       })}

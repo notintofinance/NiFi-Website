@@ -1,7 +1,7 @@
 export default function sitemap() {
   const base = "https://notintofinance.com";
 
-  const routes = ["", "/for-business"];
+  const routes = ["", "/learn", "/for-business"];
 
   return routes.map((path) => ({
     url: `${base}${path}`,
