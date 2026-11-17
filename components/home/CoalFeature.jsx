@@ -8,10 +8,9 @@ import { number, rupiah, shortDate, signedPercent } from "@/lib/format";
 import { coalReport, prices, PUBLISHED } from "@/data/coal-paradox";
 
 // The Coal Paradox, NiFi's latest report, with a chart of AADI against the
-// JCI. Both lines are indexed to the close on the day the report came out,
-// so they share one axis (percent change) and cross zero at publication.
-// The stretch from publication to AADI's highest close is shaded, and the
-// space between the two lines there is filled: that gap is the point of the
+// JCI from the day the report came out. Both lines are indexed to that
+// day's close, so they share one axis (percent change) and start at zero.
+// The space between the two lines is filled: that gap is the point of the
 // chart. Hover, touch or use the arrow keys to read any date; the same
 // numbers are in the table under the chart.
 
@@ -54,7 +53,7 @@ const lineKey = (color, dashed) => (
   </svg>
 );
 
-function Chart({ range }) {
+function Chart() {
   const { lang, t } = useLang();
   const { reduced } = useMotion();
   const C = t.coal;
@@ -77,8 +76,7 @@ function Chart({ range }) {
     };
   }, []);
 
-  const start = range === "since" ? pubIndex : 0;
-  const data = useMemo(() => points.slice(start, peakIndex + 1), [start]);
+  const data = useMemo(() => points.slice(pubIndex, peakIndex + 1), []);
   const narrow = width < 480;
   const m = { top: 30, right: narrow ? 62 : 104, bottom: 26, left: 40 };
   const plotW = width - m.left - m.right;
@@ -97,37 +95,22 @@ function Chart({ range }) {
   const y = (v) => m.top + (1 - (v - y0) / (y1 - y0)) * plotH;
   const path = (key) => data.map((p, i) => `${i ? "L" : "M"}${x(i).toFixed(1)},${y(p[key]).toFixed(1)}`).join("");
 
-  const pubAt = pubIndex - start;
   const last = data.length - 1;
   const gap =
+    data.map((p, i) => `${i ? "L" : "M"}${x(i).toFixed(1)},${y(p.a).toFixed(1)}`).join("") +
     data
-      .slice(pubAt)
-      .map((p, i) => `${i ? "L" : "M"}${x(pubAt + i).toFixed(1)},${y(p.a).toFixed(1)}`)
-      .join("") +
-    data
-      .slice(pubAt)
-      .map((p, i) => [x(pubAt + i), y(p.j)])
+      .map((p, i) => [x(i), y(p.j)])
       .reverse()
       .map(([px, py]) => `L${px.toFixed(1)},${py.toFixed(1)}`)
       .join("") +
     "Z";
 
-  // X labels: the first trading day of every other month, or a few dates
-  // when the range is short.
+  // X labels: a few dates, always including the first and the last.
   const xTicks = [];
-  if (range === "since") {
-    const every = Math.max(1, Math.round(last / 3));
-    for (let i = 0; i <= last; i += every) xTicks.push({ i, label: shortDate(data[i].date, lang).slice(0, -5) });
-    if (last - xTicks[xTicks.length - 1].i < every / 2) xTicks.pop();
-    xTicks.push({ i: last, label: shortDate(data[last].date, lang).slice(0, -5) });
-  } else {
-    data.forEach((p, i) => {
-      const month = Number(p.date.slice(5, 7));
-      if (i > 0 && p.date.slice(0, 7) !== data[i - 1].date.slice(0, 7) && month % 2 === 1) {
-        xTicks.push({ i, label: shortDate(p.date, lang).split(" ")[1] });
-      }
-    });
-  }
+  const every = Math.max(1, Math.round(last / (narrow ? 3 : 4)));
+  for (let i = 0; i <= last; i += every) xTicks.push({ i, label: shortDate(data[i].date, lang).slice(0, -5) });
+  if (last - xTicks[xTicks.length - 1].i < every * 0.75) xTicks.pop();
+  xTicks.push({ i: last, label: shortDate(data[last].date, lang).slice(0, -5) });
 
   const at = hover == null ? null : data[hover];
   const pick = (clientX) => {
@@ -167,9 +150,6 @@ function Chart({ range }) {
         onPointerDown={(e) => pick(e.clientX)}
         onPointerLeave={() => setHover(null)}
       >
-        {/* Publication to peak */}
-        <rect x={x(pubAt)} y={m.top} width={x(last) - x(pubAt)} height={plotH} fill={AADI} opacity="0.07" />
-
         {/* Grid */}
         {ticks.map((v) => (
           <g key={v}>
@@ -188,28 +168,22 @@ function Chart({ range }) {
           </g>
         ))}
         {xTicks.map((tick) => (
-          <text key={tick.i} x={x(tick.i)} y={H - 6} textAnchor={tick.i === last ? "end" : "middle"} className="fill-slate-400 text-[11px]">
+          <text key={tick.i} x={x(tick.i)} y={H - 6} textAnchor={tick.i === last ? "end" : tick.i === 0 ? "start" : "middle"} className="fill-slate-400 text-[11px]">
             {tick.label}
           </text>
         ))}
 
         {/* The day the report came out */}
-        <line x1={x(pubAt)} x2={x(pubAt)} y1={m.top - 8} y2={m.top + plotH} stroke="#ffffff" strokeOpacity="0.55" strokeDasharray="3 4" />
-        <text
-          x={x(pubAt) + (range === "since" ? 0 : -8)}
-          y={m.top - 14}
-          textAnchor={range === "since" ? "start" : "end"}
-          className="fill-slate-200 text-[11px] font-medium"
-        >
+        <line x1={x(0)} x2={x(0)} y1={m.top - 8} y2={m.top + plotH} stroke="#ffffff" strokeOpacity="0.55" strokeDasharray="3 4" />
+        <text x={x(0)} y={m.top - 14} textAnchor="start" className="fill-slate-200 text-[11px] font-medium">
           {`${C.marker} · ${pubText.slice(0, -5)}`}
         </text>
 
-        {/* The gap between the two lines after publication */}
+        {/* The gap between the two lines */}
         <path d={gap} fill={AADI} opacity="0.16" />
 
         <path d={path("j")} fill="none" stroke={JCI} strokeWidth="2" strokeDasharray="5 5" strokeLinejoin="round" />
         <path
-          key={range}
           d={path("a")}
           pathLength="1"
           fill="none"
@@ -278,7 +252,6 @@ function Chart({ range }) {
 export default function CoalFeature() {
   const { lang, t } = useLang();
   const C = t.coal;
-  const [range, setRange] = useState("all");
   const pubText = shortDate(PUBLISHED, lang);
   const peakText = shortDate(peak.date, lang);
   const gap = (peak.a - peak.j).toFixed(1);
@@ -327,24 +300,9 @@ export default function CoalFeature() {
 
       {/* AADI against the index */}
       <div className="p-6 sm:p-8">
-        <div className="flex flex-wrap items-start justify-between gap-x-6 gap-y-4">
-          <div>
-            <h4 className="font-display text-xl font-bold leading-tight text-white">{C.chartTitle}</h4>
-            <p className="mt-1 text-sm text-slate-400">{C.chartSub}</p>
-          </div>
-          <div role="group" aria-label={C.ranges} className="flex gap-2">
-            {["all", "since"].map((key) => (
-              <button
-                key={key}
-                type="button"
-                aria-pressed={range === key}
-                onClick={() => setRange(key)}
-                className="chip !min-h-[36px] !px-3.5 !text-xs"
-              >
-                {C[key]}
-              </button>
-            ))}
-          </div>
+        <div>
+          <h4 className="font-display text-xl font-bold leading-tight text-white">{C.chartTitle}</h4>
+          <p className="mt-1 text-sm text-slate-400">{C.chartSub}</p>
         </div>
 
         <div className="mt-6 grid grid-cols-3 gap-3 sm:gap-5">
@@ -363,7 +321,7 @@ export default function CoalFeature() {
           <Stat label={C.gap} value={lang === "en" ? gap : gap.replace(".", ",")} unit={C.gapUnit} sub={`${pubText.slice(0, -5)} - ${peakText}`} />
         </div>
 
-        <Chart range={range} />
+        <Chart />
 
         <p className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-slate-300">
           <span className="inline-flex items-center gap-2">
@@ -384,7 +342,7 @@ export default function CoalFeature() {
           {C.result(pubText, peakText, signedPercent(peak.a, lang).slice(1), signedPercent(peak.j, lang).slice(1))}
         </p>
         <p className="mt-3 text-xs leading-relaxed text-slate-400">
-          {C.note(shortDate(points[0].date, lang), peakText)} {C.disclaimer}
+          {C.note(pubText, shortDate(points[points.length - 1].date, lang))} {C.disclaimer}
         </p>
 
         <details className="mt-4 text-xs text-slate-300">

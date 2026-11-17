@@ -152,15 +152,12 @@ const id = {
     chartTitle: "AADI dibanding IHSG",
     chartSub: "Perubahan harga sejak hari riset terbit",
     index: "IHSG",
-    ranges: "Rentang waktu",
-    since: "Sejak terbit",
-    all: "Sejak Des 2025",
     gap: "Selisih",
     gapUnit: "poin persentase",
     to: (a, b) => `${a} ke ${b}`,
     marker: "Riset terbit",
     peak: "Tertinggi",
-    band: "Dari riset terbit sampai harga tertinggi AADI",
+    band: "Selisih AADI dan IHSG",
     chartAlt: (pub, peak, a, j) =>
       `Grafik garis perubahan harga AADI dan IHSG dibanding penutupan ${pub}. Sampai ${peak}, AADI ${a} dan IHSG ${j}. Tekan panah kiri atau kanan untuk membaca tiap tanggal.`,
     note: (from, to) =>
@@ -406,15 +403,12 @@ const en = {
     chartTitle: "AADI against the JCI",
     chartSub: "Price change since the day the report came out",
     index: "JCI",
-    ranges: "Time range",
-    since: "Since publication",
-    all: "Since Dec 2025",
     gap: "Gap",
     gapUnit: "percentage points",
     to: (a, b) => `${a} to ${b}`,
     marker: "Report published",
     peak: "Highest",
-    band: "From publication to AADI's highest close",
+    band: "Gap between AADI and the JCI",
     chartAlt: (pub, peak, a, j) =>
       `Line chart of the price change in AADI and the JCI against the close on ${pub}. By ${peak}, AADI was ${a} and the JCI ${j}. Press the left or right arrow to read each date.`,
     note: (from, to) =>
