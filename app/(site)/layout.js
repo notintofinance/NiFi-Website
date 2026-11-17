@@ -3,6 +3,8 @@ import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import { siteConfig } from "@/data/site-config";
+import { MotionProvider } from "@/components/Motion";
+import { LangProvider } from "@/components/Lang";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -70,9 +72,11 @@ const orgJsonLd = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${inter.variable} ${jakarta.variable}`}>
+    <html lang="id" className={`${inter.variable} ${jakarta.variable}`}>
       <body>
-        {children}
+        <LangProvider>
+          <MotionProvider>{children}</MotionProvider>
+        </LangProvider>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}

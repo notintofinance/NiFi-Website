@@ -1,3 +1,5 @@
+const tokens = require("./design-tokens");
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -28,19 +30,16 @@ module.exports = {
           hover: "#1f3a68",
           soft: "#EEF1F6", // faint navy tint for surfaces
         },
-        // Dark, high-contrast canvas (black / charcoal).
-        ink: {
-          950: "#08090B", // page background
-          900: "#0D0F12", // alternate section
-          800: "#14171B", // raised surface / cards
-          700: "#1D2127", // stronger surface
-        },
+        // Colours below come from design-tokens.js (shared with the 3D scene).
+        ink: tokens.ink,
         // Single cool accent — a lifted tint of the NiFi navy so it reads on
         // black. Used sparingly for emphasis, never as a large fill.
         cool: {
-          DEFAULT: "#8FAEFF",
-          deep: "#16294A", // the brand navy itself, for panels
+          DEFAULT: tokens.cool,
+          deep: tokens.navy, // the brand navy itself, for panels
         },
+        // Playground hues (headline marker, hero topic cards, section accents).
+        play: tokens.play,
       },
       fontFamily: {
         sans: ["var(--font-inter)", "ui-sans-serif", "system-ui", "sans-serif"],
